@@ -241,7 +241,7 @@ InitPokegearTilemap:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, $4f
 	call ByteFill
 	ld a, [wPokegearCard]
@@ -2654,7 +2654,7 @@ TownMapPals:
 ; Assign palettes based on tile ids
 	hlcoord 0, 0
 	decoord 0, 0, wAttrmap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 .loop
 ; Current tile
 	ld a, [hli]
@@ -2674,7 +2674,7 @@ TownMapPals:
 	adc 0
 	ld h, a
 	ld a, [hl]
-	and PALETTE_MASK
+	and OAM_PALETTE
 	jr .update
 
 .odd
@@ -2686,7 +2686,7 @@ TownMapPals:
 	ld h, a
 	ld a, [hl]
 	swap a
-	and PALETTE_MASK
+	and OAM_PALETTE
 	jr .update
 
 .pal0

@@ -14,9 +14,9 @@ Timer:: ; unreferenced
 LatchClock::
 ; latch clock counter data
 	ld a, 0
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ld a, 1
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	ret
 
 UpdateTime::
@@ -30,35 +30,35 @@ GetClock::
 ; store clock data in hRTCDayHi-hRTCSeconds
 
 ; enable clock r/w
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 
 ; clock data is 'backwards' in hram
 
 	call LatchClock
-	ld hl, MBC3SRamBank
-	ld de, MBC3RTC
+	ld hl, rRAMB
+	ld de, rRTCREG
 
-	ld [hl], RTC_S
+	ld [hl], RAMB_RTC_S
 	ld a, [de]
 	maskbits 60
 	ldh [hRTCSeconds], a
 
-	ld [hl], RTC_M
+	ld [hl], RAMB_RTC_M
 	ld a, [de]
 	maskbits 60
 	ldh [hRTCMinutes], a
 
-	ld [hl], RTC_H
+	ld [hl], RAMB_RTC_H
 	ld a, [de]
 	maskbits 24
 	ldh [hRTCHours], a
 
-	ld [hl], RTC_DL
+	ld [hl], RAMB_RTC_DL
 	ld a, [de]
 	ldh [hRTCDayLo], a
 
-	ld [hl], RTC_DH
+	ld [hl], RAMB_RTC_DH
 	ld a, [de]
 	ldh [hRTCDayHi], a
 
@@ -72,10 +72,10 @@ FixDays::
 
 ; check if day count > 255 (bit 8 set)
 	ldh a, [hRTCDayHi] ; DH
-	bit RTC_DH_HI, a
+	bit B_RAMB_RTC_DH_HIGH, a
 	jr z, .daylo
 ; reset dh (bit 8)
-	res RTC_DH_HI, a
+	res B_RAMB_RTC_DH_HIGH, a
 	ldh [hRTCDayHi], a
 
 ; mod 140
@@ -213,43 +213,43 @@ SetClock::
 ; set clock data from hram
 
 ; enable clock r/w
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 
 ; set clock data
 ; stored 'backwards' in hram
 
 	call LatchClock
-	ld hl, MBC3SRamBank
-	ld de, MBC3RTC
+	ld hl, rRAMB
+	ld de, rRTCREG
 
 ; seems to be a halt check that got partially commented out
 ; this block is totally pointless
-	ld [hl], RTC_DH
+	ld [hl], RAMB_RTC_DH
 	ld a, [de]
-	bit RTC_DH_HALT, a
+	bit B_RAMB_RTC_DH_HALT, a
 	ld [de], a
 
 ; seconds
-	ld [hl], RTC_S
+	ld [hl], RAMB_RTC_S
 	ldh a, [hRTCSeconds]
 	ld [de], a
 ; minutes
-	ld [hl], RTC_M
+	ld [hl], RAMB_RTC_M
 	ldh a, [hRTCMinutes]
 	ld [de], a
 ; hours
-	ld [hl], RTC_H
+	ld [hl], RAMB_RTC_H
 	ldh a, [hRTCHours]
 	ld [de], a
 ; day lo
-	ld [hl], RTC_DL
+	ld [hl], RAMB_RTC_DL
 	ldh a, [hRTCDayLo]
 	ld [de], a
 ; day hi
-	ld [hl], RTC_DH
+	ld [hl], RAMB_RTC_DH
 	ldh a, [hRTCDayHi]
-	res RTC_DH_HALT, a ; make sure timer is active
+	res B_RAMB_RTC_DH_HALT, a ; make sure timer is active
 	ld [de], a
 
 ; cleanup

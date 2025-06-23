@@ -249,10 +249,10 @@ CheckBTMonMovesForErrors:
 	ret
 
 Function170cc6:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, PichuAnimatedMobileGFX
 	ld de, wDecompressScratch
 	call Decompress
@@ -272,7 +272,7 @@ Function170cc6:
 	lb bc, BANK(wDecompressScratch), 83
 	call Get2bpp
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function170d02:
@@ -308,13 +308,13 @@ Function1719c8:
 Function1719d6:
 	farcall BattleTowerRoomMenu_InitRAM
 	call Function1719ed
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call Function171a11
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function1719ed:
@@ -380,13 +380,13 @@ Function171a5d:
 	ld [wMobileErrorCodeBuffer + 2], a
 	ld a, MOBILEAPI_05
 	call MobileAPI
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	farcall BattleTowerRoomMenu_Cleanup
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $a
 	ld [wcd49], a
 	ret
@@ -422,13 +422,13 @@ Function171ad7:
 	jp Function171c66
 
 Function171aec:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	farcall BattleTowerRoomMenu_Cleanup
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	hlcoord 2, 6
 	ld a, $8
 .asm_171b01
@@ -675,10 +675,10 @@ Function171c87:
 	ret
 
 Function171ccd:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, MobilePasswordPalettes
 	ld de, wBGPals1
 	ld bc, 8 palettes
@@ -690,7 +690,7 @@ Function171ccd:
 	ld [hl], a
 	call SetDefaultBGPAndOBP
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function171cf0:
@@ -811,10 +811,10 @@ Function172e78:
 	ret
 
 Function172eb9:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_172edf
 	ld de, wBGPals1
 	ld bc, 8 palettes
@@ -825,7 +825,7 @@ Function172eb9:
 	call CopyBytes
 	call SetDefaultBGPAndOBP
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_172edf:

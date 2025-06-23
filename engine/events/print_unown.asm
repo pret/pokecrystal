@@ -159,10 +159,10 @@ endc
 	ret
 
 .Load2bppToSRAM:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, BANK(sScratch)
 	call OpenSRAM
@@ -175,7 +175,7 @@ endc
 	call CloseSRAM
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .vacant
@@ -225,7 +225,7 @@ INCBIN "gfx/printer/bold_b.1bpp"
 
 PlaceUnownPrinterFrontpic:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, " "
 	call ByteFill
 	hlcoord 7, 11

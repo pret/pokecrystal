@@ -763,10 +763,10 @@ ClearWindowData::
 	ld hl, wMoreMenuData
 	call .ClearMenuData
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wWindowStack)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	xor a
 	ld hl, wWindowStackBottom
@@ -778,7 +778,7 @@ ClearWindowData::
 	ld [wWindowStackPointer + 1], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .ClearMenuData:

@@ -124,7 +124,7 @@ InitClock:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	xor a
 	call ByteFill
 	ld a, $1

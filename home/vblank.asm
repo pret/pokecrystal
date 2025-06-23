@@ -199,13 +199,13 @@ VBlank_Cutscene::
 	xor a
 	ldh [rIF], a
 	; enable lcd stat
-	ld a, 1 << LCD_STAT
+	ld a, IE_STAT
 	ldh [rIE], a
 	; rerequest serial int if applicable (still disabled)
 	; request lcd stat
 	ld a, b
-	and 1 << SERIAL
-	or 1 << LCD_STAT
+	and IF_SERIAL
+	or IF_STAT
 	ldh [rIF], a
 
 	ei
@@ -282,8 +282,9 @@ VBlank_CutsceneCGB::
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, 1 << LCD_STAT
+	ld a, IE_STAT
 	ldh [rIE], a
+	assert IE_STAT == IF_STAT
 	ldh [rIF], a
 
 	ei
@@ -370,9 +371,10 @@ VBlank_Credits::
 
 	xor a
 	ldh [rIF], a
-	ld a, 1 << LCD_STAT
+	ld a, IE_STAT
 	ldh [rIE], a
 	; request lcd stat
+	assert IE_STAT == IF_STAT
 	ldh [rIF], a
 
 	ei

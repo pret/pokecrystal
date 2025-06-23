@@ -765,10 +765,10 @@ Function17aba0:
 	ret
 
 Function17abcf:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, Palette_17ac55
 	ld de, wBGPals1
@@ -792,7 +792,7 @@ Function17abcf:
 	call FarCopyBytes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function17ac0c:

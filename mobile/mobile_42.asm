@@ -274,13 +274,13 @@ MobileTradeAnim_ClearBGMap:
 	ld a, $1
 	ldh [rVBK], a
 	hlbgcoord 0, 0
-	ld bc, 2 * BG_MAP_HEIGHT * BG_MAP_WIDTH
+	ld bc, 2 * TILEMAP_AREA
 	ld a, $0
 	call ByteFill
 	ld a, $0
 	ldh [rVBK], a
 	hlbgcoord 0, 0
-	ld bc, 2 * BG_MAP_HEIGHT * BG_MAP_WIDTH
+	ld bc, 2 * TILEMAP_AREA
 	ld a, $7f
 	call ByteFill
 	ret
@@ -800,16 +800,16 @@ MobileTradeAnim_02:
 	ldh [hWX], a
 	ld a, $90
 	ldh [hWY], a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, MobileTradeBGPalettes
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call LoadMobileAdapterPalette
 	call Function108af4
 	call GetMobileTradeAnimByte
@@ -845,16 +845,16 @@ MobileTradeAnim_10:
 	ldh [hWX], a
 	ld a, $90
 	ldh [hWY], a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, MobileTradeBGPalettes
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call LoadMobileAdapterPalette
 	call Function108af4
 	call GetMobileTradeAnimByte
@@ -888,16 +888,16 @@ MobileTradeAnim_11:
 	ldh [hWX], a
 	ld a, $90
 	ldh [hWY], a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, MobileTradeBGPalettes
 	ld de, wBGPals1
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call LoadMobileAdapterPalette
 	call Function108af4
 	call Function108b5a
@@ -1356,7 +1356,7 @@ MobileTradeAnim_MonDisplay_PrintIDNumber:
 
 MobileTradeAnim_ClearTilemap:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, " "
 	call ByteFill
 	ret
@@ -1381,10 +1381,10 @@ Function108ad4:
 	ret
 
 Function108af4:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wcf65]
 	and $1
 	jr z, .copy_MobileTradeOB1Palettes
@@ -1410,7 +1410,7 @@ Function108af4:
 
 .done_copy
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, %11100100 ; 3,2,1,0
 	call DmgToCgbObjPal0
 	ld a, %11100100 ; 3,2,1,0
@@ -1419,10 +1419,10 @@ Function108af4:
 	ret
 
 Function108b45:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld de, PALRGB_WHITE
 	ld hl, wBGPals1
 	ld a, e
@@ -1430,14 +1430,14 @@ Function108b45:
 	ld d, a
 	ld [hli], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function108b5a:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld de, palred 18 + palgreen 31 + palblue 15
 	ld hl, wBGPals2 palette 4
 	ld c, 2 palettes
@@ -1449,16 +1449,16 @@ Function108b5a:
 	dec c
 	jr nz, .loop
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
 
 Function108b78:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, c
 	and $2
 	jr z, .Orange
@@ -1473,7 +1473,7 @@ Function108b78:
 	ld a, d
 	ld [hld], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
@@ -1483,10 +1483,10 @@ Palette_108b98:
 
 Function108b98:
 	ld d, a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wcf65]
 	and $1
 	xor d
@@ -1501,7 +1501,7 @@ Function108b98:
 	ld bc, 8 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 MobileTradeAnim_DeleteSprites:

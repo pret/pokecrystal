@@ -262,7 +262,7 @@ NamingScreen_IsTargetBox:
 NamingScreen_InitText:
 	call WaitTop
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, NAMINGSCREEN_BORDER
 	call ByteFill
 	hlcoord 1, 1
