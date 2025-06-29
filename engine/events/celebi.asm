@@ -37,7 +37,7 @@ CelebiShrineEvent:
 	call GetCelebiSpriteTile
 	inc d
 	push de
-	ld a, 36 * SPRITEOAMSTRUCT_LENGTH
+	ld a, 36 * OBJ_SIZE
 	ld [wCurSpriteOAMAddr], a
 	farcall DoNextFrameForAllSprites
 	call CelebiEvent_CountDown
@@ -60,7 +60,7 @@ CelebiShrineEvent:
 	ld c, 4
 .OAMloop:
 	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH - 1
+rept OBJ_SIZE - 1
 	inc hl
 endr
 	inc a

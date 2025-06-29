@@ -1419,18 +1419,18 @@ DebugRoom_DayHTimeString:
 	db "DAY     H<LF>TIME@"
 
 DebugRoom_GetClock:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 	xor a
-	ld [MBC3LatchClock], a
+	ld [rRTCLATCH], a
 	inc a
-	ld [MBC3LatchClock], a
-	ld b, RTC_DH - RTC_S + 1
-	ld c, RTC_S
+	ld [rRTCLATCH], a
+	ld b, RAMB_RTC_DH - RAMB_RTC_S + 1
+	ld c, RAMB_RTC_S
 .loop
 	ld a, c
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
+	ld [rRAMB], a
+	ld a, [rRTCREG]
 	ld [hli], a
 	inc c
 	dec b
@@ -1439,15 +1439,15 @@ DebugRoom_GetClock:
 	ret
 
 DebugRoom_SetClock:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
-	ld b, RTC_DH - RTC_S + 1
-	ld c, RTC_S
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
+	ld b, RAMB_RTC_DH - RAMB_RTC_S + 1
+	ld c, RAMB_RTC_S
 .loop
 	ld a, c
-	ld [MBC3SRamBank], a
+	ld [rRAMB], a
 	ld a, [hli]
-	ld [MBC3RTC], a
+	ld [rRTCREG], a
 	inc c
 	dec b
 	jr nz, .loop

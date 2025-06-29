@@ -37,14 +37,14 @@ GetBattleAnimFrame:
 	push af
 	ld a, [hl]
 	push hl
-	and ~(Y_FLIP << 1 | X_FLIP << 1)
+	and ~(OAM_YFLIP << 1 | OAM_XFLIP << 1)
 	ld hl, BATTLEANIMSTRUCT_DURATION
 	add hl, bc
 	ld [hl], a
 	pop hl
 .okay
 	ld a, [hl]
-	and Y_FLIP << 1 | X_FLIP << 1 ; The << 1 is compensated in the "oamframe" macro
+	and OAM_YFLIP << 1 | OAM_XFLIP << 1 ; The << 1 is compensated in the "oamframe" macro
 	srl a
 	ld [wBattleAnimTempFrameOAMFlags], a
 	pop af

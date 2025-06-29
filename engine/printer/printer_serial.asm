@@ -270,9 +270,9 @@ Printer_WaitHandshake:
 	ld [wPrinterOpcode], a
 	ld a, $88
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 	ret
 
@@ -613,9 +613,9 @@ Printer_Send0x08:
 
 Printer_SerialSend:
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 	ret
 

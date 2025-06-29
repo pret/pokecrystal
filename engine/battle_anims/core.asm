@@ -89,7 +89,7 @@ BattleAnimOAMUpdate:
 	ld hl, wBattleAnimTempOAMFlags
 	ld a, [wBattleAnimTempFrameOAMFlags]
 	xor [hl]
-	and PRIORITY | Y_FLIP | X_FLIP
+	and OAM_PRIO | OAM_YFLIP | OAM_XFLIP
 	ld [hl], a
 	pop af
 
@@ -118,7 +118,7 @@ BattleAnimOAMUpdate:
 	push hl
 	ld a, [hl]
 	ld hl, wBattleAnimTempOAMFlags
-	bit OAM_Y_FLIP, [hl]
+	bit B_OAM_YFLIP, [hl]
 	jr z, .no_yflip
 	add $8
 	xor $ff
@@ -139,7 +139,7 @@ BattleAnimOAMUpdate:
 	push hl
 	ld a, [hl]
 	ld hl, wBattleAnimTempOAMFlags
-	bit OAM_X_FLIP, [hl]
+	bit B_OAM_XFLIP, [hl]
 	jr z, .no_xflip
 	add $8
 	xor $ff
@@ -164,14 +164,14 @@ BattleAnimOAMUpdate:
 	ld b, a
 	ld a, [hl]
 	xor b
-	and PRIORITY | Y_FLIP | X_FLIP
+	and OAM_PRIO | OAM_YFLIP | OAM_XFLIP
 	ld b, a
 	ld a, [hl]
-	and OBP_NUM
+	and OAM_PAL1
 	or b
 	ld b, a
 	ld a, [wBattleAnimTempPalette]
-	and PALETTE_MASK | VRAM_BANK_1
+	and OAM_PALETTE | OAM_BANK1
 	or b
 	ld [de], a
 
@@ -203,7 +203,7 @@ InitBattleAnimBuffer:
 	add hl, bc
 	ld a, [hl]
 
-	and PRIORITY
+	and OAM_PRIO
 	ld [wBattleAnimTempOAMFlags], a
 	xor a
 	ld [wBattleAnimTempFrameOAMFlags], a

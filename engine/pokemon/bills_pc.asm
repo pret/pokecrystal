@@ -1472,7 +1472,7 @@ BillsPC_UpdateSelectionCursor:
 	inc hl
 	ld [de], a ; y
 	inc de
-rept SPRITEOAMSTRUCT_LENGTH - 1
+rept OBJ_SIZE - 1
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -1490,20 +1490,20 @@ endr
 	dbsprite 17, 4, 0, 6, $00, 0
 	dbsprite 18, 4, 0, 6, $00, 0
 	dbsprite 18, 4, 7, 6, $00, 0
-	dbsprite 10, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 11, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 12, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 13, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 14, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 15, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 16, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 17, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 18, 7, 0, 1, $00, 0 | Y_FLIP
-	dbsprite 18, 7, 7, 1, $00, 0 | Y_FLIP
+	dbsprite 10, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 11, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 12, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 13, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 14, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 15, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 16, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 17, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 18, 7, 0, 1, $00, 0 | OAM_YFLIP
+	dbsprite 18, 7, 7, 1, $00, 0 | OAM_YFLIP
 	dbsprite  9, 5, 6, 6, $01, 0
-	dbsprite  9, 6, 6, 1, $01, 0 | Y_FLIP
-	dbsprite 19, 5, 1, 6, $01, 0 | X_FLIP
-	dbsprite 19, 6, 1, 1, $01, 0 | X_FLIP | Y_FLIP
+	dbsprite  9, 6, 6, 1, $01, 0 | OAM_YFLIP
+	dbsprite 19, 5, 1, 6, $01, 0 | OAM_XFLIP
+	dbsprite 19, 6, 1, 1, $01, 0 | OAM_XFLIP | OAM_YFLIP
 	db -1
 
 BillsPC_UpdateInsertCursor:
@@ -1520,7 +1520,7 @@ BillsPC_UpdateInsertCursor:
 	inc hl
 	ld [de], a ; y
 	inc de
-rept SPRITEOAMSTRUCT_LENGTH - 1
+rept OBJ_SIZE - 1
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -1529,14 +1529,14 @@ endr
 
 .OAM:
 	dbsprite 10, 4, 0, 7, $06, 0
-	dbsprite 11, 5, 0, 3, $00, 0 | Y_FLIP
-	dbsprite 12, 5, 0, 3, $00, 0 | Y_FLIP
-	dbsprite 13, 5, 0, 3, $00, 0 | Y_FLIP
-	dbsprite 14, 5, 0, 3, $00, 0 | Y_FLIP
-	dbsprite 15, 5, 0, 3, $00, 0 | Y_FLIP
-	dbsprite 16, 5, 0, 3, $00, 0 | Y_FLIP
-	dbsprite 17, 5, 0, 3, $00, 0 | Y_FLIP
-	dbsprite 18, 5, 0, 3, $00, 0 | Y_FLIP
+	dbsprite 11, 5, 0, 3, $00, 0 | OAM_YFLIP
+	dbsprite 12, 5, 0, 3, $00, 0 | OAM_YFLIP
+	dbsprite 13, 5, 0, 3, $00, 0 | OAM_YFLIP
+	dbsprite 14, 5, 0, 3, $00, 0 | OAM_YFLIP
+	dbsprite 15, 5, 0, 3, $00, 0 | OAM_YFLIP
+	dbsprite 16, 5, 0, 3, $00, 0 | OAM_YFLIP
+	dbsprite 17, 5, 0, 3, $00, 0 | OAM_YFLIP
+	dbsprite 18, 5, 0, 3, $00, 0 | OAM_YFLIP
 	dbsprite 19, 4, 0, 7, $07, 0
 	db -1
 
@@ -2251,7 +2251,7 @@ BillsPC_ClearTilemap:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, " "
 	call ByteFill
 	ret

@@ -78,27 +78,27 @@ LoadFonts_NoOAMUpdate::
 	ret
 
 HDMATransfer_FillBGMap0WithBlack:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, "■"
 	ld hl, wDecompressScratch
 	ld bc, wScratchAttrmap - wDecompressScratch
 	call ByteFill
 	ld a, HIGH(wDecompressScratch)
-	ldh [rHDMA1], a
+	ldh [rVDMA_SRC_HIGH], a
 	ld a, LOW(wDecompressScratch)
-	ldh [rHDMA2], a
+	ldh [rVDMA_SRC_LOW], a
 	ld a, HIGH(vBGMap0 - STARTOF(VRAM))
-	ldh [rHDMA3], a
+	ldh [rVDMA_DEST_HIGH], a
 	ld a, LOW(vBGMap0 - STARTOF(VRAM))
-	ldh [rHDMA4], a
+	ldh [rVDMA_DEST_LOW], a
 	ld a, $3f
 	ldh [hDMATransfer], a
 	call DelayFrame
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret

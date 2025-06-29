@@ -27,7 +27,7 @@ _UnownPuzzle:
 	call Decompress
 	call LoadUnownPuzzlePiecesGFX
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, PUZZLE_BORDER
 	call ByteFill
 	hlcoord 4, 3
@@ -557,13 +557,13 @@ RedrawUnownPuzzlePieces:
 .OAM_NotHoldingPiece:
 	dbsprite -1, -1, -4, -4, $00, 0
 	dbsprite  0, -1, -4, -4, $01, 0
-	dbsprite  0, -1,  4, -4, $00, 0 | X_FLIP
+	dbsprite  0, -1,  4, -4, $00, 0 | OAM_XFLIP
 	dbsprite -1,  0, -4, -4, $02, 0
 	dbsprite  0,  0, -4, -4, $03, 0
-	dbsprite  0,  0,  4, -4, $02, 0 | X_FLIP
-	dbsprite -1,  0, -4,  4, $00, 0 | Y_FLIP
-	dbsprite  0,  0, -4,  4, $01, 0 | Y_FLIP
-	dbsprite  0,  0,  4,  4, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  0,  0,  4, -4, $02, 0 | OAM_XFLIP
+	dbsprite -1,  0, -4,  4, $00, 0 | OAM_YFLIP
+	dbsprite  0,  0, -4,  4, $01, 0 | OAM_YFLIP
+	dbsprite  0,  0,  4,  4, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	db -1
 
 UnownPuzzleCoordData:
