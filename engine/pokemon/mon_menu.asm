@@ -1084,7 +1084,7 @@ MoveScreen2DMenuData:
 	db _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
 	db 0 ; flags 2
 	dn 2, 0 ; cursor offsets
-	db PAD_UP | PAD_DOWN | PAD_LEFT | PAD_RIGHT | PAD_A | PAD_B ; accepted buttons
+	db PAD_CTRL_PAD | PAD_A | PAD_B ; accepted buttons
 
 String_MoveWhere:
 	db "Where?@"

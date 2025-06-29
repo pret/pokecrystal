@@ -253,7 +253,7 @@ MonStatsJoypad:
 	ret
 
 .next
-	and PAD_DOWN | PAD_UP | PAD_LEFT | PAD_RIGHT | PAD_A | PAD_B
+	and PAD_CTRL_PAD | PAD_A | PAD_B
 	jp StatsScreen_JoypadAction
 
 StatsScreenWaitCry:
