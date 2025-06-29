@@ -25,7 +25,7 @@ TrainerCard:
 	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	ldh a, [hJoyLast]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .quit
 	call .RunJumptable
 	call DelayFrame
@@ -119,7 +119,7 @@ TrainerCard_Page1_Joypad:
 	call TrainerCard_Page1_PrintGameTime
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_RIGHT | A_BUTTON
+	and PAD_RIGHT | PAD_A
 	jr nz, .pressed_right_a
 	ret
 
@@ -159,10 +159,10 @@ TrainerCard_Page2_Joypad:
 	call TrainerCard_Page2_3_AnimateBadges
 	ld hl, hJoyLast
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .Quit
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .d_left
 	ret
 
@@ -207,10 +207,10 @@ TrainerCard_Page3_Joypad:
 	call TrainerCard_Page2_3_AnimateBadges
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ret
 

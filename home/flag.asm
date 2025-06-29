@@ -110,7 +110,7 @@ CheckBPressedDebug:: ; unreferenced
 	ret z
 
 	ldh a, [hJoyDown]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	ret
 
 xor_a::

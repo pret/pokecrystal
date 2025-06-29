@@ -11,7 +11,7 @@ CrystalIntro:
 .loop
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	and BUTTONS
+	and PAD_BUTTONS
 	jr nz, .ShutOffMusic
 	ld a, [wJumptableIndex]
 	bit JUMPTABLE_EXIT_F, a

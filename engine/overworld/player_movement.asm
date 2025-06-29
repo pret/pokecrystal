@@ -21,11 +21,11 @@ DoPlayerMovement::
 	ret z
 
 	ld c, a
-	and D_PAD
+	and PAD_CTRL_PAD
 	ret nz
 
 	ld a, c
-	or D_DOWN
+	or PAD_DOWN
 	ld [wCurInput], a
 	ret
 
@@ -546,13 +546,13 @@ DoPlayerMovement::
 	ld hl, .forced_dpad
 	add hl, de
 	ld a, [wCurInput]
-	and BUTTONS
+	and PAD_BUTTONS
 	or [hl]
 	ld [wCurInput], a
 	ret
 
 .forced_dpad
-	db D_DOWN, D_UP, D_LEFT, D_RIGHT
+	db PAD_DOWN, PAD_UP, PAD_LEFT, PAD_RIGHT
 
 .GetAction:
 ; Poll player input and update movement info.
@@ -560,13 +560,13 @@ DoPlayerMovement::
 	ld hl, .action_table
 	ld de, .action_table_1_end - .action_table_1
 	ld a, [wCurInput]
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .d_down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .d_up
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .d_left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .d_right
 ; Standing
 	jr .update

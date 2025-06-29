@@ -52,10 +52,10 @@ JoyTextDelay_ForcehJoyDown::
 	ldh [hInMenu], a
 
 	ldh a, [hJoyLast]
-	and D_RIGHT + D_LEFT + D_UP + D_DOWN
+	and PAD_CTRL_PAD
 	ld c, a
 	ldh a, [hJoyPressed]
-	and A_BUTTON + B_BUTTON + SELECT + START
+	and PAD_BUTTONS
 	or c
 	ld c, a
 	ret

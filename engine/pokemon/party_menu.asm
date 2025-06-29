@@ -633,7 +633,7 @@ InitPartyMenuWithCancel:
 
 .done
 	ld [wMenuCursorY], a
-	ld a, A_BUTTON | B_BUTTON
+	ld a, PAD_A | PAD_B
 	ld [wMenuJoypadFilter], a
 	ret
 
@@ -654,7 +654,7 @@ InitPartyMenuNoCancel:
 	ld a, 1
 .done
 	ld [wMenuCursorY], a
-	ld a, A_BUTTON | B_BUTTON
+	ld a, PAD_A | PAD_B
 	ld [wMenuJoypadFilter], a
 	ret
 
@@ -679,7 +679,7 @@ PartyMenuSelect:
 	ld [wPartyMenuCursor], a
 	ldh a, [hJoyLast]
 	ld b, a
-	bit B_BUTTON_F, b
+	bit B_PAD_B, b
 	jr nz, .exitmenu ; B button
 	ld a, [wMenuCursorY]
 	dec a

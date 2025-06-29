@@ -6,6 +6,9 @@ DEF TRUE  EQU 1
 DEF MALE   EQU 0
 DEF FEMALE EQU 1
 
+; input
+DEF NO_INPUT EQU %00000000
+
 ; FlagAction arguments (see home/flag.asm)
 	const_def
 	const RESET_FLAG

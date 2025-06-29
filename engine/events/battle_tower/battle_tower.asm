@@ -660,16 +660,16 @@ Function1704e1:
 .Jumptable_2:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .pressed_a_or_b
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .pressed_a_or_b
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .pressed_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .pressed_down
 	ret
 

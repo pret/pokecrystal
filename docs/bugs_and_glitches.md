@@ -1648,10 +1648,10 @@ Then edit `SurfStartStep` in [engine/overworld/player_object.asm](https://github
 -	slow_step UP
 -	slow_step LEFT
 -	slow_step RIGHT
-+	db D_DOWN,  0, -1
-+	db D_UP,    0, -1
-+	db D_LEFT,  0, -1
-+	db D_RIGHT, 0, -1
++	db PAD_DOWN,  0, -1
++	db PAD_UP,    0, -1
++	db PAD_LEFT,  0, -1
++	db PAD_RIGHT, 0, -1
 ```
 
 This fix will make the player enter the water at a normal walking speed, not with a slow step.

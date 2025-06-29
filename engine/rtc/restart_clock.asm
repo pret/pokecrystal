@@ -121,17 +121,17 @@ RestartClock:
 	push af
 	call .PrintTime
 	pop af
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .press_A
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .press_B
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .pressed_up
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .pressed_down
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .pressed_left
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .pressed_right
 	jr .joy_loop
 

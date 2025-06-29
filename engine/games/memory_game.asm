@@ -201,7 +201,7 @@ endr
 
 .RevealAll:
 	ldh a, [hJoypadPressed]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	xor a
 	ld [wMemoryGameCounter], a
@@ -500,19 +500,19 @@ MemoryGame_InterpretJoypad_AnimateCursor:
 	call JoyTextDelay
 	ld hl, hJoypadPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .pressed_a
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .pressed_left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .pressed_right
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .pressed_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .pressed_down
 	ret
 

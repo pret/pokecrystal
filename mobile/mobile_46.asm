@@ -1223,16 +1223,16 @@ BattleTowerRoomMenu_UpdatePickLevelMenu:
 	call PlaceString
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_button
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_button
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .d_down
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .d_up
 .asm_1189e5
 	ret
@@ -4535,16 +4535,16 @@ BattleTowerRoomMenu2_PlaceYesNoMenu:
 BattleTowerRoomMenu2_UpdateYesNoMenu:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_button
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_button
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .d_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .d_down
 .asm_11a24c
 	call Function11a9f0
@@ -4928,16 +4928,16 @@ Function11a4fe:
 Function11a536:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_11a5a7
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .asm_11a5a2
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11a564
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11a583
 .asm_11a54d
 	ld a, [wBattleTowerRoomMenu2JumptableIndex]
@@ -5705,16 +5705,16 @@ Function11adc4:
 	and a
 	ret z
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11ade6
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11aded
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_11ae06
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	ret z
 	call PlayClickSFX
 	xor a
@@ -5818,16 +5818,16 @@ Function11ae98:
 	and a
 	ret z
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11aec1
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11aec8
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_11aee1
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	ret z
 	call PlayClickSFX
 .asm_11aeb4
@@ -5908,16 +5908,16 @@ Function11af4e:
 	and a
 	ret z
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11af77
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11af7e
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_11af97
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	ret z
 	call PlayClickSFX
 .asm_11af6a
@@ -6192,10 +6192,10 @@ Function11b099:
 Function11b0ff:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .asm_11b141
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_11b131
 	call Function11b175
 	jr nc, .asm_11b125
@@ -6274,19 +6274,19 @@ Function11b175:
 	ld e, a
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11b19a
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11b1ae
 	ld a, d
 	cp e
 	jr nc, .asm_11b1ed
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .asm_11b1c6
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .asm_11b1d8
 	jr .asm_11b1ed
 

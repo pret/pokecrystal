@@ -5404,15 +5404,15 @@ MoveSelectionScreen:
 	ld c, STATICMENU_ENABLE_LEFT_RIGHT | STATICMENU_ENABLE_START | STATICMENU_WRAP
 	ld a, [wMoveSelectionMenuType]
 	dec a
-	ld b, D_DOWN | D_UP | A_BUTTON
+	ld b, PAD_DOWN | PAD_UP | PAD_A
 	jr z, .okay
 	dec a
-	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON
+	ld b, PAD_DOWN | PAD_UP | PAD_A | PAD_B
 	jr z, .okay
 	ld a, [wLinkMode]
 	and a
 	jr nz, .okay
-	ld b, D_DOWN | D_UP | A_BUTTON | B_BUTTON | SELECT
+	ld b, PAD_DOWN | PAD_UP | PAD_A | PAD_B | PAD_SELECT
 
 .okay
 	ld a, b
@@ -5449,13 +5449,13 @@ MoveSelectionScreen:
 	ld a, $1
 	ldh [hBGMapMode], a
 	call ScrollingMenuJoypad
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jp nz, .pressed_up
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jp nz, .pressed_down
-	bit SELECT_F, a
+	bit B_PAD_SELECT, a
 	jp nz, .pressed_select
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	; A button
 	push af
 

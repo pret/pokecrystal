@@ -268,7 +268,7 @@ Fixcode={db NO_INPUT}
 ConditionType = 0                                                                              
 ConditionValueA = {dws_ wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuSelection wMenuCursorY hJoyPressed hJoyPressed hJoyPressed hJoyPressed}                   
 ConditionValueB = {dws_ ==                  ==                    ==          >=             <=             ==           !=          !=          !=          !=         }                   
-ConditionValueC = {dws_ 0xdd                0xd3                  A_BUTTON    0x00           0x0f           0x03         D_DOWN      D_UP        B_BUTTON    NO_INPUT   }                   
+ConditionValueC = {dws_ 0xdd                0xd3                  PAD_A       0x00           0x0f           0x03         PAD_DOWN    PAD_UP      PAD_B       NO_INPUT   }                   
     
 ; -----ddddfffffff99999ccccc77777----0xd9c7 no ..............Mem Write: pc32 = 0x230b addr = 0xd9c7 value = 0x8
 ; 0xd9c7 is the room number.
@@ -283,7 +283,7 @@ Fixcode={db NO_INPUT}
 ConditionType = 0                                                             
 ConditionValueA = {dws_ wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wMenuCursorY wMapGroup         wMapNumber                wYCoord wXCoord hJoyPressed hJoyPressed hJoyPressed hJoyPressed}  
 ConditionValueB = {dws_ ==                  ==                    ==          ==             ==           ==                ==                        ==      ==      !=          !=          !=          !=         }  
-ConditionValueC = {dws_ 0xaf                0xdf                  NO_INPUT    0x00           0x01         MAPGROUP_CIANWOOD MAP_CIANWOOD_PHOTO_STUDIO 0x04    0x02    D_DOWN      D_UP        B_BUTTON    NO_INPUT   }  
+ConditionValueC = {dws_ 0xaf                0xdf                  NO_INPUT    0x00           0x01         MAPGROUP_CIANWOOD MAP_CIANWOOD_PHOTO_STUDIO 0x04    0x02    PAD_DOWN    PAD_UP      PAD_B       NO_INPUT   }  
 
                                                
 ;ROM:BB29C                 call    unk_934       
@@ -326,7 +326,7 @@ Fixcode={db NO_INPUT}
 ConditionType = 0                                                                                 
 ConditionValueA = {dws_ wWindowStackPointer wWindowStackPointer+1 wMenuJoypad wMenuSelection wDexArrowCursorPosIndex hJoyPressed hJoyPressed hJoyPressed hJoyPressed}                      
 ConditionValueB = {dws_ ==                  ==                    ==          ==             ==                      !=          !=          !=          !=         }                      
-ConditionValueC = {dws_ 0xa1                0xdb                  A_BUTTON    0x00           0x03                    D_DOWN      D_UP        B_BUTTON    NO_INPUT   }                      
+ConditionValueC = {dws_ 0xa1                0xdb                  PAD_A       0x00           0x03                    PAD_DOWN    PAD_UP      PAD_B       NO_INPUT   }                      
 
 
 

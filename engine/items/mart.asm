@@ -446,9 +446,9 @@ BuyMenuLoop:
 	ld [wMenuCursorPositionBackup], a
 	call SpeechTextbox
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .set_carry
-	cp A_BUTTON
+	cp PAD_A
 	jr z, .useless_pointer
 
 .useless_pointer

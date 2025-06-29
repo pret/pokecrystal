@@ -72,10 +72,10 @@ _DepositPKMN:
 .HandleJoypad:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_button
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_button
 	call Withdraw_UpDown
 	and a
@@ -330,10 +330,10 @@ _WithdrawPKMN:
 .Joypad:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_button
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_button
 	call Withdraw_UpDown
 	and a
@@ -571,10 +571,10 @@ _MovePKMNWithoutMail:
 .Joypad:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_button
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_button
 	call MoveMonWithoutMail_DPad
 	jr c, .d_pad
@@ -720,10 +720,10 @@ _MovePKMNWithoutMail:
 .Joypad2:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_button_2
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_button_2
 	call MoveMonWithoutMail_DPad_2
 	jr c, .dpad_2
@@ -810,10 +810,10 @@ _StatsScreenDPad:
 	jr z, .empty
 	ld e, a
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, BillsPC_PressUp
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, BillsPC_PressDown
 .empty
 	jp BillsPC_JoypadDidNothing
@@ -827,10 +827,10 @@ Withdraw_UpDown:
 	and a
 	jr z, .empty
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, BillsPC_PressUp
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, BillsPC_PressDown
 .empty
 	jp BillsPC_JoypadDidNothing
@@ -844,18 +844,18 @@ MoveMonWithoutMail_DPad:
 	and a
 	jr z, .check_left_right
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, BillsPC_PressUp
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, BillsPC_PressDown
 
 .check_left_right
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, BillsPC_PressLeft
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, BillsPC_PressRight
 	jr BillsPC_JoypadDidNothing
 
@@ -869,18 +869,18 @@ MoveMonWithoutMail_DPad_2:
 	jr z, .check_left_right
 
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, BillsPC_PressUp
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, BillsPC_PressDown
 
 .check_left_right
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, BillsPC_PressLeft
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, BillsPC_PressRight
 	jr BillsPC_JoypadDidNothing
 
@@ -1662,11 +1662,11 @@ BillsPC_StatsScreen:
 StatsScreenDPad:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON | B_BUTTON | D_RIGHT | D_LEFT
+	and PAD_A | PAD_B | PAD_RIGHT | PAD_LEFT
 	ld [wMenuJoypad], a
 	jr nz, .pressed_a_b_right_left
 	ld a, [hl]
-	and D_DOWN | D_UP
+	and PAD_DOWN | PAD_UP
 	ld [wMenuJoypad], a
 	jr nz, .pressed_down_up
 	jr .pressed_a_b_right_left
@@ -2238,7 +2238,7 @@ _ChangeBox:
 	call Textbox
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .done
 	call BillsPC_PlaceWhatsUpString
 	call BillsPC_ChangeBoxSubmenu

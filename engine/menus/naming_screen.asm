@@ -398,16 +398,16 @@ NamingScreenJoypadLoop:
 .ReadButtons:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 	ld a, [hl]
-	and START
+	and PAD_START
 	jr nz, .start
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 	ret
 
@@ -553,16 +553,16 @@ NamingScreen_AnimateCursor:
 .GetDPad:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ret
 
@@ -1072,16 +1072,16 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 .process_joypad
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 	ld a, [hl]
-	and START
+	and PAD_START
 	jr nz, .start
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 	ret
 
@@ -1199,16 +1199,16 @@ ComposeMail_AnimateCursor:
 .GetDPad:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ret
 

@@ -317,13 +317,13 @@ _HallOfFamePC:
 	call JoyTextDelay
 	ld hl, hJoyLast
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_button
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_button
 	ld a, [hl]
-	and START
+	and PAD_START
 	jr nz, .start_button
 	call DelayFrame
 	jr .loop

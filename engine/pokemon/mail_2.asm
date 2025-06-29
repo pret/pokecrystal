@@ -65,13 +65,13 @@ ReadAnyMail:
 .loop
 	call GetJoypad
 	ldh a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON | START
+	and PAD_A | PAD_B | PAD_START
 	jr z, .loop
 	vc_patch Forbid_printing_mail
 if DEF(_CRYSTAL11_VC)
 	and NO_INPUT
 else
-	and START
+	and PAD_START
 endc
 	vc_patch_end
 	jr nz, .pressed_start

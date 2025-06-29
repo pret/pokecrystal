@@ -264,16 +264,16 @@ Pokedex_InitMainScreen:
 Pokedex_UpdateMainScreen:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 	ld a, [hl]
-	and START
+	and PAD_START
 	jr nz, .start
 	call Pokedex_ListingHandleDPadInput
 	ret nc
@@ -353,11 +353,11 @@ Pokedex_UpdateDexEntryScreen:
 	call Pokedex_MoveArrowCursor
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .return_to_prev_screen
 	vc_hook Forbid_printing_Pokedex
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .do_menu_action
 	call Pokedex_NextOrPreviousDexEntry
 	ret nc
@@ -420,7 +420,7 @@ Pokedex_ReinitDexEntryScreen:
 	ret
 
 DexEntryScreen_ArrowCursorData:
-	db D_RIGHT | D_LEFT, 4
+	db PAD_RIGHT | PAD_LEFT, 4
 	dwcoord 1, 17  ; PAGE
 	dwcoord 6, 17  ; AREA
 	dwcoord 11, 17 ; CRY
@@ -537,10 +537,10 @@ Pokedex_UpdateOptionScreen:
 	call c, Pokedex_DisplayModeDescription
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and SELECT | B_BUTTON
+	and PAD_SELECT | PAD_B
 	jr nz, .return_to_main_screen
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .do_menu_action
 	ret
 
@@ -557,13 +557,13 @@ Pokedex_UpdateOptionScreen:
 	ret
 
 .NoUnownModeArrowCursorData:
-	db D_UP | D_DOWN, 3
+	db PAD_UP | PAD_DOWN, 3
 	dwcoord 2,  4 ; NEW
 	dwcoord 2,  6 ; OLD
 	dwcoord 2,  8 ; ABC
 
 .ArrowCursorData:
-	db D_UP | D_DOWN, 4
+	db PAD_UP | PAD_DOWN, 4
 	dwcoord 2,  4 ; NEW
 	dwcoord 2,  6 ; OLD
 	dwcoord 2,  8 ; ABC
@@ -639,10 +639,10 @@ Pokedex_UpdateSearchScreen:
 	call c, Pokedex_PlaceSearchScreenTypeStrings
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and START | B_BUTTON
+	and PAD_START | PAD_B
 	jr nz, .cancel
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .do_menu_action
 	ret
 
@@ -659,7 +659,7 @@ Pokedex_UpdateSearchScreen:
 	ret
 
 .ArrowCursorData:
-	db D_UP | D_DOWN, 4
+	db PAD_UP | PAD_DOWN, 4
 	dwcoord 2, 4  ; TYPE 1
 	dwcoord 2, 6  ; TYPE 2
 	dwcoord 2, 13 ; BEGIN SEARCH
@@ -754,10 +754,10 @@ Pokedex_InitSearchResultsScreen:
 Pokedex_UpdateSearchResultsScreen:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .return_to_search_screen
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .go_to_dex_entry
 	call Pokedex_ListingHandleDPadInput
 	ret nc
@@ -814,7 +814,7 @@ Pokedex_InitUnownMode:
 Pokedex_UpdateUnownMode:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr nz, .a_b
 	call Pokedex_UnownModeHandleDPadInput
 	ret
@@ -841,10 +841,10 @@ Pokedex_UpdateUnownMode:
 Pokedex_UnownModeHandleDPadInput:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ret
 
@@ -911,10 +911,10 @@ Pokedex_NextOrPreviousDexEntry:
 	ld [wBackupDexListingPage], a
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	and a
 	ret
@@ -963,19 +963,19 @@ Pokedex_ListingHandleDPadInput:
 	ld e, a
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, Pokedex_ListingMoveCursorUp
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, Pokedex_ListingMoveCursorDown
 	ld a, d
 	cp e
 	jr nc, Pokedex_ListingPosStayedSame
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, Pokedex_ListingMoveUpOnePage
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, Pokedex_ListingMoveDownOnePage
 	jr Pokedex_ListingPosStayedSame
 
@@ -1776,10 +1776,10 @@ Pokedex_UpdateSearchMonType:
 	jr nc, .no_change
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, Pokedex_PrevSearchMonType
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, Pokedex_NextSearchMonType
 .no_change
 	and a
@@ -2197,26 +2197,26 @@ Pokedex_MoveArrowCursor:
 
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and D_LEFT | D_UP
+	and PAD_LEFT | PAD_UP
 	and b
 	jr nz, .move_left_or_up
 	ld a, [hl]
-	and D_RIGHT | D_DOWN
+	and PAD_RIGHT | PAD_DOWN
 	and b
 	jr nz, .move_right_or_down
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	and b
 	jr nz, .select
 	call Pokedex_ArrowCursorDelay
 	jr c, .no_action
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_LEFT | D_UP
+	and PAD_LEFT | PAD_UP
 	and b
 	jr nz, .move_left_or_up
 	ld a, [hl]
-	and D_RIGHT | D_DOWN
+	and PAD_RIGHT | PAD_DOWN
 	and b
 	jr nz, .move_right_or_down
 	jr .no_action

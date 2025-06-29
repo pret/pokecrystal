@@ -54,7 +54,7 @@ tools/make_patch pokecrystal11_vc.sym pokecrystal11_vc.gbc pokecrystal11.gbc vc/
 
 Hooks are defined with the `vc_hook` macro, which defines a label starting with "`.VC_`" for the patch template file to use.
 
-**Patches** directly modify the contents of the ROM. This is done before emulation begins. For example, the `print_forbid_1` patch modifies an "`and A_BUTTON`" instruction to "`and 0`", so pressing A will not print Unown on the Game Boy Printer.
+**Patches** directly modify the contents of the ROM. This is done before emulation begins. For example, the `print_forbid_1` patch modifies an "`and PAD_A`" instruction to "`and 0`", so pressing A will not print Unown on the Game Boy Printer.
 
 Patches are defined with the `vc_patch` and `vc_patch_end` macros; `vc_patch` defines a label starting with "`.VC_`", `vc_patch_end` defines a corresponding label with "`_End`" appended. Between these two macros, the code or data is conditionally different depending on whether or not a patch file is being built.
 

@@ -62,7 +62,7 @@ Kurt_SelectApricorn:
 	call UpdateSprites
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .nope
 	ld a, [wMenuSelection]
 	cp -1

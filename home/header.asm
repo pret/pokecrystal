@@ -11,7 +11,7 @@ FarCall::
 SECTION "rst10", ROM0[$0010]
 Bankswitch::
 	ldh [hROMBank], a
-	ld [rROMB0], a
+	ld [rROMB], a
 	ret
 
 SECTION "rst18", ROM0[$0018]
