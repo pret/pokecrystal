@@ -729,37 +729,37 @@ Function11c53d:
 	ld de, hJoypadPressed
 
 	ld a, [de]
-	and START
+	and PAD_START
 	jr nz, .start
 
 	ld a, [de]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 
 	ld de, hJoyLast
 
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 
 	ret
@@ -937,16 +937,16 @@ Function11c675:
 	ld hl, wMobileCommsJumptableIndex
 	ld de, hJoypadPressed
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 	ld a, [de]
-	and START
+	and PAD_START
 	jr nz, .start
 	ld a, [de]
-	and SELECT
+	and PAD_SELECT
 	jr z, .select
 
 	ld a, [wcd26]
@@ -989,16 +989,16 @@ Function11c675:
 .select
 	ld de, hJoyLast
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11c708
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11c731
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .asm_11c746
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .asm_11c755
 	ret
 
@@ -1936,16 +1936,16 @@ Function11cd54:
 	ld hl, wcd2c
 	ld de, hJoypadPressed
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_11cd6f
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .asm_11cd73
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11cd8b
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11cd94
 	ret
 
@@ -2041,30 +2041,30 @@ Function11ce2b:
 
 	ld de, hJoypadPressed
 	ld a, [de]
-	and START
+	and PAD_START
 	jr nz, .start
 	ld a, [de]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 
 	ld de, hJoyLast
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 
 	ret

@@ -97,8 +97,8 @@ endr
 ; Now that we have the input, we can do stuff with it.
 
 ; For example, soft reset:
-	and A_BUTTON | B_BUTTON | SELECT | START
-	cp  A_BUTTON | B_BUTTON | SELECT | START
+	and PAD_A | PAD_B | PAD_SELECT | PAD_START
+	cp  PAD_A | PAD_B | PAD_SELECT | PAD_START
 	jp z, Reset
 
 	ret
@@ -271,12 +271,12 @@ JoyTitleScreenInput:: ; unreferenced
 
 ; Save data can be deleted by pressing Up + B + Select.
 	ldh a, [hJoyDown]
-	cp D_UP | SELECT | B_BUTTON
+	cp PAD_UP | PAD_SELECT | PAD_B
 	jr z, .keycombo
 
 ; Press Start or A to start the game.
 	ldh a, [hJoyLast]
-	and START | A_BUTTON
+	and PAD_START | PAD_A
 	jr nz, .keycombo
 
 	dec c
@@ -294,7 +294,7 @@ JoyWaitAorB::
 	call DelayFrame
 	call GetJoypad
 	ldh a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	ret nz
 	call UpdateTimeAndPals
 	jr .loop
@@ -363,7 +363,7 @@ WaitPressAorB_BlinkCursor::
 
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .loop
 
 	pop af
@@ -376,7 +376,7 @@ SimpleWaitPressAorB::
 .loop
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .loop
 	ret
 
@@ -412,7 +412,7 @@ PromptButton::
 	call .blink_cursor
 	call JoyTextDelay
 	ldh a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr nz, .received_input
 	call UpdateTimeAndPals
 	ld a, $1

@@ -126,7 +126,7 @@ Function48157:
 	ld b, [hl]
 	push bc
 asm_4815f:
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, Function4820d
 	ld b, a
 	ld a, [wd002]
@@ -135,7 +135,7 @@ asm_4815f:
 	ld hl, wCrystalFlags
 	bit 1, [hl]
 	jr z, .dont_check_b_button
-	bit B_BUTTON_F, b
+	bit B_PAD_B, b
 	jr nz, .b_button
 .dont_check_b_button
 	jp Function48272
@@ -721,15 +721,15 @@ Function486bf:
 	ld [hli], a ; flags 2
 	ld a, $20
 	ld [hli], a ; cursor offsets
-	ld a, A_BUTTON
-	add D_UP
-	add D_DOWN
+	ld a, PAD_A
+	add PAD_UP
+	add PAD_DOWN
 	push af
 	ld a, [wd002]
 	bit 6, a
 	jr z, .got_joypad_mask
 	pop af
-	add B_BUTTON
+	add PAD_B
 	push af
 .got_joypad_mask
 	pop af
@@ -787,8 +787,8 @@ Function4873c:
 	ld [hli], a ; flags 2
 	ln a, 2, 0
 	ld [hli], a ; cursor offsets
-	ld a, A_BUTTON
-	add B_BUTTON
+	ld a, PAD_A
+	add PAD_B
 	ld [hli], a ; joypad filter
 	; ld a, [wPlayerGender]
 	; xor 1 << PLAYERGENDER_FEMALE_F
@@ -898,23 +898,23 @@ String_4880d:
 
 Function4880e:
 	ldh a, [hJoyPressed]
-	and A_BUTTON
+	and PAD_A
 	jp nz, Function488b9
 	ldh a, [hJoyPressed]
-	and B_BUTTON
+	and PAD_B
 	jp nz, Function488b4
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_48843
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_48838
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .asm_4884f
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .asm_4885f
 	call DelayFrame
 	and a
@@ -1265,10 +1265,10 @@ String_48aa1:
 
 Function48ab5:
 	ldh a, [hJoyPressed]
-	and A_BUTTON
+	and PAD_A
 	jp nz, Function48c0f
 	ldh a, [hJoyPressed]
-	and B_BUTTON
+	and PAD_B
 	jp nz, Function48c0d
 	ld a, d
 	and a
@@ -1338,16 +1338,16 @@ Function48ab5:
 .asm_48b2c
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_48b8d
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_48b55
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jp nz, Function48bd7
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .asm_48b9d
 	hlcoord 11, 10
 	call Function489ea

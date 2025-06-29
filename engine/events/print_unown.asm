@@ -70,7 +70,7 @@ _UnownPrinter:
 	call JoyTextDelay
 
 	ldh a, [hJoyPressed]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .pressed_b
 
 	ldh a, [hJoyPressed]
@@ -78,7 +78,7 @@ _UnownPrinter:
 if DEF(_CRYSTAL11_VC)
 	and NO_INPUT
 else
-	and A_BUTTON
+	and PAD_A
 endc
 	vc_patch_end
 	jr nz, .pressed_a
@@ -106,10 +106,10 @@ endc
 
 .LeftRight:
 	ldh a, [hJoyLast]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .press_right
 	ldh a, [hJoyLast]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .press_left
 	ret
 

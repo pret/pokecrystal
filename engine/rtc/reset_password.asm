@@ -72,10 +72,10 @@ ClockResetPassword:
 	call JoyTextDelay
 	ldh a, [hJoyLast]
 	ld b, a
-	and A_BUTTON
+	and PAD_A
 	jr nz, .confirm
 	ld a, b
-	and D_PAD
+	and PAD_CTRL_PAD
 	jr z, .loop2
 	call .dpadinput
 	ld c, 3
@@ -127,16 +127,16 @@ ClockResetPassword:
 
 .dpadinput
 	ld a, b
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, b
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ld a, b
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, b
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ret
 

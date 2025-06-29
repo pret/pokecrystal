@@ -760,7 +760,7 @@ TextCommand_FAR::
 	ld a, [hli]
 
 	ldh [hROMBank], a
-	ld [rROMB0], a
+	ld [rROMB], a
 
 	push hl
 	ld h, d
@@ -770,7 +770,7 @@ TextCommand_FAR::
 
 	pop af
 	ldh [hROMBank], a
-	ld [rROMB0], a
+	ld [rROMB], a
 	ret
 
 TextCommand_BCD::
@@ -891,7 +891,7 @@ TextCommand_PAUSE::
 	push bc
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr nz, .done
 	ld c, 30
 	call DelayFrames
@@ -968,7 +968,7 @@ TextCommand_DOTS::
 	ld [hli], a
 	call GetJoypad
 	ldh a, [hJoyDown]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr nz, .next
 	ld c, 10
 	call DelayFrames

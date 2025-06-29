@@ -448,7 +448,7 @@ _PrintDiploma:
 
 CheckCancelPrint:
 	ldh a, [hJoyDown]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .pressed_b
 	and a
 	ret

@@ -55,26 +55,26 @@ ScrollingMenuJoyAction:
 .loop
 	call ScrollingMenuJoypad
 	ldh a, [hJoyLast]
-	and D_PAD
+	and PAD_CTRL_PAD
 	ld b, a
 	ldh a, [hJoyPressed]
-	and BUTTONS
+	and PAD_BUTTONS
 	or b
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, .a_button
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jp nz, .b_button
-	bit SELECT_F, a
+	bit B_PAD_SELECT, a
 	jp nz, .select
-	bit START_F, a
+	bit B_PAD_START, a
 	jp nz, .start
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jp nz, .d_right
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jp nz, .d_left
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jp nz, .d_up
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jp nz, .d_down
 	jr .loop
 
@@ -99,12 +99,12 @@ ScrollingMenuJoyAction:
 	ld a, [wMenuSelection]
 	cp -1
 	jr z, .b_button
-	ld a, A_BUTTON
+	ld a, PAD_A
 	scf
 	ret
 
 .b_button
-	ld a, B_BUTTON
+	ld a, PAD_B
 	scf
 	ret
 
@@ -121,7 +121,7 @@ ScrollingMenuJoyAction:
 	call ScrollingMenu_GetCursorPosition
 	dec a
 	ld [wScrollingMenuCursorPosition], a
-	ld a, SELECT
+	ld a, PAD_SELECT
 	scf
 	ret
 
@@ -129,7 +129,7 @@ ScrollingMenuJoyAction:
 	ld a, [wMenuDataFlags]
 	bit SCROLLINGMENU_ENABLE_START_F, a
 	jp z, xor_a_dec_a
-	ld a, START
+	ld a, PAD_START
 	scf
 	ret
 
@@ -140,7 +140,7 @@ ScrollingMenuJoyAction:
 	ld a, [wMenuDataFlags]
 	bit SCROLLINGMENU_ENABLE_LEFT_F, a
 	jp z, xor_a_dec_a
-	ld a, D_LEFT
+	ld a, PAD_LEFT
 	scf
 	ret
 
@@ -151,7 +151,7 @@ ScrollingMenuJoyAction:
 	ld a, [wMenuDataFlags]
 	bit SCROLLINGMENU_ENABLE_RIGHT_F, a
 	jp z, xor_a_dec_a
-	ld a, D_RIGHT
+	ld a, PAD_RIGHT
 	scf
 	ret
 
@@ -293,15 +293,15 @@ ScrollingMenu_InitFlags:
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
-	ld a, A_BUTTON | B_BUTTON | D_UP | D_DOWN
+	ld a, PAD_A | PAD_B | PAD_UP | PAD_DOWN
 	bit SCROLLINGMENU_ENABLE_SELECT_F, c
 	jr z, .disallow_select
-	add SELECT
+	add PAD_SELECT
 
 .disallow_select
 	bit SCROLLINGMENU_ENABLE_START_F, c
 	jr z, .disallow_start
-	add START
+	add PAD_START
 
 .disallow_start
 	ld [wMenuJoypadFilter], a

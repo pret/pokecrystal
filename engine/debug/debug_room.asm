@@ -31,8 +31,8 @@ DEF DEBUGROOMMENU_NUM_PAGES EQU const_value
 
 _DebugRoom:
 	ldh a, [hJoyDown]
-	and SELECT | START
-	cp SELECT | START
+	and PAD_SELECT | PAD_START
+	cp PAD_SELECT | PAD_START
 	ret nz
 	ldh a, [hDebugRoomMenuPage]
 	push af
@@ -58,10 +58,10 @@ _DebugRoom:
 .wait
 	call GetScrollingMenuJoypad
 	ld a, [wMenuJoypad]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .wait
 	call CloseWindow
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .done
 	ld a, [wMenuSelection]
 	ld hl, .Jumptable
@@ -607,24 +607,24 @@ DebugRoom_EditPagedValues:
 	call DelayFrame
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .done
 	ld hl, .continue
 	push hl
-	rra ; A_BUTTON_F?
+	rra ; B_PAD_A?
 	jr c, DebugRoom_PagedValuePressedA
-	rra ; skip B_BUTTON_F
-	rra ; SELECT_F?
+	rra ; skip B_PAD_B
+	rra ; B_PAD_SELECT?
 	jr c, DebugRoom_PagedValuePressedSelect
-	rra ; START_F?
+	rra ; B_PAD_START?
 	jr c, DebugRoom_PagedValuePressedStart
-	rra ; D_RIGHT_F?
+	rra ; B_PAD_RIGHT?
 	jp c, DebugRoom_IncrementPagedValue
-	rra ; D_LEFT_F?
+	rra ; B_PAD_LEFT?
 	jp c, DebugRoom_DecrementPagedValue
-	rra ; D_UP_F?
+	rra ; B_PAD_UP?
 	jp c, DebugRoom_PrevPagedValue
-	rra ; D_DOWN_F?
+	rra ; B_PAD_DOWN?
 	jp c, DebugRoom_NextPagedValue
 	pop hl
 .continue
@@ -999,7 +999,7 @@ DebugRoom_JoyWaitABSelect:
 .loop
 	call GetJoypad
 	ldh a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON | SELECT
+	and PAD_A | PAD_B | PAD_SELECT
 	jr z, .loop
 	ret
 

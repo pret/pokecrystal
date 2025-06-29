@@ -15,9 +15,9 @@ MACRO RGB
 	endr
 ENDM
 
-DEF palred   EQUS "(1 << 0) *"
-DEF palgreen EQUS "(1 << 5) *"
-DEF palblue  EQUS "(1 << 10) *"
+DEF palred   EQUS "(1 << B_COLOR_RED) *"
+DEF palgreen EQUS "(1 << B_COLOR_GREEN) *"
+DEF palblue  EQUS "(1 << B_COLOR_BLUE) *"
 
 DEF palettes EQUS "* PAL_SIZE"
 DEF palette  EQUS "+ PAL_SIZE *"
