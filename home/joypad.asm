@@ -97,8 +97,8 @@ endr
 ; Now that we have the input, we can do stuff with it.
 
 ; For example, soft reset:
-	and PAD_A | PAD_B | PAD_SELECT | PAD_START
-	cp  PAD_A | PAD_B | PAD_SELECT | PAD_START
+	and PAD_BUTTONS
+	cp PAD_BUTTONS
 	jp z, Reset
 
 	ret

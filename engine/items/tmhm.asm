@@ -206,7 +206,7 @@ TMHM_PocketLoop:
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
-	ld a, PAD_A | PAD_B | PAD_UP | PAD_DOWN | PAD_LEFT | PAD_RIGHT
+	ld a, PAD_A | PAD_B | PAD_CTRL_PAD
 	ld [wMenuJoypadFilter], a
 	ld a, [wTMHMPocketCursor]
 	inc a
