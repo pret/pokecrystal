@@ -392,7 +392,7 @@ MailboxPC:
 	ld [wCurMessageIndex], a
 
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .exit
 	call .Submenu
 	jr .loop

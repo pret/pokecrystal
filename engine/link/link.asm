@@ -1267,7 +1267,7 @@ InitTradeMenuDisplay:
 LinkTrade_OTPartyMenu:
 	ld a, OTPARTYMON
 	ld [wMonType], a
-	ld a, A_BUTTON | D_UP | D_DOWN
+	ld a, PAD_A | PAD_UP | PAD_DOWN
 	ld [wMenuJoypadFilter], a
 	ld a, [wOTPartyCount]
 	ld [w2DMenuNumRows], a
@@ -1291,7 +1291,7 @@ LinkTradeOTPartymonMenuLoop:
 	ld a, d
 	and a
 	jp z, LinkTradePartiesMenuMasterLoop
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr z, .not_a_button
 	ld a, INIT_ENEMYOT_LIST
 	ld [wInitListType], a
@@ -1301,7 +1301,7 @@ LinkTradeOTPartymonMenuLoop:
 	jp LinkTradePartiesMenuMasterLoop
 
 .not_a_button
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr z, .not_d_up
 	ld a, [wMenuCursorY]
 	ld b, a
@@ -1323,7 +1323,7 @@ LinkTradeOTPartymonMenuLoop:
 	jr LinkTrade_PlayerPartyMenu
 
 .not_d_up
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jp z, LinkTradePartiesMenuMasterLoop
 	jp LinkTradeOTPartymonMenuCheckCancel
 
@@ -1331,7 +1331,7 @@ LinkTrade_PlayerPartyMenu:
 	farcall InitMG_Mobile_LinkTradePalMap
 	xor a
 	ld [wMonType], a
-	ld a, A_BUTTON | D_UP | D_DOWN
+	ld a, PAD_A | PAD_UP | PAD_DOWN
 	ld [wMenuJoypadFilter], a
 	ld a, [wPartyCount]
 	ld [w2DMenuNumRows], a
@@ -1359,12 +1359,12 @@ LinkTradePartymonMenuLoop:
 	jp LinkTradePartiesMenuMasterLoop
 
 .check_joypad
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr z, .not_a_button
 	jp LinkTrade_TradeStatsMenu
 
 .not_a_button
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr z, .not_d_down
 	ld a, [wMenuCursorY]
 	dec a
@@ -1384,7 +1384,7 @@ LinkTradePartymonMenuLoop:
 	jp LinkTrade_OTPartyMenu
 
 .not_d_down
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr z, LinkTradePartiesMenuMasterLoop
 	ld a, [wMenuCursorY]
 	ld b, a
@@ -1423,7 +1423,7 @@ LinkTrade_TradeStatsMenu:
 .joy_loop
 	ld a, " "
 	ldcoord_a 11, 16
-	ld a, A_BUTTON | B_BUTTON | D_RIGHT
+	ld a, PAD_A | PAD_B | PAD_RIGHT
 	ld [wMenuJoypadFilter], a
 	ld a, 1
 	ld [w2DMenuNumRows], a
@@ -1442,9 +1442,9 @@ LinkTrade_TradeStatsMenu:
 	ld [w2DMenuFlags1], a
 	ld [w2DMenuFlags2], a
 	call ScrollingMenuJoypad
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .d_right
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .show_stats
 .b_button
 	pop af
@@ -1455,7 +1455,7 @@ LinkTrade_TradeStatsMenu:
 .d_right
 	ld a, " "
 	ldcoord_a 1, 16
-	ld a, A_BUTTON | B_BUTTON | D_LEFT
+	ld a, PAD_A | PAD_B | PAD_LEFT
 	ld [wMenuJoypadFilter], a
 	ld a, 1
 	ld [w2DMenuNumRows], a
@@ -1474,9 +1474,9 @@ LinkTrade_TradeStatsMenu:
 	ld [w2DMenuFlags1], a
 	ld [w2DMenuFlags2], a
 	call ScrollingMenuJoypad
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jp nz, .joy_loop
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .b_button
 	jr .try_trade
 
@@ -1601,13 +1601,13 @@ LinkTradePartymonMenuCheckCancel:
 	ldh a, [hJoyLast]
 	and a
 	jr z, .loop2
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .a_button
 	push af
 	ld a, " "
 	ldcoord_a 9, 17
 	pop af
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr z, .d_up
 	ld a, [wOTPartyCount]
 	ld [wMenuCursorY], a
@@ -1744,7 +1744,7 @@ LinkTrade:
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
-	ld a, A_BUTTON | B_BUTTON
+	ld a, PAD_A | PAD_B
 	ld [wMenuJoypadFilter], a
 	ld a, 1
 	ld [wMenuCursorY], a
@@ -1755,7 +1755,7 @@ LinkTrade:
 	call Call_ExitMenu
 	call WaitBGMap2
 	pop af
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .canceled
 	ld a, [wMenuCursorY]
 	dec a

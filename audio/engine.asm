@@ -630,7 +630,7 @@ FadeMusic:
 	ld [wMusicFadeCount], a
 	; get SO1 volume
 	ld a, [wVolume]
-	and VOLUME_SO1_LEVEL
+	and AUDVOL_RIGHT
 	; which way are we fading?
 	bit MUSIC_FADE_IN_F, d
 	jr nz, .fadein

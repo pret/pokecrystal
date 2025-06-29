@@ -22,7 +22,7 @@ endc
 ; Define the include guard and the current hardware.inc version
 ; (do this after the RGBDS version check since the `def` syntax depends on it)
 def HARDWARE_INC equ 1
-def HARDWARE_INC_VERSION equs "5.0.0"
+def HARDWARE_INC_VERSION equs "5.1.0"
 
 ; Usage: rev_Check_hardware_inc <min_ver>
 ; Examples:
@@ -85,14 +85,17 @@ def B_PAD_START  equ 3
 def B_PAD_SELECT equ 2
 def B_PAD_B      equ 1
 def B_PAD_A      equ 0
-    def PAD_DOWN   equ 1 << B_PAD_DOWN
-    def PAD_UP     equ 1 << B_PAD_UP
-    def PAD_LEFT   equ 1 << B_PAD_LEFT
-    def PAD_RIGHT  equ 1 << B_PAD_RIGHT
-    def PAD_START  equ 1 << B_PAD_START
-    def PAD_SELECT equ 1 << B_PAD_SELECT
-    def PAD_B      equ 1 << B_PAD_B
-    def PAD_A      equ 1 << B_PAD_A
+    def PAD_CTRL_PAD equ %1111_0000
+    def PAD_BUTTONS  equ %0000_1111
+    def PAD_DOWN     equ 1 << B_PAD_DOWN
+    def PAD_UP       equ 1 << B_PAD_UP
+    def PAD_LEFT     equ 1 << B_PAD_LEFT
+    def PAD_RIGHT    equ 1 << B_PAD_RIGHT
+    def PAD_START    equ 1 << B_PAD_START
+    def PAD_SELECT   equ 1 << B_PAD_SELECT
+    def PAD_B        equ 1 << B_PAD_B
+    def PAD_A        equ 1 << B_PAD_A
+
 
 ; Combined input byte, with Control Pad in low nybble (swapped order)
 def B_PAD_SWAP_START  equ 7
@@ -103,14 +106,16 @@ def B_PAD_SWAP_DOWN   equ 3
 def B_PAD_SWAP_UP     equ 2
 def B_PAD_SWAP_LEFT   equ 1
 def B_PAD_SWAP_RIGHT  equ 0
-    def PAD_SWAP_START  equ 1 << B_PAD_SWAP_START
-    def PAD_SWAP_SELECT equ 1 << B_PAD_SWAP_SELECT
-    def PAD_SWAP_B      equ 1 << B_PAD_SWAP_B
-    def PAD_SWAP_A      equ 1 << B_PAD_SWAP_A
-    def PAD_SWAP_DOWN   equ 1 << B_PAD_SWAP_DOWN
-    def PAD_SWAP_UP     equ 1 << B_PAD_SWAP_UP
-    def PAD_SWAP_LEFT   equ 1 << B_PAD_SWAP_LEFT
-    def PAD_SWAP_RIGHT  equ 1 << B_PAD_SWAP_RIGHT
+    def PAD_SWAP_CTRL_PAD equ %0000_1111
+    def PAD_SWAP_BUTTONS  equ %1111_0000
+    def PAD_SWAP_START    equ 1 << B_PAD_SWAP_START
+    def PAD_SWAP_SELECT   equ 1 << B_PAD_SWAP_SELECT
+    def PAD_SWAP_B        equ 1 << B_PAD_SWAP_B
+    def PAD_SWAP_A        equ 1 << B_PAD_SWAP_A
+    def PAD_SWAP_DOWN     equ 1 << B_PAD_SWAP_DOWN
+    def PAD_SWAP_UP       equ 1 << B_PAD_SWAP_UP
+    def PAD_SWAP_LEFT     equ 1 << B_PAD_SWAP_LEFT
+    def PAD_SWAP_RIGHT    equ 1 << B_PAD_SWAP_RIGHT
 
 ; -- SB ($FF01) ---------------------------------------------------------------
 ; Serial transfer data [r/w]
@@ -723,27 +728,38 @@ def B_IE_VBLANK equ 0 ; 1 = VBlank interrupt is enabled [r/w]
 ; however, one address for each of these ranges is considered the "canonical" one, and
 ; these addresses are what's provided here.
 
+
+; ** Common to most MBCs ******************************************************
+
 ; -- RAMG ($0000-$1FFF) -------------------------------------------------------
 ; Whether SRAM can be accessed [wo]
 def rRAMG equ $0000
 
-; Common values
+; Common values (not for HuC1 or HuC-3)
 def RAMG_SRAM_DISABLE equ $00
 def RAMG_SRAM_ENABLE  equ $0A ; some MBCs accept any value whose low nybble is $A
 
-; -- ROMB0 ($2000-$3FFF) ------------------------------------------------------
-; ROM bank number (low 8 bits when applicable) [wo]
-def rROMB0 equ $2000
+; (HuC-3 only) switch SRAM to map cartridge RAM, RTC, or IR
+def RAMG_CART_RAM_RO   equ $00 ; select cartridge RAM [ro]
+def RAMG_CART_RAM      equ $0A ; select cartridge RAM [r/w]
+def RAMG_RTC_IN        equ $0B ; select RTC command/argument [wo]
+    def RAMG_RTC_IN_CMD equ %0_111_0000 ; command
+    def RAMG_RTC_IN_ARG equ %0_000_1111 ; argument
+def RAMG_RTC_OUT       equ $0C ; select RTC command/response [ro]
+    def RAMG_RTC_OUT_CMD    equ %0_111_0000 ; command
+    def RAMG_RTC_OUT_RESULT equ %0_000_1111 ; result
+def RAMG_RTC_SEMAPHORE equ $0D ; select RTC semaphore [r/w]
+def RAMG_IR            equ $0E ; (HuC1 and HuC-3 only) select IR [r/w]
 
-; -- ROMB1 ($3000-$3FFF) ------------------------------------------------------
-; (MBC5 only) ROM bank number high bit (bit 8) [wo]
-def rROMB1 equ $3000
+; -- ROMB ($2000-$3FFF) -------------------------------------------------------
+; ROM bank number (not for MBC5 or MBC6) [wo]
+def rROMB equ $2000
 
 ; -- RAMB ($4000-$5FFF) -------------------------------------------------------
-; SRAM bank number [wo]
+; SRAM bank number (not for MBC2, MBC6, or MBC7) [wo]
 def rRAMB equ $4000
 
-; (MBC3-only) Special RAM bank numbers that actually map values into RTCREG
+; (MBC3 only) Special RAM bank numbers that actually map values into RTCREG
 def RAMB_RTC_S  equ $08 ; seconds counter (0-59)
 def RAMB_RTC_M  equ $09 ; minutes counter (0-59)
 def RAMB_RTC_H  equ $0A ; hours counter (0-23)
@@ -761,8 +777,28 @@ def B_RAMB_RUMBLE equ 3 ; (MBC5 and MBC7 only) enable the rumble motor (if any)
         def RAMB_RUMBLE_OFF equ 0 << B_RAMB_RUMBLE
         def RAMB_RUMBLE_ON  equ 1 << B_RAMB_RUMBLE
 
+
+; ** MBC1 and MMM01 only ******************************************************
+
+; -- BMODE ($6000-$7FFF) ------------------------------------------------------
+; Banking mode select [wo]
+def rBMODE equ $6000
+
+def BMODE_SIMPLE   equ $00 ; locks ROMB and RAMB to bank 0
+def BMODE_ADVANCED equ $01 ; allows bank-switching with RAMB
+
+
+; ** MBC2 only ****************************************************************
+
+; -- ROM2B ($0000-$3FFF with bit 8 set) ---------------------------------------
+; ROM bank number [wo]
+def rROM2B equ $2100
+
+
+; ** MBC3 only ****************************************************************
+
 ; -- RTCLATCH ($6000-$7FFF) ---------------------------------------------------
-; (MBC3 only) RTC latch clock data [wo]
+; RTC latch clock data [wo]
 def rRTCLATCH equ $6000
 
 ; Write $00 then $01 to latch the current time into RTCREG
@@ -770,8 +806,105 @@ def RTCLATCH_START  equ $00
 def RTCLATCH_FINISH equ $01
 
 ; -- RTCREG ($A000-$BFFF) -----------------------------------------------------
-; (MBC3 only) RTC register [r/w]
+; RTC register [r/w]
 def rRTCREG equ $A000
+
+
+; ** MBC5 only ****************************************************************
+
+; -- ROMB0 ($2000-$3FFF) ------------------------------------------------------
+; ROM bank number low byte (bits 0-7) [wo]
+def rROMB0 equ $2000
+
+; -- ROMB1 ($3000-$3FFF) ------------------------------------------------------
+; ROM bank number high bit (bit 8) [wo]
+def rROMB1 equ $3000
+
+
+; ** MBC6 only ****************************************************************
+
+; -- RAMBA ($0400-$07FF) ------------------------------------------------------
+; RAM bank A number [wo]
+def rRAMBA equ $0400
+
+; -- RAMBB ($0800-$0BFF) ------------------------------------------------------
+; RAM bank B number [wo]
+def rRAMBB equ $0800
+
+; -- FLASH ($0C00-$0FFF) ------------------------------------------------------
+; Whether the flash chip can be accessed [wo]
+def rFLASH equ $0C00
+
+; -- FMODE ($1000) ------------------------------------------------------------
+; Write mode select for the flash chip
+def rFMODE equ $1000
+
+; -- ROMBA ($2000-$27FF) ------------------------------------------------------
+; ROM/Flash bank A number [wo]
+def rROMBA equ $2000
+
+; -- FLASHA ($2800-$2FFF) -----------------------------------------------------
+; ROM/Flash bank A select [wo]
+def rFLASHA equ $2800
+
+; -- ROMBB ($3000-$37FF) ------------------------------------------------------
+; ROM/Flash bank B number [wo]
+def rROMBB equ $3000
+
+; -- FLASHB ($3800-$3FFF) -----------------------------------------------------
+; ROM/Flash bank B select [wo]
+def rFLASHB equ $3800
+
+
+; ** MBC7 only ****************************************************************
+
+; -- RAMREG ($4000-$5FFF) -----------------------------------------------------
+; Enable RAM register access [wo]
+def rRAMREG equ $4000
+
+def RAMREG_ENABLE equ $40
+
+; -- ACCLATCH0 ($Ax0x) --------------------------------------------------------
+; Latch accelerometer start [wo]
+def rACCLATCH0 equ $A000
+
+def ACCLATCH0_START equ $55
+
+; -- ACCLATCH1 ($Ax1x) --------------------------------------------------------
+; Latch accelerometer finish [wo]
+def rACCLATCH1 equ $A010
+
+def ACCLATCH1_FINISH equ $AA
+
+; -- ACCELX0 ($Ax2x) ----------------------------------------------------------
+; Accelerometer X value low byte [ro]
+def rACCELX0 equ $A020
+
+; -- ACCELX1 ($Ax3x) ----------------------------------------------------------
+; Accelerometer X value high byte [ro]
+def rACCELX1 equ $A030
+
+; -- ACCELY0 ($Ax4x) ----------------------------------------------------------
+; Accelerometer Y value low byte [ro]
+def rACCELY0 equ $A040
+
+; -- ACCELY1 ($Ax5x) ----------------------------------------------------------
+; Accelerometer Y value high byte [ro]
+def rACCELY1 equ $A050
+
+; -- EEPROM ($Ax8x) -----------------------------------------------------------
+; EEPROM access [r/w]
+def rEEPROM equ $A080
+
+
+; ** HuC1 only ****************************************************************
+
+; -- IRREG ($A000-$BFFF) ------------------------------------------------------
+; IR register [r/w]
+def rIRREG equ $A000
+
+def IR_LED_OFF equ $C0
+def IR_LED_ON  equ $C1
 
 
 ;******************************************************************************
@@ -795,10 +928,13 @@ def TILE_HEIGHT equ  8 ; height of tile in pixels
 def TILE_SIZE   equ 16 ; size of tile in bytes (2 bits/pixel)
 
 def COLOR_SIZE equ 2 ; size of color in bytes (little-endian BGR555)
-    def COLOR_GREEN_LOW  equ %111_00000  ; for the low byte
-    def COLOR_RED        equ %000_11111  ; for the low byte
-    def COLOR_BLUE       equ %0_11111_00 ; for the high byte
-    def COLOR_GREEN_HIGH equ %000000_11  ; for the high byte
+    def B_COLOR_RED   equ  0 ; bits 4-0
+    def B_COLOR_GREEN equ  5 ; bits 9-5
+    def B_COLOR_BLUE  equ 10 ; bits 14-10
+        def COLOR_RED        equ %000_11111  ; for the low byte
+        def COLOR_GREEN_LOW  equ %111_00000  ; for the low byte
+        def COLOR_GREEN_HIGH equ %0_00000_11 ; for the high byte
+        def COLOR_BLUE       equ %0_11111_00 ; for the high byte
 def PAL_COLORS equ 4 ; colors per palette
 def PAL_SIZE   equ COLOR_SIZE * PAL_COLORS ; size of palette in bytes
 
@@ -807,7 +943,7 @@ def TILEMAP0 equ $9800 ; $9800-$9BFF
 def TILEMAP1 equ $9C00 ; $9C00-$9FFF
 
 ; (CGB only) BG tile attribute fields
-def B_BG_PRIO  equ 7 ; whether the BG tile colors 1-3 are drawn below OBJs
+def B_BG_PRIO  equ 7 ; whether the BG tile colors 1-3 are drawn above OBJs
 def B_BG_YFLIP equ 6 ; whether the whole BG tile is flipped vertically
 def B_BG_XFLIP equ 5 ; whether the whole BG tile is flipped horizontally
 def B_BG_BANK1 equ 3 ; which VRAM bank the BG tile is taken from
@@ -831,7 +967,7 @@ def OAMA_X      rb ; 1
     def OAM_X_OFS equ  8 ; subtract 8 from what's written to OAM to get the real X position
 def OAMA_TILEID rb ; 2
 def OAMA_FLAGS  rb ; 3
-    def B_OAM_PRIO  equ 7 ; whether the OBJ is drawn above BG colors 1-3
+    def B_OAM_PRIO  equ 7 ; whether the OBJ is drawn below BG colors 1-3
     def B_OAM_YFLIP equ 6 ; whether the whole OBJ is flipped vertically
     def B_OAM_XFLIP equ 5 ; whether the whole OBJ is flipped horizontally
     def B_OAM_PAL1  equ 4 ; (DMG only) which of the two palettes the OBJ uses

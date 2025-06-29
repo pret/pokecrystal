@@ -357,7 +357,7 @@ endc
 	jr nz, .restart
 	; Check if we've pressed the B button to cancel
 	ldh a, [hMGJoypadReleased]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .continue
 	ld a, MG_CANCELED
 	ldh [hMGStatusFlags], a
@@ -859,7 +859,7 @@ InitializeIRCommunicationRoles:
 	ld c, LOW(rRP)
 	; Check if we've pressed the B button to cancel
 	ldh a, [hMGJoypadReleased]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .not_canceled
 	ld a, MG_CANCELED
 	ldh [hMGStatusFlags], a
@@ -867,7 +867,7 @@ InitializeIRCommunicationRoles:
 
 .not_canceled
 	; Check if we've pressed the A button to start sending
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, SendIRHelloMessageAfterDelay
 	; If rRP is not receiving data, keep checking for input
 	ldh a, [c]

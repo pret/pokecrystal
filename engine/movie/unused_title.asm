@@ -162,7 +162,7 @@ TestCrystalTitleScreen: ; unreferenced
 	call JoyTextDelay
 	ldh a, [hJoyLast]
 	ld b, a
-	and A_BUTTON
+	and PAD_A
 	jr nz, .done
 	call SuicuneFrameIterator
 	call DelayFrame
