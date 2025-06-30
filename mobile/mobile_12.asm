@@ -1026,19 +1026,19 @@ Function488d3:
 	ld b, $1
 	ld c, $8
 	call Function48cdc
-	ld a, [wPlayerZipcode]
+	ld a, [wPlayerPostalCode]
 	and $f
 	ld d, $0
 	hlcoord 11, 10
 	call Function489ea
 	call WaitBGMap
-	ld a, [wPlayerZipcode]
+	ld a, [wPlayerPostalCode]
 	ld b, a
-	ld a, [wPlayerZipcode+1]
+	ld a, [wPlayerPostalCode+1]
 	ld c, a
-	ld a, [wPlayerZipcode+2]
+	ld a, [wPlayerPostalCode+2]
 	ld d, a
-	ld a, [wPlayerZipcode+3]
+	ld a, [wPlayerPostalCode+3]
 	ld e, a
 	push de
 	push bc
@@ -1127,14 +1127,14 @@ asm_48972:
 	jr nz, .asm_489b1
 	pop bc
 	ld a, b
-	ld [wPlayerZipcode], a
+	ld [wPlayerPostalCode], a
 	ld a, c
-	ld [wPlayerZipcode+1], a
+	ld [wPlayerPostalCode+1], a
 	pop bc
 	ld a, b
-	ld [wPlayerZipcode+2], a
+	ld [wPlayerPostalCode+2], a
 	ld a, c
-	ld [wPlayerZipcode+3], a
+	ld [wPlayerPostalCode+3], a
 	jr .asm_489c5
 .asm_489b1
 	push af
@@ -1170,36 +1170,36 @@ asm_48972:
 
 Function489ea:
 	push de
-	ld a, [wPlayerZipcode]
+	ld a, [wPlayerPostalCode]
 	and $f
 	call Mobile12_Bin2Dec
-	ld a, [wPlayerZipcode+1]
+	ld a, [wPlayerPostalCode+1]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wPlayerZipcode+1]
+	ld a, [wPlayerPostalCode+1]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
 	inc hl
 	ld de, String_48a38
 	call PlaceString
-	ld a, [wPlayerZipcode+2]
+	ld a, [wPlayerPostalCode+2]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wPlayerZipcode+2]
+	ld a, [wPlayerPostalCode+2]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wPlayerZipcode+3]
+	ld a, [wPlayerPostalCode+3]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wPlayerZipcode+3]
+	ld a, [wPlayerPostalCode+3]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
@@ -1244,7 +1244,7 @@ Function48a3a:
 	ld [wCrystalFlags], a
 	xor a
 	ld bc, $4
-	ld hl, wPlayerZipcode
+	ld hl, wPlayerPostalCode
 	call ByteFill
 	jr Function48a9a
 .asm_48a98
@@ -1286,40 +1286,40 @@ Function48ab5:
 	cp $6
 	jr .asm_48b15
 .asm_48adf
-	ld hl, wPlayerZipcode
+	ld hl, wPlayerPostalCode
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48ae7
-	ld hl, wPlayerZipcode+1
+	ld hl, wPlayerPostalCode+1
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48af1
-	ld hl, wPlayerZipcode+1
+	ld hl, wPlayerPostalCode+1
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48af9
-	ld hl, wPlayerZipcode+2
+	ld hl, wPlayerPostalCode+2
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48b03
-	ld hl, wPlayerZipcode+2
+	ld hl, wPlayerPostalCode+2
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48b0b
-	ld hl, wPlayerZipcode+3
+	ld hl, wPlayerPostalCode+3
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48b15
-	ld hl, wPlayerZipcode+3
+	ld hl, wPlayerPostalCode+3
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
@@ -1721,16 +1721,16 @@ Function48d2a:
 	ret
 
 Function48d30:
-	ld hl, wPlayerZipcode
+	ld hl, wPlayerPostalCode
 	call Function48d4a
-	ld hl, wPlayerZipcode+2
+	ld hl, wPlayerPostalCode+2
 	call Function48d4a
 	ret
 
 Function48d3d:
-	ld hl, wPlayerZipcode
+	ld hl, wPlayerPostalCode
 	call Function48d94
-	ld hl, wPlayerZipcode+2
+	ld hl, wPlayerPostalCode+2
 	call Function48d94
 	ret
 

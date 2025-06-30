@@ -1982,11 +1982,11 @@ Function119054:
 	call CopyBytes
 	ldh a, [rWBK]
 	push af
-	ld a, BANK(wPlayerPrefecture) ; aka BANK(wPlayerZipcode)
+	ld a, BANK(wPlayerPrefecture) ; aka BANK(wPlayerPostalCode)
 	ldh [rWBK], a
 	ld a, [wPlayerPrefecture]
 	ld [s5_b2f3], a
-	ld hl, wPlayerZipcode
+	ld hl, wPlayerPostalCode
 	ld de, s5_b2f4
 	ld bc, 4
 	call CopyBytes
