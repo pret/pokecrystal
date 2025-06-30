@@ -10412,7 +10412,7 @@
 12:46ce Function486bf.start_at_6
 12:46d1 Function486bf.got_init_y
 12:46e4 Function486bf.got_num_rows_1
-12:46e7 Function486bf.check_wd479
+12:46e7 Function486bf.check_flags
 12:46f8 Function486bf.four_rows
 12:46fb Function486bf.got_num_rows_2
 12:471a Function486bf.got_joypad_mask
@@ -46283,8 +46283,8 @@
 02:a954 sBox3Mon5CaughtLocation
 02:a955 sBox3Mon5Level
 02:a956 sBox3Mon6Species
-02:a956 sBox3Mon6
 02:a956 sBox3Mon5BoxEnd
+02:a956 sBox3Mon6
 02:a957 sBox3Mon6Item
 02:a958 sBox3Mon6Moves
 02:a95c sBox3Mon6ID
@@ -47298,9 +47298,9 @@
 02:b1f4 sBox5Mon5CaughtLocation
 02:b1f4 sBox5Mon5CaughtGender
 02:b1f5 sBox5Mon5Level
-02:b1f6 sBox5Mon5BoxEnd
 02:b1f6 sBox5Mon6
 02:b1f6 sBox5Mon6Species
+02:b1f6 sBox5Mon5BoxEnd
 02:b1f7 sBox5Mon6Item
 02:b1f8 sBox5Mon6Moves
 02:b1fc sBox5Mon6ID
@@ -52260,6 +52260,7 @@
 03:be23 sBox14Mon20Nickname
 03:be2e sBox14End
 03:be2e sBox14MonNicknamesEnd
+04:a000 sCrystalDataJP
 04:a007 sEZChatIntroductionMessage
 04:a007 sEZChatMessages
 04:a013 sEZChatBeginBattleMessage
@@ -52271,8 +52272,7 @@
 04:a603 s4_a603
 04:a60b s4_a60b
 04:a60c s4_a60c
-04:a60d s4_a60d
-04:a60e s4_a60e
+04:a60e sCrystalFlags
 04:a800 sMobileBattleTimer
 04:b000 sMobileAdapterStatus
 05:a000 sGSBallFlagJP
@@ -55808,14 +55808,11 @@
 01:d470 wMapStatusEnd
 01:d472 wCrystalData
 01:d472 wPlayerGender
-01:d473 wd473
-01:d474 wd474
-01:d475 wd475
-01:d476 wd476
-01:d477 wd477
-01:d478 wd478
-01:d479 wd479
+01:d473 wPlayerAge
+01:d474 wPlayerPrefecture
+01:d475 wPlayerPostalCode
 01:d479 wCrystalDataEnd
+01:d479 wCrystalFlags
 01:d47b wGameData
 01:d47b wPlayerData
 01:d47b wPlayerID

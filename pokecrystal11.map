@@ -10543,7 +10543,7 @@ ROMX bank #18:
 	         $46ce = Function486bf.start_at_6
 	         $46d1 = Function486bf.got_init_y
 	         $46e4 = Function486bf.got_num_rows_1
-	         $46e7 = Function486bf.check_wd479
+	         $46e7 = Function486bf.check_flags
 	         $46f8 = Function486bf.four_rows
 	         $46fb = Function486bf.got_num_rows_2
 	         $471a = Function486bf.got_joypad_mask
@@ -48024,9 +48024,9 @@ SRAM bank #2:
 	         $b1f4 = sBox5Mon5CaughtLocation
 	         $b1f4 = sBox5Mon5CaughtGender
 	         $b1f5 = sBox5Mon5Level
-	         $b1f6 = sBox5Mon5BoxEnd
 	         $b1f6 = sBox5Mon6
 	         $b1f6 = sBox5Mon6Species
+	         $b1f6 = sBox5Mon5BoxEnd
 	         $b1f7 = sBox5Mon6Item
 	         $b1f8 = sBox5Mon6Moves
 	         $b1fc = sBox5Mon6ID
@@ -52996,6 +52996,7 @@ SRAM bank #3:
 
 SRAM bank #4:
 	SECTION: $a000-$b000 ($1001 bytes) ["SRAM Mobile 1"]
+	         $a000 = sCrystalDataJP
 	         $a007 = sEZChatIntroductionMessage
 	         $a007 = sEZChatMessages
 	         $a013 = sEZChatBeginBattleMessage
@@ -53007,8 +53008,7 @@ SRAM bank #4:
 	         $a603 = s4_a603
 	         $a60b = s4_a60b
 	         $a60c = s4_a60c
-	         $a60d = s4_a60d
-	         $a60e = s4_a60e
+	         $a60e = sCrystalFlags
 	         $a800 = sMobileBattleTimer
 	         $b000 = sMobileAdapterStatus
 	EMPTY: $b001-$bfff ($0fff bytes)
@@ -56582,14 +56582,11 @@ WRAMX bank #1:
 	         $d470 = wMapStatusEnd
 	         $d472 = wCrystalData
 	         $d472 = wPlayerGender
-	         $d473 = wd473
-	         $d474 = wd474
-	         $d475 = wd475
-	         $d476 = wd476
-	         $d477 = wd477
-	         $d478 = wd478
-	         $d479 = wd479
+	         $d473 = wPlayerAge
+	         $d474 = wPlayerPrefecture
+	         $d475 = wPlayerPostalCode
 	         $d479 = wCrystalDataEnd
+	         $d479 = wCrystalFlags
 	         $d47b = wGameData
 	         $d47b = wPlayerData
 	         $d47b = wPlayerID
