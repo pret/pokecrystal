@@ -199,6 +199,8 @@ SECTION "Boxes 8-14", SRAM
 
 SECTION "SRAM Mobile 1", SRAM
 
+sCrystalDataJP::
+; location of sCrystalData in the japanese version, relocated in international releases
 	ds $7
 
 sEZChatMessages::
@@ -215,10 +217,9 @@ s4_a03b:: ds 37 * 40
 s4_a603:: ds 8
 
 s4_a60b:: db
-s4_a60c:: db
-s4_a60d:: db
+s4_a60c:: dw
 
-s4_a60e:: dw
+sCrystalFlags:: ds 2
 
 	ds $1f0
 

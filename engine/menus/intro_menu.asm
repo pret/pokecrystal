@@ -402,7 +402,7 @@ PostCreditsSpawn:
 Continue_MobileAdapterMenu: ; unused
 	farcall CheckMobileAdapterStatus
 	ret nc
-	ld hl, wd479
+	ld hl, wCrystalFlags
 	bit 1, [hl]
 	ret nz
 	ld a, 5

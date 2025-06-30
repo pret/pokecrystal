@@ -9,7 +9,7 @@ InitMobileProfile:
 	call z, InitCrystalData
 	call ClearBGPalettes
 	call Function48d3d
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	bit 1, a
 	jr z, .not_yet_initialized
 	ld a, [wd003]
@@ -94,7 +94,7 @@ InitMobileProfile:
 .asm_48113
 	hlcoord 11, 6
 	call Function487ec
-	ld a, [wd474]
+	ld a, [wPlayerPrefecture]
 	dec a
 	ld hl, Prefectures
 	call GetNthString
@@ -132,7 +132,7 @@ asm_4815f:
 	ld a, [wd002]
 	bit 6, a
 	jr z, .dont_check_b_button
-	ld hl, wd479
+	ld hl, wCrystalFlags
 	bit 1, [hl]
 	jr z, .dont_check_b_button
 	bit B_BUTTON_F, b
@@ -149,7 +149,7 @@ asm_4815f:
 	ret
 
 Function48187:
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	bit 1, a
 	jr nz, .asm_481f1
 	ld a, [wd003]
@@ -190,7 +190,7 @@ Function48187:
 .asm_481db
 	bit 3, d
 	jr nz, .asm_481f1
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	bit 0, a
 	jr nz, .asm_481f8
 	lb bc, 1, 8
@@ -198,7 +198,7 @@ Function48187:
 	call ClearBox
 	jr .asm_48201
 .asm_481f1
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	bit 0, a
 	jr nz, .asm_48201
 .asm_481f8
@@ -257,7 +257,7 @@ Function4820d:
 	call ClearTilemap
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	ld hl, wd479
+	ld hl, wCrystalFlags
 	set 1, [hl]
 	xor a
 	ret
@@ -344,7 +344,7 @@ Function48304:
 	ld a, [wMenuScrollPosition]
 	ld c, a
 	push bc
-	ld a, [wd474]
+	ld a, [wPlayerPrefecture]
 	dec a
 	cp $29
 	jr c, .asm_4833f
@@ -424,7 +424,7 @@ Function483bb:
 	ld hl, wScrollingMenuCursorPosition
 	ld a, [hl]
 	inc a
-	ld [wd474], a
+	ld [wPlayerPrefecture], a
 	dec a
 	ld b, a
 	ld hl, Prefectures
@@ -689,7 +689,7 @@ Function486bf:
 	ld [hli], a ; init x
 	ld a, [wd002]
 	bit 6, a
-	jr nz, .check_wd479
+	jr nz, .check_flags
 	call Function48725
 	ld a, 4
 	jr nc, .got_num_rows_1
@@ -698,8 +698,8 @@ Function486bf:
 	ld [hli], a
 	jr .got_num_rows_2
 
-.check_wd479
-	ld a, [wd479]
+.check_flags
+	ld a, [wCrystalFlags]
 	bit 1, a
 	jr nz, .four_rows
 	call Function48725
@@ -827,7 +827,7 @@ Function4876f:
 	ld c, $8
 	call Function48cdc
 	call WaitBGMap
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	and a
 	jr z, .asm_487ab
 	cp $64
@@ -849,7 +849,7 @@ Function4876f:
 	call Function487ec
 	ld c, 10
 	call DelayFrames
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	push af
 .asm_487c6
 	call JoyTextDelay
@@ -860,9 +860,9 @@ Function4876f:
 	pop bc
 	jr nz, .asm_487da
 	ld a, b
-	ld [wd473], a
+	ld [wPlayerAge], a
 .asm_487da
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	call ExitMenu
 	hlcoord 11, 6
 	call Function487ec
@@ -872,7 +872,7 @@ Function4876f:
 
 Function487ec:
 	push hl
-	ld de, wd473
+	ld de, wPlayerAge
 	call Function487ff
 	pop hl
 rept 4
@@ -920,7 +920,7 @@ Function4880e:
 	and a
 	ret
 .asm_48838
-	ld hl, wd473
+	ld hl, wPlayerAge
 	ld a, [hl]
 	and a
 	jr z, .asm_48840
@@ -929,7 +929,7 @@ Function4880e:
 	ld [hl], a
 	jr .asm_4886f
 .asm_48843
-	ld hl, wd473
+	ld hl, wPlayerAge
 	ld a, [hl]
 	cp $64
 	jr nc, .asm_4884c
@@ -938,25 +938,25 @@ Function4880e:
 	ld [hl], a
 	jr .asm_4886f
 .asm_4884f
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	cp $5b
 	jr c, .asm_48858
 	ld a, $5a
 .asm_48858
 	add $a
-	ld [wd473], a
+	ld [wPlayerAge], a
 	jr .asm_4886f
 .asm_4885f
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	cp $a
 	jr nc, .asm_48868
 	ld a, $a
 .asm_48868
 	sub $a
-	ld [wd473], a
+	ld [wPlayerAge], a
 	jr .asm_4886f
 .asm_4886f
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	and a
 	jr z, .asm_48887
 	cp $64
@@ -1026,19 +1026,19 @@ Function488d3:
 	ld b, $1
 	ld c, $8
 	call Function48cdc
-	ld a, [wd475]
+	ld a, [wPlayerZipcode]
 	and $f
 	ld d, $0
 	hlcoord 11, 10
 	call Function489ea
 	call WaitBGMap
-	ld a, [wd475]
+	ld a, [wPlayerZipcode]
 	ld b, a
-	ld a, [wd476]
+	ld a, [wPlayerZipcode+1]
 	ld c, a
-	ld a, [wd477]
+	ld a, [wPlayerZipcode+2]
 	ld d, a
-	ld a, [wd478]
+	ld a, [wPlayerZipcode+3]
 	ld e, a
 	push de
 	push bc
@@ -1127,20 +1127,20 @@ asm_48972:
 	jr nz, .asm_489b1
 	pop bc
 	ld a, b
-	ld [wd475], a
+	ld [wPlayerZipcode], a
 	ld a, c
-	ld [wd476], a
+	ld [wPlayerZipcode+1], a
 	pop bc
 	ld a, b
-	ld [wd477], a
+	ld [wPlayerZipcode+2], a
 	ld a, c
-	ld [wd478], a
+	ld [wPlayerZipcode+3], a
 	jr .asm_489c5
 .asm_489b1
 	push af
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	set 0, a
-	ld [wd479], a
+	ld [wCrystalFlags], a
 	ld a, [wd003]
 	set 3, a
 	ld [wd003], a
@@ -1170,36 +1170,36 @@ asm_48972:
 
 Function489ea:
 	push de
-	ld a, [wd475]
+	ld a, [wPlayerZipcode]
 	and $f
 	call Mobile12_Bin2Dec
-	ld a, [wd476]
+	ld a, [wPlayerZipcode+1]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wd476]
+	ld a, [wPlayerZipcode+1]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
 	inc hl
 	ld de, String_48a38
 	call PlaceString
-	ld a, [wd477]
+	ld a, [wPlayerZipcode+2]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wd477]
+	ld a, [wPlayerZipcode+2]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wd478]
+	ld a, [wPlayerZipcode+3]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wd478]
+	ld a, [wPlayerZipcode+3]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
@@ -1239,12 +1239,12 @@ Function48a3a:
 	ld a, [wd003]
 	set 3, a
 	ld [wd003], a
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	res 0, a
-	ld [wd479], a
+	ld [wCrystalFlags], a
 	xor a
 	ld bc, $4
-	ld hl, wd475
+	ld hl, wPlayerZipcode
 	call ByteFill
 	jr Function48a9a
 .asm_48a98
@@ -1286,40 +1286,40 @@ Function48ab5:
 	cp $6
 	jr .asm_48b15
 .asm_48adf
-	ld hl, wd475
+	ld hl, wPlayerZipcode
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48ae7
-	ld hl, wd476
+	ld hl, wPlayerZipcode+1
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48af1
-	ld hl, wd476
+	ld hl, wPlayerZipcode+1
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48af9
-	ld hl, wd477
+	ld hl, wPlayerZipcode+2
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48b03
-	ld hl, wd477
+	ld hl, wPlayerZipcode+2
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48b0b
-	ld hl, wd478
+	ld hl, wPlayerZipcode+3
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48b15
-	ld hl, wd478
+	ld hl, wPlayerZipcode+3
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
@@ -1721,16 +1721,16 @@ Function48d2a:
 	ret
 
 Function48d30:
-	ld hl, wd475
+	ld hl, wPlayerZipcode
 	call Function48d4a
-	ld hl, wd477
+	ld hl, wPlayerZipcode+2
 	call Function48d4a
 	ret
 
 Function48d3d:
-	ld hl, wd475
+	ld hl, wPlayerZipcode
 	call Function48d94
-	ld hl, wd477
+	ld hl, wPlayerZipcode+2
 	call Function48d94
 	ret
 
