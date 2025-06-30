@@ -2868,15 +2868,15 @@ wPlayerGender::
 ;	0 male
 ;	1 female
 	db
-wd473:: ds 1
-wd474:: ds 1
-wd475:: ds 1
-wd476:: ds 1
-wd477:: ds 1
-wd478:: ds 1
+; mobile profile
+wPlayerAge:: ds 1
+wPlayerPrefecture:: ds 1
+wPlayerPostalCode:: ds 4
 wCrystalDataEnd::
 
-wd479:: ds 2
+wCrystalFlags::
+; flags related to mobile profile
+	flag_array 16
 
 wGameData::
 wPlayerData::
