@@ -2876,7 +2876,7 @@ wCrystalDataEnd::
 
 wCrystalFlags::
 ; flags related to mobile profile
-	ds 2
+	flag_array 16
 
 wGameData::
 wPlayerData::
