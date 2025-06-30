@@ -2871,7 +2871,7 @@ wPlayerGender::
 ; mobile profile
 wPlayerAge:: ds 1
 wPlayerPrefecture:: ds 1
-wPlayerZipcode:: ds 4
+wPlayerPostalCode:: ds 4
 wCrystalDataEnd::
 
 wCrystalFlags::
