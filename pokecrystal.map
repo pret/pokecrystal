@@ -44633,8 +44633,8 @@ SRAM bank #1:
 	         $b3d8 = sHallOfFame3Mon6DVs
 	         $b3da = sHallOfFame3Mon6Level
 	         $b3db = sHallOfFame3Mon6Nickname
-	         $b3e5 = sHallOfFame3End
 	         $b3e5 = sHallOfFame3Mon6End
+	         $b3e5 = sHallOfFame3End
 	         $b3e6 = sHallOfFame4
 	         $b3e6 = sHallOfFame4WinCount
 	         $b3e7 = sHallOfFame4Mon1
@@ -46962,9 +46962,9 @@ SRAM bank #2:
 	         $a914 = sBox3Mon3CaughtGender
 	         $a914 = sBox3Mon3CaughtLocation
 	         $a915 = sBox3Mon3Level
+	         $a916 = sBox3Mon4
 	         $a916 = sBox3Mon3BoxEnd
 	         $a916 = sBox3Mon4Species
-	         $a916 = sBox3Mon4
 	         $a917 = sBox3Mon4Item
 	         $a918 = sBox3Mon4Moves
 	         $a91c = sBox3Mon4ID
@@ -54358,9 +54358,9 @@ WRAM0 bank #0:
 	         $c669 = wPlayerSubStatus2
 	         $c66a = wPlayerSubStatus3
 	         $c66a = wBT_OTTempMon2PokerusStatus
+	         $c66b = wBT_OTTempMon2CaughtData
 	         $c66b = wPlayerSubStatus4
 	         $c66b = wUnknownMonMailMessageEnd
-	         $c66b = wBT_OTTempMon2CaughtData
 	         $c66b = wBT_OTTempMon2CaughtTime
 	         $c66b = wBT_OTTempMon2CaughtLevel
 	         $c66c = wBT_OTTempMon2CaughtLocation
