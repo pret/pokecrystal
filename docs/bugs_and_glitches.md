@@ -107,6 +107,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
   - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
   - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pok%C3%A9mon-species)
+  - [`RandomUnseenWildMon` always picks a morning Pokémon species](#randomunseenwildmon-always-picks-a-morning-pok%C3%A9mon-species)
   - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
   - [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
   - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
@@ -2222,6 +2223,18 @@ The exact cause of this bug is unknown.
 ```
 
 
+### `SFX_RUN` does not play correctly when a wild Pokémon flees from battle
+
+**Fix:** Edit `WildFled_EnemyFled_LinkBattleCanceled` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+-; BUG: SFX_RUN does not play correctly when a wild Pokemon flees from battle (see docs/bugs_and_glitches.md)
+  ld de, SFX_RUN
+- call PlaySFX
++ call WaitPlaySFX
+```
+
+
 ## Text
 
 
@@ -2677,6 +2690,25 @@ This allows Pokémon to be duplicated, among other effects. It does not have a s
 ```
 
 
+### `RandomUnseenWildMon` always picks a morning Pokémon species
+
+**Fix:** Edit `RandomUnseenWildMon` in [engine/overworld/wildmons.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/wildmons.asm):
+
+```diff
+ .GetGrassmon:
+-; BUG: RandomUnseenWildMon always picks a morning Pokémon species (see docs/bugs_and_glitches.md)
++	ld a, [wTimeOfDay]
++	ld bc, NUM_GRASSMON * 2
++	call AddNTimes
+ 	push hl
+ 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
+ 	add hl, bc
+-	ld a, [wTimeOfDay]
+-	ld bc, NUM_GRASSMON * 2
+-	call AddNTimes
+```
+
+
 ### `TryObjectEvent` arbitrary code execution
 
 If `IsInArray` returns `nc`, data at `bc` will be executed as code.
@@ -2797,35 +2829,4 @@ This bug allows all the options to be updated at once if the left or right butto
  	ld hl, hInMenu
  	ld a, [hl]
  	push af
-```
-
-
-### `SFX_RUN` does not play correctly when a wild Pokémon flees from battle
-
-**Fix:** Edit `WildFled_EnemyFled_LinkBattleCanceled` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
-
-```diff
--; BUG: SFX_RUN does not play correctly when a wild Pokemon flees from battle (see docs/bugs_and_glitches.md)
- 	ld de, SFX_RUN
--	call PlaySFX
-+	call WaitPlaySFX
-```
-
-### `RandomUnseenWildMon` only works correctly in the morning
-
-In the function `RandomUnseenWildMon`, the code first picks a random pokemon that can be found on the route out of the three most rarest encounters for the current time of day. It then compares that pokemon to the four most common encounters and bails if they match. The problem is that the code will compare to the four most common encounters for the morning, regardless of the time of day.
-
-**Fix:** Edit `RandomUnseenWildMon` in [engine/overworld/wildmons.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/wildmons.asm):
-
-```diff
- .GetGrassmon:
-+	ld a, [wTimeOfDay]
-+	ld bc, NUM_GRASSMON * 2
-+	call AddNTimes
- 	push hl
- 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
- 	add hl, bc
--	ld a, [wTimeOfDay]
--	ld bc, NUM_GRASSMON * 2
--	call AddNTimes
 ```

@@ -781,6 +781,7 @@ RandomUnseenWildMon:
 	jr nc, .done
 
 .GetGrassmon:
+; BUG: RandomUnseenWildMon always picks a morning Pokémon species (see docs/bugs_and_glitches.md)
 	push hl
 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
 	add hl, bc
@@ -802,7 +803,6 @@ RandomUnseenWildMon:
 	pop hl
 	ld de, 5 + 0 * 2
 	add hl, de
-; BUG: HL points to the morning encounters, regardless of the time of day (see docs/bugs_and_glitches.md)
 	inc hl ; Species index of the most common Pokemon on that route
 	ld b, 4
 .loop2
