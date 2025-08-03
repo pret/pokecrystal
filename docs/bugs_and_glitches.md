@@ -2810,3 +2810,22 @@ This bug allows all the options to be updated at once if the left or right butto
 -	call PlaySFX
 +	call WaitPlaySFX
 ```
+
+### `RandomUnseenWildMon` only works correctly in the morning
+
+In the function `RandomUnseenWildMon`, the code first picks a random pokemon that can be found on the route out of the three most rarest encounters for the current time of day. It then compares that pokemon to the four most common encounters and bails if they match. The problem is that the code will compare to the four most common encounters for the morning, regardless of the time of day.
+
+**Fix:** Edit `RandomUnseenWildMon` in [engine/overworld/wildmons.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/wildmons.asm):
+
+```diff
+ .GetGrassmon:
++	ld a, [wTimeOfDay]
++	ld bc, NUM_GRASSMON * 2
++	call AddNTimes
+ 	push hl
+ 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
+ 	add hl, bc
+-	ld a, [wTimeOfDay]
+-	ld bc, NUM_GRASSMON * 2
+-	call AddNTimes
+```

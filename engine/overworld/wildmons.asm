@@ -802,6 +802,7 @@ RandomUnseenWildMon:
 	pop hl
 	ld de, 5 + 0 * 2
 	add hl, de
+; BUG: HL points to the morning encounters, regardless of the time of day (see docs/bugs_and_glitches.md)
 	inc hl ; Species index of the most common Pokemon on that route
 	ld b, 4
 .loop2
