@@ -90,6 +90,18 @@ MACRO dab ; dwb address, bank
 	endr
 ENDM
 
+MACRO dname
+	if _NARG == 2
+		def n = \2
+	else
+		def n = NAME_LENGTH - 1
+	endc
+	assert STRFIND(\1, "@") == -1, "String terminator \"@\" in name: \1"
+	assert STRLEN(\1) <= n, "Name longer than {d:n} characters: \1"
+	db \1
+	ds n - STRLEN(\1), "@"
+ENDM
+
 MACRO dba_pic ; dbw bank, address
 	db BANK(\1) - PICS_FIX
 	dw \1
