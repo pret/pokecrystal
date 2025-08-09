@@ -1430,13 +1430,14 @@ DebugTrade: ; unreferenced
 
 MACRO debugtrade
 ; species, ot name, ot id
-	db \1, \2
+	db \1
+	dname \2, NAME_LENGTH_JAPANESE
 	dw \3
 ENDM
 
 .DebugTradeData:
-	debugtrade VENUSAUR,  "ゲーフり@@", $0123 ; GAME FREAK
-	debugtrade CHARIZARD, "クりーチャ@", $0456 ; Creatures Inc.
+	debugtrade VENUSAUR,  "ゲーフり",  $0123 ; GAME FREAK
+	debugtrade CHARIZARD, "クりーチャ", $0456 ; Creatures Inc.
 
 TradeGameBoyTilemap:  INCBIN "gfx/trade/game_boy.tilemap" ; 6x8
 TradeLinkTubeTilemap: INCBIN "gfx/trade/link_cable.tilemap" ; 12x3

@@ -330,7 +330,7 @@ Mobile_CopyDefaultOTName:
 	ret
 
 Mobile5F_PlayersName:
-	db "クりス@@"
+	dname "クりス", NAME_LENGTH_JAPANESE - 1
 
 Mobile_CopyDefaultNickname:
 	ld hl, .DefaultNickname
@@ -340,7 +340,7 @@ Mobile_CopyDefaultNickname:
 	ret
 
 .DefaultNickname:
-	db "？？？？？"
+	dname "？？？？？", NAME_LENGTH_JAPANESE - 1
 
 Mobile_CopyDefaultMail:
 	ld a, "@"
