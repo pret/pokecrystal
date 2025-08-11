@@ -1296,8 +1296,8 @@ endr
 ; Pressed this frame:
 	ld a, c
 	ldh [hMGJoypadPressed], a
-	ld a, $30
 ; Reset the joypad register since we're done with it.
+	ld a, JOYP_GET_NONE
 	ldh [rJOYP], a
 	ret
 
