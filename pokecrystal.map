@@ -46940,8 +46940,8 @@ SRAM bank #2:
 	         $a8f4 = sBox3Mon2CaughtLocation
 	         $a8f5 = sBox3Mon2Level
 	         $a8f6 = sBox3Mon3Species
-	         $a8f6 = sBox3Mon2BoxEnd
 	         $a8f6 = sBox3Mon3
+	         $a8f6 = sBox3Mon2BoxEnd
 	         $a8f7 = sBox3Mon3Item
 	         $a8f8 = sBox3Mon3Moves
 	         $a8fc = sBox3Mon3ID
