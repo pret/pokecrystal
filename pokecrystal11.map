@@ -44734,8 +44734,8 @@ SRAM bank #1:
 	         $b4b0 = sHallOfFame6Mon1Level
 	         $b4b1 = sHallOfFame6Mon1Nickname
 	         $b4bb = sHallOfFame6Mon1End
-	         $b4bb = sHallOfFame6Mon2Species
 	         $b4bb = sHallOfFame6Mon2
+	         $b4bb = sHallOfFame6Mon2Species
 	         $b4bc = sHallOfFame6Mon2ID
 	         $b4be = sHallOfFame6Mon2DVs
 	         $b4c0 = sHallOfFame6Mon2Level
@@ -44913,8 +44913,8 @@ SRAM bank #1:
 	         $b636 = sHallOfFame10Mon1DVs
 	         $b638 = sHallOfFame10Mon1Level
 	         $b639 = sHallOfFame10Mon1Nickname
-	         $b643 = sHallOfFame10Mon1End
 	         $b643 = sHallOfFame10Mon2
+	         $b643 = sHallOfFame10Mon1End
 	         $b643 = sHallOfFame10Mon2Species
 	         $b644 = sHallOfFame10Mon2ID
 	         $b646 = sHallOfFame10Mon2DVs
@@ -46940,8 +46940,8 @@ SRAM bank #2:
 	         $a8f4 = sBox3Mon2CaughtLocation
 	         $a8f5 = sBox3Mon2Level
 	         $a8f6 = sBox3Mon3Species
-	         $a8f6 = sBox3Mon2BoxEnd
 	         $a8f6 = sBox3Mon3
+	         $a8f6 = sBox3Mon2BoxEnd
 	         $a8f7 = sBox3Mon3Item
 	         $a8f8 = sBox3Mon3Moves
 	         $a8fc = sBox3Mon3ID
@@ -46956,8 +46956,8 @@ SRAM bank #2:
 	         $a90d = sBox3Mon3PP
 	         $a911 = sBox3Mon3Happiness
 	         $a912 = sBox3Mon3PokerusStatus
-	         $a913 = sBox3Mon3CaughtLevel
 	         $a913 = sBox3Mon3CaughtData
+	         $a913 = sBox3Mon3CaughtLevel
 	         $a913 = sBox3Mon3CaughtTime
 	         $a914 = sBox3Mon3CaughtGender
 	         $a914 = sBox3Mon3CaughtLocation
@@ -54086,8 +54086,8 @@ WRAM0 bank #0:
 	         $c613 = wOddEggHPExp
 	         $c613 = wDebugGreenChannel
 	         $c613 = wMobileMonID
-	         $c614 = wDebugBlueChannel
 	         $c614 = wBT_OTTempMon1Item
+	         $c614 = wDebugBlueChannel
 	         $c614 = wPlayerMoveStructPP
 	         $c615 = wBT_OTTempMon1Moves
 	         $c615 = wPlayerMoveStructEffectChance
@@ -54162,8 +54162,8 @@ WRAM0 bank #0:
 	         $c62a = wMobileMonCaughtLevel
 	         $c62a = wMobileMonCaughtData
 	         $c62a = wOfferGender
-	         $c62b = wOfferSpecies
 	         $c62b = wMobileMonCaughtLocation
+	         $c62b = wOfferSpecies
 	         $c62b = wMobileMonCaughtGender
 	         $c62c = wOddEggMaxHP
 	         $c62c = wBattleMonSpecies
@@ -54301,8 +54301,8 @@ WRAM0 bank #0:
 	         $c64f = wHallOfFameTempMon5Nickname
 	         $c64f = wBT_OTTempMon2Item
 	         $c64f = wOfferMonPokerusStatus
-	         $c650 = wEnemyTrainerItem1
 	         $c650 = wBT_OTTempMon2Moves
+	         $c650 = wEnemyTrainerItem1
 	         $c650 = wOfferMonCaughtData
 	         $c650 = wOfferMonCaughtTime
 	         $c650 = wOfferMonCaughtLevel
@@ -54901,8 +54901,8 @@ WRAM0 bank #0:
 	         $c841 = wLinkPlayerPartyMon1SpclDef
 	         $c842 = wHallOfFamePokemonListMon5ID
 	         $c842 = wTimeCapsulePartyMon2BoxLevel
-	         $c843 = wLinkPlayerPartyMon1StructEnd
 	         $c843 = wLinkPlayerPartyMon2
+	         $c843 = wLinkPlayerPartyMon1StructEnd
 	         $c843 = wLinkPlayerPartyMon2Species
 	         $c843 = wTimeCapsulePartyMon2Status
 	         $c844 = wTimeCapsulePartyMon2Type1
@@ -55595,10 +55595,10 @@ WRAM0 bank #0:
 	         $cf65 = wDebugTilesetRGBJumptableIndex
 	         $cf65 = wUnusedSGB1eColorOffset
 	         $cf65 = wCreditsBorderMon
-	         $cf66 = wMagnetTrainWaitCounter
 	         $cf66 = wBattleTowerRoomMenuJumptableIndex
 	         $cf66 = wUnusedPokegearByte
 	         $cf66 = wUnownPuzzleHeldPiece
+	         $cf66 = wMagnetTrainWaitCounter
 	         $cf66 = wUnusedTradeAnimPlayEvolutionMusic
 	         $cf66 = wCardFlipWhichCard
 	         $cf66 = wDebugTilesetCurColor
@@ -56294,8 +56294,8 @@ WRAMX bank #1:
 	         $d265 = wCurType
 	         $d265 = wUsePPUp
 	         $d265 = wChosenCableClubRoom
-	         $d265 = wTempIconSpecies
 	         $d265 = wNextBoxOrPartyIndex
+	         $d265 = wTempIconSpecies
 	         $d265 = wTempTMHM
 	         $d265 = wNumSetBits
 	         $d265 = wTextDecimalByte
@@ -57723,8 +57723,8 @@ WRAMX bank #1:
 	         $dde6 = wPartyMon6PP
 	         $ddea = wPartyMon6Happiness
 	         $ddeb = wPartyMon6PokerusStatus
-	         $ddec = wPartyMon6CaughtLevel
 	         $ddec = wPartyMon6CaughtData
+	         $ddec = wPartyMon6CaughtLevel
 	         $ddec = wPartyMon6CaughtTime
 	         $dded = wPartyMon6CaughtLocation
 	         $dded = wPartyMon6CaughtGender
