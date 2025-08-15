@@ -6873,7 +6873,7 @@ ROMX bank #10:
 	         $6235 = _JohtoWildmonCheck
 	         $623d = _SwarmWildmonCheck
 	         $625c = _SwarmWildmonCheck.CheckYanma
-	         $6278 = _NoSwarmWildmon
+	         $6278 = _SwarmWildmonCheck.noSwarm
 	         $627a = _NormalWildmonOK
 	         $627f = CopyCurrMapDE
 	         $6288 = LookUpWildmonsForMapDE

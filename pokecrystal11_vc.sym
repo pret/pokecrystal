@@ -6784,7 +6784,7 @@
 0a:6235 _JohtoWildmonCheck
 0a:623d _SwarmWildmonCheck
 0a:625c _SwarmWildmonCheck.CheckYanma
-0a:6278 _NoSwarmWildmon
+0a:6278 _SwarmWildmonCheck.noSwarm
 0a:627a _NormalWildmonOK
 0a:627f CopyCurrMapDE
 0a:6288 LookUpWildmonsForMapDE
