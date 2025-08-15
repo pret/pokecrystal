@@ -425,7 +425,7 @@ _SwarmWildmonCheck:
 	cp e
 	jr nz, .CheckYanma
 	call LookUpWildmonsForMapDE
-	jr nc, _NoSwarmWildmon
+	jr nc, .noSwarm
 	scf
 	ret
 
@@ -434,19 +434,19 @@ _SwarmWildmonCheck:
 	ld hl, wSwarmFlags
 	bit SWARMFLAGS_YANMA_SWARM_F, [hl]
 	pop hl
-	jr z, _NoSwarmWildmon
+	jr z, .noSwarm
 	ld a, [wYanmaMapGroup]
 	cp d
-	jr nz, _NoSwarmWildmon
+	jr nz, .noSwarm
 	ld a, [wYanmaMapNumber]
 	cp e
-	jr nz, _NoSwarmWildmon
+	jr nz, .noSwarm
 	call LookUpWildmonsForMapDE
-	jr nc, _NoSwarmWildmon
+	jr nc, .noSwarm
 	scf
 	ret
 
-_NoSwarmWildmon:
+.noSwarm:
 	and a
 	ret
 
