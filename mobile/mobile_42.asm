@@ -1704,13 +1704,13 @@ DebugMobileTrade: ; unreferenced
 
 .DebugTradeData:
 	db VENUSAUR
-	db "ゲーフり@@"
+	dname "ゲーフり", NAME_LENGTH_JAPANESE ; "GEEFURI" (Game Freak)
 	dw $0123
-	db "かびーん@@"
+	dname "かびーん", NAME_LENGTH_JAPANESE ; "KABIIN"
 	db CHARIZARD
-	db "クりーチャ@"
+	dname "クりーチャ", NAME_LENGTH_JAPANESE ; "CREATURE"
 	dw $0456
-	db "マツミヤ@@"
+	dname "マツミヤ", NAME_LENGTH_JAPANESE ; "MATSUMIYA"
 
 LoadMobileAdapterPalette:
 	ld a, [wc74e]

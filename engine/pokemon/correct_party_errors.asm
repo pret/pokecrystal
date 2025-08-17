@@ -203,7 +203,7 @@ CorrectPartyErrors: ; unreferenced
 	ret
 
 .TAMAGO:
-	db "タマゴ@@@"
+	dname "タマゴ", NAME_LENGTH_JAPANESE ; "EGG"
 
 .GetLengthOfStringWith6CharCap:
 	push de
