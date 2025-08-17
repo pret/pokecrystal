@@ -47007,8 +47007,8 @@ SRAM bank #2:
 	         $a8f3 = sBox3Mon2CaughtTime
 	         $a8f3 = sBox3Mon2CaughtLevel
 	         $a8f3 = sBox3Mon2CaughtData
-	         $a8f4 = sBox3Mon2CaughtGender
 	         $a8f4 = sBox3Mon2CaughtLocation
+	         $a8f4 = sBox3Mon2CaughtGender
 	         $a8f5 = sBox3Mon2Level
 	         $a8f6 = sBox3Mon3Species
 	         $a8f6 = sBox3Mon3
@@ -51801,8 +51801,8 @@ SRAM bank #3:
 	         $b2b8 = sBox12Mon12Moves
 	         $b2bc = sBox12Mon12ID
 	         $b2be = sBox12Mon12Exp
-	         $b2c1 = sBox12Mon12StatExp
 	         $b2c1 = sBox12Mon12HPExp
+	         $b2c1 = sBox12Mon12StatExp
 	         $b2c3 = sBox12Mon12AtkExp
 	         $b2c5 = sBox12Mon12DefExp
 	         $b2c7 = sBox12Mon12SpdExp
