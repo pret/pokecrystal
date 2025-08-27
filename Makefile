@@ -350,3 +350,12 @@ gfx/mobile/stadium2_n64.2bpp: tools/gfx += --trim-whitespace
 
 %.dimensions: %.png
 	tools/png_dimensions $< $@
+
+
+### File extensions that are never generated and should be manually created
+
+%.inc: ;
+%.pal: ;
+%.bin: ;
+%.blk: ;
+%.rle: ;
