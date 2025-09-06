@@ -112,7 +112,7 @@ LoadMartPointer:
 	xor a ; STANDARDMART_HOWMAYIHELPYOU
 	ld [wMartJumptableIndex], a
 	ld [wBargainShopFlags], a
-	ld [wFacingDirection], a
+	ld [wBargainShopFlags + 1], a
 	ret
 
 GetMart:
