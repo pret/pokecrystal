@@ -19,7 +19,7 @@ TrainerGentlemanAlfred:
 	end
 
 TrainerSailorHuey:
-	trainer SAILOR, HUEY1, EVENT_BEAT_SAILOR_HUEY, SailorHueySeenText, SailorHueyBeatenText, 0, .Script
+	trainer SAILOR, HUEY0, EVENT_BEAT_SAILOR_HUEY, SailorHueySeenText, SailorHueyBeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_SAILOR_HUEY
@@ -41,7 +41,7 @@ TrainerSailorHuey:
 	askforphonenumber PHONE_SAILOR_HUEY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, SAILOR, HUEY1
+	gettrainername STRING_BUFFER_3, SAILOR, HUEY0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -63,7 +63,7 @@ TrainerSailorHuey:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer SAILOR, HUEY1
+	loadtrainer SAILOR, HUEY0
 	startbattle
 	reloadmapafterbattle
 	loadmem wHueyFightCount, 1
@@ -71,7 +71,7 @@ TrainerSailorHuey:
 	end
 
 .LoadFight1:
-	loadtrainer SAILOR, HUEY2
+	loadtrainer SAILOR, HUEY1
 	startbattle
 	reloadmapafterbattle
 	loadmem wHueyFightCount, 2
@@ -79,7 +79,7 @@ TrainerSailorHuey:
 	end
 
 .LoadFight2:
-	loadtrainer SAILOR, HUEY3
+	loadtrainer SAILOR, HUEY2
 	startbattle
 	reloadmapafterbattle
 	loadmem wHueyFightCount, 3
@@ -87,7 +87,7 @@ TrainerSailorHuey:
 	end
 
 .LoadFight3:
-	loadtrainer SAILOR, HUEY4
+	loadtrainer SAILOR, HUEY3
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_HUEY_READY_FOR_REMATCH

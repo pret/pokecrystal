@@ -1,5 +1,5 @@
 AlanPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN0
 	checkflag ENGINE_ALAN_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -24,7 +24,7 @@ AlanPhoneCalleeScript:
 	farsjump AlanComePickUpScript
 
 AlanPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_ALAN_READY_FOR_REMATCH
 	iftrue .Generic

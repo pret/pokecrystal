@@ -1,5 +1,5 @@
 JackPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK0
 	checkflag ENGINE_JACK_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -18,7 +18,7 @@ JackPhoneCalleeScript:
 	farsjump JackWantsBattleScript
 
 JackPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2
 	ifequal 0, JackBattleTrivia

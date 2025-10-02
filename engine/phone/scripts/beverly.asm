@@ -1,5 +1,5 @@
 BeverlyPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1
+	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY0
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue .HasNugget
@@ -10,7 +10,7 @@ BeverlyPhoneCalleeScript:
 	farsjump BeverlyComePickUpScript
 
 BeverlyPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1
+	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BEVERLY_HAS_NUGGET
 	iftrue .HasNugget

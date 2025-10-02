@@ -1,5 +1,5 @@
 ReenaPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA1
+	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA0
 	checkflag ENGINE_REENA_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
@@ -18,7 +18,7 @@ ReenaPhoneCalleeScript:
 	farsjump ReenaHurryScript
 
 ReenaPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA1
+	gettrainername STRING_BUFFER_3, COOLTRAINERF, REENA0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_REENA_READY_FOR_REMATCH
 	iftrue .Generic

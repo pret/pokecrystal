@@ -28,7 +28,7 @@ TrainerBirdKeeperBryan:
 	end
 
 TrainerJugglerIrwin:
-	trainer JUGGLER, IRWIN1, EVENT_BEAT_JUGGLER_IRWIN, JugglerIrwin1SeenText, JugglerIrwin1BeatenText, 0, .Script
+	trainer JUGGLER, IRWIN0, EVENT_BEAT_JUGGLER_IRWIN, JugglerIrwin1SeenText, JugglerIrwin1BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_JUGGLER_IRWIN
@@ -50,7 +50,7 @@ TrainerJugglerIrwin:
 	askforphonenumber PHONE_JUGGLER_IRWIN
 	ifequal PHONE_CONTACTS_FULL, Route35PhoneFullM
 	ifequal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
-	gettrainername STRING_BUFFER_3, JUGGLER, IRWIN1
+	gettrainername STRING_BUFFER_3, JUGGLER, IRWIN0
 	scall Route35RegisteredNumberM
 	sjump Route35NumberAcceptedM
 
@@ -127,7 +127,7 @@ TrainerPicnickerKim:
 	end
 
 TrainerBugCatcherArnie:
-	trainer BUG_CATCHER, ARNIE1, EVENT_BEAT_BUG_CATCHER_ARNIE, BugCatcherArnieSeenText, BugCatcherArnieBeatenText, 0, .Script
+	trainer BUG_CATCHER, ARNIE0, EVENT_BEAT_BUG_CATCHER_ARNIE, BugCatcherArnieSeenText, BugCatcherArnieBeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BUG_CATCHER_ARNIE
@@ -153,7 +153,7 @@ TrainerBugCatcherArnie:
 	askforphonenumber PHONE_BUG_CATCHER_ARNIE
 	ifequal PHONE_CONTACTS_FULL, Route35PhoneFullM
 	ifequal PHONE_CONTACT_REFUSED, Route35NumberDeclinedM
-	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE1
+	gettrainername STRING_BUFFER_3, BUG_CATCHER, ARNIE0
 	scall Route35RegisteredNumberM
 	sjump Route35NumberAcceptedM
 
@@ -179,7 +179,7 @@ TrainerBugCatcherArnie:
 	checkflag ENGINE_FLYPOINT_LAKE_OF_RAGE
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer BUG_CATCHER, ARNIE1
+	loadtrainer BUG_CATCHER, ARNIE0
 	startbattle
 	reloadmapafterbattle
 	loadmem wArnieFightCount, 1
@@ -187,7 +187,7 @@ TrainerBugCatcherArnie:
 	end
 
 .LoadFight1:
-	loadtrainer BUG_CATCHER, ARNIE2
+	loadtrainer BUG_CATCHER, ARNIE1
 	startbattle
 	reloadmapafterbattle
 	loadmem wArnieFightCount, 2
@@ -195,7 +195,7 @@ TrainerBugCatcherArnie:
 	end
 
 .LoadFight2:
-	loadtrainer BUG_CATCHER, ARNIE3
+	loadtrainer BUG_CATCHER, ARNIE2
 	startbattle
 	reloadmapafterbattle
 	loadmem wArnieFightCount, 3
@@ -203,7 +203,7 @@ TrainerBugCatcherArnie:
 	end
 
 .LoadFight3:
-	loadtrainer BUG_CATCHER, ARNIE4
+	loadtrainer BUG_CATCHER, ARNIE3
 	startbattle
 	reloadmapafterbattle
 	loadmem wArnieFightCount, 4
@@ -211,7 +211,7 @@ TrainerBugCatcherArnie:
 	end
 
 .LoadFight4:
-	loadtrainer BUG_CATCHER, ARNIE5
+	loadtrainer BUG_CATCHER, ARNIE4
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_ARNIE_READY_FOR_REMATCH

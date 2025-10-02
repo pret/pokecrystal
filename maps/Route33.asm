@@ -12,7 +12,7 @@ Route33LassScript:
 	jumptextfaceplayer Route33LassText
 
 TrainerHikerAnthony:
-	trainer HIKER, ANTHONY2, EVENT_BEAT_HIKER_ANTHONY, HikerAnthony2SeenText, HikerAnthony2BeatenText, 0, .Script
+	trainer HIKER, ANTHONY1, EVENT_BEAT_HIKER_ANTHONY, HikerAnthony2SeenText, HikerAnthony2BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_HIKER_ANTHONY
@@ -38,7 +38,7 @@ TrainerHikerAnthony:
 	askforphonenumber PHONE_HIKER_ANTHONY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, HIKER, ANTHONY2
+	gettrainername STRING_BUFFER_3, HIKER, ANTHONY1
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -64,7 +64,7 @@ TrainerHikerAnthony:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer HIKER, ANTHONY2
+	loadtrainer HIKER, ANTHONY1
 	startbattle
 	reloadmapafterbattle
 	loadmem wAnthonyFightCount, 1
@@ -72,7 +72,7 @@ TrainerHikerAnthony:
 	end
 
 .LoadFight1:
-	loadtrainer HIKER, ANTHONY1
+	loadtrainer HIKER, ANTHONY0
 	startbattle
 	reloadmapafterbattle
 	loadmem wAnthonyFightCount, 2
@@ -80,7 +80,7 @@ TrainerHikerAnthony:
 	end
 
 .LoadFight2:
-	loadtrainer HIKER, ANTHONY3
+	loadtrainer HIKER, ANTHONY2
 	startbattle
 	reloadmapafterbattle
 	loadmem wAnthonyFightCount, 3
@@ -88,7 +88,7 @@ TrainerHikerAnthony:
 	end
 
 .LoadFight3:
-	loadtrainer HIKER, ANTHONY4
+	loadtrainer HIKER, ANTHONY3
 	startbattle
 	reloadmapafterbattle
 	loadmem wAnthonyFightCount, 4
@@ -96,7 +96,7 @@ TrainerHikerAnthony:
 	end
 
 .LoadFight4:
-	loadtrainer HIKER, ANTHONY5
+	loadtrainer HIKER, ANTHONY4
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_ANTHONY_READY_FOR_REMATCH

@@ -1,5 +1,5 @@
 RalphPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, FISHER, RALPH1
+	gettrainername STRING_BUFFER_3, FISHER, RALPH0
 	checkflag ENGINE_RALPH_READY_FOR_REMATCH
 	iftrue .Rematch
 	farscall PhoneScript_AnswerPhone_Male
@@ -23,7 +23,7 @@ RalphPhoneCalleeScript:
 	farsjump RalphHurryScript
 
 RalphPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, FISHER, RALPH1
+	gettrainername STRING_BUFFER_3, FISHER, RALPH0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_FLYPOINT_GOLDENROD
 	iffalse .CheckSwarm

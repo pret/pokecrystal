@@ -1,5 +1,5 @@
 ToddPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, CAMPER, TODD1
+	gettrainername STRING_BUFFER_3, CAMPER, TODD0
 	checkflag ENGINE_TODD_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -23,7 +23,7 @@ ToddPhoneCalleeScript:
 	farsjump ToddHurryScript
 
 ToddPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, CAMPER, TODD1
+	gettrainername STRING_BUFFER_3, CAMPER, TODD0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_TODD_READY_FOR_REMATCH
 	iftrue .TryForSale

@@ -34,8 +34,8 @@ TrainerSailorHarry:
 	closetext
 	end
 
-TrainerLassDana1:
-	trainer LASS, DANA1, EVENT_BEAT_LASS_DANA, LassDana1SeenText, LassDana1BeatenText, 0, .Script
+TrainerLassDana0:
+	trainer LASS, DANA0, EVENT_BEAT_LASS_DANA, LassDana1SeenText, LassDana1BeatenText, 0, .Script
 
 .Script
 	loadvar VAR_CALLERID, PHONE_LASS_DANA
@@ -61,7 +61,7 @@ TrainerLassDana1:
 	askforphonenumber PHONE_LASS_DANA
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .DeclinedPhoneNumber
-	gettrainername STRING_BUFFER_3, LASS, DANA1
+	gettrainername STRING_BUFFER_3, LASS, DANA0
 	scall .RegisteredPhoneNumber
 	sjump .NumberAccepted
 
@@ -87,7 +87,7 @@ TrainerLassDana1:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer LASS, DANA1
+	loadtrainer LASS, DANA0
 	startbattle
 	reloadmapafterbattle
 	loadmem wDanaFightCount, 1
@@ -95,7 +95,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight1:
-	loadtrainer LASS, DANA2
+	loadtrainer LASS, DANA1
 	startbattle
 	reloadmapafterbattle
 	loadmem wDanaFightCount, 2
@@ -103,7 +103,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight2:
-	loadtrainer LASS, DANA3
+	loadtrainer LASS, DANA2
 	startbattle
 	reloadmapafterbattle
 	loadmem wDanaFightCount, 3
@@ -111,7 +111,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight3:
-	loadtrainer LASS, DANA4
+	loadtrainer LASS, DANA3
 	startbattle
 	reloadmapafterbattle
 	loadmem wDanaFightCount, 4
@@ -119,7 +119,7 @@ TrainerLassDana1:
 	end
 
 .LoadFight4:
-	loadtrainer LASS, DANA5
+	loadtrainer LASS, DANA4
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_DANA_READY_FOR_REMATCH
@@ -172,8 +172,8 @@ TrainerLassDana1:
 	jumpstd PackFullFScript
 	end
 
-TrainerSchoolboyChad1:
-	trainer SCHOOLBOY, CHAD1, EVENT_BEAT_SCHOOLBOY_CHAD, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .Script
+TrainerSchoolboyChad0:
+	trainer SCHOOLBOY, CHAD0, EVENT_BEAT_SCHOOLBOY_CHAD, SchoolboyChad1SeenText, SchoolboyChad1BeatenText, 0, .Script
 
 .Script
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
@@ -197,7 +197,7 @@ TrainerSchoolboyChad1:
 	askforphonenumber PHONE_SCHOOLBOY_CHAD
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .SaidNo
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD0
 	scall .RegisteredChad
 	sjump .HaveChadsNumber
 
@@ -223,7 +223,7 @@ TrainerSchoolboyChad1:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer SCHOOLBOY, CHAD1
+	loadtrainer SCHOOLBOY, CHAD0
 	startbattle
 	reloadmapafterbattle
 	loadmem wChadFightCount, 1
@@ -231,7 +231,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight1:
-	loadtrainer SCHOOLBOY, CHAD2
+	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	reloadmapafterbattle
 	loadmem wChadFightCount, 2
@@ -239,7 +239,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight2:
-	loadtrainer SCHOOLBOY, CHAD3
+	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
 	reloadmapafterbattle
 	loadmem wChadFightCount, 3
@@ -247,7 +247,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight3:
-	loadtrainer SCHOOLBOY, CHAD4
+	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
 	reloadmapafterbattle
 	loadmem wChadFightCount, 4
@@ -255,7 +255,7 @@ TrainerSchoolboyChad1:
 	end
 
 .LoadFight4:
-	loadtrainer SCHOOLBOY, CHAD5
+	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_CHAD_READY_FOR_REMATCH
@@ -484,8 +484,8 @@ Route38_MapEvents:
 	bg_event  5, 13, BGEVENT_READ, Route38TrainerTips
 
 	def_object_events
-	object_event  4,  1, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyChad1, -1
-	object_event 15,  3, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassDana1, -1
+	object_event  4,  1, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerSchoolboyChad0, -1
+	object_event 15,  3, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerLassDana0, -1
 	object_event 12, 15, SPRITE_STANDING_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBirdKeeperToby, -1
 	object_event 19,  9, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 1, TrainerBeautyValerie, -1
 	object_event 24,  5, SPRITE_SAILOR, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerSailorHarry, -1

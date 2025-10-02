@@ -1,5 +1,5 @@
 JosePhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2
+	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE1
 	checkflag ENGINE_JOSE_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -24,7 +24,7 @@ JosePhoneCalleeScript:
 	farsjump JoseReminderScript
 
 JosePhoneCallerScript:
-	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE2
+	gettrainername STRING_BUFFER_3, BIRD_KEEPER, JOSE1
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_JOSE_READY_FOR_REMATCH
 	iftrue .Generic

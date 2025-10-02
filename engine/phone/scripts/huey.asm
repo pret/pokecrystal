@@ -1,5 +1,5 @@
 HueyPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, SAILOR, HUEY1
+	gettrainername STRING_BUFFER_3, SAILOR, HUEY0
 	checkflag ENGINE_HUEY_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -19,7 +19,7 @@ HueyPhoneCalleeScript:
 	farsjump HueyWantsBattleScript
 
 HueyPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, SAILOR, HUEY1
+	gettrainername STRING_BUFFER_3, SAILOR, HUEY0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_HUEY_READY_FOR_REMATCH
 	iftrue .Flavor

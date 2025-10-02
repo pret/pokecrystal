@@ -1,5 +1,5 @@
 GinaPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
+	gettrainername STRING_BUFFER_3, PICNICKER, GINA0
 	checkflag ENGINE_GINA_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
@@ -29,7 +29,7 @@ GinaPhoneCalleeScript:
 	farsjump GinaComePickUpScript
 
 GinaPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
+	gettrainername STRING_BUFFER_3, PICNICKER, GINA0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
 	iftrue GinaRockets

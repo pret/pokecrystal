@@ -1,5 +1,5 @@
 ParryPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, HIKER, PARRY1
+	gettrainername STRING_BUFFER_3, HIKER, PARRY0
 	checkflag ENGINE_PARRY_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -18,7 +18,7 @@ ParryPhoneCalleeScript:
 	farsjump ParryHaventYouGottenToScript
 
 ParryPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, HIKER, PARRY1
+	gettrainername STRING_BUFFER_3, HIKER, PARRY0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_PARRY_READY_FOR_REMATCH
 	iftrue .GenericCall

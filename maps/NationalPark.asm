@@ -69,8 +69,8 @@ NationalParkGameboyKidScript:
 	turnobject NATIONALPARK_GAMEBOY_KID, DOWN
 	end
 
-TrainerSchoolboyJack1:
-	trainer SCHOOLBOY, JACK1, EVENT_BEAT_SCHOOLBOY_JACK, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, .Script
+TrainerSchoolboyJack0:
+	trainer SCHOOLBOY, JACK0, EVENT_BEAT_SCHOOLBOY_JACK, SchoolboyJack1SeenText, SchoolboyJack1BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_JACK
@@ -94,7 +94,7 @@ TrainerSchoolboyJack1:
 	askforphonenumber PHONE_SCHOOLBOY_JACK
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, JACK0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -120,7 +120,7 @@ TrainerSchoolboyJack1:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer SCHOOLBOY, JACK1
+	loadtrainer SCHOOLBOY, JACK0
 	startbattle
 	reloadmapafterbattle
 	loadmem wJackFightCount, 1
@@ -128,7 +128,7 @@ TrainerSchoolboyJack1:
 	end
 
 .LoadFight1:
-	loadtrainer SCHOOLBOY, JACK2
+	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	reloadmapafterbattle
 	loadmem wJackFightCount, 2
@@ -136,7 +136,7 @@ TrainerSchoolboyJack1:
 	end
 
 .LoadFight2:
-	loadtrainer SCHOOLBOY, JACK3
+	loadtrainer SCHOOLBOY, JACK2
 	startbattle
 	reloadmapafterbattle
 	loadmem wJackFightCount, 3
@@ -144,7 +144,7 @@ TrainerSchoolboyJack1:
 	end
 
 .LoadFight3:
-	loadtrainer SCHOOLBOY, JACK4
+	loadtrainer SCHOOLBOY, JACK3
 	startbattle
 	reloadmapafterbattle
 	loadmem wJackFightCount, 4
@@ -152,7 +152,7 @@ TrainerSchoolboyJack1:
 	end
 
 .LoadFight4:
-	loadtrainer SCHOOLBOY, JACK5
+	loadtrainer SCHOOLBOY, JACK4
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_JACK_READY_FOR_REMATCH
@@ -198,7 +198,7 @@ TrainerPokefanmWilliam:
 	end
 
 TrainerPokefanfBeverly1:
-	trainer POKEFANF, BEVERLY1, EVENT_BEAT_POKEFANF_BEVERLY, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, .Script
+	trainer POKEFANF, BEVERLY0, EVENT_BEAT_POKEFANF_BEVERLY, PokefanfBeverly1SeenText, PokefanfBeverly1BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_POKEFAN_BEVERLY
@@ -224,7 +224,7 @@ TrainerPokefanfBeverly1:
 	askforphonenumber PHONE_POKEFAN_BEVERLY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY1
+	gettrainername STRING_BUFFER_3, POKEFANF, BEVERLY0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -536,7 +536,7 @@ NationalPark_MapEvents:
 	object_event 10, 41, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, NationalParkYoungster2Script, -1
 	object_event 17, 41, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkTeacher2Script, -1
 	object_event 26, 40, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, NationalParkPersian, -1
-	object_event 27, 23, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyJack1, -1
+	object_event 27, 23, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerSchoolboyJack0, -1
 	object_event 18, 29, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanfBeverly1, -1
 	object_event 16,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerPokefanmWilliam, -1
 	object_event  8, 14, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerLassKrise, -1

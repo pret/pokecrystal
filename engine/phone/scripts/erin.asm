@@ -1,5 +1,5 @@
 ErinPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
+	gettrainername STRING_BUFFER_3, PICNICKER, ERIN0
 	checkflag ENGINE_ERIN_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
@@ -18,7 +18,7 @@ ErinPhoneCalleeScript:
 	farsjump ErinComeBattleScript
 
 ErinPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, PICNICKER, ERIN1
+	gettrainername STRING_BUFFER_3, PICNICKER, ERIN0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_ERIN_READY_FOR_REMATCH
 	iftrue .GenericCall
