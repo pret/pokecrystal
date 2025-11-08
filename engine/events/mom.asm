@@ -461,7 +461,7 @@ Mom_WithdrawDepositMenuJoypad:
 	ldh [hBGMapMode], a
 	hlcoord 12, 6
 	ld bc, 7
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	hlcoord 12, 6
 	ld de, wStringBuffer2
@@ -475,7 +475,7 @@ Mom_WithdrawDepositMenuJoypad:
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld [hl], " "
+	ld [hl], ' '
 
 .skip
 	call WaitBGMap

@@ -1,8 +1,8 @@
 DEF NAMINGSCREEN_CURSOR     EQU $7e
 
-DEF NAMINGSCREEN_BORDER     EQU "■" ; $60
-DEF NAMINGSCREEN_MIDDLELINE EQU "→" ; $eb
-DEF NAMINGSCREEN_UNDERLINE  EQU "<DOT>" ; $f2
+DEF NAMINGSCREEN_BORDER     EQU '■' ; $60
+DEF NAMINGSCREEN_MIDDLELINE EQU '→' ; $eb
+DEF NAMINGSCREEN_UNDERLINE  EQU '<DOT>' ; $f2
 
 _NamingScreen:
 	call DisableSpriteUpdates
@@ -106,9 +106,9 @@ NamingScreenJumptable:
 	call PlaceString
 	farcall GetGender
 	jr c, .genderless
-	ld a, "♂"
+	ld a, '♂'
 	jr nz, .place_gender
-	ld a, "♀"
+	ld a, '♀'
 .place_gender
 	hlcoord 1, 2
 	ld [hl], a
@@ -683,7 +683,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 	inc [hl]
 	call NamingScreen_GetTextCursorPosition
 	ld a, [hl]
-	cp "@"
+	cp '@'
 	jr z, .end_of_string
 	ld [hl], NAMINGSCREEN_UNDERLINE
 	and a
@@ -763,7 +763,7 @@ NamingScreen_InitNameEntry:
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	ld [hl], "@"
+	ld [hl], '@'
 	ret
 
 NamingScreen_StoreEntry:
@@ -780,7 +780,7 @@ NamingScreen_StoreEntry:
 	cp NAMINGSCREEN_UNDERLINE
 	jr nz, .not_terminator
 .terminator
-	ld [hl], "@"
+	ld [hl], '@'
 .not_terminator
 	inc hl
 	dec c
@@ -959,7 +959,7 @@ _ComposeMailMessage:
 	ld d, [hl]
 	ld hl, MAIL_LINE_LENGTH
 	add hl, de
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 
 .MailIcon:
@@ -981,7 +981,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	call ByteFill
 	hlcoord 0, 6
 	ld bc, 12 * SCREEN_WIDTH
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	hlcoord 1, 1
 	lb bc, 4, SCREEN_WIDTH - 2
@@ -1104,7 +1104,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	call NamingScreen_GetTextCursorPosition
 	ld [hl], NAMINGSCREEN_UNDERLINE
 	dec hl
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 
 .start
@@ -1130,7 +1130,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	call NamingScreen_GetTextCursorPosition
 	ld [hl], NAMINGSCREEN_UNDERLINE
 	inc hl
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 
 .finished

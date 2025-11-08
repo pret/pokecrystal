@@ -908,7 +908,7 @@ RandomPhoneMon:
 	ld a, BANK(Trainers)
 	call GetFarByte
 	inc hl
-	cp "@"
+	cp '@'
 	jr nz, .skip_name
 
 	ld a, BANK(Trainers)

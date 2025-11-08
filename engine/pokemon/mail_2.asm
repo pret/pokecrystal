@@ -711,7 +711,7 @@ MailGFX_PlaceMessage:
 	ld de, wMonOrItemNameBuffer
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [wTempMailAuthor], a
 	ld [wMonOrItemNameBuffer + NAME_LENGTH - 1], a
 	ld de, wTempMailMessage

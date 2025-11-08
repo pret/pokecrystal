@@ -211,7 +211,7 @@ CorrectPartyErrors: ; unreferenced
 	ld b, NAME_LENGTH_JAPANESE
 .search_loop
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr z, .done
 	inc de
 	inc c
@@ -219,7 +219,7 @@ CorrectPartyErrors: ; unreferenced
 	jr nz, .search_loop
 	dec c
 	dec de
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 .done
 	pop de

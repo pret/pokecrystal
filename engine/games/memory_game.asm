@@ -120,7 +120,7 @@ endr
 .CheckTriesRemaining:
 	ld a, [wMemoryGameNumberTriesRemaining]
 	hlcoord 17, 0
-	add "0"
+	add '0'
 	ld [hl], a
 	ld hl, wMemoryGameNumberTriesRemaining
 	ld a, [hl]

@@ -155,7 +155,7 @@ CheckPokeMail::
 	ld c, a
 	ld a, b
 	call GetFarByte
-	cp "@"
+	cp '@'
 	jr z, .done
 	cp c
 	ld a, POKEMAIL_WRONG_MAIL
@@ -354,7 +354,7 @@ MailboxPC_GetMailAuthor:
 	push de
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	call CloseSRAM
 	pop de

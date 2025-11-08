@@ -487,16 +487,16 @@ PlaceBCDNumberSprite:: ; unreferenced
 	ld b, a
 	swap a
 	and $f
-	add "0"
+	add '0'
 	ld [wShadowOAMSprite38TileID], a
 	ld a, b
 	and $f
-	add "0"
+	add '0'
 	ld [wShadowOAMSprite39TileID], a
 	ret
 
 .max
-	ld a, "9"
+	ld a, '9'
 	ld [wShadowOAMSprite38TileID], a
 	ld [wShadowOAMSprite39TileID], a
 	ret

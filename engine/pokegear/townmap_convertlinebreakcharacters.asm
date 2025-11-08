@@ -2,17 +2,17 @@ TownMap_ConvertLineBreakCharacters:
 	ld hl, wStringBuffer1
 .loop
 	ld a, [hl]
-	cp "@"
+	cp '@'
 	jr z, .end
-	cp "<WBR>"
+	cp '<WBR>'
 	jr z, .line_feed
-	cp "<BSP>"
+	cp '<BSP>'
 	jr z, .line_feed
 	inc hl
 	jr .loop
 
 .line_feed
-	ld [hl], "<LF>"
+	ld [hl], '<LF>'
 
 .end
 	ld de, wStringBuffer1

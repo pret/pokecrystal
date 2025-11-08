@@ -245,13 +245,13 @@ SetDefaultBoxNames:
 	cp 10
 	jr c, .less
 	sub 10
-	ld [hl], "1"
+	ld [hl], '1'
 	inc hl
 
 .less
-	add "0"
+	add '0'
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	pop hl
 	ld de, 9
 	add hl, de
@@ -622,7 +622,7 @@ Continue_DisplayGameTime:
 	ld de, wGameTimeHours
 	lb bc, 2, 3
 	call PrintNum
-	ld [hl], "<COLON>"
+	ld [hl], '<COLON>'
 	inc hl
 	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
@@ -794,7 +794,7 @@ GSShowPlayerNamingChoices: ; unreferenced
 	ret
 
 StorePlayerName:
-	ld a, "@"
+	ld a, '@'
 	ld bc, NAME_LENGTH
 	ld hl, wPlayerName
 	call ByteFill

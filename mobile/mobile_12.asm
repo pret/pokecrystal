@@ -433,7 +433,7 @@ Function483bb:
 	jr z, .asm_483d5
 .asm_483cb
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr nz, .asm_483cb
 	ld a, b
 	dec a
@@ -465,7 +465,7 @@ Function483e8:
 	jr z, .asm_48405
 .asm_483fc
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr nz, .asm_483fc
 	ld a, d
 	dec a
@@ -884,7 +884,7 @@ endr
 
 Function487ff:
 	push hl
-	ld a, " "
+	ld a, ' '
 	ld [hli], a
 	ld [hl], a
 	pop hl
@@ -1561,7 +1561,7 @@ Function48c5a:
 	ret
 
 Function48c63:
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld a, c
 	cp $30
@@ -1572,7 +1572,7 @@ Function48c63:
 	push de
 	ld h, d
 	ld l, e
-	ld a, "@"
+	ld a, '@'
 	ld b, 7
 .asm_48c76
 	ld [hli], a
@@ -1586,7 +1586,7 @@ Function48c63:
 	ld [de], a
 	inc de
 	ld a, [hl]
-	cp "@"
+	cp '@'
 	jr nz, .asm_48c81
 	and a
 	pop de

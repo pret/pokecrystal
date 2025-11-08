@@ -37,7 +37,7 @@ MACRO connection
 			DEF _tgt = 0
 		endc
 
-		if !STRCMP("\1", "north")
+		if "\1" === "north"
 			DEF _blk = \3_WIDTH * (\3_HEIGHT - MAP_CONNECTION_PADDING_WIDTH) + _src
 			DEF _map = _tgt
 			DEF _win = (\3_WIDTH + MAP_CONNECTION_PADDING_WIDTH * 2) * \3_HEIGHT + 1
@@ -48,7 +48,7 @@ MACRO connection
 				DEF _len = \3_WIDTH
 			endc
 
-		elif !STRCMP("\1", "south")
+		elif "\1" === "south"
 			DEF _blk = _src
 			DEF _map = (CURRENT_MAP_WIDTH + MAP_CONNECTION_PADDING_WIDTH * 2) * (CURRENT_MAP_HEIGHT + MAP_CONNECTION_PADDING_WIDTH) + _tgt
 			DEF _win = \3_WIDTH + MAP_CONNECTION_PADDING_WIDTH * 2 + 1
@@ -59,7 +59,7 @@ MACRO connection
 				DEF _len = \3_WIDTH
 			endc
 
-		elif !STRCMP("\1", "west")
+		elif "\1" === "west"
 			DEF _blk = (\3_WIDTH * _src) + \3_WIDTH - MAP_CONNECTION_PADDING_WIDTH
 			DEF _map = (CURRENT_MAP_WIDTH + MAP_CONNECTION_PADDING_WIDTH * 2) * _tgt
 			DEF _win = (\3_WIDTH + MAP_CONNECTION_PADDING_WIDTH * 2) * 2 - MAP_CONNECTION_PADDING_WIDTH * 2
@@ -70,7 +70,7 @@ MACRO connection
 				DEF _len = \3_HEIGHT
 			endc
 
-		elif !STRCMP("\1", "east")
+		elif "\1" === "east"
 			DEF _blk = (\3_WIDTH * _src)
 			DEF _map = (CURRENT_MAP_WIDTH + MAP_CONNECTION_PADDING_WIDTH * 2) * _tgt + CURRENT_MAP_WIDTH + MAP_CONNECTION_PADDING_WIDTH
 			DEF _win = \3_WIDTH + MAP_CONNECTION_PADDING_WIDTH * 2 + 1

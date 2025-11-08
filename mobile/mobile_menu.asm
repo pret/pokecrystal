@@ -368,7 +368,7 @@ Strings_4a23d:
 Function4a28a:
 	hlcoord 2, 3
 	lb bc, 6, 1
-	ld a, " "
+	ld a, ' '
 	call Function4a6d8
 	call PlaceHollowCursor
 	call WaitBGMap
@@ -528,7 +528,7 @@ Function4a3aa:
 	ld a, $3
 	call Function4a6d8
 	lb bc, 1, 1
-	ld a, " "
+	ld a, ' '
 	call Function4a6d8
 	hlcoord 1, 0
 	ld a, $1
@@ -544,7 +544,7 @@ Function4a3aa:
 	ld a, $2
 	call Function4a6d8
 	lb bc, 11, 18
-	ld a, " "
+	ld a, ' '
 	call Function4a6d8
 	hlcoord 19, 0
 	lb bc, 3, 1
@@ -566,7 +566,7 @@ Function4a3aa:
 	ld a, $3
 	call Function4a6d8
 	lb bc, 1, 1
-	ld a, " "
+	ld a, ' '
 	call Function4a6d8
 	ret
 
@@ -591,7 +591,7 @@ Function4a449: ; unreferenced
 	ld a, $3
 	call ByteFill
 	ld bc, SCREEN_WIDTH
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	ret
 

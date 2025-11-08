@@ -37,10 +37,10 @@ PrintHoursMins:
 	push hl
 	pop de
 	pop hl
-	ld [hl], " "
+	ld [hl], ' '
 	lb bc, 1, 2
 	call PrintNum
-	ld [hl], ":"
+	ld [hl], ':'
 	inc hl
 	ld d, h
 	ld e, l

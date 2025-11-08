@@ -7,31 +7,31 @@ DEF callba EQUS "farcall"
 DEF callab EQUS "callfar"
 
 ; macros/gfx.asm
-MACRO dsprite
+MACRO? dsprite
 	dbsprite \3, \1, \4, \2, \5, \6
 ENDM
 
 ; macros/data.asm
 
-MACRO dt
+MACRO? dt
 	bigdt \1
 ENDM
 
-MACRO dd
+MACRO? dd
 	bigdd \1
 ENDM
 
-MACRO dbbw
+MACRO? dbbw
 	db \1, \2
 	dw \3
 ENDM
 
-MACRO dbww
+MACRO? dbww
 	db \1
 	dw \2, \3
 ENDM
 
-MACRO dbwww
+MACRO? dbwww
 	db \1
 	dw \2, \3, \4
 ENDM
@@ -414,8 +414,8 @@ DEF gamecornercoinvendor  EQUS "GameCornerCoinVendorScript"
 DEF happinesschecknpc     EQUS "HappinessCheckScript"
 
 ; constants/charmap.asm
-charmap "%", "<BSP>"
-charmap "¯", "<WBR>"
+charmap "%", '<BSP>'
+charmap "¯", '<WBR>'
 
 ; constants/sprite_constants.asm
 DEF SPRITE_BUENA EQUS "SPRITE_BEAUTY"
