@@ -1199,7 +1199,7 @@ Note that this fix only accounts for Pokémon that evolve via Moon Stone as thei
 
 ### Catch rate formula breaks for Pokémon with max HP > 341
 
-The function to calculate the catch rate when a ball is thrown first multiplies the mon's current HP by 2 and max HP by 3, and then divides both by 4 if they become larger than a single byte. However, for mons with sufficiently high HP, this value can still be larger than 1 byte even after dividing by 4, leading to unintended behavior as described at https://www.dragonflycave.com/mechanics/gen-ii-capturing#hp.
+HP values above 341 remain larger than 1 byte after division.
 
 **Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
@@ -1213,6 +1213,8 @@ The function to calculate the catch rate when a ball is thrown first multiplies 
 	srl b
 	rr c
 
+-	; BUG: Catch rate formula breaks for Pokémon with max HP > 341 (see docs/bugs_and_glitches.md)
++	; Divide by 2 again if there's still something in the high byte
 +	ld a, d
 +	and a
 +	jr z, .check_cur_low
@@ -1229,7 +1231,7 @@ The function to calculate the catch rate when a ball is thrown first multiplies 
 	ld b, e
 ```
 
-Note: We only divide again if required in order to preserve as much precision as we can in all other cases. With this one extra division, we can cover the highest HP mon possible with unchanged mechanics -- a L100, max DV Blissey.
+Note: We only divide again if required in order to preserve as much precision as possible in all other cases.
 
 
 ### PRZ and BRN stat reductions don't apply to switched Pokémon
