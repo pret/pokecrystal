@@ -244,9 +244,9 @@ RunBattleTowerTrainer:
 	call CloseSRAM
 	ld hl, wStringBuffer3
 	ld a, [wNrOfBeatenBattleTowerTrainers]
-	add "1"
+	add '1'
 	ld [hli], a
-	ld a, "@"
+	ld a, '@'
 	ld [hl], a
 
 .lost
@@ -308,7 +308,7 @@ ReadBTTrainerParty:
 
 .skip_mon_3
 ; Add the terminator character to each of these names
-	ld a, "@"
+	ld a, '@'
 	ld [wBT_OTTempMon1Name + MON_NAME_LENGTH - 1], a
 	ld [wBT_OTTempMon2Name + MON_NAME_LENGTH - 1], a
 	ld [wBT_OTTempMon3Name + MON_NAME_LENGTH - 1], a
@@ -329,7 +329,7 @@ ReadBTTrainerParty:
 	ld de, wOTPlayerName
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 
 	ld hl, wBT_OTTempTrainerClass
@@ -703,39 +703,39 @@ Function1704e1:
 
 .DrawBorder:
 	hlcoord 0, 4
-	ld a, "┌"
+	ld a, '┌'
 	ld [hli], a
 	ld c, SCREEN_WIDTH - 2
 .top_border_loop
-	ld a, "─"
+	ld a, '─'
 	ld [hli], a
 	dec c
 	jr nz, .top_border_loop
-	ld a, "┐"
+	ld a, '┐'
 	ld [hli], a
 	ld de, SCREEN_WIDTH
 	ld c, 12
 .left_border_loop
-	ld a, "│"
+	ld a, '│'
 	ld [hl], a
 	add hl, de
 	dec c
 	jr nz, .left_border_loop
-	ld a, "└"
+	ld a, '└'
 	ld [hli], a
 	ld c, SCREEN_WIDTH - 2
 .bottom_border_loop
-	ld a, "─"
+	ld a, '─'
 	ld [hli], a
 	dec c
 	jr nz, .bottom_border_loop
-	ld a, "┘"
+	ld a, '┘'
 	ld [hl], a
 	ld de, -SCREEN_WIDTH
 	add hl, de
 	ld c, 12
 .right_border_loop
-	ld a, "│"
+	ld a, '│'
 	ld [hl], a
 	add hl, de
 	dec c
@@ -831,7 +831,7 @@ Function1704e1:
 	and a
 	jr z, .nope
 	hlcoord 18, 5
-	ld a, "▲"
+	ld a, '▲'
 	ld [hl], a
 
 .nope
@@ -839,7 +839,7 @@ Function1704e1:
 	cp 60
 	ret z
 	hlcoord 18, 16
-	ld a, "▼"
+	ld a, '▼'
 	ld [hl], a
 	ret
 
@@ -1281,7 +1281,7 @@ BattleTowerAction_EggTicket:
 rept 4
 	dec hl
 endr
-	ld a, "@"
+	ld a, '@'
 	ld [hli], a
 	ld [hli], a
 	pop hl

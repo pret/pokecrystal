@@ -161,9 +161,9 @@ PlaceMapNameCenterAlign:
 	ld hl, wStringBuffer1
 .loop
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr z, .stop
-	cp "<WBR>"
+	cp '<WBR>'
 	jr z, .loop
 	inc c
 	jr .loop

@@ -884,7 +884,7 @@ Pokedex_UnownModeHandleDPadInput:
 	ret
 
 Pokedex_UnownModeEraseCursor:
-	ld c, " "
+	ld c, ' '
 	jr Pokedex_UnownModeUpdateCursorGfx
 
 Pokedex_UnownModePlaceCursor:
@@ -1144,7 +1144,7 @@ Pokedex_DrawDexEntryScreenBG:
 	hlcoord 19, 0
 	ld [hl], $34
 	hlcoord 19, 1
-	ld a, " "
+	ld a, ' '
 	ld b, 15
 	call Pokedex_FillColumn
 	ld [hl], $39
@@ -1154,7 +1154,7 @@ Pokedex_DrawDexEntryScreenBG:
 	call ByteFill
 	hlcoord 1, 17
 	ld bc, 18
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	hlcoord 9, 7
 	ld de, .Height
@@ -1299,7 +1299,7 @@ Pokedex_PlaceSearchResultsTypeStrings:
 	hlcoord 2, 15
 	call Pokedex_PlaceTypeString
 	hlcoord 1, 15
-	ld [hl], "/"
+	ld [hl], '/'
 .done
 	ret
 
@@ -1478,7 +1478,7 @@ Pokedex_PrintListing:
 	add a
 	inc a
 	ld b, a
-	ld a, " "
+	ld a, ' '
 	call Pokedex_FillBox
 
 ; Load de with wPokedexOrder + [wDexListingScrollOffset]
@@ -1846,7 +1846,7 @@ Pokedex_PlaceSearchScreenTypeStrings:
 	ldh [hBGMapMode], a
 	hlcoord 9, 3
 	lb bc, 4, 8
-	ld a, " "
+	ld a, ' '
 	call Pokedex_FillBox
 	ld a, [wDexSearchMonType1]
 	hlcoord 9, 4
@@ -2226,7 +2226,7 @@ Pokedex_MoveArrowCursor:
 	and a
 	jr z, .no_action
 	call Pokedex_GetArrowCursorPos
-	ld [hl], " "
+	ld [hl], ' '
 	ld hl, wDexArrowCursorPosIndex
 	dec [hl]
 	jr .update_cursor_pos
@@ -2236,13 +2236,13 @@ Pokedex_MoveArrowCursor:
 	cp c
 	jr nc, .no_action
 	call Pokedex_GetArrowCursorPos
-	ld [hl], " "
+	ld [hl], ' '
 	ld hl, wDexArrowCursorPosIndex
 	inc [hl]
 
 .update_cursor_pos
 	call Pokedex_GetArrowCursorPos
-	ld [hl], "▶"
+	ld [hl], '▶'
 	ld a, 12
 	ld [wDexArrowCursorDelayCounter], a
 	xor a
@@ -2256,7 +2256,7 @@ Pokedex_MoveArrowCursor:
 
 .select
 	call Pokedex_GetArrowCursorPos
-	ld [hl], " "
+	ld [hl], ' '
 	ld a, [wDexArrowCursorPosIndex]
 	cp c
 	jr c, .update
@@ -2284,12 +2284,12 @@ Pokedex_BlinkArrowCursor:
 	and $8
 	jr z, .blink_on
 	call Pokedex_GetArrowCursorPos
-	ld [hl], " "
+	ld [hl], ' '
 	ret
 
 .blink_on
 	call Pokedex_GetArrowCursorPos
-	ld [hl], "▶"
+	ld [hl], '▶'
 	ret
 
 Pokedex_ArrowCursorDelay:
@@ -2535,7 +2535,7 @@ _NewPokedexEntry:
 	ld [hl], $3b
 	inc hl
 	ld bc, 19
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	farcall DisplayDexEntry
 	call EnableLCD

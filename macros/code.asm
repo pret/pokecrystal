@@ -1,10 +1,10 @@
 ; Syntactic sugar macros
 
-MACRO lb ; r, hi, lo
+MACRO? lb ; r, hi, lo
 	ld \1, ((\2) & $ff) << 8 | ((\3) & $ff)
 ENDM
 
-MACRO ln ; r, hi, lo
+MACRO? ln ; r, hi, lo
 	ld \1, ((\2) & $f) << 4 | ((\3) & $f)
 ENDM
 
@@ -23,7 +23,7 @@ MACRO jumptable
 	jp hl
 ENDM
 
-MACRO maskbits
+MACRO? maskbits
 ; masks just enough bits to cover values 0 to \1 - 1
 ; \2 is an optional shift amount
 ; e.g. "maskbits 26" becomes "and %00011111" (since 26 - 1 = %00011001)

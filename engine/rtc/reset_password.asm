@@ -108,21 +108,21 @@ ClockResetPassword:
 	ld c, 5
 .loop3
 	ld a, [de]
-	add "0"
+	add '0'
 	ld [hli], a
 	inc de
 	dec c
 	jr nz, .loop3
 	hlcoord 14, 16
 	ld bc, 5
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	hlcoord 14, 16
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
 	ld d, 0
 	add hl, de
-	ld [hl], "▲"
+	ld [hl], '▲'
 	ret
 
 .dpadinput
@@ -243,7 +243,7 @@ ClockResetPassword:
 
 .ComponentFromString:
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	ret z
 	add e
 	ld e, a

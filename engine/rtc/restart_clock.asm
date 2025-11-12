@@ -205,10 +205,10 @@ RestartClock:
 	decoord 11, 8
 	farcall PrintHoursMins
 	ld a, [wRestartClockPrevDivision]
-	lb de, " ", " "
+	lb de, ' ', ' '
 	call .PlaceChars
 	ld a, [wRestartClockCurDivision]
-	lb de, "▲", "▼"
+	lb de, '▲', '▼'
 	call .PlaceChars
 	ld a, [wRestartClockCurDivision]
 	ld [wRestartClockPrevDivision], a

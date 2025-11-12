@@ -330,7 +330,7 @@ Function1178aa:
 	ld de, YessNoString_1179c5
 	call PlaceString
 	hlcoord 15, 10
-	ld a, "▶"
+	ld a, '▶'
 	ld [hl], a
 	hlcoord 1, 14
 	ld de, AskSavePasswordString
@@ -355,10 +355,10 @@ Function1178e8:
 	dec a
 	ld [wcd4e], a
 	hlcoord 15, 8
-	ld a, "▶"
+	ld a, '▶'
 	ld [hl], a
 	hlcoord 15, 10
-	ld a, " "
+	ld a, ' '
 	ld [hl], a
 	ret
 
@@ -369,10 +369,10 @@ Function1178e8:
 	inc a
 	ld [wcd4e], a
 	hlcoord 15, 8
-	ld a, " "
+	ld a, ' '
 	ld [hl], a
 	hlcoord 15, 10
-	ld a, "▶"
+	ld a, '▶'
 	ld [hl], a
 	ret
 
@@ -585,7 +585,7 @@ Function117b31:
 	ld de, YesNo117ccc
 	call PlaceString
 	hlcoord 15, 8
-	ld a, "▶"
+	ld a, '▶'
 	ld [hl], a
 	jp MobileStudium_JumptableIncrement
 
@@ -605,10 +605,10 @@ Function117b4f:
 	dec a
 	ld [wcf64], a
 	hlcoord 15, 8
-	ld a, "▶"
+	ld a, '▶'
 	ld [hl], a
 	hlcoord 15, 10
-	ld a, " "
+	ld a, ' '
 	ld [hl], a
 	ret
 
@@ -619,10 +619,10 @@ Function117b4f:
 	inc a
 	ld [wcf64], a
 	hlcoord 15, 8
-	ld a, " "
+	ld a, ' '
 	ld [hl], a
 	hlcoord 15, 10
-	ld a, "▶"
+	ld a, '▶'
 	ld [hl], a
 	ret
 

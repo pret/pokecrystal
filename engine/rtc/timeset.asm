@@ -1,5 +1,5 @@
-DEF TIMESET_UP_ARROW   EQU "♂" ; $ef
-DEF TIMESET_DOWN_ARROW EQU "♀" ; $f5
+DEF TIMESET_UP_ARROW   EQU '♂' ; $ef
+DEF TIMESET_DOWN_ARROW EQU '♀' ; $f5
 
 InitClock:
 ; Ask the player to set the time.
@@ -170,7 +170,7 @@ SetHour:
 
 .okay
 	hlcoord 4, 9
-	ld a, " "
+	ld a, ' '
 	ld bc, 15
 	call ByteFill
 	hlcoord 4, 9
@@ -204,7 +204,7 @@ DisplayHoursMinutesWithMinString: ; unreferenced
 	pop de
 	inc de
 	inc de
-	ld a, ":"
+	ld a, ':'
 	ld [de], a
 	inc de
 	push de
@@ -259,7 +259,7 @@ SetMinutes:
 	ld [hl], a
 .finish_dpad
 	hlcoord 12, 9
-	ld a, " "
+	ld a, ' '
 	ld bc, 7
 	call ByteFill
 	hlcoord 12, 9
@@ -281,7 +281,7 @@ DisplayMinutesWithMinString:
 
 PrintTwoDigitNumberLeftAlign:
 	push hl
-	ld a, " "
+	ld a, ' '
 	ld [hli], a
 	ld [hl], a
 	pop hl
@@ -339,7 +339,7 @@ OakText_ResponseToSetTime:
 	ld a, [wInitHourBuffer]
 	ld c, a
 	call PrintHour
-	ld [hl], ":"
+	ld [hl], ':'
 	inc hl
 	ld de, wInitMinuteBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
@@ -606,46 +606,46 @@ MrChrono: ; unreferenced
 	call UpdateTime
 
 	hlcoord 1, 14
-	ld [hl], "R"
+	ld [hl], 'R'
 	inc hl
-	ld [hl], "T"
+	ld [hl], 'T'
 	inc hl
-	ld [hl], " "
+	ld [hl], ' '
 	inc hl
 
 	ld de, hRTCDayLo
 	call .PrintTime
 
 	hlcoord 1, 16
-	ld [hl], "D"
+	ld [hl], 'D'
 	inc hl
-	ld [hl], "F"
+	ld [hl], 'F'
 	inc hl
-	ld [hl], " "
+	ld [hl], ' '
 	inc hl
 
 	ld de, wStartDay
 	call .PrintTime
 
-	ld [hl], " "
+	ld [hl], ' '
 	inc hl
 
 	ld a, [wDST]
 	bit DST_F, a
 	jr z, .off
 
-	ld [hl], "O"
+	ld [hl], 'O'
 	inc hl
-	ld [hl], "N"
+	ld [hl], 'N'
 	inc hl
 	jr .done
 
 .off
-	ld [hl], "O"
+	ld [hl], 'O'
 	inc hl
-	ld [hl], "F"
+	ld [hl], 'F'
 	inc hl
-	ld [hl], "F"
+	ld [hl], 'F'
 	inc hl
 
 .done
@@ -660,12 +660,12 @@ MrChrono: ; unreferenced
 .PrintTime:
 	lb bc, 1, 3
 	call PrintNum
-	ld [hl], "."
+	ld [hl], '.'
 	inc hl
 	inc de
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
-	ld [hl], ":"
+	ld [hl], ':'
 	inc hl
 	inc de
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2

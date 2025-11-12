@@ -5188,10 +5188,10 @@ Function112271:
 .asm_1122a1
 	ld hl, wc880
 	ld a, [hli]
-	cp "M"
+	cp 'M'
 	jr nz, .asm_1122f5
 	ld a, [hld]
-	cp "A"
+	cp 'A'
 	jr nz, .asm_1122f5
 	ld b, $be
 	ld de, 0
@@ -6501,9 +6501,9 @@ Function112b11:
 	dec hl
 .asm_112b2d
 	ld a, [hli]
-	cp "\r"
+	cp '\r'
 	jr z, .asm_112b36
-	cp " "
+	cp ' '
 	jr nz, .asm_112b2d
 
 .asm_112b36
@@ -6545,9 +6545,9 @@ Function112b11:
 
 .asm_112b60:
 	ld a, [hli]
-	cp "0"
+	cp '0'
 	jr c, .asm_112b6f
-	cp "9" + 1
+	cp '9' + 1
 	jr nc, .asm_112b6f
 	and $f
 	ld [de], a
@@ -7878,25 +7878,25 @@ Function1133de:
 Function1133fe:
 	ld hl, wMobileSDK_PacketBuffer + 17
 	ld a, [hli]
-	cp "h"
+	cp 'h'
 	jr nz, .asm_113432
 	ld a, [hli]
-	cp "t"
+	cp 't'
 	jr nz, .asm_113432
 	ld a, [hli]
-	cp "t"
+	cp 't'
 	jr nz, .asm_113432
 	ld a, [hli]
-	cp "p"
+	cp 'p'
 	jr nz, .asm_113432
 	ld a, [hli]
-	cp ":"
+	cp ':'
 	jr nz, .asm_113432
 	ld a, [hli]
-	cp "/"
+	cp '/'
 	jr nz, .asm_113432
 	ld a, [hli]
-	cp "/"
+	cp '/'
 	jr nz, .asm_113432
 	ld hl, wMobileSDK_PacketBuffer + 16
 	ld de, wc880
@@ -7909,7 +7909,7 @@ Function1133fe:
 
 .asm_113432
 	ld a, [wMobileSDK_PacketBuffer + 17]
-	cp "/"
+	cp '/'
 	jr z, .asm_113460
 	ld de, wc880
 	ld hl, wc9b5
@@ -7926,7 +7926,7 @@ Function1133fe:
 	ld h, d
 .asm_11344c
 	ld a, [hld]
-	cp "/"
+	cp '/'
 	jr nz, .asm_11344c
 	inc hl
 	inc hl
@@ -7953,7 +7953,7 @@ Function1133fe:
 	ld h, [hl]
 	ld l, a
 	ld a, [hl]
-	cp "/"
+	cp '/'
 	jr z, .asm_113478
 	ld b, $7
 	call MobileSDK_CopyBytes
@@ -7962,7 +7962,7 @@ Function1133fe:
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp "/"
+	cp '/'
 	jr nz, .asm_113478
 	dec de
 	jr .asm_113455
@@ -8102,10 +8102,10 @@ Function113519:
 .asm_11353f
 	ld hl, wc880
 	ld a, [hli]
-	cp "M"
+	cp 'M'
 	jr nz, .asm_113586
 	ld a, [hld]
-	cp "A"
+	cp 'A'
 	jr nz, .asm_113586
 	ld b, $be
 	ld de, 0
@@ -9272,26 +9272,26 @@ endr
 	ret
 
 .decodeBase64Character:
-	cp "+"
+	cp '+'
 	jr c, .asm_113e24
 	jr z, .asm_113e31
-	cp "/"
+	cp '/'
 	jr c, .asm_113e24
 	jr z, .asm_113e34
-	cp "0"
+	cp '0'
 	jr c, .asm_113e24
-	cp "9" + 1
+	cp '9' + 1
 	jr c, .asm_113e37
-	cp "="
+	cp '='
 	jr c, .asm_113e24
 	jr z, .asm_113e3a
-	cp "A"
+	cp 'A'
 	jr c, .asm_113e24
-	cp "Z" + 1
+	cp 'Z' + 1
 	jr c, .asm_113e3c
-	cp "a"
+	cp 'a'
 	jr c, .asm_113e24
-	cp "z" + 1
+	cp 'z' + 1
 	jr c, .asm_113e3f
 
 .asm_113e24

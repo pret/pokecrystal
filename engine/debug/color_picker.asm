@@ -1010,7 +1010,7 @@ DebugColor_PlaceCursor:
 	hlcoord 1, 11
 	ld bc, 2 * SCREEN_WIDTH
 	call AddNTimes
-	ld [hl], "▶"
+	ld [hl], '▶'
 
 .place_cursor
 	ld a, [wDebugColorCurColor]
@@ -1022,7 +1022,7 @@ DebugColor_PlaceCursor:
 .light
 	hlcoord 10, 0
 .place
-	ld [hl], "▶"
+	ld [hl], '▶'
 
 	ld b, $70 ; initial tile id
 	ld c, 5 ; initial palette

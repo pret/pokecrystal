@@ -227,7 +227,7 @@ rept NAME_LENGTH_JAPANESE - 2
 	ld a, [de]
 	cp [hl]
 	jr nz, .notfound
-	cp "@"
+	cp '@'
 	jr z, .found
 	inc hl
 	inc de

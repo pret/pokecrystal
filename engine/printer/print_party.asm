@@ -1,4 +1,4 @@
-DEF PRINTPARTY_HP EQU "◀" ; $71
+DEF PRINTPARTY_HP EQU '◀' ; $71
 
 PrintPage1:
 	hlcoord 0, 0
@@ -16,7 +16,7 @@ PrintPage1:
 	inc a ; $65
 	ld [hl], a
 	hlcoord 1, 9, wPrinterTilemapBuffer
-	ld a, " "
+	ld a, ' '
 	ld [hli], a
 	ld [hl], a
 	hlcoord 1, 10, wPrinterTilemapBuffer
@@ -54,7 +54,7 @@ PrintPage1:
 PrintPage2:
 	hlcoord 0, 0, wPrinterTilemapBuffer
 	ld bc, 8 * SCREEN_WIDTH
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	hlcoord 0, 0, wPrinterTilemapBuffer
 	ld a, $36
@@ -144,12 +144,12 @@ PrintPartyMonPage1:
 	call Request1bpp
 
 	ld de, GBPrinterLvIcon
-	ld hl, vTiles2 tile "<LV>"
+	ld hl, vTiles2 tile '<LV>'
 	lb bc, BANK(GBPrinterLvIcon), 1
 	call Request1bpp
 
 	ld de, StatsScreenPageTilesGFX + 14 tiles ; shiny icon
-	ld hl, vTiles2 tile "⁂"
+	ld hl, vTiles2 tile '⁂'
 	lb bc, BANK(StatsScreenPageTilesGFX), 1
 	call Get2bpp
 
@@ -177,14 +177,14 @@ PrintPartyMonPage1:
 	hlcoord 8, 4
 	call PlaceString
 	hlcoord 9, 6
-	ld [hl], "/"
+	ld [hl], '/'
 	call GetPokemonName
 	hlcoord 10, 6
 	call PlaceString
 	hlcoord 8, 0
-	ld [hl], "№"
+	ld [hl], '№'
 	inc hl
-	ld [hl], "."
+	ld [hl], '.'
 	inc hl
 	ld de, wNamedObjectIndex
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
@@ -309,11 +309,11 @@ PlaceMoveNameString:
 
 PlaceGenderAndShininess:
 	farcall GetGender
-	ld a, " "
+	ld a, ' '
 	jr c, .got_gender
-	ld a, "♂"
+	ld a, '♂'
 	jr nz, .got_gender
-	ld a, "♀"
+	ld a, '♀'
 
 .got_gender
 	hlcoord 17, 2
@@ -322,7 +322,7 @@ PlaceGenderAndShininess:
 	farcall CheckShininess
 	ret nc
 	hlcoord 18, 2
-	ld [hl], "⁂"
+	ld [hl], '⁂'
 	ret
 
 PrintParty_OTString:

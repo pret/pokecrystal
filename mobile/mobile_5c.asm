@@ -5,13 +5,13 @@ Function170000:
 	ld de, wPlayerTrademonSenderName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld hl, wOfferMonOT
 	ld de, wPlayerTrademonOTName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld hl, wOfferMonDVs
 	ld a, [hli]
@@ -44,13 +44,13 @@ Function17005a:
 	ld de, wOTTrademonSenderName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld hl, sOfferMonOT
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld hl, sOfferMonDVs
 	ld a, [hli]

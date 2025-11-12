@@ -90,19 +90,19 @@ for objfile in objects:
 		elif magic == b'RGB9':
 			obj_ver = 10 + unpack_from('<I', file)[0]
 
-		if obj_ver not in [6, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22]:
+		if obj_ver not in [6, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23]:
 			print(f"Error: File '{objfile}' is of an unknown format.", file=sys.stderr)
 			sys.exit(1)
 
 		num_symbols = unpack_from('<I', file)[0]
 		unpack_from('<I', file) # skip num sections
 
-		if obj_ver in [16, 17, 18, 19, 20, 21, 22]:
+		if obj_ver in [16, 17, 18, 19, 20, 21, 22, 23]:
 			node_filenames = []
 			num_nodes = unpack_from('<I', file)[0]
 			for x in range(num_nodes):
 				unpack_from('<II', file) # parent id, parent line no
-				node_type = unpack_from('<B', file)[0]
+				node_type = unpack_from('<B', file)[0] & 0x7f
 				if node_type:
 					node_filenames.append(read_string(file))
 				else:
@@ -117,7 +117,7 @@ for objfile in objects:
 			sym_type = symtype(unpack_from('<B', file)[0] & 0x7f)
 			if sym_type == symtype.IMPORT:
 				continue
-			if obj_ver in [16, 17, 18, 19, 20, 21, 22]:
+			if obj_ver in [16, 17, 18, 19, 20, 21, 22, 23]:
 				sym_fileno = unpack_from('<I', file)[0]
 				sym_filename = node_filenames[sym_fileno]
 			else:

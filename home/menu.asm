@@ -52,7 +52,7 @@ PlaceHollowCursor::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], "▷"
+	ld [hl], '▷'
 	ret
 
 HideCursor::
@@ -60,7 +60,7 @@ HideCursor::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], " "
+	ld [hl], ' '
 	ret
 
 PushWindow::
