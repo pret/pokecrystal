@@ -48021,8 +48021,8 @@ SRAM bank #2:
 	         $b1f3 = sBox5Mon5CaughtLevel
 	         $b1f3 = sBox5Mon5CaughtData
 	         $b1f3 = sBox5Mon5CaughtTime
-	         $b1f4 = sBox5Mon5CaughtLocation
 	         $b1f4 = sBox5Mon5CaughtGender
+	         $b1f4 = sBox5Mon5CaughtLocation
 	         $b1f5 = sBox5Mon5Level
 	         $b1f6 = sBox5Mon5BoxEnd
 	         $b1f6 = sBox5Mon6
