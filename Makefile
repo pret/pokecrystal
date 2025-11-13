@@ -56,10 +56,21 @@ RGBGFXFLAGS  ?= -Weverything
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all crystal crystal11 crystal_au crystal_debug crystal11_debug clean tidy compare tools
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
+.PHONY: \
+	all \
+	crystal \
+	crystal11 \
+	crystal_au \
+	crystal_debug \
+	crystal11_debug \
+	crystal11_vc \
+	clean \
+	tidy \
+	compare \
+	tools
 
 all: crystal
 crystal:         pokecrystal.gbc
