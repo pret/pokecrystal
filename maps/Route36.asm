@@ -164,8 +164,8 @@ Route36LassScript:
 	closetext
 	end
 
-TrainerSchoolboyAlan1:
-	trainer SCHOOLBOY, ALAN1, EVENT_BEAT_SCHOOLBOY_ALAN, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, 0, .Script
+TrainerSchoolboyAlan0:
+	trainer SCHOOLBOY, ALAN0, EVENT_BEAT_SCHOOLBOY_ALAN, SchoolboyAlan1SeenText, SchoolboyAlan1BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_ALAN
@@ -191,7 +191,7 @@ TrainerSchoolboyAlan1:
 	askforphonenumber PHONE_SCHOOLBOY_ALAN
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, ALAN0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -217,7 +217,7 @@ TrainerSchoolboyAlan1:
 	checkflag ENGINE_FLYPOINT_OLIVINE
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer SCHOOLBOY, ALAN1
+	loadtrainer SCHOOLBOY, ALAN0
 	startbattle
 	reloadmapafterbattle
 	loadmem wAlanFightCount, 1
@@ -225,7 +225,7 @@ TrainerSchoolboyAlan1:
 	end
 
 .LoadFight1:
-	loadtrainer SCHOOLBOY, ALAN2
+	loadtrainer SCHOOLBOY, ALAN1
 	startbattle
 	reloadmapafterbattle
 	loadmem wAlanFightCount, 2
@@ -233,7 +233,7 @@ TrainerSchoolboyAlan1:
 	end
 
 .LoadFight2:
-	loadtrainer SCHOOLBOY, ALAN3
+	loadtrainer SCHOOLBOY, ALAN2
 	startbattle
 	reloadmapafterbattle
 	loadmem wAlanFightCount, 3
@@ -241,7 +241,7 @@ TrainerSchoolboyAlan1:
 	end
 
 .LoadFight3:
-	loadtrainer SCHOOLBOY, ALAN4
+	loadtrainer SCHOOLBOY, ALAN3
 	startbattle
 	reloadmapafterbattle
 	loadmem wAlanFightCount, 4
@@ -249,7 +249,7 @@ TrainerSchoolboyAlan1:
 	end
 
 .LoadFight4:
-	loadtrainer SCHOOLBOY, ALAN5
+	loadtrainer SCHOOLBOY, ALAN4
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_ALAN_READY_FOR_REMATCH
@@ -678,7 +678,7 @@ Route36_MapEvents:
 
 	def_object_events
 	object_event 20, 13, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerPsychicMark, -1
-	object_event 31, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSchoolboyAlan1, -1
+	object_event 31, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 5, TrainerSchoolboyAlan0, -1
 	object_event 35,  9, SPRITE_WEIRD_TREE, SPRITEMOVEDATA_SUDOWOODO, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SudowoodoScript, EVENT_ROUTE_36_SUDOWOODO
 	object_event 51,  8, SPRITE_LASS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36LassScript, -1
 	object_event 44,  9, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route36RockSmashGuyScript, -1

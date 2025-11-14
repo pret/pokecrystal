@@ -24,8 +24,8 @@ TrainerCooltrainermJake:
 	closetext
 	end
 
-TrainerCooltrainermGaven3:
-	trainer COOLTRAINERM, GAVEN3, EVENT_BEAT_COOLTRAINERM_GAVEN, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, 0, .Script
+TrainerCooltrainermGaven2:
+	trainer COOLTRAINERM, GAVEN2, EVENT_BEAT_COOLTRAINERM_GAVEN, CooltrainermGaven3SeenText, CooltrainermGaven3BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
@@ -49,7 +49,7 @@ TrainerCooltrainermGaven3:
 	askforphonenumber PHONE_COOLTRAINERM_GAVEN
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN3
+	gettrainername STRING_BUFFER_3, COOLTRAINERM, GAVEN2
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -67,7 +67,7 @@ TrainerCooltrainermGaven3:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer COOLTRAINERM, GAVEN3
+	loadtrainer COOLTRAINERM, GAVEN2
 	startbattle
 	reloadmapafterbattle
 	loadmem wGavenFightCount, 1
@@ -75,7 +75,7 @@ TrainerCooltrainermGaven3:
 	end
 
 .LoadFight1:
-	loadtrainer COOLTRAINERM, GAVEN1
+	loadtrainer COOLTRAINERM, GAVEN0
 	startbattle
 	reloadmapafterbattle
 	loadmem wGavenFightCount, 2
@@ -83,7 +83,7 @@ TrainerCooltrainermGaven3:
 	end
 
 .LoadFight2:
-	loadtrainer COOLTRAINERM, GAVEN2
+	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_GAVEN_READY_FOR_REMATCH
@@ -128,8 +128,8 @@ TrainerCooltrainerfJoyce:
 	closetext
 	end
 
-TrainerCooltrainerfBeth1:
-	trainer COOLTRAINERF, BETH1, EVENT_BEAT_COOLTRAINERF_BETH, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, 0, .Script
+TrainerCooltrainerfBeth0:
+	trainer COOLTRAINERF, BETH0, EVENT_BEAT_COOLTRAINERF_BETH, CooltrainerfBeth1SeenText, CooltrainerfBeth1BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_BETH
@@ -153,7 +153,7 @@ TrainerCooltrainerfBeth1:
 	askforphonenumber PHONE_COOLTRAINERF_BETH
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
+	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -171,7 +171,7 @@ TrainerCooltrainerfBeth1:
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer COOLTRAINERF, BETH1
+	loadtrainer COOLTRAINERF, BETH0
 	startbattle
 	reloadmapafterbattle
 	loadmem wBethFightCount, 1
@@ -179,7 +179,7 @@ TrainerCooltrainerfBeth1:
 	end
 
 .LoadFight1:
-	loadtrainer COOLTRAINERF, BETH2
+	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	reloadmapafterbattle
 	loadmem wBethFightCount, 2
@@ -187,7 +187,7 @@ TrainerCooltrainerfBeth1:
 	end
 
 .LoadFight2:
-	loadtrainer COOLTRAINERF, BETH3
+	loadtrainer COOLTRAINERF, BETH2
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_BETH_READY_FOR_REMATCH
@@ -427,7 +427,7 @@ Route26_MapEvents:
 	object_event 14, 24, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerCooltrainermJake, -1
 	object_event  9, 38, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainermGaven3, -1
 	object_event 10, 56, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerCooltrainerfJoyce, -1
-	object_event  5,  8, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainerfBeth1, -1
+	object_event  5,  8, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainerfBeth0, -1
 	object_event 13, 79, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 2, TrainerPsychicRichard, -1
 	object_event 10, 92, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerFisherScott, -1
 	object_event 14, 54, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route26FruitTree, -1

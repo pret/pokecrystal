@@ -85,8 +85,8 @@ DayCareMon2Script:
 	closetext
 	end
 
-TrainerCamperTodd1:
-	trainer CAMPER, TODD1, EVENT_BEAT_CAMPER_TODD, CamperTodd1SeenText, CamperTodd1BeatenText, 0, .Script
+TrainerCamperTodd0:
+	trainer CAMPER, TODD0, EVENT_BEAT_CAMPER_TODD, CamperTodd1SeenText, CamperTodd1BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_CAMPER_TODD
@@ -112,7 +112,7 @@ TrainerCamperTodd1:
 	askforphonenumber PHONE_CAMPER_TODD
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, CAMPER, TODD1
+	gettrainername STRING_BUFFER_3, CAMPER, TODD0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -138,7 +138,7 @@ TrainerCamperTodd1:
 	checkflag ENGINE_FLYPOINT_CIANWOOD
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer CAMPER, TODD1
+	loadtrainer CAMPER, TODD0
 	startbattle
 	reloadmapafterbattle
 	loadmem wToddFightCount, 1
@@ -146,7 +146,7 @@ TrainerCamperTodd1:
 	end
 
 .LoadFight1:
-	loadtrainer CAMPER, TODD2
+	loadtrainer CAMPER, TODD1
 	startbattle
 	reloadmapafterbattle
 	loadmem wToddFightCount, 2
@@ -154,7 +154,7 @@ TrainerCamperTodd1:
 	end
 
 .LoadFight2:
-	loadtrainer CAMPER, TODD3
+	loadtrainer CAMPER, TODD2
 	startbattle
 	reloadmapafterbattle
 	loadmem wToddFightCount, 3
@@ -162,7 +162,7 @@ TrainerCamperTodd1:
 	end
 
 .LoadFight3:
-	loadtrainer CAMPER, TODD4
+	loadtrainer CAMPER, TODD3
 	startbattle
 	reloadmapafterbattle
 	loadmem wToddFightCount, 4
@@ -170,7 +170,7 @@ TrainerCamperTodd1:
 	end
 
 .LoadFight4:
-	loadtrainer CAMPER, TODD5
+	loadtrainer CAMPER, TODD4
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_TODD_READY_FOR_REMATCH
@@ -210,8 +210,8 @@ TrainerCamperTodd1:
 	jumpstd RematchMScript
 	end
 
-TrainerPicnickerGina1:
-	trainer PICNICKER, GINA1, EVENT_BEAT_PICNICKER_GINA, PicnickerGina1SeenText, PicnickerGina1BeatenText, 0, .Script
+TrainerPicnickerGina0:
+	trainer PICNICKER, GINA0, EVENT_BEAT_PICNICKER_GINA, PicnickerGina1SeenText, PicnickerGina1BeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_GINA
@@ -237,7 +237,7 @@ TrainerPicnickerGina1:
 	askforphonenumber PHONE_PICNICKER_GINA
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, PICNICKER, GINA1
+	gettrainername STRING_BUFFER_3, PICNICKER, GINA0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -263,7 +263,7 @@ TrainerPicnickerGina1:
 	checkflag ENGINE_FLYPOINT_MAHOGANY
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer PICNICKER, GINA1
+	loadtrainer PICNICKER, GINA0
 	startbattle
 	reloadmapafterbattle
 	loadmem wGinaFightCount, 1
@@ -271,7 +271,7 @@ TrainerPicnickerGina1:
 	end
 
 .LoadFight1:
-	loadtrainer PICNICKER, GINA2
+	loadtrainer PICNICKER, GINA1
 	startbattle
 	reloadmapafterbattle
 	loadmem wGinaFightCount, 2
@@ -279,7 +279,7 @@ TrainerPicnickerGina1:
 	end
 
 .LoadFight2:
-	loadtrainer PICNICKER, GINA3
+	loadtrainer PICNICKER, GINA2
 	startbattle
 	reloadmapafterbattle
 	loadmem wGinaFightCount, 3
@@ -287,7 +287,7 @@ TrainerPicnickerGina1:
 	end
 
 .LoadFight3:
-	loadtrainer PICNICKER, GINA4
+	loadtrainer PICNICKER, GINA3
 	startbattle
 	reloadmapafterbattle
 	loadmem wGinaFightCount, 4
@@ -295,7 +295,7 @@ TrainerPicnickerGina1:
 	end
 
 .LoadFight4:
-	loadtrainer PICNICKER, GINA5
+	loadtrainer PICNICKER, GINA4
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_GINA_READY_FOR_REMATCH
@@ -778,10 +778,10 @@ Route34_MapEvents:
 	bg_event 17, 19, BGEVENT_ITEM, Route34HiddenSuperPotion
 
 	def_object_events
-	object_event 13,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperTodd1, -1
+	object_event 13,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 5, TrainerCamperTodd0, -1
 	object_event 15, 32, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterSamuel, -1
 	object_event 11, 20, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerYoungsterIan, -1
-	object_event 10, 26, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerGina1, -1
+	object_event 10, 26, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_TRAINER, 3, TrainerPicnickerGina0, -1
 	object_event  9, 11, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, OfficerKeithScript, -1
 	object_event 18, 28, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerPokefanmBrandon, -1
 	object_event 15, 16, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DayCareManScript_Outside, EVENT_DAY_CARE_MAN_ON_ROUTE_34
