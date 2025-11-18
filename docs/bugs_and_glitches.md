@@ -47,6 +47,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
   - [Fast Ball only boosts catch rate for three Pokémon](#fast-ball-only-boosts-catch-rate-for-three-pok%C3%A9mon)
   - [Heavy Ball uses wrong weight value for three Pokémon](#heavy-ball-uses-wrong-weight-value-for-three-pok%C3%A9mon)
+  - [Catch rate formula breaks for Pokémon with max HP > 341](#catch-rate-formula-breaks-for-pok%C3%A9mon-with-max-hp--341)
   - [PRZ and BRN stat reductions don't apply to switched Pokémon](#prz-and-brn-stat-reductions-dont-apply-to-switched-pok%C3%A9mon)
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pok%C3%A9mon-is-badly-poisoned)
@@ -1193,6 +1194,41 @@ Note that this fix only accounts for Pokémon that evolve via Moon Stone as thei
  	db BANK("Pokedex Entries 065-128")
  	db BANK("Pokedex Entries 129-192")
  	db BANK("Pokedex Entries 193-251")
+```
+
+
+### Catch rate formula breaks for Pokémon with max HP > 341
+
+HP values above 341 remain larger than 1 byte after division.
+
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+
+```diff
+	srl d
+	rr e
+	srl d
+	rr e
+	srl b
+	rr c
+	srl b
+	rr c
+
+-	; BUG: Catch rate formula breaks for Pokémon with max HP > 341 (see docs/bugs_and_glitches.md)
++	; Divide by 2 again if there's still something in the high byte
++	ld a, d
++	and a
++	jr z, .check_cur_low
++	srl d
++	rr e
++	srl b
++	rr c
++.check_cur_low
+	ld a, c
+	and a
+	jr nz, .okay_1
+	ld c, $1
+.okay_1
+	ld b, e
 ```
 
 
