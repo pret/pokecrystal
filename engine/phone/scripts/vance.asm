@@ -1,5 +1,5 @@
 VancePhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1
+	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE0
 	checkflag ENGINE_VANCE_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -18,7 +18,7 @@ VancePhoneCalleeScript:
 	farsjump VanceHurryHurryScript
 
 VancePhoneCallerScript:
-	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE1
+	gettrainername STRING_BUFFER_3, BIRD_KEEPER, VANCE0
 	farscall PhoneScript_GreetPhone_Male
 	checkflag ENGINE_VANCE_READY_FOR_REMATCH
 	iftrue .WantsBattle

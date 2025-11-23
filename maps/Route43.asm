@@ -47,7 +47,7 @@ TrainerPokemaniacBen:
 	end
 
 TrainerPokemaniacBrent:
-	trainer POKEMANIAC, BRENT1, EVENT_BEAT_POKEMANIAC_BRENT, PokemaniacBrentSeenText, PokemaniacBrentBeatenText, 0, .Script
+	trainer POKEMANIAC, BRENT0, EVENT_BEAT_POKEMANIAC_BRENT, PokemaniacBrentSeenText, PokemaniacBrentBeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_POKEMANIAC_BRENT
@@ -71,7 +71,7 @@ TrainerPokemaniacBrent:
 	askforphonenumber PHONE_POKEMANIAC_BRENT
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1
+	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -93,7 +93,7 @@ TrainerPokemaniacBrent:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer POKEMANIAC, BRENT1
+	loadtrainer POKEMANIAC, BRENT0
 	startbattle
 	reloadmapafterbattle
 	loadmem wBrentFightCount, 1
@@ -101,7 +101,7 @@ TrainerPokemaniacBrent:
 	end
 
 .LoadFight1:
-	loadtrainer POKEMANIAC, BRENT2
+	loadtrainer POKEMANIAC, BRENT1
 	startbattle
 	reloadmapafterbattle
 	loadmem wBrentFightCount, 2
@@ -109,7 +109,7 @@ TrainerPokemaniacBrent:
 	end
 
 .LoadFight2:
-	loadtrainer POKEMANIAC, BRENT3
+	loadtrainer POKEMANIAC, BRENT2
 	startbattle
 	reloadmapafterbattle
 	loadmem wBrentFightCount, 3
@@ -117,7 +117,7 @@ TrainerPokemaniacBrent:
 	end
 
 .LoadFight3:
-	loadtrainer POKEMANIAC, BRENT4
+	loadtrainer POKEMANIAC, BRENT3
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_BRENT_READY_FOR_REMATCH
@@ -174,7 +174,7 @@ TrainerFisherMarvin:
 	end
 
 TrainerPicnickerTiffany:
-	trainer PICNICKER, TIFFANY3, EVENT_BEAT_PICNICKER_TIFFANY, PicnickerTiffanySeenText, PicnickerTiffanyBeatenText, 0, .Script
+	trainer PICNICKER, TIFFANY2, EVENT_BEAT_PICNICKER_TIFFANY, PicnickerTiffanySeenText, PicnickerTiffanyBeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_TIFFANY
@@ -202,7 +202,7 @@ TrainerPicnickerTiffany:
 	askforphonenumber PHONE_PICNICKER_TIFFANY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY3
+	gettrainername STRING_BUFFER_3, PICNICKER, TIFFANY2
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -224,7 +224,7 @@ TrainerPicnickerTiffany:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer PICNICKER, TIFFANY3
+	loadtrainer PICNICKER, TIFFANY2
 	startbattle
 	reloadmapafterbattle
 	loadmem wTiffanyFightCount, 1
@@ -232,7 +232,7 @@ TrainerPicnickerTiffany:
 	end
 
 .LoadFight1:
-	loadtrainer PICNICKER, TIFFANY1
+	loadtrainer PICNICKER, TIFFANY0
 	startbattle
 	reloadmapafterbattle
 	loadmem wTiffanyFightCount, 2
@@ -240,7 +240,7 @@ TrainerPicnickerTiffany:
 	end
 
 .LoadFight2:
-	loadtrainer PICNICKER, TIFFANY2
+	loadtrainer PICNICKER, TIFFANY1
 	startbattle
 	reloadmapafterbattle
 	loadmem wTiffanyFightCount, 3
@@ -248,7 +248,7 @@ TrainerPicnickerTiffany:
 	end
 
 .LoadFight3:
-	loadtrainer PICNICKER, TIFFANY4
+	loadtrainer PICNICKER, TIFFANY3
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_TIFFANY_READY_FOR_REMATCH
