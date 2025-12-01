@@ -1,18 +1,15 @@
 ; used in data/pokemon/base_stats/*.asm
-MACRO tmhm
+MACRO? tmhm
 	; initialize bytes to 0
 	for n, (NUM_TM_HM_TUTOR + 7) / 8
 		DEF _tm{d:n} = 0
 	endr
 	; set bits of bytes
-	rept _NARG
-		if DEF(\1_TMNUM)
-			DEF n = (\1_TMNUM - 1) / 8
-			DEF i = (\1_TMNUM - 1) % 8
-			DEF _tm{d:n} |= 1 << i
-		else
-			fail "\1 is not a TM, HM, or tutor move"
-		endc
+	rept? _NARG
+		assert DEF(\1_TMNUM), "\1 is not a TM, HM, or tutor move"
+		DEF n = (\1_TMNUM - 1) / 8
+		DEF i = (\1_TMNUM - 1) % 8
+		DEF _tm{d:n} |= 1 << i
 		shift
 	endr
 	; output bytes
