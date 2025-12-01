@@ -1,6 +1,6 @@
 DecorationNames:
 ; entries correspond to constants/deco_constants.asm
-	list_start
+	list_start TEXTBOX_INNERW - 1
 	li "CANCEL"
 	li "PUT IT AWAY"
 	li "MAGNAPLANT"

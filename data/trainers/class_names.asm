@@ -1,6 +1,6 @@
 TrainerClassNames::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
-	list_start
+	list_start TRAINER_CLASS_NAME_LENGTH - 1
 	li "LEADER"
 	li "LEADER"
 	li "LEADER"
