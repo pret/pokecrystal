@@ -1,5 +1,5 @@
 DerekPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1
+	gettrainername STRING_BUFFER_3, POKEFANM, DEREK0
 	farscall PhoneScript_AnswerPhone_Male
 	checkflag ENGINE_DEREK_HAS_NUGGET
 	iftrue .Nugget
@@ -23,7 +23,7 @@ DerekPhoneCalleeScript:
 	farsjump DerekComePickUpScript
 
 DerekPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, POKEFANM, DEREK1
+	gettrainername STRING_BUFFER_3, POKEFANM, DEREK0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2
 	ifequal 0, .NoContest

@@ -1,5 +1,5 @@
 BethPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
+	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH0
 	checkflag ENGINE_BETH_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
@@ -18,7 +18,7 @@ BethPhoneCalleeScript:
 	farsjump BethBattleReminderScript
 
 BethPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH1
+	gettrainername STRING_BUFFER_3, COOLTRAINERF, BETH0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_BETH_READY_FOR_REMATCH
 	iftrue .Generic

@@ -1,5 +1,5 @@
 BrentPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1
+p	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT0
 	checkflag ENGINE_BRENT_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -18,7 +18,7 @@ BrentPhoneCalleeScript:
 	farsjump BrentReminderScript
 
 BrentPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT1
+	gettrainername STRING_BUFFER_3, POKEMANIAC, BRENT0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2
 	ifequal 0, BrentBillTrivia

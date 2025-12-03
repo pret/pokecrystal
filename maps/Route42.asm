@@ -35,7 +35,7 @@ Route42SuicuneScript:
 	end
 
 TrainerFisherTully:
-	trainer FISHER, TULLY1, EVENT_BEAT_FISHER_TULLY, FisherTullySeenText, FisherTullyBeatenText, 0, .Script
+	trainer FISHER, TULLY0, EVENT_BEAT_FISHER_TULLY, FisherTullySeenText, FisherTullyBeatenText, 0, .Script
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_FISHER_TULLY
@@ -61,7 +61,7 @@ TrainerFisherTully:
 	askforphonenumber PHONE_FISHER_TULLY
 	ifequal PHONE_CONTACTS_FULL, .PhoneFull
 	ifequal PHONE_CONTACT_REFUSED, .NumberDeclined
-	gettrainername STRING_BUFFER_3, FISHER, TULLY1
+	gettrainername STRING_BUFFER_3, FISHER, TULLY0
 	scall .RegisteredNumber
 	sjump .NumberAccepted
 
@@ -83,7 +83,7 @@ TrainerFisherTully:
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue .LoadFight1
 .LoadFight0:
-	loadtrainer FISHER, TULLY1
+	loadtrainer FISHER, TULLY0
 	startbattle
 	reloadmapafterbattle
 	loadmem wTullyFightCount, 1
@@ -91,7 +91,7 @@ TrainerFisherTully:
 	end
 
 .LoadFight1:
-	loadtrainer FISHER, TULLY2
+	loadtrainer FISHER, TULLY1
 	startbattle
 	reloadmapafterbattle
 	loadmem wTullyFightCount, 2
@@ -99,7 +99,7 @@ TrainerFisherTully:
 	end
 
 .LoadFight2:
-	loadtrainer FISHER, TULLY3
+	loadtrainer FISHER, TULLY2
 	startbattle
 	reloadmapafterbattle
 	loadmem wTullyFightCount, 3
@@ -107,7 +107,7 @@ TrainerFisherTully:
 	end
 
 .LoadFight3:
-	loadtrainer FISHER, TULLY4
+	loadtrainer FISHER, TULLY3
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_TULLY_READY_FOR_REMATCH

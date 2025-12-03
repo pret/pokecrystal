@@ -1,5 +1,5 @@
 ChadPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD0
 	checkflag ENGINE_CHAD_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Male
@@ -18,7 +18,7 @@ ChadPhoneCalleeScript:
 	farsjump ChadReminderScript
 
 ChadPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD1
+	gettrainername STRING_BUFFER_3, SCHOOLBOY, CHAD0
 	farscall PhoneScript_GreetPhone_Male
 	farscall PhoneScript_Random2
 	ifequal 0, ChadOakGossip
