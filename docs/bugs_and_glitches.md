@@ -1428,7 +1428,7 @@ AI_Cautious:
 
 ```diff
  EnemyUsedFullRestore:
- ; BUG: AI use of Full Heal or Full Restore does not cure confusion status (see docs/bugs_and_glitches.md)
+-; BUG: AI use of Full Heal does not cure confusion status (see docs/bugs_and_glitches.md)
  	call AI_HealStatus
  	ld a, FULL_RESTORE
  	ld [wCurEnemyItem], a
