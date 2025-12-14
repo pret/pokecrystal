@@ -728,7 +728,7 @@ EnemyUsedFullHealRed: ; unreferenced
 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
 AI_HealStatus:
-; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
+; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status or the attack/speed debuff from Burn/Paralysis (see docs/bugs_and_glitches.md)
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
 	ld bc, PARTYMON_STRUCT_LENGTH

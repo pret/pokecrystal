@@ -57,7 +57,8 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
-  - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
+  - [AI use of Full Heal or Full Restore does not cure confusion status](#ai-use-of-full-heal-or-full-restore-does-not-cure-confusion-status)
+  - [AI use of Full Heal or Full Restore does not cure attack or speed debuffs from Burn or Paralysis](#ai-use-of-full-heal-or-full-restore-does-not-cure-attack-or-speed-debuffs-from-Burn-or-Paralysis)
   - [AI might use its base reward value as an item](#ai-might-use-its-base-reward-value-as-an-item)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pok%C3%A9mon-can-always-teleport-regardless-of-level-difference)
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
@@ -1421,13 +1422,13 @@ AI_Cautious:
 ```
 
 
-### AI use of Full Heal does not cure confusion status
+### AI use of Full Heal or Full Restore does not cure confusion status
 
 **Fix:** Edit `EnemyUsedFullRestore`, and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 ```diff
  EnemyUsedFullRestore:
--; BUG: AI use of Full Heal does not cure confusion status (see docs/bugs_and_glitches.md)
+ ; BUG: AI use of Full Heal or Full Restore does not cure confusion status (see docs/bugs_and_glitches.md)
  	call AI_HealStatus
  	ld a, FULL_RESTORE
  	ld [wCurEnemyItem], a
@@ -1440,7 +1441,7 @@ AI_Cautious:
 
 ```diff
  AI_HealStatus:
- ; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
+ ; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status or the attack/speed debuff from Burn/Paralysis (see docs/bugs_and_glitches.md)
  	ld a, [wCurOTMon]
  	ld hl, wOTPartyMon1Status
  	ld bc, PARTYMON_STRUCT_LENGTH
@@ -1451,6 +1452,26 @@ AI_Cautious:
 +	ld [wEnemyConfuseCount], a
 +	ld hl, wEnemySubStatus3
 +	res SUBSTATUS_CONFUSED, [hl]
+ 	ld hl, wEnemySubStatus5
+ 	res SUBSTATUS_TOXIC, [hl]
+ 	ret
+```
+
+### AI use of Full Heal or Full Restore does not cure attack or speed debuffs from Burn or Paralysis
+
+**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+
+```diff
+ AI_HealStatus:
+ ; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status or the attack/speed debuff from Burn/Paralysis (see docs/bugs_and_glitches.md)
+ 	ld a, [wCurOTMon]
+ 	ld hl, wOTPartyMon1Status
+ 	ld bc, PARTYMON_STRUCT_LENGTH
+ 	call AddNTimes
+ 	xor a
+ 	ld [hl], a
+ 	ld [wEnemyMonStatus], a
++	farcall CalcEnemyStats
  	ld hl, wEnemySubStatus5
  	res SUBSTATUS_TOXIC, [hl]
  	ret
