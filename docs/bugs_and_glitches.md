@@ -57,7 +57,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
-  - [AI use of Full Heal or Full Restore does not cure confusion status](#ai-use-of-full-heal-or-full-restore-does-not-cure-confusion-status)
+  - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
   - [AI use of Full Heal or Full Restore does not cure Attack or Speed drops from Burn or Paralysis](#ai-use-of-full-heal-or-full-restore-does-not-cure-attack-or-speed-drops-from-Burn-or-Paralysis)
   - [AI might use its base reward value as an item](#ai-might-use-its-base-reward-value-as-an-item)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pok%C3%A9mon-can-always-teleport-regardless-of-level-difference)
@@ -1465,7 +1465,7 @@ AI_Cautious:
 ```diff
  AI_HealStatus:
  ; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
- ; BUG: AI use of Full Heal or Full Restore does not cure Attack or Speed drops from Burn or Paralysis (see docs/bugs_and_glitches.md)
+-; BUG: AI use of Full Heal or Full Restore does not cure Attack or Speed drops from Burn or Paralysis (see docs/bugs_and_glitches.md)
  	ld a, [wCurOTMon]
  	ld hl, wOTPartyMon1Status
  	ld bc, PARTYMON_STRUCT_LENGTH
