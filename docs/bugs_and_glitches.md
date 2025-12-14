@@ -1407,6 +1407,7 @@ AI_Cautious:
 ```diff
  AI_HealStatus:
 -; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
+ ; BUG: AI use of Full Heal or Full Restore does not cure Attack or Speed drops from Burn or Paralysis (see docs/bugs_and_glitches.md)
  	ld a, [wCurOTMon]
  	ld hl, wOTPartyMon1Status
  	ld bc, PARTYMON_STRUCT_LENGTH
