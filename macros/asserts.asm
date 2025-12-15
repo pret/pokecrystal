@@ -4,8 +4,8 @@ MACRO? _redef_current_label
 	if DEF(\1)
 		PURGE \1
 	endc
-	if _NARG == 3 + (\3)
-		DEF \1 EQUS "\<_NARG>"
+	if _NARG > 2
+		DEF \1 EQUS "\3"
 	elif STRLEN(#__SCOPE__)
 		if {{__SCOPE__}} - @ == 0
 			DEF \1 EQUS #{__SCOPE__}
@@ -19,7 +19,8 @@ ENDM
 
 MACRO? table_width
 	DEF CURRENT_TABLE_WIDTH = \1
-	_redef_current_label CURRENT_TABLE_START, "._table_width\@", 2, \#
+	shift
+	_redef_current_label CURRENT_TABLE_START, "._table_width\@", \#
 ENDM
 
 MACRO? assert_table_length
@@ -32,11 +33,20 @@ ENDM
 
 MACRO? list_start
 	DEF list_index = 0
-	_redef_current_label CURRENT_LIST_START, "._list_start\@", 1, \#
+	DEF list_item_length = 0
+	if _NARG > 0
+		DEF list_item_length = \1
+		shift
+	endc
+	_redef_current_label CURRENT_LIST_START, "._list_start\@", \#
 ENDM
 
 MACRO? li
 	assert STRFIND(\1, "@") == -1, "String terminator \"@\" in list entry: \1"
+	if list_item_length
+		assert CHARLEN(\1) <= list_item_length, \
+			"List entry longer than {d:list_item_length} characters: \1"
+	endc
 	db \1, "@"
 	DEF list_index += 1
 ENDM
