@@ -1,5 +1,5 @@
 DanaPhoneCalleeScript:
-	gettrainername STRING_BUFFER_3, LASS, DANA1
+	gettrainername STRING_BUFFER_3, LASS, DANA0
 	checkflag ENGINE_DANA_READY_FOR_REMATCH
 	iftrue .WantsBattle
 	farscall PhoneScript_AnswerPhone_Female
@@ -24,7 +24,7 @@ DanaPhoneCalleeScript:
 	farsjump DanaComePickUpScript
 
 DanaPhoneCallerScript:
-	gettrainername STRING_BUFFER_3, LASS, DANA1
+	gettrainername STRING_BUFFER_3, LASS, DANA0
 	farscall PhoneScript_GreetPhone_Female
 	checkflag ENGINE_DANA_READY_FOR_REMATCH
 	iftrue .Generic
