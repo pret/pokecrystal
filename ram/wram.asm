@@ -2863,6 +2863,7 @@ wMapStatusEnd::
 	ds 2
 
 wCrystalData::
+assert warn, wCrystalData == $d472, "wCrystalData has shifted."
 wPlayerGender::
 ; bit 0:
 ;	0 male
@@ -2873,12 +2874,14 @@ wPlayerAge:: ds 1
 wPlayerPrefecture:: ds 1
 wPlayerPostalCode:: ds 4
 wCrystalDataEnd::
+assert warn, wCrystalDataEnd == $d479, "wCrystalDataEnd has shifted."
 
 wCrystalFlags::
 ; flags related to mobile profile
 	flag_array 16
 
 wGameData::
+assert warn, wGameData == $d47b, "wGameData has shifted."
 wPlayerData::
 wPlayerID:: dw
 
@@ -3387,6 +3390,7 @@ wMagikarpRecordHoldersName:: ds NAME_LENGTH
 
 wPokemonDataEnd::
 wGameDataEnd::
+assert warn, wGameDataEnd == $dff5, "wGameDataEnd has shifted."
 
 
 SECTION "Pic Animations", WRAMX
