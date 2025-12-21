@@ -97,6 +97,7 @@ Init::
 	call ClearSprites
 	call ClearsScratch
 
+	assert BANK(WriteOAMDMACodeToHRAM) == BANK(GameInit)
 	ld a, BANK(WriteOAMDMACodeToHRAM) ; aka BANK(GameInit)
 	rst Bankswitch
 

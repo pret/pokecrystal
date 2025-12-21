@@ -24,6 +24,7 @@ INCLUDE "engine/gfx/color.asm"
 
 
 SECTION "bank3", ROMX
+assert BANK(ComputeAIContestantScores) == BANK(CheckBugContestContestantFlag)
 
 INCLUDE "engine/events/checktime.asm"
 INCLUDE "engine/events/specials.asm"
@@ -43,6 +44,10 @@ INCLUDE "engine/pokemon/knows_move.asm"
 
 
 SECTION "bank4", ROMX
+assert BANK(GiveItem) == BANK(TryGiveItemToPartymon)
+assert BANK(StartMenu_Quit) == BANK(StartMenuYesNo)
+assert BANK(StartMenu_Pokemon) == BANK(PokemonActionSubmenu)
+assert BANK(UseRegisteredItem) == BANK(CantUseItem)
 
 INCLUDE "engine/items/pack.asm"
 INCLUDE "engine/overworld/time.asm"
@@ -69,6 +74,9 @@ INCLUDE "engine/math/get_square_root.asm"
 
 
 SECTION "bank5", ROMX
+assert BANK(BuyMenuLoop) == BANK(CompareMoney)
+assert BANK(BuyMenuLoop) == BANK(TakeMoney)
+assert BANK(SellMenu) == BANK(GiveMoney)
 
 INCLUDE "engine/rtc/rtc.asm"
 INCLUDE "engine/overworld/overworld.asm"
@@ -162,6 +170,7 @@ INCLUDE "data/battle/effect_command_pointers.asm"
 
 
 SECTION "bank10", ROMX
+assert BANK(FillMoves) == BANK(EvosAttacksPointers)
 
 INCLUDE "engine/pokedex/pokedex.asm"
 INCLUDE "data/moves/moves.asm"
@@ -298,6 +307,9 @@ INCLUDE "mobile/mobile_22_2.asm"
 
 
 SECTION "bank23", ROMX
+assert BANK(InitPartyMenuIcon) == BANK(_InitSpriteAnimStruct)
+assert BANK(NamingScreen_InitAnimatedMonIcon) == BANK(_InitSpriteAnimStruct)
+assert BANK(MoveList_InitAnimatedMonIcon) == BANK(_InitSpriteAnimStruct)
 
 INCLUDE "engine/tilesets/timeofday_pals.asm"
 INCLUDE "engine/battle/battle_transition.asm"

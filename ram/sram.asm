@@ -91,6 +91,7 @@ sOptions:: ds wOptionsEnd - wOptions
 sCheckValue1:: db ; loaded with SAVE_CHECK_VALUE_1, used to check save corruption
 
 sGameData::
+assert warn, sGameData == $a009, "sGameData has shifted."
 sPlayerData::  ds wPlayerDataEnd - wPlayerData
 sCurMapData::  ds wCurMapDataEnd - wCurMapData
 sPokemonData:: ds wPokemonDataEnd - wPokemonData
@@ -140,6 +141,7 @@ SECTION "SRAM Crystal Data", SRAM
 sGSBallFlag:: db
 
 sCrystalData:: ds wCrystalDataEnd - wCrystalData
+assert warn, sCrystalData == $be3d, "sCrystalData has shifted."
 
 sGSBallFlagBackup:: db
 
