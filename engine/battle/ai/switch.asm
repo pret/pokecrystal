@@ -247,7 +247,7 @@ CheckAbleToSwitch:
 
 	call CheckPlayerMoveTypeMatchups
 	ld a, [wEnemyAISwitchScore]
-	cp 10
+	cp BASE_AI_SWITCH_SCORE
 	ret nc
 
 	ld a, b
@@ -259,7 +259,7 @@ CheckAbleToSwitch:
 	ld c, $10
 	call CheckPlayerMoveTypeMatchups
 	ld a, [wEnemyAISwitchScore]
-	cp 10
+	cp BASE_AI_SWITCH_SCORE
 	jr nc, .okay
 	ld c, $20
 
@@ -272,7 +272,7 @@ CheckAbleToSwitch:
 .no_last_counter_move
 	call CheckPlayerMoveTypeMatchups
 	ld a, [wEnemyAISwitchScore]
-	cp 10
+	cp BASE_AI_SWITCH_SCORE
 	ret nc
 
 	call FindAliveEnemyMons
