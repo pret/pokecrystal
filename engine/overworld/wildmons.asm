@@ -259,64 +259,67 @@ ChooseWildEncounter:
 	inc hl
 	inc hl
 	call CheckOnWater
-	ld de, WaterMonProbTable
-	jr z, .watermon
+	jr z, .handle_grass_encounter
 	inc hl
 	inc hl
-	ld a, [wTimeOfDay]
-	ld bc, NUM_GRASSMON * 2
-	call AddNTimes
-	ld de, GrassMonProbTable
+	jr .handle_water_encounter
 
-.watermon
-; hl contains the pointer to the wild mon data, let's save that to the stack
-	push hl
-.randomloop
+.handle_grass_encounter
+; Use the original grass encounter system to pick a random encounter slot and get its level
+; hl now points to the encounter data for the current time of day
+
+; First, pick which encounter slot to use (0-6, 7 total slots for grass)
 	call Random
-	cp 100
-	jr nc, .randomloop
-	inc a ; 1 <= a <= 100
-	ld b, a
-	ld h, d
-	ld l, e
-; This next loop chooses which mon to load up.
-.prob_bracket_loop
-	ld a, [hli]
-	cp b
-	jr nc, .got_it
-	inc hl
-	jr .prob_bracket_loop
+	and %111 ; 0-7
+	cp NUM_GRASSMON ; 7
+	jr nc, .handle_grass_encounter ; retry if >= 7
+	jr .apply_encounter_offset
 
-.got_it
-	ld c, [hl]
+.handle_water_encounter
+; Handle water encounters (3 Pokemon total)
+	call Random
+	cp 85 ; roughly 1/3 chance for each of the 3 water Pokemon
+	jr c, .water_slot_0
+	cp 170 ; roughly 2/3 chance
+	jr c, .water_slot_1
+	ld a, 2
+	jr .apply_encounter_offset
+
+.water_slot_1
+	ld a, 1
+	jr .apply_encounter_offset
+
+.water_slot_0
+	ld a, 0
+	; fall through
+
+.apply_encounter_offset
+; a now contains the encounter slot (0-6 for grass, 0-2 for water)
+; Each encounter is 2 bytes (level, species), so multiply by 2
+	add a ; multiply by 2
+	ld c, a
 	ld b, 0
-	pop hl
-	add hl, bc ; this selects our mon
-	ld a, [hli]
-	ld b, a
-; If the Pokemon is encountered by surfing, we need to give the levels some variety.
-	call CheckOnWater
-	jr nz, .ok
-; Check if we buff the wild mon, and by how much.
+	add hl, bc ; hl now points to the selected encounter slot
+	
+; Get the original level from this slot
+	ld a, [hli] ; load level
+	ld [wCurPartyLevel], a ; store the original level
+	
+; Now pick a random Pokemon species to replace the original one
+.randomize_species
 	call Random
-	cp 35 percent
-	jr c, .ok
-	inc b
-	cp 65 percent
-	jr c, .ok
-	inc b
-	cp 85 percent
-	jr c, .ok
-	inc b
-	cp 95 percent
-	jr c, .ok
-	inc b
-; Store the level
-.ok
-; BUG: ChooseWildEncounter doesn't really validate the wild Pokemon species (see docs/bugs_and_glitches.md)
+	and a
+	jr z, .randomize_species ; avoid Pokemon ID 0 (invalid)
+	cp NUM_POKEMON + 1
+	jr nc, .randomize_species ; ensure we stay within valid range
+	ld b, a ; b now contains random Pokemon species (1-251)
+	
+	; Continue with validation
+	jr .validate_species
+
+.validate_species
+; Validate the randomly chosen Pokemon species
 	ld a, b
-	ld [wCurPartyLevel], a
-	ld b, [hl]
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
 
