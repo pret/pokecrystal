@@ -56,8 +56,8 @@ ManiaScript:
 	ifequal SHUCKIE_WRONG_MON, .wrong
 	ifequal SHUCKIE_REFUSED, .refused
 	ifequal SHUCKIE_HAPPY, .superhappy
-; BUG: Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon (see docs/bugs_and_glitches.md)
-	ifequal SHUCKIE_FAINTED, .default_postevent
+; BUG (FIXED): Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon (see docs/bugs_and_glitches.md)
+	ifequal SHUCKIE_FAINTED, .nothingleft
 	; SHUCKIE_RETURNED
 	writetext ManiaText_ThankYou
 	waitbutton

@@ -11,8 +11,8 @@
 	RGB 06,09,07, 04,05,06 ; nite
 
 ; group 3 (dungeons)
-	RGB 21,21,21, 11,11,11 ; morn/day
-	RGB 21,21,21, 17,08,07 ; nite
+	RGB 31,10,00, 18,06,00 ; morn/day
+	RGB 18,05,09, 17,08,07 ; nite
 
 ; group 4 (Ecruteak)
 	RGB 31,19,00, 27,10,05 ; morn/day

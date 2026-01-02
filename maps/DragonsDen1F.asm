@@ -2,6 +2,11 @@ DragonsDen1F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
+	callback MAPCALLBACK_NEWMAP, .UnsetClairScene
+
+.UnsetClairScene:
+	setmapscene DRAGONS_DEN_B1F, SCENE_DRAGONSDENB1F_NOOP
+	endcallback
 
 DragonsDen1F_MapEvents:
 	db 0, 0 ; filler

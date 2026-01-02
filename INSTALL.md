@@ -42,9 +42,9 @@ Run setup and leave the default settings. At the "**Select Packages**" step, cho
 
 Double click on the text that says "**Skip**" next to each package to select the most recent version to install.
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for Windows with Cygwin to install **rgbds 1.0.1**.
+Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for Windows with Cygwin to install **rgbds 1.0.0**.
 
-**Note:** If you already have an installed rgbds older than 1.0.0, you will need to update to 1.0.1. Ignore this if you have never installed rgbds before. If a version newer than 1.0.1 does not work, try downloading 1.0.1.
+**Note:** If you already have an installed rgbds older than 1.0.0, you will need to update to 1.0.0. Ignore this if you have never installed rgbds before. If a version newer than 1.0.0 does not work, try downloading 1.0.0.
 
 Now open the **Cygwin terminal** and enter the following commands.
 
@@ -67,7 +67,7 @@ Install [**Homebrew**](https://brew.sh/). Follow the official instructions.
 
 Open **Terminal** and prepare to enter commands.
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for macOS to install **rgbds 1.0.1**.
+Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#pre-built) for macOS to install **rgbds 1.0.0**.
 
 Now you're ready to [build **pokecrystal**](#build-pokecrystal).
 
@@ -84,7 +84,7 @@ To install the software required for **pokecrystal**:
 sudo apt-get install make gcc git
 ```
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.1** from source.
+Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.0** from source.
 
 ### OpenSUSE
 
@@ -94,7 +94,7 @@ To install the software required for **pokecrystal**:
 sudo zypper install make gcc git
 ```
 
-Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.1** from source.
+Then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.0** from source.
 
 ### Arch Linux
 
@@ -104,7 +104,7 @@ To install the software required for **pokecrystal**:
 sudo pacman -S make gcc git rgbds
 ```
 
-If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.1** from source.
+If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.0** from source.
 
 ### Termux
 
@@ -120,7 +120,7 @@ To install **rgbds**:
 pkg install rgbds
 ```
 
-If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.1** from source.
+If you want to compile and install **rgbds** yourself instead, then follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.0** from source.
 
 ### Other distros
 
@@ -131,7 +131,7 @@ If your distro is not listed here, try to find the required software in its repo
 - `git`
 - `rgbds`
 
-If `rgbds` is not available, you'll need to follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.1** from source.
+If `rgbds` is not available, you'll need to follow the [**rgbds** instructions](https://rgbds.gbdev.io/install#building-from-source) to build **rgbds 1.0.0** from source.
 
 Now you're ready to [build **pokecrystal**](#build-pokecrystal).
 
@@ -159,12 +159,12 @@ make crystal11
 
 ### Build with a local rgbds version
 
-If you have different projects that require different versions of `rgbds`, it might not be convenient to install rgbds 1.0.1 globally. Instead, you can put its files in a directory within pokecrystal, such as `pokecrystal/rgbds-1.0.1/`. Then specify it when you run `make`:
+If you have different projects that require different versions of `rgbds`, it might not be convenient to install rgbds 1.0.0 globally. Instead, you can put its files in a directory within pokecrystal, such as `pokecrystal/rgbds-1.0.0/`. Then specify it when you run `make`:
 
 ```bash
-make RGBDS=rgbds-1.0.1/
+make RGBDS=rgbds-1.0.0/
 ```
 
 ```bash
-make RGBDS=rgbds-1.0.1/ crystal11
+make RGBDS=rgbds-1.0.0/ crystal11
 ```

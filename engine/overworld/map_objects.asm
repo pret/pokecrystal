@@ -2932,7 +2932,7 @@ InitSprites:
 	ld hl, OBJECT_SPRITE_X_OFFSET
 	add hl, bc
 	add [hl]
-	add OAM_X_OFS
+	add 8
 	ld e, a
 	ld a, [wPlayerBGMapOffsetX]
 	add e
@@ -2943,7 +2943,7 @@ InitSprites:
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	add [hl]
-	add OAM_Y_OFS - 4
+	add 12
 	ld e, a
 	ld a, [wPlayerBGMapOffsetY]
 	add e
