@@ -258,42 +258,104 @@ ChooseWildEncounter:
 	inc hl
 	inc hl
 	inc hl
+	
+	; Check if we should use randomized encounters
+	ld a, [wWildEncounterType]
+	and a ; 0 = standard, 1 = randomized
+	jr nz, .randomized_encounters
+	
+	; === STANDARD ENCOUNTERS (original game logic) ===
 	call CheckOnWater
-	jr z, .handle_grass_encounter
+	ld de, WaterMonProbTable
+	jr z, .standard_watermon
 	inc hl
 	inc hl
-	jr .handle_water_encounter
+	ld a, [wTimeOfDay]
+	ld bc, NUM_GRASSMON * 2
+	call AddNTimes
+	ld de, GrassMonProbTable
+.standard_watermon
+; hl contains the pointer to the wild mon data, let's save that to the stack
+	push hl
+.standard_randomloop
+	call Random
+	cp 100
+	jr nc, .standard_randomloop
+	inc a ; 1 <= a <= 100
+	ld b, a
+	ld h, d
+	ld l, e
+; This next loop chooses which mon to load up.
+.standard_prob_bracket_loop
+	ld a, [hli]
+	cp b
+	jr nc, .standard_got_it
+	inc hl
+	jr .standard_prob_bracket_loop
+.standard_got_it
+	ld c, [hl]
+	ld b, 0
+	pop hl
+	add hl, bc ; this selects our mon
+	ld a, [hli]
+	ld b, a
+; If the Pokemon is encountered by surfing, we need to give the levels some variety.
+	call CheckOnWater
+	jr nz, .standard_ok
+; Check if we buff the wild mon, and by how much.
+	call Random
+	cp 35 percent
+	jr c, .standard_ok
+	inc b
+	cp 65 percent
+	jr c, .standard_ok
+	inc b
+	cp 85 percent
+	jr c, .standard_ok
+	inc b
+	cp 95 percent
+	jr c, .standard_ok
+	inc b
+; Store the level
+.standard_ok
+	ld a, b
+	ld [wCurPartyLevel], a
+	ld b, [hl]
+	jr .validate_species
+	
+	; === RANDOMIZED ENCOUNTERS ===
+.randomized_encounters
+	call CheckOnWater
+	jr z, .randomized_grass_encounter
+	inc hl
+	inc hl
+	jr .randomized_water_encounter
 
-.handle_grass_encounter
-; Use the original grass encounter system to pick a random encounter slot and get its level
-; hl now points to the encounter data for the current time of day
-
-; First, pick which encounter slot to use (0-6, 7 total slots for grass)
+.randomized_grass_encounter
 	call Random
 	and %111 ; 0-7
 	cp NUM_GRASSMON ; 7
-	jr nc, .handle_grass_encounter ; retry if >= 7
-	jr .apply_encounter_offset
+	jr nc, .randomized_grass_encounter ; retry if >= 7
+	jr .randomized_apply_offset
 
-.handle_water_encounter
-; Handle water encounters (3 Pokemon total)
+.randomized_water_encounter
 	call Random
 	cp 85 ; roughly 1/3 chance for each of the 3 water Pokemon
-	jr c, .water_slot_0
+	jr c, .randomized_water_slot_0
 	cp 170 ; roughly 2/3 chance
-	jr c, .water_slot_1
+	jr c, .randomized_water_slot_1
 	ld a, 2
-	jr .apply_encounter_offset
+	jr .randomized_apply_offset
 
-.water_slot_1
+.randomized_water_slot_1
 	ld a, 1
-	jr .apply_encounter_offset
+	jr .randomized_apply_offset
 
-.water_slot_0
+.randomized_water_slot_0
 	ld a, 0
 	; fall through
 
-.apply_encounter_offset
+.randomized_apply_offset
 ; a now contains the encounter slot (0-6 for grass, 0-2 for water)
 ; Each encounter is 2 bytes (level, species), so multiply by 2
 	add a ; multiply by 2
@@ -314,11 +376,8 @@ ChooseWildEncounter:
 	jr nc, .randomize_species ; ensure we stay within valid range
 	ld b, a ; b now contains random Pokemon species (1-251)
 	
-	; Continue with validation
-	jr .validate_species
-
 .validate_species
-; Validate the randomly chosen Pokemon species
+; Validate the chosen Pokemon species
 	ld a, b
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
