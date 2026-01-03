@@ -161,11 +161,7 @@ CyndaquilPokeBallScript:
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
-	callasm LoadStarterSpecies1
-	pokepic -1
-	cry -1
-	waitbutton
-	closepokepic
+	callasm ShowStarterPokepic1
 	opentext
 	writetext TakeCyndaquilText
 	yesorno
@@ -175,8 +171,7 @@ CyndaquilPokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	callasm LoadStarterSpecies1
-	getmonname STRING_BUFFER_3, -1
+	callasm GetStarterName1
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -193,11 +188,7 @@ TotodilePokeBallScript:
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
-	callasm LoadStarterSpecies2
-	pokepic -1
-	cry -1
-	waitbutton
-	closepokepic
+	callasm ShowStarterPokepic2
 	opentext
 	writetext TakeTotodileText
 	yesorno
@@ -207,8 +198,7 @@ TotodilePokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	callasm LoadStarterSpecies2
-	getmonname STRING_BUFFER_3, -1
+	callasm GetStarterName2
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -223,11 +213,7 @@ ChikoritaPokeBallScript:
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
-	callasm LoadStarterSpecies3
-	pokepic -1
-	cry -1
-	waitbutton
-	closepokepic
+	callasm ShowStarterPokepic3
 	opentext
 	writetext TakeChikoritaText
 	yesorno
@@ -237,8 +223,7 @@ ChikoritaPokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	callasm LoadStarterSpecies3
-	getmonname STRING_BUFFER_3, -1
+	callasm GetStarterName3
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -1417,46 +1402,109 @@ ElmsLab_MapEvents:
 	object_event  8,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	object_event  5,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB
 
-LoadStarterSpecies1:
-; Load Cyndaquil (or randomized equivalent) into wCurPartySpecies and wTempIconSpecies
+ShowStarterPokepic1:
+; Show pokepic and play cry for starter 1 (Cyndaquil or randomized)
 	ld a, [wStarterRandomization]
 	and a
 	jr nz, .randomized
 	ld a, CYNDAQUIL
-	jr .done
+	jr .show
 .randomized
 	ld a, [wRandomStarter1]
-.done
+.show
 	ld [wCurPartySpecies], a
-	ld [wTempIconSpecies], a
+	ld [wScriptVar], a
+	farcall Pokepic
+	ld a, [wCurPartySpecies]
+	call PlayMonCry
 	ret
 
-LoadStarterSpecies2:
-; Load Totodile (or randomized equivalent) into wCurPartySpecies and wTempIconSpecies
+ShowStarterPokepic2:
+; Show pokepic and play cry for starter 2 (Totodile or randomized)
 	ld a, [wStarterRandomization]
 	and a
 	jr nz, .randomized
 	ld a, TOTODILE
-	jr .done
+	jr .show
 .randomized
 	ld a, [wRandomStarter2]
-.done
+.show
 	ld [wCurPartySpecies], a
-	ld [wTempIconSpecies], a
+	ld [wScriptVar], a
+	farcall Pokepic
+	ld a, [wCurPartySpecies]
+	call PlayMonCry
 	ret
 
-LoadStarterSpecies3:
-; Load Chikorita (or randomized equivalent) into wCurPartySpecies and wTempIconSpecies
+ShowStarterPokepic3:
+; Show pokepic and play cry for starter 3 (Chikorita or randomized)
 	ld a, [wStarterRandomization]
 	and a
 	jr nz, .randomized
 	ld a, CHIKORITA
-	jr .done
+	jr .show
 .randomized
 	ld a, [wRandomStarter3]
-.done
+.show
 	ld [wCurPartySpecies], a
-	ld [wTempIconSpecies], a
+	ld [wScriptVar], a
+	farcall Pokepic
+	ld a, [wCurPartySpecies]
+	call PlayMonCry
+	ret
+
+GetStarterName1:
+; Get name for starter 1
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, CYNDAQUIL
+	jr .getname
+.randomized
+	ld a, [wRandomStarter1]
+.getname
+	ld [wNamedObjectIndex], a
+	call GetPokemonName
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer3
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	ret
+
+GetStarterName2:
+; Get name for starter 2
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, TOTODILE
+	jr .getname
+.randomized
+	ld a, [wRandomStarter2]
+.getname
+	ld [wNamedObjectIndex], a
+	call GetPokemonName
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer3
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+	ret
+
+GetStarterName3:
+; Get name for starter 3
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, CHIKORITA
+	jr .getname
+.randomized
+	ld a, [wRandomStarter3]
+.getname
+	ld [wNamedObjectIndex], a
+	call GetPokemonName
+	ld hl, wStringBuffer1
+	ld de, wStringBuffer3
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
 	ret
 
 GiveStarterPokemon1:
