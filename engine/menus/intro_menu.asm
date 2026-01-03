@@ -65,6 +65,7 @@ NewGame:
 	call NewGame_ClearTilemapEtc
 	call PlayerProfileSetup
 	farcall InitWildEncounterType
+	farcall InitStarterRandomization
 	call OakSpeech
 	call InitializeWorld
 

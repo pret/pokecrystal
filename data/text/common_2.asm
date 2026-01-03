@@ -674,6 +674,13 @@ _WildEncounterTypeText::
 	cont "#MON?"
 	done
 
+_StarterRandomizationText::
+	text "Should starter"
+	line "#MON be"
+	cont "STANDARD or"
+	cont "RANDOMIZED?"
+	done
+
 Text_BattleEffectActivate::
 	text "<USER>'s"
 	line "@"

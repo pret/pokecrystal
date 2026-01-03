@@ -1,4 +1,4 @@
-	object_const_def
+object_const_def
 	const ELMSLAB_ELM
 	const ELMSLAB_ELMS_AIDE
 	const ELMSLAB_POKE_BALL1
@@ -161,8 +161,9 @@ CyndaquilPokeBallScript:
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
-	pokepic CYNDAQUIL
-	cry CYNDAQUIL
+	callasm LoadStarterSpecies1
+	pokepic -1
+	cry -1
 	waitbutton
 	closepokepic
 	opentext
@@ -174,12 +175,13 @@ CyndaquilPokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	getmonname STRING_BUFFER_3, CYNDAQUIL
+	callasm LoadStarterSpecies1
+	getmonname STRING_BUFFER_3, -1
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	promptbutton
-	givepoke CYNDAQUIL, 5, BERRY
+	callasm GiveStarterPokemon1
 	closetext
 	readvar VAR_FACING
 	ifequal RIGHT, ElmDirectionsScript
@@ -191,8 +193,9 @@ TotodilePokeBallScript:
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
-	pokepic TOTODILE
-	cry TOTODILE
+	callasm LoadStarterSpecies2
+	pokepic -1
+	cry -1
 	waitbutton
 	closepokepic
 	opentext
@@ -204,12 +207,13 @@ TotodilePokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	getmonname STRING_BUFFER_3, TOTODILE
+	callasm LoadStarterSpecies2
+	getmonname STRING_BUFFER_3, -1
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	promptbutton
-	givepoke TOTODILE, 5, BERRY
+	callasm GiveStarterPokemon2
 	closetext
 	applymovement PLAYER, AfterTotodileMovement
 	sjump ElmDirectionsScript
@@ -219,8 +223,9 @@ ChikoritaPokeBallScript:
 	iftrue LookAtElmPokeBallScript
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
-	pokepic CHIKORITA
-	cry CHIKORITA
+	callasm LoadStarterSpecies3
+	pokepic -1
+	cry -1
 	waitbutton
 	closepokepic
 	opentext
@@ -232,12 +237,13 @@ ChikoritaPokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	getmonname STRING_BUFFER_3, CHIKORITA
+	callasm LoadStarterSpecies3
+	getmonname STRING_BUFFER_3, -1
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
 	promptbutton
-	givepoke CHIKORITA, 5, BERRY
+	callasm GiveStarterPokemon3
 	closetext
 	applymovement PLAYER, AfterChikoritaMovement
 	sjump ElmDirectionsScript
@@ -1410,3 +1416,117 @@ ElmsLab_MapEvents:
 	object_event  7,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TotodilePokeBallScript, EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
 	object_event  8,  3, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ChikoritaPokeBallScript, EVENT_CHIKORITA_POKEBALL_IN_ELMS_LAB
 	object_event  5,  3, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CopScript, EVENT_COP_IN_ELMS_LAB
+
+LoadStarterSpecies1:
+; Load Cyndaquil (or randomized equivalent) into wCurPartySpecies and wTempIconSpecies
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, CYNDAQUIL
+	jr .done
+.randomized
+	ld a, [wRandomStarter1]
+.done
+	ld [wCurPartySpecies], a
+	ld [wTempIconSpecies], a
+	ret
+
+LoadStarterSpecies2:
+; Load Totodile (or randomized equivalent) into wCurPartySpecies and wTempIconSpecies
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, TOTODILE
+	jr .done
+.randomized
+	ld a, [wRandomStarter2]
+.done
+	ld [wCurPartySpecies], a
+	ld [wTempIconSpecies], a
+	ret
+
+LoadStarterSpecies3:
+; Load Chikorita (or randomized equivalent) into wCurPartySpecies and wTempIconSpecies
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, CHIKORITA
+	jr .done
+.randomized
+	ld a, [wRandomStarter3]
+.done
+	ld [wCurPartySpecies], a
+	ld [wTempIconSpecies], a
+	ret
+
+GiveStarterPokemon1:
+; Give Cyndaquil (or randomized equivalent) at level 5 with Berry
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, CYNDAQUIL
+	jr .give
+.randomized
+	ld a, [wRandomStarter1]
+.give
+	ld [wCurPartySpecies], a
+	ld a, 5
+	ld [wCurPartyLevel], a
+	xor a ; FALSE
+	ld [wScriptVar], a
+	predef TryAddMonToParty
+	jr nc, .failed
+	ld a, BERRY
+	ld [wCurItem], a
+	ld hl, wPartyMon1Item
+	ld [hl], a
+.failed
+	ret
+
+GiveStarterPokemon2:
+; Give Totodile (or randomized equivalent) at level 5 with Berry
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, TOTODILE
+	jr .give
+.randomized
+	ld a, [wRandomStarter2]
+.give
+	ld [wCurPartySpecies], a
+	ld a, 5
+	ld [wCurPartyLevel], a
+	xor a ; FALSE
+	ld [wScriptVar], a
+	predef TryAddMonToParty
+	jr nc, .failed
+	ld a, BERRY
+	ld [wCurItem], a
+	ld hl, wPartyMon1Item
+	ld [hl], a
+.failed
+	ret
+
+GiveStarterPokemon3:
+; Give Chikorita (or randomized equivalent) at level 5 with Berry
+	ld a, [wStarterRandomization]
+	and a
+	jr nz, .randomized
+	ld a, CHIKORITA
+	jr .give
+.randomized
+	ld a, [wRandomStarter3]
+.give
+	ld [wCurPartySpecies], a
+	ld a, 5
+	ld [wCurPartyLevel], a
+	xor a ; FALSE
+	ld [wScriptVar], a
+	predef TryAddMonToParty
+	jr nc, .failed
+	ld a, BERRY
+	ld [wCurItem], a
+	ld hl, wPartyMon1Item
+	ld [hl], a
+.failed
+	ret

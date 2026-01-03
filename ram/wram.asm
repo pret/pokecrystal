@@ -2872,6 +2872,14 @@ wWildEncounterType::
 ; 0 = Standard encounters
 ; 1 = Randomized encounters
 	db
+wStarterRandomization::
+; 0 = Standard starters (Chikorita, Cyndaquil, Totodile)
+; 1 = Randomized starters
+	db
+; The three randomized starter species (if randomization is enabled)
+wRandomStarter1:: db
+wRandomStarter2:: db
+wRandomStarter3:: db
 ; mobile profile
 wPlayerAge:: ds 1
 wPlayerPrefecture:: ds 1
