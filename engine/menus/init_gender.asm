@@ -23,6 +23,7 @@ INCLUDE "mobile/mobile_12.asm"
 
 InitGender:
 	call InitGenderScreen
+	call InitCrystalData ; Initialize Crystal data here, only during gender selection
 	call LoadGenderScreenPal
 	call LoadGenderScreenLightBlueTile
 	call WaitBGMap2
@@ -103,7 +104,7 @@ InitGenderScreen:
 	ld c, 8
 	call DelayFrames
 	call ClearBGPalettes
-	call InitCrystalData
+	; Removed InitCrystalData call from here - it's now only called in InitGender
 	call LoadFontsExtra
 	hlcoord 0, 0
 	ld bc, SCREEN_AREA
