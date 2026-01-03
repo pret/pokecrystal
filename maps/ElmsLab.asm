@@ -162,8 +162,9 @@ CyndaquilPokeBallScript:
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
 	callasm ShowStarterPokepic1
+	callasm GetStarterName1
 	opentext
-	writetext TakeCyndaquilText
+	writetext TakeStarterText
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear ELMSLAB_POKE_BALL1
@@ -171,7 +172,6 @@ CyndaquilPokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	callasm GetStarterName1
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -189,8 +189,9 @@ TotodilePokeBallScript:
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
 	callasm ShowStarterPokepic2
+	callasm GetStarterName2
 	opentext
-	writetext TakeTotodileText
+	writetext TakeStarterText
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear ELMSLAB_POKE_BALL2
@@ -198,7 +199,6 @@ TotodilePokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	callasm GetStarterName2
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -214,8 +214,9 @@ ChikoritaPokeBallScript:
 	turnobject ELMSLAB_ELM, DOWN
 	reanchormap
 	callasm ShowStarterPokepic3
+	callasm GetStarterName3
 	opentext
-	writetext TakeChikoritaText
+	writetext TakeStarterText
 	yesorno
 	iffalse DidntChooseStarterScript
 	disappear ELMSLAB_POKE_BALL3
@@ -223,7 +224,6 @@ ChikoritaPokeBallScript:
 	writetext ChoseStarterText
 	promptbutton
 	waitsfx
-	callasm GetStarterName3
 	writetext ReceivedStarterText
 	playsound SFX_CAUGHT_MON
 	waitsfx
@@ -847,22 +847,11 @@ LabWhereGoingText:
 	line "are you going?"
 	done
 
-TakeCyndaquilText:
+TakeStarterText:
 	text "ELM: You'll take"
-	line "CYNDAQUIL, the"
-	cont "fire #MON?"
-	done
-
-TakeTotodileText:
-	text "ELM: Do you want"
-	line "TOTODILE, the"
-	cont "water #MON?"
-	done
-
-TakeChikoritaText:
-	text "ELM: So, you like"
-	line "CHIKORITA, the"
-	cont "grass #MON?"
+	line "@"
+	text_ram wStringBuffer3
+	text "?"
 	done
 
 DidntChooseStarterText:
