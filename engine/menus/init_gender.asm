@@ -4,6 +4,7 @@ InitCrystalData:
 	xor a
 	ld [wPlayerAge], a
 	ld [wPlayerGender], a
+	ld [wWildEncounterType], a
 	ld [wPlayerPostalCode], a
 	ld [wPlayerPostalCode+1], a
 	ld [wPlayerPostalCode+2], a
@@ -54,6 +55,42 @@ InitGender:
 
 AreYouABoyOrAreYouAGirlText:
 	text_far _AreYouABoyOrAreYouAGirlText
+	text_end
+
+InitWildEncounterType:
+	call InitGenderScreen
+	call LoadGenderScreenPal
+	call LoadGenderScreenLightBlueTile
+	call WaitBGMap2
+	call SetDefaultBGPAndOBP
+	ld hl, WildEncounterTypeText
+	call PrintText
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call WaitBGMap2
+	call VerticalMenu
+	call CloseWindow
+	ld a, [wMenuCursorY]
+	dec a
+	ld [wWildEncounterType], a
+	ld c, 10
+	call DelayFrames
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 4, 4, 16, 9
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+	db 2 ; items
+	db "STANDARD@"
+	db "RANDOMIZED@"
+
+WildEncounterTypeText:
+	text_far _WildEncounterTypeText
 	text_end
 
 InitGenderScreen:

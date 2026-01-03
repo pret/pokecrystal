@@ -64,6 +64,7 @@ NewGame:
 	call ResetWRAM
 	call NewGame_ClearTilemapEtc
 	call PlayerProfileSetup
+	farcall InitWildEncounterType
 	call OakSpeech
 	call InitializeWorld
 

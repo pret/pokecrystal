@@ -667,6 +667,13 @@ _AreYouABoyOrAreYouAGirlText::
 	line "Or are you a girl?"
 	done
 
+_WildEncounterTypeText::
+	text "Do you prefer"
+	line "STANDARD or"
+	cont "RANDOMIZED wild"
+	cont "#MON?"
+	done
+
 Text_BattleEffectActivate::
 	text "<USER>'s"
 	line "@"

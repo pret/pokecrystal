@@ -2868,6 +2868,10 @@ wPlayerGender::
 ;	0 male
 ;	1 female
 	db
+wWildEncounterType::
+; 0 = Standard encounters
+; 1 = Randomized encounters
+	db
 ; mobile profile
 wPlayerAge:: ds 1
 wPlayerPrefecture:: ds 1
