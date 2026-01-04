@@ -369,16 +369,21 @@ StepVectors:
 	db  0, -1, 16, 1
 	db -1,  0, 16, 1
 	db  1,  0, 16, 1
-	; normal
-	db  0,  2,  8, 2
-	db  0, -2,  8, 2
-	db -2,  0,  8, 2
-	db  2,  0,  8, 2
+	; new normal
+	db  0,  4,  4, 4
+	db  0, -4,  4, 4
+	db -4,  0,  4, 4
+	db  4,  0,  4, 4
 	; fast
 	db  0,  4,  4, 4
 	db  0, -4,  4, 4
 	db -4,  0,  4, 4
 	db  4,  0,  4, 4
+	; ; new fast, but it causes problems with rendering
+	; db  0,  8,  2, 8
+	; db  0, -8,  2, 8
+	; db -8,  0,  2, 8
+	; db  8,  0,  2, 8	
 
 GetStepVectorSign:
 	add a

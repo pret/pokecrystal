@@ -12,6 +12,7 @@ _HandlePlayerStep::
 
 .update_overworld_map
 	ld a, 4
+	; ld a, 2 ; Might help with the new fast speed, but seems to cause crashes
 	ld [wHandlePlayerStep], a
 	call UpdateOverworldMap
 	jr .finish
