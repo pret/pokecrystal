@@ -106,9 +106,9 @@ PokecenterNurseScript:
 	; only do this once
 	clearevent EVENT_WELCOMED_TO_POKECOM_CENTER
 
-	farwritetext NurseAskHealText
-	yesorno
-	iffalse .done
+	; farwritetext NurseAskHealText
+	; yesorno
+	; iffalse .done
 
 	farwritetext NurseTakePokemonText
 	pause 20
