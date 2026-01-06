@@ -33817,7 +33817,7 @@ ROMX bank #69:
 	         $79bd = MenuHeader_1179bd
 	         $79c5 = YessNoString_1179c5
 	         $79cc = AskSavePasswordString
-	         $79e1 = NotAPokemonPasswordString
+	         $79e1 = EmptyPasswordString
 	         $79f7 = SavedPasswordString
 	         $7a0a = MobilePassword_IncrementJumptable
 	         $7a0f = Unknown_117a0f

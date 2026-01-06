@@ -33358,7 +33358,7 @@
 45:79bd MenuHeader_1179bd
 45:79c5 YessNoString_1179c5
 45:79cc AskSavePasswordString
-45:79e1 NotAPokemonPasswordString
+45:79e1 EmptyPasswordString
 45:79f7 SavedPasswordString
 45:7a0a MobilePassword_IncrementJumptable
 45:7a0f Unknown_117a0f
