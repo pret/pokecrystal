@@ -464,8 +464,8 @@ AskSavePasswordString:
 	db   "こ<NO>パスワード<WO>ほぞんして"
 	line "おきますか？@"
 
-NotAPokemonPasswordString:
-	db   "パスワード<PKMN>にゅうりょく"
+EmptyPasswordString:
+	db   "パスワード<GA>にゅうりょく"
 	line "されていません！@"
 
 SavedPasswordString:
