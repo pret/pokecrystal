@@ -3886,7 +3886,7 @@ Function8aab6:
 	ret
 
 String_8aaf0:
-	db "あたらしい　めいし<PKMN>できまし<LF>@"
+	db "あたらしい　めいし<GA>できまし<LF>@"
 
 Function8ab00:
 	ld de, String_8911c
