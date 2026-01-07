@@ -681,6 +681,12 @@ _StarterRandomizationText::
 	cont "RANDOMIZED?"
 	done
 
+_TMModeText::
+	text "Should TMs be"
+	line "UNLIMITED use or"
+	cont "STANDARD?"
+	done
+
 Text_BattleEffectActivate::
 	text "<USER>'s"
 	line "@"

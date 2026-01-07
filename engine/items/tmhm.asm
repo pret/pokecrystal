@@ -152,6 +152,10 @@ TeachTMHM:
 
 	ld c, HAPPINESS_LEARNMOVE
 	callfar ChangeHappiness
+	; Only consume TM if standard mode is enabled
+	ld a, [wTMMode]
+	and a ; check if 0 (unlimited)
+	jr z, .learned_move ; skip consumption if unlimited
 	call ConsumeTM
 	jr .learned_move
 

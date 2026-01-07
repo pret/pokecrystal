@@ -66,6 +66,7 @@ NewGame:
 	call PlayerProfileSetup
 	farcall InitWildEncounterType
 	farcall InitStarterRandomization
+	farcall InitTMMode
 	call OakSpeech
 	call InitializeWorld
 

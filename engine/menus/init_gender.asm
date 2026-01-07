@@ -6,6 +6,7 @@ InitCrystalData:
 	ld [wPlayerGender], a
 	ld [wWildEncounterType], a
 	ld [wStarterRandomization], a
+	ld [wTMMode], a
 	ld [wRandomStarter1], a
 	ld [wRandomStarter2], a
 	ld [wRandomStarter3], a
@@ -137,6 +138,42 @@ InitStarterRandomization:
 
 StarterRandomizationText:
 	text_far _StarterRandomizationText
+	text_end
+
+InitTMMode:
+	call InitGenderScreen
+	call LoadGenderScreenPal
+	call LoadGenderScreenLightBlueTile
+	call WaitBGMap2
+	call SetDefaultBGPAndOBP
+	ld hl, TMModeText
+	call PrintText
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	call WaitBGMap2
+	call VerticalMenu
+	call CloseWindow
+	ld a, [wMenuCursorY]
+	dec a
+	ld [wTMMode], a
+	ld c, 10
+	call DelayFrames
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 4, 4, 16, 9
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
+	db 2 ; items
+	db "UNLIMITED@"
+	db "STANDARD@"
+
+TMModeText:
+	text_far _TMModeText
 	text_end
 
 GenerateRandomStarters:

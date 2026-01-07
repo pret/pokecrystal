@@ -2876,6 +2876,10 @@ wStarterRandomization::
 ; 0 = Standard starters (Chikorita, Cyndaquil, Totodile)
 ; 1 = Randomized starters
 	db
+wTMMode::
+; 0 = Unlimited use TMs
+; 1 = Standard/consumable TMs
+	db
 ; The three randomized starter species (if randomization is enabled)
 wRandomStarter1:: db
 wRandomStarter2:: db
