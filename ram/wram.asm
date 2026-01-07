@@ -2880,6 +2880,10 @@ wTMMode::
 ; 0 = Unlimited use TMs
 ; 1 = Standard/consumable TMs
 	db
+wTrainerRandomization::
+; 0 = Standard trainer parties
+; 1 = Randomized trainer parties
+	db
 ; The three randomized starter species (if randomization is enabled)
 wRandomStarter1:: db
 wRandomStarter2:: db

@@ -2,9 +2,10 @@
 	const_def
 	const NEWGAMEOPT_WILD_ENCOUNTERS  ; 0
 	const NEWGAMEOPT_STARTER_RAND     ; 1
-	const NEWGAMEOPT_TM_MODE          ; 2
-	const NEWGAMEOPT_CONTINUE         ; 3
-DEF NUM_NEWGAMEOPTIONS EQU const_value ; 4
+	const NEWGAMEOPT_TRAINER_RAND     ; 2
+	const NEWGAMEOPT_TM_MODE          ; 3
+	const NEWGAMEOPT_CONTINUE         ; 4
+DEF NUM_NEWGAMEOPTIONS EQU const_value ; 5
 
 _NewGameOptions:
 	; Initialize Crystal data (including all new game options to defaults)
@@ -96,6 +97,8 @@ StringNewGameOptions:
 	db "      :<LF>"
 	db "STARTERS<LF>"
 	db "      :<LF>"
+	db "TRAINERS<LF>"
+	db "      :<LF>"
 	db "TM MODE<LF>"
 	db "      :<LF>"
 	db "CONTINUE@"
@@ -107,6 +110,7 @@ GetNewGameOptionPointer:
 ; entries correspond to NEWGAMEOPT_* constants
 	dw NewGameOptions_WildEncounters
 	dw NewGameOptions_StarterRandomization
+	dw NewGameOptions_TrainerRandomization
 	dw NewGameOptions_TMMode
 	dw NewGameOptions_Continue
 
@@ -166,6 +170,34 @@ NewGameOptions_StarterRandomization:
 .Standard:     db "STANDARD  @"
 .Randomized_str: db "RANDOMIZED@"
 
+NewGameOptions_TrainerRandomization:
+	ld a, [wTrainerRandomization]
+	ldh a, [hJoyPressed]
+	bit B_PAD_LEFT, a
+	jr nz, .Toggle
+	bit B_PAD_RIGHT, a
+	jr z, .NonePressed
+.Toggle:
+	ld a, [wTrainerRandomization]
+	xor 1
+	ld [wTrainerRandomization], a
+.NonePressed:
+	ld a, [wTrainerRandomization]
+	and a
+	jr nz, .Randomized
+	ld de, .Standard
+	jr .Display
+.Randomized:
+	ld de, .Randomized_str
+.Display:
+	hlcoord 8, 7
+	call PlaceString
+	and a
+	ret
+
+.Standard:     db "STANDARD  @"
+.Randomized_str: db "RANDOMIZED@"
+
 NewGameOptions_TMMode:
 	ld a, [wTMMode]
 	ldh a, [hJoyPressed]
@@ -186,7 +218,7 @@ NewGameOptions_TMMode:
 .Unlimited:
 	ld de, .Unlimited_str
 .Display:
-	hlcoord 8, 7
+	hlcoord 8, 9
 	call PlaceString
 	and a
 	ret
@@ -242,7 +274,7 @@ NewGameOptionsControl:
 	ret
 
 NewGameOptions_UpdateCursorPosition:
-	; Clear cursor positions at rows 2, 4, 6, 8 only
+	; Clear cursor positions at rows 2, 4, 6, 8, 10 only
 	hlcoord 1, 2
 	ld [hl], $7f ; space character
 	hlcoord 1, 4
@@ -250,6 +282,8 @@ NewGameOptions_UpdateCursorPosition:
 	hlcoord 1, 6
 	ld [hl], $7f ; space character
 	hlcoord 1, 8
+	ld [hl], $7f ; space character
+	hlcoord 1, 10
 	ld [hl], $7f ; space character
 	
 	; Place cursor at current position

@@ -99,6 +99,7 @@ TrainerType1:
 	ld [wCurPartyLevel], a
 	ld a, [hli]
 	ld [wCurPartySpecies], a
+	call RandomizeTrainerSpeciesIfEnabled
 	ld a, OTPARTYMON
 	ld [wMonType], a
 	push hl
@@ -118,6 +119,7 @@ TrainerType2:
 	ld [wCurPartyLevel], a
 	ld a, [hli]
 	ld [wCurPartySpecies], a
+	call RandomizeTrainerSpeciesIfEnabled
 	ld a, OTPARTYMON
 	ld [wMonType], a
 
@@ -194,6 +196,7 @@ TrainerType3:
 	ld [wCurPartyLevel], a
 	ld a, [hli]
 	ld [wCurPartySpecies], a
+	call RandomizeTrainerSpeciesIfEnabled
 	ld a, OTPARTYMON
 	ld [wMonType], a
 	push hl
@@ -222,6 +225,7 @@ TrainerType4:
 	ld [wCurPartyLevel], a
 	ld a, [hli]
 	ld [wCurPartySpecies], a
+	call RandomizeTrainerSpeciesIfEnabled
 
 	ld a, OTPARTYMON
 	ld [wMonType], a
@@ -386,6 +390,25 @@ IncompleteCopyNameFunction: ; unreferenced
 	push de
 	ld bc, NAME_LENGTH
 	pop de
+	ret
+
+RandomizeTrainerSpeciesIfEnabled:
+; Check if trainer randomization is enabled
+; If so, replace wCurPartySpecies with a random species (1-251)
+	ld a, [wTrainerRandomization]
+	and a
+	ret z ; return if randomization disabled (0 = standard)
+	
+	; Randomization enabled - get random species
+.get_random_species
+	call Random
+	and a
+	jr z, .get_random_species ; avoid species 0
+	cp NUM_POKEMON + 1
+	jr nc, .get_random_species ; ensure species <= 251
+	
+	; Valid random species obtained
+	ld [wCurPartySpecies], a
 	ret
 
 INCLUDE "data/trainers/parties.asm"
