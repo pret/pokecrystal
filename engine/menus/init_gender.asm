@@ -28,7 +28,6 @@ INCLUDE "mobile/mobile_12.asm"
 
 InitGender:
 	call InitGenderScreen
-	call InitCrystalData ; Initialize Crystal data here, only during gender selection
 	call LoadGenderScreenPal
 	call LoadGenderScreenLightBlueTile
 	call WaitBGMap2
@@ -63,118 +62,8 @@ AreYouABoyOrAreYouAGirlText:
 	text_far _AreYouABoyOrAreYouAGirlText
 	text_end
 
-InitWildEncounterType:
-	call InitGenderScreen
-	call LoadGenderScreenPal
-	call LoadGenderScreenLightBlueTile
-	call WaitBGMap2
-	call SetDefaultBGPAndOBP
-	ld hl, WildEncounterTypeText
-	call PrintText
-	ld hl, .MenuHeader
-	call LoadMenuHeader
-	call WaitBGMap2
-	call VerticalMenu
-	call CloseWindow
-	ld a, [wMenuCursorY]
-	dec a
-	ld [wWildEncounterType], a
-	ld c, 10
-	call DelayFrames
-	ret
-
-.MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 4, 4, 16, 9
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 2 ; items
-	db "STANDARD@"
-	db "RANDOMIZED@"
-
-WildEncounterTypeText:
-	text_far _WildEncounterTypeText
-	text_end
-
-InitStarterRandomization:
-	call InitGenderScreen
-	call LoadGenderScreenPal
-	call LoadGenderScreenLightBlueTile
-	call WaitBGMap2
-	call SetDefaultBGPAndOBP
-	ld hl, StarterRandomizationText
-	call PrintText
-	ld hl, .MenuHeader
-	call LoadMenuHeader
-	call WaitBGMap2
-	call VerticalMenu
-	call CloseWindow
-	ld a, [wMenuCursorY]
-	dec a
-	ld [wStarterRandomization], a
-	; If randomization is selected, generate the three random starters
-	and a
-	jr z, .standard_starters
-	call GenerateRandomStarters
-.standard_starters
-	ld c, 10
-	call DelayFrames
-	ret
-
-.MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 4, 4, 16, 9
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 2 ; items
-	db "STANDARD@"
-	db "RANDOMIZED@"
-
-StarterRandomizationText:
-	text_far _StarterRandomizationText
-	text_end
-
-InitTMMode:
-	call InitGenderScreen
-	call LoadGenderScreenPal
-	call LoadGenderScreenLightBlueTile
-	call WaitBGMap2
-	call SetDefaultBGPAndOBP
-	ld hl, TMModeText
-	call PrintText
-	ld hl, .MenuHeader
-	call LoadMenuHeader
-	call WaitBGMap2
-	call VerticalMenu
-	call CloseWindow
-	ld a, [wMenuCursorY]
-	dec a
-	ld [wTMMode], a
-	ld c, 10
-	call DelayFrames
-	ret
-
-.MenuHeader:
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 4, 4, 16, 9
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_WRAP | STATICMENU_DISABLE_B ; flags
-	db 2 ; items
-	db "UNLIMITED@"
-	db "STANDARD@"
-
-TMModeText:
-	text_far _TMModeText
-	text_end
+; Individual init functions (InitWildEncounterType, InitStarterRandomization, InitTMMode)
+; have been removed and replaced by the unified _NewGameOptions menu
 
 GenerateRandomStarters:
 ; Generate three unique random Pokemon species (1-251)

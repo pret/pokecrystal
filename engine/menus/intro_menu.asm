@@ -64,9 +64,13 @@ NewGame:
 	call ResetWRAM
 	call NewGame_ClearTilemapEtc
 	call PlayerProfileSetup
-	farcall InitWildEncounterType
-	farcall InitStarterRandomization
-	farcall InitTMMode
+	ret c ; If player cancelled in options menu, return to title
+	; Generate random starters if randomization is enabled
+	ld a, [wStarterRandomization]
+	and a
+	jr z, .no_random_starters
+	farcall GenerateRandomStarters
+.no_random_starters
 	call OakSpeech
 	call InitializeWorld
 
@@ -81,13 +85,20 @@ NewGame:
 	jp FinishContinueFunction
 
 PlayerProfileSetup:
+	; Show new game options menu first
+	farcall _NewGameOptions
+	ret c ; If player cancelled, return with carry set
+	
+	; Now show gender selection
 	farcall CheckMobileAdapterStatus
 	jr c, .ok
 	farcall InitGender
+	and a ; Clear carry flag for successful setup
 	ret
 .ok
 	ld c, 0
 	farcall InitMobileProfile
+	and a ; Clear carry flag
 	ret
 
 if DEF(_DEBUG)
