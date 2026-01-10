@@ -2884,6 +2884,10 @@ wTrainerRandomization::
 ; 0 = Standard trainer parties
 ; 1 = Randomized trainer parties
 	db
+wPoisonSurvival::
+; 0 = Standard poison (can faint)
+; 1 = Safe poison (stops at 1 HP)
+	db
 ; The three randomized starter species (if randomization is enabled)
 wRandomStarter1:: db
 wRandomStarter2:: db

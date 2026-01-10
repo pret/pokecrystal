@@ -563,6 +563,12 @@ _PoisonFaintText::
 	line "fainted!"
 	prompt
 
+_PoisonFadedText::
+	text_ram wStringBuffer3
+	text "'s"
+	line "poison faded."
+	prompt
+
 _PoisonWhiteoutText::
 	text "<PLAYER> is out of"
 	line "useable #MON!"

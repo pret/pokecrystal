@@ -39,8 +39,14 @@ DoPoisonStep::
 	and %10
 	jr nz, .someone_has_fainted
 	ld a, [wPoisonStepFlagSum]
+	and %100
+	jr nz, .poison_faded
+	ld a, [wPoisonStepFlagSum]
 	and %01
 	jr z, .no_faint
+	call .PlayPoisonSFX
+	xor a
+	ret
 	call .PlayPoisonSFX
 	xor a
 	ret
@@ -50,6 +56,12 @@ DoPoisonStep::
 	ld hl, .Script_MonFaintedToPoison
 	call CallScript
 	scf
+	ret
+
+.poison_faded
+	call .PlayPoisonSFX
+	call .ShowPoisonFadedMessages
+	xor a
 	ret
 
 .no_faint
@@ -73,6 +85,27 @@ DoPoisonStep::
 	or c
 	ret z
 
+; check if poison survival mode is enabled and HP is 1
+	ld a, b
+	cp 0
+	jr nz, .not_at_one_hp
+	ld a, c
+	cp 1
+	jr nz, .not_at_one_hp
+	; HP is exactly 1, check if poison survival is enabled
+	ld a, [wPoisonSurvival]
+	and a
+	jr z, .not_at_one_hp
+	; Poison survival is enabled and HP is 1, clear poison status
+	ld a, MON_STATUS
+	call GetPartyParamLocation
+	ld [hl], 0
+	; Return flag %100 to indicate poison faded (don't decrement HP)
+	ld c, %100
+	scf
+	ret
+
+.not_at_one_hp:
 ; do 1 HP damage
 	dec bc
 	ld [hl], c
@@ -151,4 +184,33 @@ DoPoisonStep::
 
 .PoisonWhiteoutText: ; unreferenced
 	text_far _PoisonWhiteoutText
+	text_end
+
+.ShowPoisonFadedMessages:
+	call OpenText
+	xor a
+	ld [wCurPartyMon], a
+	ld de, wPoisonStepPartyFlags
+.fade_party_loop
+	push de
+	ld a, [de]
+	and %100
+	jr z, .mon_poison_not_faded
+	farcall GetPartyNickname
+	ld hl, .PoisonFadedText
+	call PrintText
+
+.mon_poison_not_faded
+	pop de
+	inc de
+	ld hl, wCurPartyMon
+	inc [hl]
+	ld a, [wPartyCount]
+	cp [hl]
+	jr nz, .fade_party_loop
+	call CloseText
+	ret
+
+.PoisonFadedText:
+	text_far _PoisonFadedText
 	text_end

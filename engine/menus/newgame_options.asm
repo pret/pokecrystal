@@ -4,8 +4,9 @@
 	const NEWGAMEOPT_STARTER_RAND     ; 1
 	const NEWGAMEOPT_TRAINER_RAND     ; 2
 	const NEWGAMEOPT_TM_MODE          ; 3
-	const NEWGAMEOPT_CONTINUE         ; 4
-DEF NUM_NEWGAMEOPTIONS EQU const_value ; 5
+	const NEWGAMEOPT_POISON_SURVIVAL  ; 4
+	const NEWGAMEOPT_CONTINUE         ; 5
+DEF NUM_NEWGAMEOPTIONS EQU const_value ; 6
 
 _NewGameOptions:
 	; Initialize Crystal data (including all new game options to defaults)
@@ -94,13 +95,15 @@ _NewGameOptions:
 
 StringNewGameOptions:
 	db "WILD #MON<LF>"
-	db "      :<LF>"
+	db "     :<LF>"
 	db "STARTERS<LF>"
-	db "      :<LF>"
+	db "     :<LF>"
 	db "TRAINERS<LF>"
-	db "      :<LF>"
+	db "     :<LF>"
 	db "TM MODE<LF>"
-	db "      :<LF>"
+	db "     :<LF>"
+	db "WALKING POISON<LF>"
+	db "     :<LF>"
 	db "CONTINUE@"
 
 GetNewGameOptionPointer:
@@ -112,6 +115,7 @@ GetNewGameOptionPointer:
 	dw NewGameOptions_StarterRandomization
 	dw NewGameOptions_TrainerRandomization
 	dw NewGameOptions_TMMode
+	dw NewGameOptions_PoisonSurvival
 	dw NewGameOptions_Continue
 
 NewGameOptions_WildEncounters:
@@ -226,6 +230,34 @@ NewGameOptions_TMMode:
 .Standard:     db "STANDARD @"
 .Unlimited_str: db "UNLIMITED@"
 
+NewGameOptions_PoisonSurvival:
+	ld a, [wPoisonSurvival]
+	ldh a, [hJoyPressed]
+	bit B_PAD_LEFT, a
+	jr nz, .Toggle
+	bit B_PAD_RIGHT, a
+	jr z, .NonePressed
+.Toggle:
+	ld a, [wPoisonSurvival]
+	xor 1
+	ld [wPoisonSurvival], a
+.NonePressed:
+	ld a, [wPoisonSurvival]
+	and a
+	jr nz, .Safe
+	ld de, .Standard
+	jr .Display
+.Safe:
+	ld de, .Safe_str
+.Display:
+	hlcoord 8, 11
+	call PlaceString
+	and a
+	ret
+
+.Standard: db "STANDARD@"
+.Safe_str: db "SAFE    @"
+
 NewGameOptions_Continue:
 	ldh a, [hJoyPressed]
 	and PAD_A
@@ -274,7 +306,7 @@ NewGameOptionsControl:
 	ret
 
 NewGameOptions_UpdateCursorPosition:
-	; Clear cursor positions at rows 2, 4, 6, 8, 10 only
+	; Clear cursor positions at rows 2, 4, 6, 8, 10, 12 only
 	hlcoord 1, 2
 	ld [hl], $7f ; space character
 	hlcoord 1, 4
@@ -285,11 +317,13 @@ NewGameOptions_UpdateCursorPosition:
 	ld [hl], $7f ; space character
 	hlcoord 1, 10
 	ld [hl], $7f ; space character
+	hlcoord 1, 12
+	ld [hl], $7f ; space character
 	
 	; Place cursor at current position
 	hlcoord 1, 2
 	ld bc, SCREEN_WIDTH * 2
 	ld a, [wJumptableIndex]
 	call AddNTimes
-	ld [hl], $ec ; right arrow
+	ld [hl], $ed ; filled right arrow
 	ret
