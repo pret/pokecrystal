@@ -6673,8 +6673,8 @@ Function102f85:
 	ret
 
 String_102fb2:
-	db   "あいてがわ<PKMN>えらんだ　"
-	next "いじょう<PKMN>あるようです！！"
+	db   "あいてがわ<GA>えらんだ　"
+	next "いじょう<GA>あるようです！！"
 	db   "@"
 
 String_102fcc:
@@ -6689,7 +6689,7 @@ Function102fce:
 
 String_102fdb:
 	db   "あいてがわ<NO>せんたくに"
-	next "いじょう<PKMN>あるようです！！"
+	next "いじょう<GA>あるようです！！"
 	done
 
 Function102ff5:
