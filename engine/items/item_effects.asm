@@ -547,7 +547,7 @@ PokeBallEffect:
 
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
-	jr z, .SendToPC
+	jp z, .SendToPC
 
 	xor a ; PARTYMON
 	ld [wMonType], a
@@ -571,6 +571,11 @@ PokeBallEffect:
 	ld [hl], a
 
 .SkipPartyMonFriendBall:
+	; Check if auto-nickname is enabled
+	ld a, [wAutoNickname]
+	and a
+	jr nz, .auto_nickname_party
+
 	ld hl, AskGiveNicknameText
 	call PrintText
 
@@ -606,6 +611,30 @@ PokeBallEffect:
 
 	jp .return_from_capture
 
+.auto_nickname_party
+	; Apply random nickname
+	ld a, [wPartyCount]
+	dec a
+	ld [wCurPartyMon], a
+	ld hl, wPartyMonNicknames
+	ld bc, MON_NAME_LENGTH
+	call AddNTimes
+
+	ld d, h
+	ld e, l
+	farcall GiveRandomNickname
+
+	; Copy the nickname to wStringBuffer1 for display
+	ld hl, wPartyMonNicknames
+	ld bc, MON_NAME_LENGTH
+	ld a, [wPartyCount]
+	dec a
+	call AddNTimes
+	ld de, wStringBuffer1
+	call InitName
+
+	jp .return_from_capture
+
 .SendToPC:
 	call ClearSprites
 
@@ -630,6 +659,11 @@ PokeBallEffect:
 	ld [sBoxMon1Happiness], a
 .SkipBoxMonFriendBall:
 	call CloseSRAM
+
+	; Check if auto-nickname is enabled
+	ld a, [wAutoNickname]
+	and a
+	jr nz, .auto_nickname_box
 
 	ld hl, AskGiveNicknameText
 	call PrintText
@@ -666,6 +700,28 @@ PokeBallEffect:
 .SkipBoxMonNickname:
 	ld a, BANK(sBoxMonNicknames)
 	call OpenSRAM
+
+	ld hl, sBoxMonNicknames
+	ld de, wMonOrItemNameBuffer
+	ld bc, MON_NAME_LENGTH
+	call CopyBytes
+
+	call CloseSRAM
+
+	ld hl, BallSentToPCText
+	call PrintText
+
+	call RotateThreePalettesRight
+
+	jp .return_from_capture
+
+.auto_nickname_box
+	; Apply random nickname
+	ld a, BANK(sBoxMonNicknames)
+	call OpenSRAM
+
+	ld de, sBoxMonNicknames
+	farcall GiveRandomNickname
 
 	ld hl, sBoxMonNicknames
 	ld de, wMonOrItemNameBuffer

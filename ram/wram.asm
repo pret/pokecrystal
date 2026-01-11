@@ -2888,6 +2888,10 @@ wPoisonSurvival::
 ; 0 = Standard poison (can faint)
 ; 1 = Safe poison (stops at 1 HP)
 	db
+wAutoNickname::
+; 0 = Standard nicnkaming (asks for nickname)
+; 1 = Random nicknames
+	db
 ; The three randomized starter species (if randomization is enabled)
 wRandomStarter1:: db
 wRandomStarter2:: db

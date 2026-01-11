@@ -319,6 +319,12 @@ HatchEggs:
 	ld d, h
 	ld e, l
 	push de
+	
+	; Check if auto-nickname is enabled
+	ld a, [wAutoNickname]
+	and a
+	jr nz, .auto_nickname_egg
+
 	ld hl, .BreedAskNicknameText
 	call PrintText
 	call YesNoBox
@@ -335,6 +341,11 @@ HatchEggs:
 	pop hl
 	ld de, wStringBuffer1
 	call InitName
+	jr .next
+
+.auto_nickname_egg
+	pop de
+	farcall GiveRandomNickname
 	jr .next
 
 .nonickname
