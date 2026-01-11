@@ -202,7 +202,16 @@ RandomPokemonNames:
     db "TIMEMACHINE"
     db "GLADOS@@@@@"
     db "CHEL@@@@@@@"
+    db "MIGUEL@@@@@"
     db "CHERRY COKE"
+    db "TOAST@@@@@@"
+    db "TURTLENECK@"
+    db "CHUBS@@@@@@"
+    db "BOOGERS@@@@"
+    db "SNOT@@@@@@@"
+    db "CARMEN@@@@@"
+    db "PEDRO@@@@@@"
+    db "AIRPLANE@@@"
 .End
 
 DEF NUM_RANDOM_NAMES EQU (.End - RandomPokemonNames) / MON_NAME_LENGTH
