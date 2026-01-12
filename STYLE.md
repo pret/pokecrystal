@@ -16,7 +16,7 @@ When you come across an edge case that isn't referenced in this guide, please ad
 ; 80 char soft limit. This isn't enforced, but you should try to keep lines from being any longer.
 ; rgbasm doesn't have newline escapes so there's no avoiding exceeding the limit for longer macros.
 
-; capitalization and punctuation dont matter
+; Prefer proper capitalization and punctuation, along with complete sentences,
 ; but it should be consistent with the surroundings
 
 ; Space out paragraphs with two newlines. Don't put ;s on blank lines.
