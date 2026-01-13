@@ -643,6 +643,7 @@ DayCare_InitBreeding:
 	dec b
 	jr nz, .loop2
 	ld hl, wEggMonDVs
+	; Generate random DVs for egg (modern shiny odds: 1 in 4096)
 	call Random
 	ld [hli], a
 	ld [wTempMonDVs], a

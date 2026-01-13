@@ -6120,6 +6120,7 @@ LoadEnemyMon:
 
 .GenerateDVs:
 ; Generate new random DVs
+; Modern shiny odds: 1 in 4096 (Def=10, Spd=10, Spc=10, any Attack)
 	call BattleRandom
 	ld b, a
 	call BattleRandom
