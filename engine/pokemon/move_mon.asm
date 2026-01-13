@@ -202,6 +202,7 @@ endr
 	and a
 	jr nz, .copywildmonDVs
 
+	; Modern shiny odds: 1 in 4096
 	call Random
 	ld b, a
 	call Random

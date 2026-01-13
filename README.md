@@ -20,13 +20,14 @@ When starting a new game, you can now configure:
 - **Always walk at bike speed** - No need to constantly use the bike in towns
 - **Shorter Nurse Joy interactions** - Faster Pokémon Center healing
 - **Smarter Mom dialogue** - No more phone tutorials if you say you know how to use it
+- **Modern shiny odds** - Shiny Pokémon now appear at 1 in 4096 odds (matching Generation VI+) instead of the original 1 in 8192
+  - *Note*: Due to Gen II's DV-based gender system, shiny starters have a 50% chance of being female instead of the normal 12.5%
 
 ## Planned Features
 
 The following features are planned for future releases:
 
 - Nuzlocke mode rules enforcement
-- Modern shiny odds (higher encounter rate)
 - Randomized items and held items
 - Randomized nicknames
 - Randomized cries

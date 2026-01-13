@@ -1,38 +1,51 @@
 INCLUDE "engine/gfx/sgb_layouts.asm"
 
-DEF SHINY_ATK_MASK EQU %0010
-DEF SHINY_DEF_DV EQU 10
-DEF SHINY_SPD_DV EQU 10
-DEF SHINY_SPC_DV EQU 10
+; Modern shiny odds: check lower 3 bits of each DV for varied stat distribution
+; Each DV must match a specific 3-bit pattern (allows 2 possible values per DV)
+; Attack: %101 (5 or 13), Def: %011 (3 or 11), Spd: %110 (6 or 14), Spc: %010 (2 or 10)
+; Odds: (1/8)^4 = 1/4096, with shinies spread across high and low stat values
+;
+; Gender side effect: Since gender uses Attack+Speed DVs, this affects gender distribution:
+; - Attack=5 + Speed=6/14 → Female for 87.5% male species (e.g., starters)
+; - Attack=13 + Speed=6/14 → Male as normal
+; Result: 50% of shiny starters are female instead of the normal 12.5%
+DEF SHINY_ATK_PATTERN EQU %101
+DEF SHINY_DEF_PATTERN EQU %011
+DEF SHINY_SPD_PATTERN EQU %110
+DEF SHINY_SPC_PATTERN EQU %010
 
 CheckShininess:
 ; Check if a mon is shiny by DVs at bc.
 ; Return carry if shiny.
+; Modern shiny odds: 1 in 4096 (maximum stat variety)
 
 	ld l, c
 	ld h, b
 
-; Attack
+; Attack - check lower 3 bits (allows 5 or 13)
 	ld a, [hl]
-	and SHINY_ATK_MASK << 4
-	jr z, .not_shiny
+	swap a  ; Move attack to lower nibble
+	and %111
+	cp SHINY_ATK_PATTERN
+	jr nz, .not_shiny
 
-; Defense
+; Defense - check lower 3 bits (allows 3 or 11)
 	ld a, [hli]
-	and %1111
-	cp SHINY_DEF_DV
+	and %111
+	cp SHINY_DEF_PATTERN
 	jr nz, .not_shiny
 
-; Speed
+; Speed - check lower 3 bits (allows 6 or 14)
 	ld a, [hl]
-	and %1111 << 4
-	cp SHINY_SPD_DV << 4
+	swap a  ; Move speed to lower nibble
+	and %111
+	cp SHINY_SPD_PATTERN
 	jr nz, .not_shiny
 
-; Special
+; Special - check lower 3 bits (allows 2 or 10)
 	ld a, [hl]
-	and %1111
-	cp SHINY_SPC_DV
+	and %111
+	cp SHINY_SPC_PATTERN
 	jr nz, .not_shiny
 
 ; shiny

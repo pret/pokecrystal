@@ -77,9 +77,11 @@ DEF STAT_MIN_HP EQU 10
 
 DEF MAX_STAT_VALUE EQU 999
 
-; shiny dvs
-DEF ATKDEFDV_SHINY EQU $EA
-DEF SPDSPCDV_SHINY EQU $AA
+; Shiny DVs (modern odds: 1 in 4096)
+; Used for BATTLETYPE_FORCESHINY (Red Gyarados at Lake of Rage)
+; Modern shiny pattern: Attack=13, Defense=11, Speed=14, Special=10 (all strong stats)
+DEF ATKDEFDV_SHINY EQU $DB  ; %11011011 = Attack=13 (%101), Defense=11 (%011)
+DEF SPDSPCDV_SHINY EQU $EA  ; %11101010 = Speed=14 (%110), Special=10 (%010)
 
 ; battle classes (wBattleMode values)
 	const_def 1
