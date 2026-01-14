@@ -1517,6 +1517,13 @@ GiveStarterPokemon1:
 	ld [wCurItem], a
 	ld hl, wPartyMon1Item
 	ld [hl], a
+	; Apply random nickname if enabled
+	ld a, [wAutoNickname]
+	and a
+	jr z, .failed
+	ld hl, wPartyMonNicknames
+	ld de, wPartyMonNicknames
+	farcall GiveRandomNickname
 .failed
 	ret
 
@@ -1541,6 +1548,13 @@ GiveStarterPokemon2:
 	ld [wCurItem], a
 	ld hl, wPartyMon1Item
 	ld [hl], a
+	; Apply random nickname if enabled
+	ld a, [wAutoNickname]
+	and a
+	jr z, .failed
+	ld hl, wPartyMonNicknames
+	ld de, wPartyMonNicknames
+	farcall GiveRandomNickname
 .failed
 	ret
 
@@ -1565,5 +1579,12 @@ GiveStarterPokemon3:
 	ld [wCurItem], a
 	ld hl, wPartyMon1Item
 	ld [hl], a
+	; Apply random nickname if enabled
+	ld a, [wAutoNickname]
+	and a
+	jr z, .failed
+	ld hl, wPartyMonNicknames
+	ld de, wPartyMonNicknames
+	farcall GiveRandomNickname
 .failed
 	ret
