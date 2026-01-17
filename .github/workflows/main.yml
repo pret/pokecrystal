@@ -76,9 +76,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - name: Checkout rgbds
+        uses: actions/checkout@master
+        with:
+          path: rgbds
+          ref: v1.0.1
+          repository: gbdev/rgbds
+
       - name: Install rgbds
+        working-directory: rgbds
         run: |
-          brew install rgbds@1.0.1
+          brew install bison libpng pkg-config
+          export PATH="$(brew --prefix bison)/bin:$PATH"
+          sudo make -j$(sysctl -n hw.ncpu) install
+
+      - name: Remove rgbds
+        run: |
+          rm -rf rgbds
 
       - name: Compare
         if: ${{ github.repository_owner == 'pret' }}
