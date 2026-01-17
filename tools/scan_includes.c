@@ -1,41 +1,52 @@
 #define PROGRAM_NAME "scan_includes"
-#define USAGE_OPTS "[-h|--help] [-s|--strict] [-b|--build-prefix dir] filename.asm"
+#define USAGE_OPTS "[-h|--help] [-b|--build-prefix dir] [-s|--strict] filename.asm"
 
 #include "common.h"
 
 #include <ctype.h>
 #include <unistd.h>
 
-static bool has_prefix(const char *s, const char *prefix) {
-	if (!prefix || !*prefix) {
+struct Options {
+	const char *build_prefix;
+	bool strict;
+};
+
+struct Options options = {0};
+
+bool has_build_prefix(const char *path) {
+	if (!options.build_prefix || !*options.build_prefix) {
 		return false;
 	}
-	size_t prefix_len = strlen(prefix);
-	if (strncmp(s, prefix, prefix_len)) {
+	size_t prefix_len = strlen(options.build_prefix);
+	// `path` must start with `options.build_prefix`
+	if (strncmp(path, options.build_prefix, prefix_len)) {
 		return false;
 	}
-	if (prefix[prefix_len - 1] == '/') {
+	// if `options.build_prefix` ends with a '/', then path is just "prefix/..."
+	if (options.build_prefix[prefix_len - 1] == '/') {
 		return true;
 	}
-	return s[prefix_len] == '/' || s[prefix_len] == '\0';
+	// if not, we need to check against `path` being "prefixandmore/..."
+	return path[prefix_len] == '/' || path[prefix_len] == '\0';
 }
 
-static char *join_prefix(const char *prefix, const char *path) {
-	if (!prefix || !*prefix) {
+char *join_build_prefix(const char *path) {
+	if (!options.build_prefix || !*options.build_prefix) {
 		size_t len = strlen(path) + 1;
 		char *out = xmalloc(len);
 		memcpy(out, path, len);
 		return out;
+	} else {
+		size_t prefix_len = strlen(options.build_prefix);
+		bool needs_slash = options.build_prefix[prefix_len - 1] != '/';
+		size_t len = prefix_len + (needs_slash ? 1 : 0) + strlen(path) + 1;
+		char *out = xmalloc(len);
+		snprintf(out, len, "%s%s%s", options.build_prefix, needs_slash ? "/" : "", path);
+		return out;
 	}
-	size_t prefix_len = strlen(prefix);
-	bool needs_slash = prefix[prefix_len - 1] != '/';
-	size_t len = prefix_len + (needs_slash ? 1 : 0) + strlen(path) + 1;
-	char *out = xmalloc(len);
-	snprintf(out, len, "%s%s%s", prefix, needs_slash ? "/" : "", path);
-	return out;
 }
 
-void parse_args(int argc, char *argv[], bool *strict, const char **build_prefix) {
+void parse_args(int argc, char *argv[]) {
 	struct option long_options[] = {
 		{"build-prefix", required_argument, 0, 'b'},
 		{"strict", no_argument, 0, 's'},
@@ -45,10 +56,10 @@ void parse_args(int argc, char *argv[], bool *strict, const char **build_prefix)
 	for (int opt; (opt = getopt_long(argc, argv, "b:sh", long_options)) != -1;) {
 		switch (opt) {
 		case 'b':
-			*build_prefix = optarg;
+			options.build_prefix = optarg;
 			break;
 		case 's':
-			*strict = true;
+			options.strict = true;
 			break;
 		case 'h':
 			usage_exit(0);
@@ -59,11 +70,11 @@ void parse_args(int argc, char *argv[], bool *strict, const char **build_prefix)
 	}
 }
 
-void scan_file(const char *filename, bool strict, const char *build_prefix) {
+void scan_file(const char *filename) {
 	errno = 0;
 	FILE *f = fopen(filename, "rb");
 	if (!f) {
-		if (strict) {
+		if (options.strict) {
 			error_exit("Could not open file \"%s\": %s\n", filename, strerror(errno));
 		} else {
 			return;
@@ -124,13 +135,13 @@ void scan_file(const char *filename, bool strict, const char *build_prefix) {
 					include_path[length] = '\0';
 					const char *printed_path = include_path;
 					char *prefixed_path = NULL;
-					if (build_prefix && !has_prefix(include_path, build_prefix) && access(include_path, F_OK) != 0) {
-						prefixed_path = join_prefix(build_prefix, include_path);
+					if (options.build_prefix && !has_build_prefix(include_path) && access(include_path, F_OK) != 0) {
+						prefixed_path = join_build_prefix(include_path);
 						printed_path = prefixed_path;
 					}
 					printf("%s ", printed_path);
 					if (is_include) {
-						scan_file(include_path, strict, build_prefix);
+						scan_file(include_path);
 					}
 					free(prefixed_path);
 				} else {
@@ -149,9 +160,7 @@ void scan_file(const char *filename, bool strict, const char *build_prefix) {
 }
 
 int main(int argc, char *argv[]) {
-	bool strict = false;
-	const char *build_prefix = NULL;
-	parse_args(argc, argv, &strict, &build_prefix);
+	parse_args(argc, argv);
 
 	argc -= optind;
 	argv += optind;
@@ -159,6 +168,6 @@ int main(int argc, char *argv[]) {
 		usage_exit(1);
 	}
 
-	scan_file(argv[0], strict, build_prefix);
+	scan_file(argv[0]);
 	return 0;
 }
