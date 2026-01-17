@@ -1264,7 +1264,7 @@ MobileTradeAnim_DisplayEggData:
 
 .EggTemplate:
 	db   "タマゴ"
-	next "おや/？？？？？"
+	next "おや／？？？？？"
 	next "<ID>№<DOT>？？？？？"
 	db   "@"
 
