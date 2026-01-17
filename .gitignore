@@ -1,7 +1,7 @@
 # compiled objects
 *.o
 
-# out-of-tree build artifacts
+# build artifacts
 build/
 
 # compiled graphics

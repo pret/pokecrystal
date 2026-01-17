@@ -125,8 +125,7 @@ tools:
 	$(MAKE) -C tools/
 
 
-RGBASMFLAGS += -Q8 -P includes.asm
-RGBASMFLAGS += -i $(BUILDDIR)
+RGBASMFLAGS += -Q8 -P includes.asm -i $(BUILDDIR)
 # Create a sym/map for debug purposes if `make` run with `DEBUG=1`
 ifeq ($(DEBUG),1)
 RGBASMFLAGS += -E
