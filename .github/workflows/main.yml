@@ -7,10 +7,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
+
+      - name: Set build jobs
+        id: jobs
+        shell: bash
+        run: |
+          if [[ "${RUNNER_OS}" == "macOS" ]]; then
+            echo "make_jobs=$(sysctl -n hw.ncpu)" >> "$GITHUB_OUTPUT"
+          else
+            echo "make_jobs=$(nproc)" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Checkout rgbds
         uses: actions/checkout@master
@@ -21,8 +35,15 @@ jobs:
 
       - name: Install rgbds
         working-directory: rgbds
+        shell: bash
         run: |
-          sudo apt-get install -yq libpng-dev
+          if [[ "${RUNNER_OS}" == "Linux" ]]; then
+            sudo apt-get update
+            sudo apt-get install -yq libpng-dev
+          else
+            brew install libpng pkg-config bison flex
+            export PATH="$(brew --prefix bison)/bin:$(brew --prefix flex)/bin:$PATH"
+          fi
           sudo make install
 
       - name: Remove rgbds
@@ -32,7 +53,7 @@ jobs:
       - name: Compare
         if: ${{ github.repository_owner == 'pret' }}
         run: |
-          make DEBUG=1 -j$(nproc) compare
+          make DEBUG=1 -j${{ steps.jobs.outputs.make_jobs }} compare
           if ! git diff-index --quiet HEAD --; then
             echo 'Uncommitted changes detected:'
             git diff-index HEAD --
@@ -42,7 +63,7 @@ jobs:
       - name: Make
         if: ${{ github.repository_owner != 'pret' }}
         run: |
-          make -j$(nproc)
+          make -j${{ steps.jobs.outputs.make_jobs }}
           if ! git diff-index --quiet HEAD --; then
             echo 'Uncommitted changes detected:'
             git diff-index HEAD --
