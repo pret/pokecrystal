@@ -86,19 +86,6 @@ crystal11_vc:    pokecrystal11.patch
 
 clean: tidy
 	$(RM) -r $(BUILDDIR)
-	find gfx \
-	     \( -name "*.[12]bpp" \
-	        -o -name "*.lz" \
-	        -o -name "*.gbcpal" \
-	        -o -name "*.sgb.tilemap" \) \
-	     -delete
-	find gfx/pokemon -mindepth 1 \
-	     ! -path "gfx/pokemon/unown/*" \
-	     \( -name "bitmask.asm" \
-	        -o -name "frames.asm" \
-	        -o -name "front.animated.tilemap" \
-	        -o -name "front.dimensions" \) \
-	     -delete
 
 tidy:
 	$(RM) $(roms) \
