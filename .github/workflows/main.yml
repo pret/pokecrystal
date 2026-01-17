@@ -41,7 +41,8 @@ jobs:
             sudo apt-get update
             sudo apt-get install -yq libpng-dev
           else
-            brew install libpng pkg-config
+            brew install libpng pkg-config bison flex
+            export PATH="$(brew --prefix bison)/bin:$(brew --prefix flex)/bin:$PATH"
           fi
           sudo make install
 
