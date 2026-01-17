@@ -1,6 +1,9 @@
 # compiled objects
 *.o
 
+# out-of-tree build artifacts
+build/
+
 # compiled graphics
 *.1bpp
 *.2bpp
