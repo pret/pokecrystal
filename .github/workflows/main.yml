@@ -5,6 +5,9 @@ on:
     branches: [ master ]
   pull_request:
 
+env:
+  rgbds_version: v1.0.1
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           path: rgbds
-          ref: v1.0.1
+          ref: ${{ env.rgbds_version }}
           repository: gbdev/rgbds
 
       - name: Install rgbds
@@ -79,7 +82,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           path: rgbds
-          ref: v1.0.1
+          ref: ${{ env.rgbds_version }}
           repository: gbdev/rgbds
 
       - name: Install rgbds
