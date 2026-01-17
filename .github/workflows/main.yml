@@ -7,10 +7,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
+
+      - name: Count make jobs
+        id: count_jobs
+        shell: bash
+        run: |
+          if [[ "${RUNNER_OS}" == "macOS" ]]; then
+            echo "job_count=$(sysctl -n hw.ncpu)" >> "$GITHUB_OUTPUT"
+          else
+            echo "job_count=$(nproc)" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Checkout rgbds
         uses: actions/checkout@master
@@ -20,10 +34,17 @@ jobs:
           repository: gbdev/rgbds
 
       - name: Install rgbds
+        shell: bash
         working-directory: rgbds
         run: |
-          sudo apt-get install -yq libpng-dev
-          sudo make install
+          if [[ "${RUNNER_OS}" == "macOS" ]]; then
+            brew install bison libpng pkg-config
+            export PATH="$(brew --prefix bison)/bin:$PATH"
+          else
+            sudo apt update
+            sudo apt install -yq bison libpng-dev pkg-config
+          fi
+          sudo make -j${{ steps.count_jobs.outputs.job_count }} install
 
       - name: Remove rgbds
         run: |
@@ -32,7 +53,7 @@ jobs:
       - name: Compare
         if: ${{ github.repository_owner == 'pret' }}
         run: |
-          make DEBUG=1 -j$(nproc) compare
+          make DEBUG=1 -j${{ steps.count_jobs.outputs.job_count }} compare
           if ! git diff-index --quiet HEAD --; then
             echo 'Uncommitted changes detected:'
             git diff-index HEAD --
@@ -42,7 +63,7 @@ jobs:
       - name: Make
         if: ${{ github.repository_owner != 'pret' }}
         run: |
-          make -j$(nproc)
+          make -j${{ steps.count_jobs.outputs.job_count }}
           if ! git diff-index --quiet HEAD --; then
             echo 'Uncommitted changes detected:'
             git diff-index HEAD --
@@ -50,27 +71,27 @@ jobs:
           fi
 
       - name: Discord webhook
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' && runner.os == 'Linux' }}
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           .github/webhook.sh
 
       - name: Checkout symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' && runner.os == 'Linux' }}
         uses: actions/checkout@master
         with:
           path: symbols
           ref: symbols
 
       - name: Move symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' && runner.os == 'Linux' }}
         run: |
           cp -v *.sym symbols/
           cp -v *.map symbols/
 
       - name: Update symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' && runner.os == 'Linux' }}
         uses: EndBug/add-and-commit@v9
         with:
           cwd: "./symbols"
