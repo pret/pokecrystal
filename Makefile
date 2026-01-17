@@ -116,7 +116,6 @@ tidy:
 	      $(pokecrystal_debug_obj) \
 	      $(pokecrystal11_debug_obj) \
 	      $(OBJDIR)/rgbdscheck.o
-	$(RM) -r $(BUILDDIR)
 	$(MAKE) clean -C tools/
 
 compare: $(roms) $(patches)
