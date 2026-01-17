@@ -22,8 +22,8 @@ jobs:
       - name: Install rgbds
         working-directory: rgbds
         run: |
-          sudo apt update
-          sudo apt install -yq bison libpng-dev pkg-config
+          sudo apt-get update
+          sudo apt-get install -yq bison libpng-dev pkg-config
           sudo make -j$(nproc) install
 
       - name: Remove rgbds
@@ -43,27 +43,26 @@ jobs:
           .github/checkdiff.sh
 
       - name: Discord webhook
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
           .github/webhook.sh
 
       - name: Checkout symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
         uses: actions/checkout@v6
         with:
           path: symbols
           ref: symbols
 
       - name: Move symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
         run: |
-          cp -v *.sym symbols/
-          cp -v *.map symbols/
+          cp -v *.sym *.map symbols/
 
       - name: Update symbols
-        if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
+        if: ${{ github.repository_owner == 'pret' && github.event_name == 'push' }}
         uses: EndBug/add-and-commit@v9
         with:
           cwd: "./symbols"
