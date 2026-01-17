@@ -6021,7 +6021,7 @@ MenuHeader_11afe8:
 
 String_11aff0:
 	db   "この　じょうけんで"
-	next "よろしいですか?@"
+	next "よろしいですか？@"
 
 String_11b003:
 	db   "こうかんを"
