@@ -8,7 +8,6 @@ patches := pokecrystal11.patch
 
 # Keep intermediate build products out of the source tree.
 BUILDDIR := build
-OBJDIR := $(BUILDDIR)/obj
 
 rom_obj := \
 	audio.o \
@@ -29,12 +28,12 @@ rom_obj := \
 	lib/mobile/main.o \
 	lib/mobile/mail.o
 
-pokecrystal_obj         := $(addprefix $(OBJDIR)/,$(rom_obj:.o=.o))
-pokecrystal11_obj       := $(addprefix $(OBJDIR)/,$(rom_obj:.o=11.o))
-pokecrystal_au_obj      := $(addprefix $(OBJDIR)/,$(rom_obj:.o=_au.o))
-pokecrystal_debug_obj   := $(addprefix $(OBJDIR)/,$(rom_obj:.o=_debug.o))
-pokecrystal11_debug_obj := $(addprefix $(OBJDIR)/,$(rom_obj:.o=11_debug.o))
-pokecrystal11_vc_obj    := $(addprefix $(OBJDIR)/,$(rom_obj:.o=11_vc.o))
+pokecrystal_obj         := $(addprefix $(BUILDDIR)/,$(rom_obj:.o=.o))
+pokecrystal11_obj       := $(addprefix $(BUILDDIR)/,$(rom_obj:.o=11.o))
+pokecrystal_au_obj      := $(addprefix $(BUILDDIR)/,$(rom_obj:.o=_au.o))
+pokecrystal_debug_obj   := $(addprefix $(BUILDDIR)/,$(rom_obj:.o=_debug.o))
+pokecrystal11_debug_obj := $(addprefix $(BUILDDIR)/,$(rom_obj:.o=11_debug.o))
+pokecrystal11_vc_obj    := $(addprefix $(BUILDDIR)/,$(rom_obj:.o=11_vc.o))
 
 
 ### Build tools
@@ -102,7 +101,7 @@ tidy:
 	      $(pokecrystal_au_obj) \
 	      $(pokecrystal_debug_obj) \
 	      $(pokecrystal11_debug_obj) \
-	      $(OBJDIR)/rgbdscheck.o
+	      $(BUILDDIR)/rgbdscheck.o
 	$(MAKE) clean -C tools/
 
 compare: $(roms) $(patches)
@@ -129,7 +128,7 @@ $(pokecrystal11_vc_obj):    RGBASMFLAGS += -D _CRYSTAL11 -D _CRYSTAL11_VC
 # Ignore the checksums added by tools/stadium at the end of the ROM
 	tools/make_patch --ignore 0x1ffde0:0x220 $*_vc.sym $^ $@
 
-$(OBJDIR)/rgbdscheck.o: rgbdscheck.asm
+$(BUILDDIR)/rgbdscheck.o: rgbdscheck.asm
 	@mkdir -p $(dir $@)
 	$(RGBASM) -o $@ $<
 
@@ -161,18 +160,18 @@ endef
 
 preinclude_deps := includes.asm $(call map_build_deps,$(shell tools/scan_includes includes.asm))
 define DEP
-$1: $2 $$(call map_build_deps,$$(shell tools/scan_includes $2)) $(preinclude_deps) | $(OBJDIR)/rgbdscheck.o
+$1: $2 $$(call map_build_deps,$$(shell tools/scan_includes $2)) $(preinclude_deps) | $(BUILDDIR)/rgbdscheck.o
 	@mkdir -p $$(dir $$@)
 	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
 
 # Dependencies for shared objects objects
-$(foreach obj, $(pokecrystal_obj), $(eval $(call DEP,$(obj),$(patsubst $(OBJDIR)/%,%,$(obj:.o=.asm)))))
-$(foreach obj, $(pokecrystal11_obj), $(eval $(call DEP,$(obj),$(patsubst $(OBJDIR)/%,%,$(obj:11.o=.asm)))))
-$(foreach obj, $(pokecrystal_au_obj), $(eval $(call DEP,$(obj),$(patsubst $(OBJDIR)/%,%,$(obj:_au.o=.asm)))))
-$(foreach obj, $(pokecrystal_debug_obj), $(eval $(call DEP,$(obj),$(patsubst $(OBJDIR)/%,%,$(obj:_debug.o=.asm)))))
-$(foreach obj, $(pokecrystal11_debug_obj), $(eval $(call DEP,$(obj),$(patsubst $(OBJDIR)/%,%,$(obj:11_debug.o=.asm)))))
-$(foreach obj, $(pokecrystal11_vc_obj), $(eval $(call DEP,$(obj),$(patsubst $(OBJDIR)/%,%,$(obj:11_vc.o=.asm)))))
+$(foreach obj, $(pokecrystal_obj), $(eval $(call DEP,$(obj),$(patsubst $(BUILDDIR)/%,%,$(obj:.o=.asm)))))
+$(foreach obj, $(pokecrystal11_obj), $(eval $(call DEP,$(obj),$(patsubst $(BUILDDIR)/%,%,$(obj:11.o=.asm)))))
+$(foreach obj, $(pokecrystal_au_obj), $(eval $(call DEP,$(obj),$(patsubst $(BUILDDIR)/%,%,$(obj:_au.o=.asm)))))
+$(foreach obj, $(pokecrystal_debug_obj), $(eval $(call DEP,$(obj),$(patsubst $(BUILDDIR)/%,%,$(obj:_debug.o=.asm)))))
+$(foreach obj, $(pokecrystal11_debug_obj), $(eval $(call DEP,$(obj),$(patsubst $(BUILDDIR)/%,%,$(obj:11_debug.o=.asm)))))
+$(foreach obj, $(pokecrystal11_vc_obj), $(eval $(call DEP,$(obj),$(patsubst $(BUILDDIR)/%,%,$(obj:11_vc.o=.asm)))))
 
 endif
 
