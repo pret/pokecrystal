@@ -157,27 +157,18 @@ $(info $(shell $(MAKE) -C tools))
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
 
 # Redirect dependencies that are generated as part of the build into $(BUILDDIR)/.
-generated_deps_patterns := \
-	%.1bpp \
-	%.2bpp \
-	%.lz \
-	%.gbcpal \
-	%.dimensions \
-	%.animated.tilemap \
-	%.sgb.tilemap \
-	gfx/pokemon/%/bitmask.asm \
-	gfx/pokemon/%/frames.asm
-
-# These Pokemon animation files are committed and should not be treated as generated.
-generated_deps_exceptions := \
-	gfx/pokemon/unown/bitmask.asm \
-	gfx/pokemon/unown/frames.asm
-
+#
+# Heuristic: if a dependency path exists in the source tree, keep it as-is;
+# otherwise, assume it is generated into $(BUILDDIR)/.
+# This avoids duplicating the generated-file patterns here and automatically
+# handles committed exceptions (e.g. Unown's animation files).
 define map_build_deps
 $(strip \
-	$(filter-out $(generated_deps_patterns),$1) \
-	$(addprefix $(BUILDDIR)/,$(filter $(generated_deps_patterns),$(filter-out $(generated_deps_exceptions),$1))) \
-	$(filter $(generated_deps_exceptions),$1) \
+	$(foreach dep,$1,\
+		$(if $(filter $(BUILDDIR)/%,$(dep)),$(dep),\
+			$(if $(wildcard $(dep)),$(dep),$(BUILDDIR)/$(dep))\
+		)\
+	)\
 )
 endef
 
@@ -219,16 +210,8 @@ pokecrystal11_vc.gbc:    RGBFIXFLAGS += -i BYTE -n 1
 include gfx/lz.mk
 
 
-$(BUILDDIR)/%.tilemap.lz: %.tilemap
-	@mkdir -p $(dir $@)
-	tools/lzcomp $(LZFLAGS) -- $< $@
 
-$(BUILDDIR)/%.attrmap.lz: %.attrmap
-	@mkdir -p $(dir $@)
-	tools/lzcomp $(LZFLAGS) -- $< $@
-
-
-$(BUILDDIR)/%.lz: $(BUILDDIR)/%
+$(BUILDDIR)/%.lz: $$(call map_build_deps,$$*)
 	@mkdir -p $(dir $@)
 	tools/lzcomp $(LZFLAGS) -- $< $@
 
