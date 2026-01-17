@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
 
       - name: Checkout rgbds
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
         with:
           path: rgbds
           ref: v1.0.1
@@ -51,7 +51,7 @@ jobs:
 
       - name: Checkout symbols
         if: ${{ github.event_name == 'push' && github.repository_owner == 'pret' }}
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
         with:
           path: symbols
           ref: symbols
@@ -74,10 +74,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
 
       - name: Checkout rgbds
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
         with:
           path: rgbds
           ref: v1.0.1
