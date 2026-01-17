@@ -144,10 +144,12 @@ $(info $(shell $(MAKE) -C tools))
 
 # Redirect dependencies that are generated as part of the build into $(BUILDDIR)/.
 #
-# Heuristic: if a dependency path exists in the source tree, keep it as-is;
-# otherwise, assume it is generated into $(BUILDDIR)/.
-# This avoids duplicating the generated-file patterns here and automatically
-# handles committed exceptions (e.g. Unown's animation files).
+# For INCLUDE/INCBIN dependencies, this logic now lives in tools/scan_includes
+# via its --build-prefix option.
+#
+# For other rules (e.g. compression), keep the Makefile-side heuristic:
+# if a dependency path exists in the source tree, keep it as-is; otherwise,
+# assume it is generated into $(BUILDDIR)/.
 define map_build_deps
 $(strip \
 	$(foreach dep,$1,\
@@ -158,9 +160,11 @@ $(strip \
 )
 endef
 
-preinclude_deps := includes.asm $(call map_build_deps,$(shell tools/scan_includes includes.asm))
+SCAN_INCLUDES := tools/scan_includes --build-prefix $(BUILDDIR)
+
+preinclude_deps := includes.asm $(shell $(SCAN_INCLUDES) includes.asm)
 define DEP
-$1: $2 $$(call map_build_deps,$$(shell tools/scan_includes $2)) $(preinclude_deps) | $(BUILDDIR)/rgbdscheck.o
+$1: $2 $$(shell $(SCAN_INCLUDES) $2) $(preinclude_deps) | $(BUILDDIR)/rgbdscheck.o
 	@mkdir -p $$(dir $$@)
 	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
 endef
