@@ -13,23 +13,6 @@ struct Options {
 
 struct Options options = {0};
 
-bool has_build_prefix(const char *path) {
-	if (!options.build_prefix || !*options.build_prefix) {
-		return false;
-	}
-	size_t prefix_len = strlen(options.build_prefix);
-	// `path` must start with `options.build_prefix`
-	if (strncmp(path, options.build_prefix, prefix_len)) {
-		return false;
-	}
-	// if `options.build_prefix` ends with a '/', then path is just "prefix/..."
-	if (options.build_prefix[prefix_len - 1] == '/') {
-		return true;
-	}
-	// if not, we need to check against `path` being "prefixandmore/..."
-	return path[prefix_len] == '/' || path[prefix_len] == '\0';
-}
-
 char *join_build_prefix(const char *path) {
 	if (!options.build_prefix || !*options.build_prefix) {
 		size_t len = strlen(path) + 1;
@@ -135,7 +118,7 @@ void scan_file(const char *filename) {
 					include_path[length] = '\0';
 					const char *printed_path = include_path;
 					char *prefixed_path = NULL;
-					if (options.build_prefix && !has_build_prefix(include_path) && access(include_path, F_OK) != 0) {
+					if (options.build_prefix && access(include_path, F_OK) != 0) {
 						prefixed_path = join_build_prefix(include_path);
 						printed_path = prefixed_path;
 					}
