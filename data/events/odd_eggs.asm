@@ -1,37 +1,38 @@
 DEF NUM_ODD_EGGS EQU 14
 
-MACRO prob
-	DEF prob_total += \1
-	dw prob_total * $ffff / 100
+DEF odd_egg_prob_total = 0
+
+MACRO odd_egg_prob
+	DEF odd_egg_prob_total += \1
+	dw odd_egg_prob_total * $ffff / 100
 ENDM
 
 OddEggProbabilities:
 ; entries correspond to OddEggs (below)
 	table_width 2
-DEF prob_total = 0
 ; Pichu
-	prob 8
-	prob 1
+	odd_egg_prob 8
+	odd_egg_prob 1
 ; Cleffa
-	prob 16
-	prob 3
+	odd_egg_prob 16
+	odd_egg_prob 3
 ; Igglybuff
-	prob 16
-	prob 3
+	odd_egg_prob 16
+	odd_egg_prob 3
 ; Smoochum
-	prob 14
-	prob 2
+	odd_egg_prob 14
+	odd_egg_prob 2
 ; Magby
-	prob 10
-	prob 2
+	odd_egg_prob 10
+	odd_egg_prob 2
 ; Elekid
-	prob 12
-	prob 2
+	odd_egg_prob 12
+	odd_egg_prob 2
 ; Tyrogue
-	prob 10
-	prob 1
+	odd_egg_prob 10
+	odd_egg_prob 1
 	assert_table_length NUM_ODD_EGGS
-	assert prob_total == 100, "OddEggProbabilities do not sum to 100%!"
+	assert odd_egg_prob_total == 100, "OddEggProbabilities sum to {d:odd_egg_prob_total}%, not 100%!"
 
 OddEggs:
 	table_width NICKNAMED_MON_STRUCT_LENGTH
