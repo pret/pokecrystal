@@ -6700,7 +6700,7 @@ Function102ff5:
 	ret
 
 String_103002:
-	db   "その#を　こうかんすると"
+	db   "その<POKEMON_JP>を　こうかんすると"
 	next "せんとう　できなく　なっちゃうよ！"
 	db   "@"
 

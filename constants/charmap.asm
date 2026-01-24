@@ -211,18 +211,19 @@
 
 ; Japanese control characters (see home/text.asm)
 
-	charmap "<JP_18>",   $18 ; "ノ゛" (ungrammatical)
-	charmap "<NI>",      $1d ; "に　"
-	charmap "<TTE>",     $1e ; "って"
-	charmap "<WO>",      $1f ; "を　"
-	charmap "<TA!>",     $22 ; "た！"
-	charmap "<KOUGEKI>", $23 ; "こうげき"
-	charmap "<WA>",      $24 ; "は　"
-	charmap "<NO>",      $25 ; "の　"
-	charmap "<ROUTE>",   $35 ; "ばん　どうろ"
-	charmap "<WATASHI>", $36 ; "わたし"
-	charmap "<KOKO_WA>", $37 ; "ここは"
-	charmap "<GA>",      $4a ; "が　"
+	charmap "<JP_18>",      $18 ; "ノ゛" (ungrammatical)
+	charmap "<NI>",         $1d ; "に　"
+	charmap "<TTE>",        $1e ; "って"
+	charmap "<WO>",         $1f ; "を　"
+	charmap "<TA!>",        $22 ; "た！"
+	charmap "<KOUGEKI>",    $23 ; "こうげき"
+	charmap "<WA>",         $24 ; "は　"
+	charmap "<NO>",         $25 ; "の　"
+	charmap "<ROUTE>",      $35 ; "ばん　どうろ"
+	charmap "<WATASHI>",    $36 ; "わたし"
+	charmap "<KOKO_WA>",    $37 ; "ここは"
+	charmap "<GA>",         $4a ; "が　"
+	charmap "<POKEMON_JP>", $54 ; "ポケモン"
 
 ; Japanese kana, for those bits of text that were not translated to English
 
