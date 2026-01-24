@@ -55,7 +55,7 @@ PokecomCenterAdminOfficeMobileComputer1:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "#　つうしん　クラブ@" ; # COM CLUB
+	db "<POKEMON>　つうしん　クラブ@" ; # COM CLUB
 	db "モバイルセンター@" ; MOBILE CENTER
 	db "やめる@" ; QUIT
 
