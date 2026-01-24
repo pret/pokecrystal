@@ -6548,10 +6548,10 @@ Function11b295:
 	ret
 
 String_11b2fe: ; unreferenced
-	db "あげる<POKEMON_JP>@"
+	db "あげる<POKEMON>@"
 
 String_11b303: ; unreferenced
-	db "ほしい<POKEMON_JP>@"
+	db "ほしい<POKEMON>@"
 
 String_11b308:
 	db "　　　　　@"
