@@ -1,5 +1,5 @@
 ; Matches pokered's "gate" tileset (notable for its Pewter Museum tiles)
-; https://tcrf.net/Pok%C3%A9mon_Gold_and_Silver#Unused_Tile_Palette_Assignment_Data
+; https://tcrf.net/Pok%C3%A9mon_Gold_and_Silver#Unused_Tileset_Palette_Data
 
 	tilepal 0, WATER, RED, YELLOW, YELLOW, RED, GREEN, GREEN, BROWN
 	tilepal 0, BROWN, BROWN, GRAY, GRAY, GRAY, GRAY, GRAY, GRAY
