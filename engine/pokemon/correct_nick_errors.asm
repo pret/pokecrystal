@@ -66,8 +66,9 @@ CorrectNickErrors::
 ; Similar to CheckStringForErrors (mobile/mobile_5f.asm),
 ; but there are some differences in which characters are considered valid.
 ; In this list:
-; • $00 is treated as invalid
-; • $5d is treated as valid (since it appears in OT names)
+; • $00 ('<NULL>') is treated as invalid
+; • $4e ('<NEXT>') is treated as invalid
+; • $5d ('<TRAINER>') is treated as valid (since it appears in OT names)
 ; • $60 - $7e are treated as invalid
 
 .textcommands
