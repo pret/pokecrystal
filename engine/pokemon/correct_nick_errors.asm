@@ -76,7 +76,7 @@ CorrectNickErrors::
 ; format:
 	;  ≥    <
 	db $00, $04 + 1 ; '<NULL>'   to 'オ゙'
-	db $14, $18 + 1 ; '<PLAY_G>' to 'ノ゙'
+	db $14, $18 + 1 ; '<PLAY_G>' to '<JP_18>' (ノ゙)
 	db $1d, $25 + 1 ; '<NI>'     to '<NO>'
 	db $35, $39 + 1 ; '<ROUTE>'  to '<GREEN>'
 	db $3f, $3f + 1 ; '<ENEMY>'

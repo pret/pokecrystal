@@ -197,7 +197,7 @@ CheckStringForErrors:
 	jr c, .Fail
 	cp $14 ; '<PLAY_G>'
 	jr c, .NextChar
-	cp $18 + 1 ; 'ノ゙'
+	cp $18 + 1 ; '<JP_18>' (ノ゙)
 	jr c, .Fail
 	cp $1d ; '<NI>'
 	jr c, .NextChar
@@ -244,7 +244,7 @@ CheckStringForErrors_IgnoreTerminator:
 	jr c, .end
 	cp $14 ; '<PLAY_G>'
 	jr c, .next
-	cp $18 + 1 ; 'ノ゙'
+	cp $18 + 1 ; '<JP_18>' (ノ゙)
 	jr c, .end
 	cp $1d ; '<NI>'
 	jr c, .next
