@@ -233,7 +233,7 @@ CheckStringForErrors_IgnoreTerminator:
 	inc de
 	and a
 	jr z, .next
-	cp $5f + 1 ; '<DEXEND>'
+	cp FIRST_REGULAR_TEXT_CHAR ; $60
 	jr nc, .next
 	cp '<NEXT>'
 	jr z, .next
