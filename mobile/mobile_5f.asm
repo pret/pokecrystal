@@ -189,10 +189,11 @@ CheckStringForErrors:
 	jr z, .NextChar
 	cp FIRST_REGULAR_TEXT_CHAR ; $60
 	jr nc, .NextChar
-	cp '<NEXT>'
+	cp '<NEXT>' ; $4e
 	jr z, .NextChar
-	cp '@'
+	cp '@' ; $50
 	jr z, .Done
+	
 	cp $04 + 1 ; 'オ゙'
 	jr c, .Fail
 	cp $14 ; '<PLAY_G>'
@@ -227,17 +228,17 @@ CheckStringForErrors:
 	ret
 
 CheckStringForErrors_IgnoreTerminator:
-; Find control chars
+; Same as CheckStringForErrors, but ignores the string terminator (@)
 .loop
 	ld a, [de]
 	inc de
-	and a
+	and a ; "<NULL>"
 	jr z, .next
 	cp FIRST_REGULAR_TEXT_CHAR ; $60
 	jr nc, .next
-	cp '<NEXT>'
+	cp '<NEXT>' ; $4e
 	jr z, .next
-	cp '@'
+	cp '@' ; $50
 	jr z, .next
 
 	cp $04 + 1 ; 'オ゙'
