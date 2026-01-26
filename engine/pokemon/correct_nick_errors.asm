@@ -66,7 +66,7 @@ CorrectNickErrors::
 ; Similar to CheckStringForErrors (mobile/mobile_5f.asm),
 ; but there are some differences in which characters are considered valid.
 ; In this list:
-; • $0 is treated as invalid
+; • $00 is treated as invalid
 ; • $5d is treated as valid (since it appears in OT names)
 ; • $60 - $7e are treated as invalid
 

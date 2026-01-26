@@ -176,12 +176,12 @@ CheckStringForErrors:
 ; Similar to CorrectNickErrors (engine/pokemon/correct_nick_errors.asm),
 ; but there are some differences in which characters are considered valid.
 ; In this list:
-; • $0 is treated as valid
+; • $00 is treated as valid
 ; • $5d is treated as invalid
 ; • $60 - $7e are treated as valid
 
 ; Valid character ranges:
-; $0, $5 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
+; $00, $05 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
 .loop
 	ld a, [de]
 	inc de
