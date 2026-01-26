@@ -121,17 +121,17 @@ RestartClock:
 	push af
 	call .PrintTime
 	pop af
-	bit 0, a
+	bit B_PAD_A, a
 	jr nz, .press_A
-	bit 1, a
+	bit B_PAD_B, a
 	jr nz, .press_B
-	bit 6, a
+	bit B_PAD_UP, a
 	jr nz, .pressed_up
-	bit 7, a
+	bit B_PAD_DOWN, a
 	jr nz, .pressed_down
-	bit 5, a
+	bit B_PAD_LEFT, a
 	jr nz, .pressed_left
-	bit 4, a
+	bit B_PAD_RIGHT, a
 	jr nz, .pressed_right
 	jr .joy_loop
 
@@ -205,10 +205,10 @@ RestartClock:
 	decoord 11, 8
 	farcall PrintHoursMins
 	ld a, [wRestartClockPrevDivision]
-	lb de, " ", " "
+	lb de, ' ', ' '
 	call .PlaceChars
 	ld a, [wRestartClockCurDivision]
-	lb de, "▲", "▼"
+	lb de, '▲', '▼'
 	call .PlaceChars
 	ld a, [wRestartClockCurDivision]
 	ld [wRestartClockPrevDivision], a

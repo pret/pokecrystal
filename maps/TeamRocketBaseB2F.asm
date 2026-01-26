@@ -107,7 +107,7 @@ RocketBaseBossFScript:
 	writetext RocketBaseBossRetreatText
 	waitbutton
 	closetext
-	special FadeBlackQuickly
+	special FadeOutToBlack
 	special ReloadSpritesNoPalettes
 	disappear TEAMROCKETBASEB2F_ROCKET1
 	disappear TEAMROCKETBASEB2F_ROCKET_GIRL
@@ -115,7 +115,7 @@ RocketBaseBossFScript:
 	disappear TEAMROCKETBASEB2F_ROCKET3
 	disappear TEAMROCKETBASEB2F_ROCKET4
 	pause 15
-	special FadeInQuickly
+	special FadeInFromBlack
 	setscene SCENE_TEAMROCKETBASEB2F_ELECTRODES
 	clearevent EVENT_TEAM_ROCKET_BASE_B2F_LANCE
 	turnobject TEAMROCKETBASEB2F_LANCE, DOWN
@@ -164,11 +164,11 @@ LanceHealsCommon:
 	writetext LanceHealsText1
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special FadeOutToWhite
 	special StubbedTrainerRankings_Healings
 	playsound SFX_FULL_HEAL
 	special HealParty
-	special FadeInPalettes
+	special FadeInFromWhite
 	opentext
 	writetext LanceHealsText2
 	waitbutton
@@ -329,7 +329,7 @@ TeamRocketBaseB2FLockedDoor:
 	waitbutton
 	playsound SFX_ENTER_DOOR
 	changeblock 14, 12, $07 ; floor
-	reloadmappart
+	refreshmap
 	closetext
 	setevent EVENT_OPENED_DOOR_TO_ROCKET_HIDEOUT_TRANSMITTER
 	waitsfx

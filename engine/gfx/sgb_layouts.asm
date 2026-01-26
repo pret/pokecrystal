@@ -22,7 +22,8 @@ LoadSGBLayout:
 	jp hl
 
 SGBLayoutJumptable:
-	table_width 2, SGBLayoutJumptable
+; entries correspond to SCGB_* constants (see constants/scgb_constants.asm)
+	table_width 2
 	dw .SGB_BattleGrayscale
 	dw .SGB_BattleColors
 	dw .SGB_PokegearPals

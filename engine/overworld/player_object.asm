@@ -6,14 +6,14 @@ BlankScreen:
 	call ClearSprites
 	hlcoord 0, 0
 	ld bc, wTilemapEnd - wTilemap
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	hlcoord 0, 0, wAttrmap
 	ld bc, wAttrmapEnd - wAttrmap
 	ld a, $7
 	call ByteFill
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 SpawnPlayer:
@@ -153,13 +153,13 @@ CopyObjectStruct::
 	ld d, h
 	ld e, l
 	call CopyMapObjectToObjectStruct
-	ld hl, wVramState
-	bit 7, [hl]
+	ld hl, wStateFlags
+	bit SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ret z
 
 	ld hl, OBJECT_FLAGS2
 	add hl, de
-	set 5, [hl]
+	set FROZEN_F, [hl]
 	ret
 
 CopyMapObjectToObjectStruct:
@@ -194,7 +194,7 @@ CopyMapObjectToObjectStruct:
 	and MAPOBJECT_PALETTE_MASK
 	jr z, .skip_color_override
 	swap a
-	and PALETTE_MASK
+	and OAM_PALETTE
 	ld [wTempObjectCopyPalette], a
 
 .skip_color_override

@@ -105,8 +105,8 @@ _ResetWRAM:
 	xor a
 	call ByteFill
 
-	ld hl, WRAM1_Begin
-	ld bc, wGameData - WRAM1_Begin
+	ld hl, STARTOF(WRAMX)
+	ld bc, wGameData - STARTOF(WRAMX)
 	xor a
 	call ByteFill
 
@@ -245,13 +245,13 @@ SetDefaultBoxNames:
 	cp 10
 	jr c, .less
 	sub 10
-	ld [hl], "1"
+	ld [hl], '1'
 	inc hl
 
 .less
-	add "0"
+	add '0'
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	pop hl
 	ld de, 9
 	add hl, de
@@ -402,7 +402,7 @@ PostCreditsSpawn:
 Continue_MobileAdapterMenu: ; unused
 	farcall CheckMobileAdapterStatus
 	ret nc
-	ld hl, wd479
+	ld hl, wCrystalFlags
 	bit 1, [hl]
 	ret nz
 	ld a, 5
@@ -431,9 +431,9 @@ ConfirmContinue:
 	call DelayFrame
 	call GetJoypad
 	ld hl, hJoyPressed
-	bit A_BUTTON_F, [hl]
+	bit B_PAD_A, [hl]
 	jr nz, .PressA
-	bit B_BUTTON_F, [hl]
+	bit B_PAD_B, [hl]
 	jr z, .loop
 	scf
 	ret
@@ -443,7 +443,7 @@ ConfirmContinue:
 
 Continue_CheckRTC_RestartClock:
 	call CheckRTCStatus
-	and %10000000 ; Day count exceeded 16383
+	and RTC_RESET
 	jr z, .pass
 	farcall RestartClock
 	ld a, c
@@ -462,10 +462,10 @@ FinishContinueFunction:
 	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
 	ld hl, wGameTimerPaused
-	set GAME_TIMER_PAUSED_F, [hl]
+	set GAME_TIMER_COUNTING_F, [hl]
 	res GAME_TIMER_MOBILE_F, [hl]
-	ld hl, wEnteredMapFromContinue
-	set 1, [hl]
+	ld hl, wMapNameSignFlags
+	set SHOWN_MAP_NAME_SIGN, [hl]
 	farcall OverworldLoop
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_RED
@@ -478,7 +478,7 @@ FinishContinueFunction:
 
 DisplaySaveInfoOnContinue:
 	call CheckRTCStatus
-	and %10000000
+	and RTC_RESET
 	jr z, .clock_ok
 	lb de, 4, 8
 	call DisplayContinueDataWithRTCError
@@ -622,7 +622,7 @@ Continue_DisplayGameTime:
 	ld de, wGameTimeHours
 	lb bc, 2, 3
 	call PrintNum
-	ld [hl], "<COLON>"
+	ld [hl], '<COLON>'
 	inc hl
 	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
@@ -780,9 +780,9 @@ NamePlayer:
 	ret
 
 .Chris:
-	db "CHRIS@@@@@@"
+	dname "CHRIS", NAME_LENGTH
 .Kris:
-	db "KRIS@@@@@@@"
+	dname "KRIS", NAME_LENGTH
 
 GSShowPlayerNamingChoices: ; unreferenced
 	call LoadMenuHeader
@@ -794,7 +794,7 @@ GSShowPlayerNamingChoices: ; unreferenced
 	ret
 
 StorePlayerName:
-	ld a, "@"
+	ld a, '@'
 	ld bc, NAME_LENGTH
 	ld hl, wPlayerName
 	call ByteFill
@@ -973,10 +973,10 @@ IntroSequence:
 	; fallthrough
 
 StartTitleScreen:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wLYOverrides)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call .TitleScreen
 	call DelayFrame
@@ -988,10 +988,10 @@ StartTitleScreen:
 	call ClearBGPalettes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, rLCDC
-	res rLCDC_SPRITE_SIZE, [hl] ; 8x8
+	res B_LCDC_OBJ_SIZE, [hl] ; 8x8
 	call ClearScreen
 	call WaitBGMap2
 	xor a
@@ -1033,7 +1033,7 @@ StartTitleScreen:
 
 RunTitleScreen:
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .done_title
 	call TitleScreenScene
 	farcall SuicuneFrameIterator
@@ -1158,8 +1158,8 @@ TitleScreenMain:
 	call GetJoypad
 	ld hl, hJoyDown
 	ld a, [hl]
-	and D_UP + B_BUTTON + SELECT
-	cp  D_UP + B_BUTTON + SELECT
+	and PAD_UP + PAD_B + PAD_SELECT
+	cp  PAD_UP + PAD_B + PAD_SELECT
 	jr z, .delete_save_data
 
 ; To bring up the clock reset dialog:
@@ -1170,8 +1170,8 @@ TitleScreenMain:
 	jr z, .check_clock_reset
 
 	ld a, [hl]
-	and D_DOWN + B_BUTTON + SELECT
-	cp  D_DOWN + B_BUTTON + SELECT
+	and PAD_DOWN + PAD_B + PAD_SELECT
+	cp  PAD_DOWN + PAD_B + PAD_SELECT
 	jr nz, .check_start
 
 	ld a, $34
@@ -1181,21 +1181,21 @@ TitleScreenMain:
 ; Keep Select pressed, and hold Left + Up.
 ; Then let go of Select.
 .check_clock_reset
-	bit SELECT_F, [hl]
+	bit B_PAD_SELECT, [hl]
 	jr nz, .check_start
 
 	xor a
 	ldh [hClockResetTrigger], a
 
 	ld a, [hl]
-	and D_LEFT + D_UP
-	cp  D_LEFT + D_UP
+	and PAD_LEFT + PAD_UP
+	cp  PAD_LEFT + PAD_UP
 	jr z, .reset_clock
 
 ; Press Start or A to start the game.
 .check_start
 	ld a, [hl]
-	and START | A_BUTTON
+	and PAD_START | PAD_A
 	jr nz, .incave
 	ret
 
@@ -1211,7 +1211,7 @@ TitleScreenMain:
 
 ; Return to the intro sequence.
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .end
@@ -1236,7 +1236,7 @@ TitleScreenMain:
 
 ; Return to the intro sequence.
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 TitleScreenEnd:
@@ -1254,7 +1254,7 @@ TitleScreenEnd:
 
 ; Back to the intro.
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 DeleteSaveData:
@@ -1266,7 +1266,7 @@ ResetClock:
 	jp Init
 
 UpdateTitleTrailSprite: ; unreferenced
-	; If bit 0 or 1 of [wTitleScreenTimer] is set, we don't need to be here.
+	; Only update every 4 seconds, when the low 2 bits of [wTitleScreenTimer] are 0.
 	ld a, [wTitleScreenTimer]
 	and %00000011
 	ret nz
@@ -1279,7 +1279,7 @@ UpdateTitleTrailSprite: ; unreferenced
 	add hl, hl
 	ld de, .TitleTrailCoords
 	add hl, de
-	; If bit 2 of [wTitleScreenTimer] is set, get the second coords; else, get the first coords
+	; Every 8 seconds (i.e. every other update), get the second coords; else, get the first coords
 	ld a, [wTitleScreenTimer]
 	and %00000100
 	srl a

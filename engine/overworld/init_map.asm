@@ -17,8 +17,8 @@ ReanchorBGMap_NoOAMUpdate::
 	pop af
 	ldh [hOAMUpdate], a
 
-	ld hl, wVramState
-	set 6, [hl]
+	ld hl, wStateFlags
+	set TEXT_STATE_F, [hl]
 	ret
 
 .ReanchorBGMap:
@@ -27,10 +27,10 @@ ReanchorBGMap_NoOAMUpdate::
 	ldh [hBGMapMode], a
 	ld a, $90
 	ldh [hWY], a
-	call OverworldTextModeSwitch
+	call LoadOverworldTilemapAndAttrmapPals
 	ld a, HIGH(vBGMap1)
 	call .LoadBGMapAddrIntoHRAM
-	call _OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	call HDMATransferTilemapAndAttrmap_Menu
 	farcall LoadOW_BGPal7
 	farcall ApplyPals
 	ld a, TRUE
@@ -78,27 +78,27 @@ LoadFonts_NoOAMUpdate::
 	ret
 
 HDMATransfer_FillBGMap0WithBlack:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
-	ld a, "■"
+	ld a, '■'
 	ld hl, wDecompressScratch
 	ld bc, wScratchAttrmap - wDecompressScratch
 	call ByteFill
 	ld a, HIGH(wDecompressScratch)
-	ldh [rHDMA1], a
+	ldh [rVDMA_SRC_HIGH], a
 	ld a, LOW(wDecompressScratch)
-	ldh [rHDMA2], a
-	ld a, HIGH(vBGMap0 - VRAM_Begin)
-	ldh [rHDMA3], a
-	ld a, LOW(vBGMap0 - VRAM_Begin)
-	ldh [rHDMA4], a
+	ldh [rVDMA_SRC_LOW], a
+	ld a, HIGH(vBGMap0 - STARTOF(VRAM))
+	ldh [rVDMA_DEST_HIGH], a
+	ld a, LOW(vBGMap0 - STARTOF(VRAM))
+	ldh [rVDMA_DEST_LOW], a
 	ld a, $3f
 	ldh [hDMATransfer], a
 	call DelayFrame
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret

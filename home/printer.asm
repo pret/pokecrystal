@@ -5,7 +5,7 @@ PrinterReceive::
 AskSerial::
 ; send out a handshake while serial int is off
 	ld a, [wPrinterConnectionOpen]
-	bit 0, a
+	bit PRINTER_CONNECTION_OPEN, a
 	ret z
 
 ; if we're still interpreting data, don't try to receive
@@ -31,11 +31,11 @@ AskSerial::
 	ldh [rSB], a
 
 ; switch to internal clock
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
 
 ; start transfer
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 
 	ret

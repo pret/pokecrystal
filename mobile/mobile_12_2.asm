@@ -173,7 +173,7 @@ MobileCheckOwnMonAnywhere:
 	ret
 
 .BoxAddresses:
-	table_width 3, MobileCheckOwnMonAnywhere.BoxAddresses
+	table_width 3
 for n, 1, NUM_BOXES + 1
 	dba sBox{d:n}
 endr
@@ -221,7 +221,7 @@ Function4a94e:
 	ld [wd019], a
 	ld b, SCGB_PACKPALS
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call Function4aa22
 	jr c, .asm_4a985
 	jr z, .asm_4a9a1
@@ -342,10 +342,10 @@ Function4aa34:
 	farcall WritePartyMenuTilemap
 	xor a
 	ld [wPartyMenuActionText], a
-	farcall PrintPartyMenuText
+	farcall PlacePartyMenuText
 	call Function4aab6
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DelayFrame
 	call Function4ab1a
 	jr z, .asm_4aa66

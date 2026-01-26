@@ -11,15 +11,15 @@ ResetGameTime::
 GameTimer::
 	nop
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wGameTime)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call .Function
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .Function:
@@ -33,12 +33,12 @@ GameTimer::
 
 ; Is the timer paused?
 	ld hl, wGameTimerPaused
-	bit GAME_TIMER_PAUSED_F, [hl]
+	bit GAME_TIMER_COUNTING_F, [hl]
 	ret z
 
 ; Is the timer already capped?
 	ld hl, wGameTimeCap
-	bit 0, [hl]
+	bit GAME_TIME_CAPPED, [hl]
 	ret nz
 
 ; +1 frame
@@ -103,7 +103,7 @@ GameTimer::
 	jr c, .ok
 
 	ld hl, wGameTimeCap
-	set 0, [hl]
+	set GAME_TIME_CAPPED, [hl]
 
 	ld a, 59 ; 999:59:59.00
 	ld [wGameTimeMinutes], a

@@ -1,6 +1,6 @@
 ElevatorFloorNames:
 ; entries correspond to FLOOR_* constants
-	table_width 2, ElevatorFloorNames
+	table_width 2
 	dw .B4F
 	dw .B3F
 	dw .B2F

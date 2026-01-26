@@ -1,6 +1,6 @@
 SpriteAnimObjects:
 ; entries correspond to SPRITE_ANIM_OBJ_* constants (see constants/sprite_anim_constants.asm)
-	table_width 3, SpriteAnimObjects
+	table_width 3
 	; frameset, sequence, tile
 ; SPRITE_ANIM_OBJ_PARTY_MON
 	db SPRITE_ANIM_FRAMESET_PARTY_MON,                 SPRITE_ANIM_FUNC_PARTY_MON,                 SPRITE_ANIM_DICT_DEFAULT

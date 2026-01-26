@@ -22,7 +22,7 @@ PokecomCenterAdminOfficeMobileComputer1:
 	writetext PokecomCenterAdminOfficeMobileComputer1Text
 	waitbutton
 .loop:
-	reloadmappart
+	refreshmap
 	loadmenu .Computer1MenuHeader
 	verticalmenu
 	closewindow
@@ -55,7 +55,7 @@ PokecomCenterAdminOfficeMobileComputer1:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "#　つうしん　クラブ@" ; # COM CLUB
+	db "<POKEMON>　つうしん　クラブ@" ; # COM CLUB
 	db "モバイルセンター@" ; MOBILE CENTER
 	db "やめる@" ; QUIT
 
@@ -64,7 +64,7 @@ PokecomCenterAdminOfficeMobileComputer2:
 	writetext PokecomCenterAdminOfficeMobileComputer2Text
 	waitbutton
 .loop:
-	reloadmappart
+	refreshmap
 	loadmenu .Computer2MenuHeader
 	verticalmenu
 	closewindow

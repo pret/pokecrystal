@@ -11,7 +11,7 @@ CorrectNickErrors::
 .checkchar
 ; end of nick?
 	ld a, [de]
-	cp "@" ; terminator
+	cp '@' ; terminator
 	jr z, .end
 
 ; check if this char is a text command
@@ -34,8 +34,8 @@ CorrectNickErrors::
 	cp [hl]
 	jr nc, .loop
 
-; replace it with a "?"
-	ld a, "?"
+; replace it with a '?'
+	ld a, '?'
 	ld [de], a
 	jr .loop
 
@@ -49,10 +49,10 @@ CorrectNickErrors::
 ; change nick to "?@"
 	pop de
 	push de
-	ld a, "?"
+	ld a, '?'
 	ld [de], a
 	inc de
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 .end
 ; if the nick has any errors at this point it's out of our hands
@@ -75,11 +75,11 @@ CorrectNickErrors::
 
 ; format:
 	;  ≥    <
-	db $00, $04 + 1 ; "<NULL>"   to "オ゙"
-	db $14, $18 + 1 ; "<PLAY_G>" to "ノ゙"
-	db $1d, $25 + 1 ; "<NI>"     to "<NO>"
-	db $35, $39 + 1 ; "<ROUTE>"  to "<GREEN>"
-	db $3f, $3f + 1 ; "<ENEMY>"
-	db $49, $5c + 1 ; "<MOM>"    to "<TM>"
-	db $5e, $7e + 1 ; "<ROCKET>" to "┘"
+	db $00, $04 + 1 ; '<NULL>'   to 'オ゙'
+	db $14, $18 + 1 ; '<PLAY_G>' to 'ノ゙'
+	db $1d, $25 + 1 ; '<NI>'     to '<NO>'
+	db $35, $39 + 1 ; '<ROUTE>'  to '<GREEN>'
+	db $3f, $3f + 1 ; '<ENEMY>'
+	db $49, $5c + 1 ; '<MOM>'    to '<TM>'
+	db $5e, $7e + 1 ; '<ROCKET>' to '┘'
 	db -1 ; end

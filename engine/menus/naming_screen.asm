@@ -1,8 +1,8 @@
 DEF NAMINGSCREEN_CURSOR     EQU $7e ; "┘"
 
-DEF NAMINGSCREEN_BORDER     EQU $60 ; "■"
-DEF NAMINGSCREEN_MIDDLELINE EQU $eb ; "→"
-DEF NAMINGSCREEN_UNDERLINE  EQU $f2 ; "<DOT>"
+DEF NAMINGSCREEN_BORDER     EQU $60 ; '■'
+DEF NAMINGSCREEN_MIDDLELINE EQU $eb ; '→'
+DEF NAMINGSCREEN_UNDERLINE  EQU $f2 ; '<DOT>'
 
 _NamingScreen:
 	call DisableSpriteUpdates
@@ -55,16 +55,16 @@ NamingScreen:
 	call .GetNamingScreenSetup
 	call WaitBGMap
 	call WaitTop
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call NamingScreen_InitNameEntry
 	ret
 
 .GetNamingScreenSetup:
 	ld a, [wNamingScreenType]
-	maskbits NUM_NAME_TYPES
+	maskbits NUM_NAMING_SCREEN_TYPES
 	ld e, a
 	ld d, 0
-	ld hl, .Jumptable
+	ld hl, NamingScreenJumptable
 	add hl, de
 	add hl, de
 	ld a, [hli]
@@ -72,16 +72,18 @@ NamingScreen:
 	ld l, a
 	jp hl
 
-.Jumptable:
-; entries correspond to NAME_* constants
+NamingScreenJumptable:
+; entries correspond to NAME_* constants (see constants/menu_constants.asm)
+	table_width 2
 	dw .Pokemon
 	dw .Player
 	dw .Rival
 	dw .Mom
 	dw .Box
-	dw .Tomodachi
+	dw .Friend
 	dw .Pokemon
 	dw .Pokemon
+	assert_table_length NUM_NAMING_SCREEN_TYPES
 
 .Pokemon:
 	ld a, [wCurPartySpecies]
@@ -104,9 +106,9 @@ NamingScreen:
 	call PlaceString
 	farcall GetGender
 	jr c, .genderless
-	ld a, "♂"
+	ld a, '♂'
 	jr nz, .place_gender
-	ld a, "♀"
+	ld a, '♀'
 .place_gender
 	hlcoord 1, 2
 	ld [hl], a
@@ -180,14 +182,14 @@ NamingScreen:
 .BoxNameString:
 	db "BOX NAME?@"
 
-.Tomodachi:
+.Friend:
 	hlcoord 3, 2
-	ld de, .oTomodachi_no_namae_sutoringu
+	ld de, .FriendsNameString
 	call PlaceString
 	call .StoreSpriteIconParams
 	ret
 
-.oTomodachi_no_namae_sutoringu
+.FriendsNameString:
 	db "おともだち　の　なまえは？@"
 
 .LoadSprite:
@@ -260,7 +262,7 @@ NamingScreen_IsTargetBox:
 NamingScreen_InitText:
 	call WaitTop
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, NAMINGSCREEN_BORDER
 	call ByteFill
 	hlcoord 1, 1
@@ -322,7 +324,7 @@ NamingScreen_ApplyTextInputMode:
 NamingScreenJoypadLoop:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	call .RunJumptable
 	farcall PlaySpriteAnimationsAndDelayFrame
@@ -396,16 +398,16 @@ NamingScreenJoypadLoop:
 .ReadButtons:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 	ld a, [hl]
-	and START
+	and PAD_START
 	jr nz, .start
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 	ret
 
@@ -444,7 +446,7 @@ NamingScreenJoypadLoop:
 .end
 	call NamingScreen_StoreEntry
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .select
@@ -551,16 +553,16 @@ NamingScreen_AnimateCursor:
 .GetDPad:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ret
 
@@ -681,7 +683,7 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 	inc [hl]
 	call NamingScreen_GetTextCursorPosition
 	ld a, [hl]
-	cp "@"
+	cp '@'
 	jr z, .end_of_string
 	ld [hl], NAMINGSCREEN_UNDERLINE
 	and a
@@ -761,7 +763,7 @@ NamingScreen_InitNameEntry:
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	ld [hl], "@"
+	ld [hl], '@'
 	ret
 
 NamingScreen_StoreEntry:
@@ -778,7 +780,7 @@ NamingScreen_StoreEntry:
 	cp NAMINGSCREEN_UNDERLINE
 	jr nz, .not_terminator
 .terminator
-	ld [hl], "@"
+	ld [hl], '@'
 .not_terminator
 	inc hl
 	dec c
@@ -957,7 +959,7 @@ _ComposeMailMessage:
 	ld d, [hl]
 	ld hl, MAIL_LINE_LENGTH
 	add hl, de
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 
 .MailIcon:
@@ -979,7 +981,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	call ByteFill
 	hlcoord 0, 6
 	ld bc, 12 * SCREEN_WIDTH
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	hlcoord 1, 1
 	lb bc, 4, SCREEN_WIDTH - 2
@@ -1008,7 +1010,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 .DoMailEntry:
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .exit_mail
 	call .DoJumptable
 	farcall PlaySpriteAnimationsAndDelayFrame
@@ -1070,16 +1072,16 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 .process_joypad
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 	ld a, [hl]
-	and START
+	and PAD_START
 	jr nz, .start
 	ld a, [hl]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 	ret
 
@@ -1102,7 +1104,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	call NamingScreen_GetTextCursorPosition
 	ld [hl], NAMINGSCREEN_UNDERLINE
 	dec hl
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 
 .start
@@ -1128,13 +1130,13 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	call NamingScreen_GetTextCursorPosition
 	ld [hl], NAMINGSCREEN_UNDERLINE
 	inc hl
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	ret
 
 .finished
 	call NamingScreen_StoreEntry
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .select
@@ -1197,16 +1199,16 @@ ComposeMail_AnimateCursor:
 .GetDPad:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ret
 

@@ -45,17 +45,17 @@ Toss_Sell_Loop:
 
 BuySellToss_InterpretJoypad:
 	call JoyTextDelay_ForcehJoyDown ; get joypad
-	bit B_BUTTON_F, c
+	bit B_PAD_B, c
 	jr nz, .b
-	bit A_BUTTON_F, c
+	bit B_PAD_A, c
 	jr nz, .a
-	bit D_DOWN_F, c
+	bit B_PAD_DOWN, c
 	jr nz, .down
-	bit D_UP_F, c
+	bit B_PAD_UP, c
 	jr nz, .up
-	bit D_LEFT_F, c
+	bit B_PAD_LEFT, c
 	jr nz, .left
-	bit D_RIGHT_F, c
+	bit B_PAD_RIGHT, c
 	jr nz, .right
 	and a
 	ret
@@ -128,7 +128,7 @@ BuySellToss_UpdateQuantityDisplay:
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
-	ld [hl], "×"
+	ld [hl], '×'
 	inc hl
 	ld de, wItemQuantityChange
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2

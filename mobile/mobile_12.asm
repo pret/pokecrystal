@@ -9,7 +9,7 @@ InitMobileProfile:
 	call z, InitCrystalData
 	call ClearBGPalettes
 	call Function48d3d
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	bit 1, a
 	jr z, .not_yet_initialized
 	ld a, [wd003]
@@ -94,7 +94,7 @@ InitMobileProfile:
 .asm_48113
 	hlcoord 11, 6
 	call Function487ec
-	ld a, [wd474]
+	ld a, [wPlayerPrefecture]
 	dec a
 	ld hl, Prefectures
 	call GetNthString
@@ -113,7 +113,7 @@ InitMobileProfile:
 	call PlaceString
 	call Function48187
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
@@ -126,16 +126,16 @@ Function48157:
 	ld b, [hl]
 	push bc
 asm_4815f:
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, Function4820d
 	ld b, a
 	ld a, [wd002]
 	bit 6, a
 	jr z, .dont_check_b_button
-	ld hl, wd479
+	ld hl, wCrystalFlags
 	bit 1, [hl]
 	jr z, .dont_check_b_button
-	bit B_BUTTON_F, b
+	bit B_PAD_B, b
 	jr nz, .b_button
 .dont_check_b_button
 	jp Function48272
@@ -149,7 +149,7 @@ asm_4815f:
 	ret
 
 Function48187:
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	bit 1, a
 	jr nz, .asm_481f1
 	ld a, [wd003]
@@ -190,7 +190,7 @@ Function48187:
 .asm_481db
 	bit 3, d
 	jr nz, .asm_481f1
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	bit 0, a
 	jr nz, .asm_481f8
 	lb bc, 1, 8
@@ -198,7 +198,7 @@ Function48187:
 	call ClearBox
 	jr .asm_48201
 .asm_481f1
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	bit 0, a
 	jr nz, .asm_48201
 .asm_481f8
@@ -257,7 +257,7 @@ Function4820d:
 	call ClearTilemap
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	ld hl, wd479
+	ld hl, wCrystalFlags
 	set 1, [hl]
 	xor a
 	ret
@@ -344,7 +344,7 @@ Function48304:
 	ld a, [wMenuScrollPosition]
 	ld c, a
 	push bc
-	ld a, [wd474]
+	ld a, [wPlayerPrefecture]
 	dec a
 	cp $29
 	jr c, .asm_4833f
@@ -354,7 +354,7 @@ Function48304:
 	ld a, $29
 .asm_4833f
 	ld [wMenuScrollPosition], a
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 .asm_48348
 	call ScrollingMenu
 	ld de, $629
@@ -380,7 +380,7 @@ Function48304:
 	ld [wd003], a
 .asm_48377
 	call Function48187
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	jp Function4840c
 
 Function48383:
@@ -424,7 +424,7 @@ Function483bb:
 	ld hl, wScrollingMenuCursorPosition
 	ld a, [hl]
 	inc a
-	ld [wd474], a
+	ld [wPlayerPrefecture], a
 	dec a
 	ld b, a
 	ld hl, Prefectures
@@ -433,7 +433,7 @@ Function483bb:
 	jr z, .asm_483d5
 .asm_483cb
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr nz, .asm_483cb
 	ld a, b
 	dec a
@@ -465,7 +465,7 @@ Function483e8:
 	jr z, .asm_48405
 .asm_483fc
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr nz, .asm_483fc
 	ld a, d
 	dec a
@@ -689,7 +689,7 @@ Function486bf:
 	ld [hli], a ; init x
 	ld a, [wd002]
 	bit 6, a
-	jr nz, .check_wd479
+	jr nz, .check_flags
 	call Function48725
 	ld a, 4
 	jr nc, .got_num_rows_1
@@ -698,8 +698,8 @@ Function486bf:
 	ld [hli], a
 	jr .got_num_rows_2
 
-.check_wd479
-	ld a, [wd479]
+.check_flags
+	ld a, [wCrystalFlags]
 	bit 1, a
 	jr nz, .four_rows
 	call Function48725
@@ -721,15 +721,15 @@ Function486bf:
 	ld [hli], a ; flags 2
 	ld a, $20
 	ld [hli], a ; cursor offsets
-	ld a, A_BUTTON
-	add D_UP
-	add D_DOWN
+	ld a, PAD_A
+	add PAD_UP
+	add PAD_DOWN
 	push af
 	ld a, [wd002]
 	bit 6, a
 	jr z, .got_joypad_mask
 	pop af
-	add B_BUTTON
+	add PAD_B
 	push af
 .got_joypad_mask
 	pop af
@@ -787,8 +787,8 @@ Function4873c:
 	ld [hli], a ; flags 2
 	ln a, 2, 0
 	ld [hli], a ; cursor offsets
-	ld a, A_BUTTON
-	add B_BUTTON
+	ld a, PAD_A
+	add PAD_B
 	ld [hli], a ; joypad filter
 	; ld a, [wPlayerGender]
 	; xor 1 << PLAYERGENDER_FEMALE_F
@@ -827,7 +827,7 @@ Function4876f:
 	ld c, $8
 	call Function48cdc
 	call WaitBGMap
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	and a
 	jr z, .asm_487ab
 	cp $64
@@ -849,7 +849,7 @@ Function4876f:
 	call Function487ec
 	ld c, 10
 	call DelayFrames
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	push af
 .asm_487c6
 	call JoyTextDelay
@@ -860,9 +860,9 @@ Function4876f:
 	pop bc
 	jr nz, .asm_487da
 	ld a, b
-	ld [wd473], a
+	ld [wPlayerAge], a
 .asm_487da
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	call ExitMenu
 	hlcoord 11, 6
 	call Function487ec
@@ -872,7 +872,7 @@ Function4876f:
 
 Function487ec:
 	push hl
-	ld de, wd473
+	ld de, wPlayerAge
 	call Function487ff
 	pop hl
 rept 4
@@ -884,7 +884,7 @@ endr
 
 Function487ff:
 	push hl
-	ld a, " "
+	ld a, ' '
 	ld [hli], a
 	ld [hl], a
 	pop hl
@@ -898,29 +898,29 @@ String_4880d:
 
 Function4880e:
 	ldh a, [hJoyPressed]
-	and A_BUTTON
+	and PAD_A
 	jp nz, Function488b9
 	ldh a, [hJoyPressed]
-	and B_BUTTON
+	and PAD_B
 	jp nz, Function488b4
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_48843
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_48838
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .asm_4884f
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .asm_4885f
 	call DelayFrame
 	and a
 	ret
 .asm_48838
-	ld hl, wd473
+	ld hl, wPlayerAge
 	ld a, [hl]
 	and a
 	jr z, .asm_48840
@@ -929,7 +929,7 @@ Function4880e:
 	ld [hl], a
 	jr .asm_4886f
 .asm_48843
-	ld hl, wd473
+	ld hl, wPlayerAge
 	ld a, [hl]
 	cp $64
 	jr nc, .asm_4884c
@@ -938,25 +938,25 @@ Function4880e:
 	ld [hl], a
 	jr .asm_4886f
 .asm_4884f
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	cp $5b
 	jr c, .asm_48858
 	ld a, $5a
 .asm_48858
 	add $a
-	ld [wd473], a
+	ld [wPlayerAge], a
 	jr .asm_4886f
 .asm_4885f
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	cp $a
 	jr nc, .asm_48868
 	ld a, $a
 .asm_48868
 	sub $a
-	ld [wd473], a
+	ld [wPlayerAge], a
 	jr .asm_4886f
 .asm_4886f
-	ld a, [wd473]
+	ld a, [wPlayerAge]
 	and a
 	jr z, .asm_48887
 	cp $64
@@ -1026,19 +1026,19 @@ Function488d3:
 	ld b, $1
 	ld c, $8
 	call Function48cdc
-	ld a, [wd475]
+	ld a, [wPlayerPostalCode]
 	and $f
 	ld d, $0
 	hlcoord 11, 10
 	call Function489ea
 	call WaitBGMap
-	ld a, [wd475]
+	ld a, [wPlayerPostalCode]
 	ld b, a
-	ld a, [wd476]
+	ld a, [wPlayerPostalCode+1]
 	ld c, a
-	ld a, [wd477]
+	ld a, [wPlayerPostalCode+2]
 	ld d, a
-	ld a, [wd478]
+	ld a, [wPlayerPostalCode+3]
 	ld e, a
 	push de
 	push bc
@@ -1127,20 +1127,20 @@ asm_48972:
 	jr nz, .asm_489b1
 	pop bc
 	ld a, b
-	ld [wd475], a
+	ld [wPlayerPostalCode], a
 	ld a, c
-	ld [wd476], a
+	ld [wPlayerPostalCode+1], a
 	pop bc
 	ld a, b
-	ld [wd477], a
+	ld [wPlayerPostalCode+2], a
 	ld a, c
-	ld [wd478], a
+	ld [wPlayerPostalCode+3], a
 	jr .asm_489c5
 .asm_489b1
 	push af
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	set 0, a
-	ld [wd479], a
+	ld [wCrystalFlags], a
 	ld a, [wd003]
 	set 3, a
 	ld [wd003], a
@@ -1170,36 +1170,36 @@ asm_48972:
 
 Function489ea:
 	push de
-	ld a, [wd475]
+	ld a, [wPlayerPostalCode]
 	and $f
 	call Mobile12_Bin2Dec
-	ld a, [wd476]
+	ld a, [wPlayerPostalCode+1]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wd476]
+	ld a, [wPlayerPostalCode+1]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
 	inc hl
 	ld de, String_48a38
 	call PlaceString
-	ld a, [wd477]
+	ld a, [wPlayerPostalCode+2]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wd477]
+	ld a, [wPlayerPostalCode+2]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wd478]
+	ld a, [wPlayerPostalCode+3]
 	and $f0
 	swap a
 	inc hl
 	call Mobile12_Bin2Dec
-	ld a, [wd478]
+	ld a, [wPlayerPostalCode+3]
 	and $f
 	inc hl
 	call Mobile12_Bin2Dec
@@ -1239,12 +1239,12 @@ Function48a3a:
 	ld a, [wd003]
 	set 3, a
 	ld [wd003], a
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	res 0, a
-	ld [wd479], a
+	ld [wCrystalFlags], a
 	xor a
 	ld bc, $4
-	ld hl, wd475
+	ld hl, wPlayerPostalCode
 	call ByteFill
 	jr Function48a9a
 .asm_48a98
@@ -1265,10 +1265,10 @@ String_48aa1:
 
 Function48ab5:
 	ldh a, [hJoyPressed]
-	and A_BUTTON
+	and PAD_A
 	jp nz, Function48c0f
 	ldh a, [hJoyPressed]
-	and B_BUTTON
+	and PAD_B
 	jp nz, Function48c0d
 	ld a, d
 	and a
@@ -1286,40 +1286,40 @@ Function48ab5:
 	cp $6
 	jr .asm_48b15
 .asm_48adf
-	ld hl, wd475
+	ld hl, wPlayerPostalCode
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48ae7
-	ld hl, wd476
+	ld hl, wPlayerPostalCode+1
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48af1
-	ld hl, wd476
+	ld hl, wPlayerPostalCode+1
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48af9
-	ld hl, wd477
+	ld hl, wPlayerPostalCode+2
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48b03
-	ld hl, wd477
+	ld hl, wPlayerPostalCode+2
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
 .asm_48b0b
-	ld hl, wd478
+	ld hl, wPlayerPostalCode+3
 	ld a, [hl]
 	swap a
 	or $f0
 	jr .asm_48b1d
 .asm_48b15
-	ld hl, wd478
+	ld hl, wPlayerPostalCode+3
 	ld a, [hl]
 	and $f
 	jr .asm_48b1d
@@ -1338,16 +1338,16 @@ Function48ab5:
 .asm_48b2c
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_48b8d
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_48b55
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jp nz, Function48bd7
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .asm_48b9d
 	hlcoord 11, 10
 	call Function489ea
@@ -1561,7 +1561,7 @@ Function48c5a:
 	ret
 
 Function48c63:
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld a, c
 	cp $30
@@ -1572,7 +1572,7 @@ Function48c63:
 	push de
 	ld h, d
 	ld l, e
-	ld a, "@"
+	ld a, '@'
 	ld b, 7
 .asm_48c76
 	ld [hli], a
@@ -1586,7 +1586,7 @@ Function48c63:
 	ld [de], a
 	inc de
 	ld a, [hl]
-	cp "@"
+	cp '@'
 	jr nz, .asm_48c81
 	and a
 	pop de
@@ -1721,16 +1721,16 @@ Function48d2a:
 	ret
 
 Function48d30:
-	ld hl, wd475
+	ld hl, wPlayerPostalCode
 	call Function48d4a
-	ld hl, wd477
+	ld hl, wPlayerPostalCode+2
 	call Function48d4a
 	ret
 
 Function48d3d:
-	ld hl, wd475
+	ld hl, wPlayerPostalCode
 	call Function48d94
-	ld hl, wd477
+	ld hl, wPlayerPostalCode+2
 	call Function48d94
 	ret
 

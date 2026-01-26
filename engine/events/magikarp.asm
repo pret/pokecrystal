@@ -11,7 +11,7 @@ CheckMagikarpLength:
 	cp MAGIKARP
 	jr nz, .not_magikarp
 
-	; Now let's compute its length based on its DVs and ID.
+	; Now let's compute its length based on its DVs and Trainer ID.
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -22,7 +22,7 @@ CheckMagikarpLength:
 	ld d, h
 	ld e, l
 	pop hl
-	ld bc, MON_ID
+	ld bc, MON_OT_ID
 	add hl, bc
 	ld b, h
 	ld c, l
@@ -76,7 +76,7 @@ CheckMagikarpLength:
 	text_end
 
 Magikarp_LoadFeetInchesChars:
-	ld hl, vTiles2 tile "′" ; $6e
+	ld hl, vTiles2 tile '′' ; $6e
 	ld de, .feetinchchars
 	lb bc, BANK(.feetinchchars), 2
 	call Request2bpp
@@ -91,14 +91,14 @@ PrintMagikarpLength:
 	ld de, wMagikarpLength
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
-	ld [hl], "′"
+	ld [hl], '′'
 	inc hl
 	ld de, wMagikarpLength + 1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
-	ld [hl], "″"
+	ld [hl], '″'
 	inc hl
-	ld [hl], "@"
+	ld [hl], '@'
 	ret
 
 CalcMagikarpLength:

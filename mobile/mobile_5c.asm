@@ -5,13 +5,13 @@ Function170000:
 	ld de, wPlayerTrademonSenderName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld hl, wOfferMonOT
 	ld de, wPlayerTrademonOTName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld hl, wOfferMonDVs
 	ld a, [hli]
@@ -44,13 +44,13 @@ Function17005a:
 	ld de, wOTTrademonSenderName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld hl, sOfferMonOT
 	ld de, wOTTrademonOTName
 	ld bc, NAME_LENGTH_JAPANESE - 1
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ld hl, sOfferMonDVs
 	ld a, [hli]
@@ -249,10 +249,10 @@ CheckBTMonMovesForErrors:
 	ret
 
 Function170cc6:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, PichuAnimatedMobileGFX
 	ld de, wDecompressScratch
 	call Decompress
@@ -272,7 +272,7 @@ Function170cc6:
 	lb bc, BANK(wDecompressScratch), 83
 	call Get2bpp
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function170d02:
@@ -308,13 +308,13 @@ Function1719c8:
 Function1719d6:
 	farcall BattleTowerRoomMenu_InitRAM
 	call Function1719ed
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call Function171a11
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function1719ed:
@@ -326,7 +326,7 @@ Function1719ed:
 	call ClearBGPalettes
 	call ClearSprites
 	farcall Function171d2b
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	farcall ClearSpriteAnims
 	ret
 
@@ -338,7 +338,7 @@ Function171a11:
 	jr nz, .done
 	call Function171a36
 	farcall PlaySpriteAnimations
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	jr .loop
 .done
 	farcall ClearSpriteAnims
@@ -380,13 +380,13 @@ Function171a5d:
 	ld [wMobileErrorCodeBuffer + 2], a
 	ld a, MOBILEAPI_05
 	call MobileAPI
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	farcall BattleTowerRoomMenu_Cleanup
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $a
 	ld [wcd49], a
 	ret
@@ -422,13 +422,13 @@ Function171ad7:
 	jp Function171c66
 
 Function171aec:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	farcall BattleTowerRoomMenu_Cleanup
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	hlcoord 2, 6
 	ld a, $8
 .asm_171b01
@@ -515,16 +515,16 @@ Function171b4b:
 Function171b85:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jp nz, Function171b9f
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jp nz, Function171bbd
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, asm_171ba5
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, asm_171baf
 	ret
 
@@ -562,10 +562,10 @@ Function171bbd:
 Function171bcc:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jp nz, Function171bdc
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jp nz, Function171beb
 	ret
 
@@ -588,7 +588,7 @@ Function171beb:
 	call LoadMenuHeader
 	call MenuBox
 	call MenuBoxCoord2Tile
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	hlcoord 1, 14
 	ld de, String_171c73
 	call PlaceString
@@ -675,10 +675,10 @@ Function171c87:
 	ret
 
 Function171ccd:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, MobilePasswordPalettes
 	ld de, wBGPals1
 	ld bc, 8 palettes
@@ -688,9 +688,9 @@ Function171ccd:
 	ld [hli], a
 	ld a, HIGH(PALRGB_WHITE)
 	ld [hl], a
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Function171cf0:
@@ -811,10 +811,10 @@ Function172e78:
 	ret
 
 Function172eb9:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_172edf
 	ld de, wBGPals1
 	ld bc, 8 palettes
@@ -823,9 +823,9 @@ Function172eb9:
 	ld de, wBGPals2
 	ld bc, 8 palettes
 	call CopyBytes
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_172edf:

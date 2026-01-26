@@ -1,6 +1,6 @@
 WriteOAMDMACodeToHRAM::
 	ld c, LOW(hTransferShadowOAM)
-	ld b, OAMDMACodeEnd - OAMDMACode
+	ld b, OAMDMACode.End - OAMDMACode
 	ld hl, OAMDMACode
 .copy
 	ld a, [hli]
@@ -19,10 +19,10 @@ hTransferShadowOAM::
 	ld a, HIGH(wShadowOAM)
 	ldh [rDMA], a
 	; wait for DMA to finish
-	ld a, NUM_SPRITE_OAM_STRUCTS
+	ld a, OAM_COUNT
 .wait
 	dec a
 	jr nz, .wait
 	ret
 ENDL
-OAMDMACodeEnd:
+.End:

@@ -6,22 +6,22 @@
 ; collapses during the switch.
 
 DoubleSpeed::
-	ld hl, rKEY1
-	bit 7, [hl]
+	ld hl, rSPD
+	bit B_SPD_DOUBLE, [hl]
 	jr z, SwitchSpeed
 	ret
 
 NormalSpeed::
-	ld hl, rKEY1
-	bit 7, [hl]
+	ld hl, rSPD
+	bit B_SPD_DOUBLE, [hl]
 	ret z
 
 SwitchSpeed::
-	set 0, [hl]
+	set B_SPD_PREPARE, [hl]
 	xor a
 	ldh [rIF], a
 	ldh [rIE], a
-	ld a, $30
+	ld a, JOYP_GET_NONE
 	ldh [rJOYP], a
 	stop ; rgbasm adds a nop after this instruction by default
 	ret

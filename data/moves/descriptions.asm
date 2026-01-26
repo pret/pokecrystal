@@ -1,6 +1,6 @@
 MoveDescriptions::
 ; entries correspond to move ids (see constants/move_constants.asm)
-	table_width 2, MoveDescriptions
+	table_width 2
 	dw PoundDescription
 	dw KarateChopDescription
 	dw DoubleslapDescription

@@ -233,10 +233,10 @@ OlderHaircutBrotherScript:
 	writetext GoldenrodUndergroundOlderHaircutBrotherWatchItBecomeBeautifulText
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special FadeOutToWhite
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special FadeInFromWhite
 	special RestartMapMusic
 	opentext
 	writetext GoldenrodUndergroundOlderHaircutBrotherAllDoneText
@@ -316,10 +316,10 @@ YoungerHaircutBrotherScript:
 	writetext GoldenrodUndergroundYoungerHaircutBrotherIllMakeItLookCoolText
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special FadeOutToWhite
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special FadeInFromWhite
 	special RestartMapMusic
 	opentext
 	writetext GoldenrodUndergroundYoungerHaircutBrotherAllDoneText
@@ -386,7 +386,7 @@ BasementDoorScript::
 	waitbutton
 	closetext
 	changeblock 18, 6, $2e ; unlocked door
-	reloadmappart
+	refreshmap
 	closetext
 	setevent EVENT_USED_BASEMENT_KEY
 	end

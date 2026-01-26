@@ -1,5 +1,5 @@
-DEF TRADEANIM_RIGHT_ARROW EQU $ed ; "▶"
-DEF TRADEANIM_LEFT_ARROW  EQU $ee ; "▼"
+DEF TRADEANIM_RIGHT_ARROW EQU $ed ; '▶'
+DEF TRADEANIM_LEFT_ARROW  EQU $ee ; '▼'
 
 ; TradeAnim_TubeAnimJumptable.Jumptable indexes
 	const_def
@@ -128,10 +128,10 @@ RunTradeAnimScript:
 	push af
 	xor a
 	ldh [hMapAnims], a
-	ld hl, wVramState
+	ld hl, wStateFlags
 	ld a, [hl]
 	push af
-	res 0, [hl]
+	res SPRITE_UPDATES_DISABLED_F, [hl]
 	ld hl, wOptions
 	ld a, [hl]
 	push af
@@ -148,7 +148,7 @@ RunTradeAnimScript:
 	pop af
 	ld [wOptions], a
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	pop af
 	ldh [hMapAnims], a
 	ret
@@ -167,8 +167,8 @@ RunTradeAnimScript:
 	jr z, .NotCGB
 	ld a, $1
 	ldh [rVBK], a
-	ld hl, vTiles0
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, STARTOF(VRAM)
+	ld bc, SIZEOF(VRAM)
 	xor a
 	call ByteFill
 	ld a, $0
@@ -176,8 +176,8 @@ RunTradeAnimScript:
 
 .NotCGB:
 	hlbgcoord 0, 0
-	ld bc, VRAM_End - vBGMap0
-	ld a, " "
+	ld bc, STARTOF(VRAM) + SIZEOF(VRAM) - vBGMap0
+	ld a, ' '
 	call ByteFill
 	ld hl, TradeGameBoyLZ
 	ld de, vTiles2 tile $31
@@ -221,7 +221,7 @@ RunTradeAnimScript:
 
 DoTradeAnimation:
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .finished
 	call .DoTradeAnimCommand
 	callfar PlaySpriteAnimations
@@ -309,7 +309,7 @@ TradeAnim_AdvanceScriptPointer:
 
 TradeAnim_End:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 TradeAnim_TubeToOT1:
@@ -470,8 +470,8 @@ TradeAnim_TubeToPlayer8:
 	call DisableLCD
 	callfar ClearSpriteAnims
 	hlbgcoord 0, 0
-	ld bc, VRAM_End - vBGMap0
-	ld a, " "
+	ld bc, STARTOF(VRAM) + SIZEOF(VRAM) - vBGMap0
+	ld a, ' '
 	call ByteFill
 	xor a
 	ldh [hSCX], a
@@ -595,7 +595,7 @@ TradeAnim_PlaceTrademonStatsOnTubeAnim:
 	call ClearTilemap
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH
-	ld a, "─"
+	ld a, '─'
 	call ByteFill
 	hlcoord 0, 1
 	ld de, wLinkPlayer1Name
@@ -604,7 +604,7 @@ TradeAnim_PlaceTrademonStatsOnTubeAnim:
 	ld de, 0
 .find_name_end_loop
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr z, .done
 	dec de
 	jr .find_name_end_loop
@@ -973,7 +973,7 @@ TrademonStats_PrintSpeciesNumber:
 	hlcoord 10, 0
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
-	ld [hl], " "
+	ld [hl], ' '
 	ret
 
 TrademonStats_PrintSpeciesName:
@@ -1218,7 +1218,7 @@ TradeAnim_TakeCareOfText:
 	call WaitTop
 	hlcoord 0, 10
 	ld bc, 8 * SCREEN_WIDTH
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	call WaitBGMap
 	ld hl, .TakeGoodCareOfMonText
@@ -1278,8 +1278,8 @@ TradeAnim_Wait80Frames:
 
 TradeAnim_BlankTilemap:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, " "
+	ld bc, SCREEN_AREA
+	ld a, ' '
 	call ByteFill
 	ret
 
@@ -1430,13 +1430,14 @@ DebugTrade: ; unreferenced
 
 MACRO debugtrade
 ; species, ot name, ot id
-	db \1, \2
+	db \1
+	dname \2, NAME_LENGTH_JAPANESE
 	dw \3
 ENDM
 
 .DebugTradeData:
-	debugtrade VENUSAUR,  "ゲーフり@@", $0123 ; GAME FREAK
-	debugtrade CHARIZARD, "クりーチャ@", $0456 ; Creatures Inc.
+	debugtrade VENUSAUR,  "ゲーフり",  $0123 ; GAME FREAK
+	debugtrade CHARIZARD, "クりーチャ", $0456 ; Creatures Inc.
 
 TradeGameBoyTilemap:  INCBIN "gfx/trade/game_boy.tilemap" ; 6x8
 TradeLinkTubeTilemap: INCBIN "gfx/trade/link_cable.tilemap" ; 12x3

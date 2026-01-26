@@ -4,7 +4,7 @@ SendScreenToPrinter:
 	call CheckCancelPrint
 	jr c, .cancel
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .finished
 	call PrinterJumptableIteration
 	call CheckPrinterStatus
@@ -56,7 +56,7 @@ PrintDexEntry:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, IE_SERIAL | IE_VBLANK
 	ldh [rIE], a
 
 	call Printer_StartTransmission
@@ -71,9 +71,9 @@ PrintDexEntry:
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], 4 ; vblank mode that calls AskSerial
+	ld [hl], VBLANK_SERIAL
 
-	ld a, 8 ; 16 rows
+	ld a, 16 / 2
 	ld [wPrinterQueueLength], a
 	call Printer_ResetJoypadRegisters
 	call SendScreenToPrinter
@@ -90,7 +90,7 @@ PrintDexEntry:
 	ld [wPrinterMargins], a
 	farcall PrintPage2
 	call Printer_ResetJoypadRegisters
-	ld a, 4
+	ld a, 8 / 2
 	ld [wPrinterQueueLength], a
 	call SendScreenToPrinter
 
@@ -140,13 +140,13 @@ PrintPCBox:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, IE_SERIAL | IE_VBLANK
 	ldh [rIE], a
 
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], 4 ; vblank mode that calls AskSerial
+	ld [hl], VBLANK_SERIAL
 
 	xor a
 	ldh [hBGMapMode], a
@@ -221,13 +221,13 @@ PrintUnownStamp:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, IE_SERIAL | IE_VBLANK
 	ldh [rIE], a
 
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], 4 ; vblank mode that calls AskSerial
+	ld [hl], VBLANK_SERIAL
 
 	xor a
 	ldh [hBGMapMode], a
@@ -245,7 +245,7 @@ PrintUnownStamp:
 	call CheckCancelPrint
 	jr c, .done
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .done
 	call PrinterJumptableIteration
 	ld a, [wJumptableIndex]
@@ -291,7 +291,7 @@ PrintMail:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, IE_SERIAL | IE_VBLANK
 	ldh [rIE], a
 
 	xor a
@@ -302,7 +302,7 @@ PrintMail:
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], 4 ; vblank mode that calls AskSerial
+	ld [hl], VBLANK_SERIAL
 
 	ld a, 18 / 2
 	ld [wPrinterQueueLength], a
@@ -333,7 +333,7 @@ PrintPartymon:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, IE_SERIAL | IE_VBLANK
 	ldh [rIE], a
 
 	xor a
@@ -345,7 +345,7 @@ PrintPartymon:
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], 4 ; vblank mode that calls AskSerial
+	ld [hl], VBLANK_SERIAL
 
 	ld a, 16 / 2
 	ld [wPrinterQueueLength], a
@@ -397,13 +397,13 @@ _PrintDiploma:
 	push af
 	xor a
 	ldh [rIF], a
-	ld a, (1 << SERIAL) | (1 << VBLANK)
+	ld a, IE_SERIAL | IE_VBLANK
 	ldh [rIE], a
 
 	ld hl, hVBlank
 	ld a, [hl]
 	push af
-	ld [hl], 4 ; vblank mode that calls AskSerial
+	ld [hl], VBLANK_SERIAL
 
 	ln a, 1, 0 ; to be loaded to wPrinterMargins
 	call Printer_PrepareTilemapForPrint
@@ -448,7 +448,7 @@ _PrintDiploma:
 
 CheckCancelPrint:
 	ldh a, [hJoyDown]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .pressed_b
 	and a
 	ret
@@ -467,9 +467,9 @@ CheckCancelPrint:
 	ld [wPrinterOpcode], a
 	ld a, $88
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 .loop2
 	ld a, [wPrinterOpcode]
@@ -485,14 +485,14 @@ CheckCancelPrint:
 Printer_CopyTilemapToBuffer:
 	hlcoord 0, 0
 	ld de, wPrinterTilemapBuffer
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	call CopyBytes
 	ret
 
 Printer_CopyBufferToTilemap:
 	ld hl, wPrinterTilemapBuffer
 	decoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	call CopyBytes
 	ret
 
@@ -524,12 +524,12 @@ CheckPrinterStatus:
 	jr z, .error_2
 .printer_connected
 	ld a, [wPrinterStatusFlags]
-	and %11100000
+	and PRINTER_STATUS_ERROR_3 | PRINTER_STATUS_ERROR_4 | PRINTER_STATUS_ERROR_1
 	ret z ; no error
 
-	bit 7, a
+	bit PRINTER_STATUS_ERROR_1_F, a
 	jr nz, .error_1
-	bit 6, a
+	bit PRINTER_STATUS_ERROR_4_F, a
 	jr nz, .error_4
 	; paper error
 	ld a, PRINTER_ERROR_3
@@ -634,14 +634,14 @@ PrintPCBox_Page1:
 	xor a
 	ld [wWhichBoxMonToPrint], a
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	ld a, " "
+	ld bc, SCREEN_AREA
+	ld a, ' '
 	call ByteFill
 	call Printer_PlaceEmptyBoxSlotString
 
 	hlcoord 0, 0
 	ld bc, 9 * SCREEN_WIDTH
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 
 	call Printer_PlaceSideBorders
@@ -671,8 +671,8 @@ PrintPCBox_Page1:
 
 PrintPCBox_Page2:
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	ld a, " "
+	ld bc, SCREEN_AREA
+	ld a, ' '
 	call ByteFill
 	call Printer_PlaceEmptyBoxSlotString
 	call Printer_PlaceSideBorders
@@ -688,8 +688,8 @@ PrintPCBox_Page2:
 
 PrintPCBox_Page3:
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	ld a, " "
+	ld bc, SCREEN_AREA
+	ld a, ' '
 	call ByteFill
 	call Printer_PlaceEmptyBoxSlotString
 	call Printer_PlaceSideBorders
@@ -705,8 +705,8 @@ PrintPCBox_Page3:
 
 PrintPCBox_Page4:
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	ld a, " "
+	ld bc, SCREEN_AREA
+	ld a, ' '
 	call ByteFill
 	call Printer_PlaceEmptyBoxSlotString
 	hlcoord 1, 15
@@ -744,7 +744,7 @@ Printer_PrintBoxListSegment:
 
 	push hl
 	ld bc, 16
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	pop hl
 
@@ -764,12 +764,12 @@ Printer_PrintBoxListSegment:
 	call Printer_GetMonGender
 	ld bc, SCREEN_WIDTH - MON_NAME_LENGTH
 	add hl, bc
-	ld a, "/"
+	ld a, '/'
 	ld [hli], a
 
 	push hl
 	ld bc, 14
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	pop hl
 
@@ -846,11 +846,11 @@ Printer_GetMonGender:
 	ld a, TEMPMON
 	ld [wMonType], a
 	farcall GetGender
-	ld a, " "
+	ld a, ' '
 	jr c, .got_gender
-	ld a, "♂"
+	ld a, '♂'
 	jr nz, .got_gender
-	ld a, "♀"
+	ld a, '♀'
 .got_gender
 	pop hl
 	ld [hli], a
@@ -872,15 +872,15 @@ Printer_GetBoxMonSpecies:
 
 Printer_PlaceTopBorder:
 	hlcoord 0, 0
-	ld a, "┌"
+	ld a, '┌'
 	ld [hli], a
-	ld a, "─"
+	ld a, '─'
 	ld c, SCREEN_WIDTH - 2
 .loop
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	ld a, "┐"
+	ld a, '┐'
 	ld [hl], a
 	ret
 
@@ -889,10 +889,10 @@ Printer_PlaceSideBorders:
 	ld de, SCREEN_WIDTH - 1
 	ld c, SCREEN_HEIGHT
 .loop
-	ld a, "│"
+	ld a, '│'
 	ld [hl], a
 	add hl, de
-	ld a, "│"
+	ld a, '│'
 	ld [hli], a
 	dec c
 	jr nz, .loop
@@ -900,15 +900,15 @@ Printer_PlaceSideBorders:
 
 Printer_PlaceBottomBorders:
 	hlcoord 0, 17
-	ld a, "└"
+	ld a, '└'
 	ld [hli], a
-	ld a, "─"
+	ld a, '─'
 	ld c, SCREEN_WIDTH - 2
 .loop
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	ld a, "┘"
+	ld a, '┘'
 	ld [hl], a
 	ret
 

@@ -1,5 +1,5 @@
 BugCatchingContestantEventFlagTable:
-	table_width 2, BugCatchingContestantEventFlagTable
+	table_width 2
 	dw EVENT_BUG_CATCHING_CONTESTANT_1A
 	dw EVENT_BUG_CATCHING_CONTESTANT_2A
 	dw EVENT_BUG_CATCHING_CONTESTANT_3A

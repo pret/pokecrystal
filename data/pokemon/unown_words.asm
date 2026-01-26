@@ -1,13 +1,13 @@
 MACRO unownword
 for n, CHARLEN(\1)
-	db CHARSUB(\1, n + 1) - "A" + FIRST_UNOWN_CHAR
+	db CHARVAL(STRCHAR(\1, n)) - 'A' + FIRST_UNOWN_CHAR
 endr
 	db -1
 ENDM
 
 UnownWords:
 ; entries correspond to UNOWN_* form constants
-	table_width 2, UnownWords
+	table_width 2
 	dw UnownWordA ; unused
 	dw UnownWordA
 	dw UnownWordB

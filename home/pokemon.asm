@@ -209,7 +209,7 @@ PrintLevel::
 ; Print wTempMonLevel at hl
 
 	ld a, [wTempMonLevel]
-	ld [hl], "<LV>"
+	ld [hl], '<LV>'
 	inc hl
 
 ; How many digits?
@@ -224,7 +224,7 @@ PrintLevel::
 
 PrintLevel_Force3Digits::
 ; Print :L and all 3 digits
-	ld [hl], "<LV>"
+	ld [hl], '<LV>'
 	inc hl
 	ld c, 3
 

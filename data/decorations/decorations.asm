@@ -1,6 +1,6 @@
 DecorationIDs:
 ; see constants/deco_constants.asm
-	table_width 1, DecorationIDs
+	table_width 1
 
 	db DECO_FEATHERY_BED ; 2
 	db DECO_PINK_BED ; 3

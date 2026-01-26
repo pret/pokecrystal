@@ -11,6 +11,7 @@ ENDM
 	const_def -1, -1
 
 	const endanim_command ; $ff
+	assert endanim_command == oamend_command ; LEGACY: Support for the old name of "oamend"
 MACRO endanim
 	db endanim_command
 ENDM

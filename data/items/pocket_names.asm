@@ -1,6 +1,6 @@
 ItemPocketNames:
 ; entries correspond to item type constants
-	table_width 2, ItemPocketNames
+	table_width 2
 	dw .Item
 	dw .Key
 	dw .Ball

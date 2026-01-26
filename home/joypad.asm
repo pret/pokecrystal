@@ -38,7 +38,7 @@ UpdateJoypad::
 
 ; We can only get four inputs at a time.
 ; We take d-pad first for no particular reason.
-	ld a, R_DPAD
+	ld a, JOYP_GET_CTRL_PAD
 	ldh [rJOYP], a
 ; Read twice to give the request time to take.
 	ldh a, [rJOYP]
@@ -47,7 +47,7 @@ UpdateJoypad::
 ; The Joypad register output is in the lo nybble (inversed).
 ; We make the hi nybble of our new container d-pad input.
 	cpl
-	and $f
+	and JOYP_INPUTS
 	swap a
 
 ; We'll keep this in b for now.
@@ -55,7 +55,7 @@ UpdateJoypad::
 
 ; Buttons make 8 total inputs (A, B, Select, Start).
 ; We can fit this into one byte.
-	ld a, R_BUTTONS
+	ld a, JOYP_GET_BUTTONS
 	ldh [rJOYP], a
 ; Wait for input to stabilize.
 rept 6
@@ -63,12 +63,12 @@ rept 6
 endr
 ; Buttons take the lo nybble.
 	cpl
-	and $f
+	and JOYP_INPUTS
 	or b
 	ld b, a
 
 ; Reset the joypad register since we're done with it.
-	ld a, $30
+	ld a, JOYP_GET_NONE
 	ldh [rJOYP], a
 
 ; To get the delta we xor the last frame's input with the new one.
@@ -97,8 +97,8 @@ endr
 ; Now that we have the input, we can do stuff with it.
 
 ; For example, soft reset:
-	and A_BUTTON | B_BUTTON | SELECT | START
-	cp  A_BUTTON | B_BUTTON | SELECT | START
+	and PAD_BUTTONS
+	cp PAD_BUTTONS
 	jp z, Reset
 
 	ret
@@ -271,12 +271,12 @@ JoyTitleScreenInput:: ; unreferenced
 
 ; Save data can be deleted by pressing Up + B + Select.
 	ldh a, [hJoyDown]
-	cp D_UP | SELECT | B_BUTTON
+	cp PAD_UP | PAD_SELECT | PAD_B
 	jr z, .keycombo
 
 ; Press Start or A to start the game.
 	ldh a, [hJoyLast]
-	and START | A_BUTTON
+	and PAD_START | PAD_A
 	jr nz, .keycombo
 
 	dec c
@@ -294,7 +294,7 @@ JoyWaitAorB::
 	call DelayFrame
 	call GetJoypad
 	ldh a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	ret nz
 	call UpdateTimeAndPals
 	jr .loop
@@ -363,7 +363,7 @@ WaitPressAorB_BlinkCursor::
 
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .loop
 
 	pop af
@@ -376,7 +376,7 @@ SimpleWaitPressAorB::
 .loop
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .loop
 	ret
 
@@ -412,7 +412,7 @@ PromptButton::
 	call .blink_cursor
 	call JoyTextDelay
 	ldh a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr nz, .received_input
 	call UpdateTimeAndPals
 	ld a, $1
@@ -427,9 +427,9 @@ PromptButton::
 
 .blink_cursor
 	ldh a, [hVBlankCounter]
-	and %00010000 ; bit 4, a
+	and 1 << 4 ; blink every 2**4 = 16 frames
 	jr z, .cursor_off
-	ld a, "▼"
+	ld a, '▼'
 	jr .load_cursor_state
 
 .cursor_off
@@ -443,7 +443,7 @@ BlinkCursor::
 	push bc
 	ld a, [hl]
 	ld b, a
-	ld a, "▼"
+	ld a, '▼'
 	cp b
 	pop bc
 	jr nz, .place_arrow
@@ -455,7 +455,7 @@ BlinkCursor::
 	dec a
 	ldh [hObjectStructIndex], a
 	ret nz
-	ld a, "─"
+	ld a, '─'
 	ld [hl], a
 	ld a, -1
 	ldh [hMapObjectIndex], a
@@ -478,6 +478,6 @@ BlinkCursor::
 	ret nz
 	ld a, 6
 	ldh [hObjectStructIndex], a
-	ld a, "▼"
+	ld a, '▼'
 	ld [hl], a
 	ret

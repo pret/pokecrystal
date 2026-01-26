@@ -8,7 +8,7 @@ Printer_StartTransmission:
 	ldh [rSC], a
 	ld [wPrinterOpcode], a
 	ld hl, wPrinterConnectionOpen
-	set 0, [hl]
+	set PRINTER_CONNECTION_OPEN, [hl]
 	ld a, [wGBPrinterBrightness]
 	ld [wPrinterExposureTime], a
 	xor a
@@ -56,7 +56,7 @@ Printer_Quit:
 	xor a
 	ld [wPrinterStatusFlags], a
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 Printer_NextSection:
@@ -199,7 +199,7 @@ Printer_CheckConnectionStatus:
 	cp $0
 	jr nz, .printer_error
 	ld hl, wPrinterConnectionOpen
-	set 1, [hl]
+	set PRINTER_CONNECTION_SUCCESS, [hl]
 	ld a, $5
 	ld [wHandshakeFrameDelay], a
 	call _Printer_NextSection
@@ -270,9 +270,9 @@ Printer_WaitHandshake:
 	ld [wPrinterOpcode], a
 	ld a, $88
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 	ret
 
@@ -613,9 +613,9 @@ Printer_Send0x08:
 
 Printer_SerialSend:
 	ldh [rSB], a
-	ld a, (0 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_INTERNAL
 	ldh [rSC], a
-	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
+	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
 	ret
 

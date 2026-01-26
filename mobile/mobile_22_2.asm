@@ -156,13 +156,13 @@ Function8b3dd:
 	ld a, c
 	pop bc
 	pop de
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .a_button
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .b_button
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .d_up
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .d_down
 	and a
 	ret
@@ -565,7 +565,7 @@ Function8b677:
 	call Function8b6ed
 	call EnableLCD
 	call Function891ab
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 Function8b690:
@@ -587,16 +587,16 @@ Function8b690:
 	ret
 
 Function8b6bb:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_8b6d5
 	ld de, wBGPals1
 	ld bc, 3 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call Function8949c
 	ret
 
@@ -800,15 +800,15 @@ Function8b7bd:
 	call ScrollingMenu
 	call Mobile_DisableSpriteUpdates
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .asm_8b823
-	cp D_LEFT
+	cp PAD_LEFT
 	jr nz, .asm_8b813
 	call Function8b832
 	jr .asm_8b7ea
 
 .asm_8b813
-	cp D_RIGHT
+	cp PAD_RIGHT
 	jr nz, .asm_8b81c
 	call Function8b83e
 	jr .asm_8b7ea

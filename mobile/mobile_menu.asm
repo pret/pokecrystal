@@ -29,7 +29,7 @@ Function49f16:
 	hlcoord 1, 14
 	call PlaceString
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
@@ -43,9 +43,9 @@ Function49f16:
 	push bc
 
 .check_buttons
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .a_button
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .b_button
 	jr .next
 
@@ -142,11 +142,11 @@ MobileMenu_InitMenuBuffers:
 	ld [hli], a
 	ld a, $20 ; w2DMenuCursorOffsets
 	ld [hli], a
-	; could have done "ld a, A_BUTTON | D_UP | D_DOWN | B_BUTTON" instead
-	ld a, A_BUTTON
-	add D_UP
-	add D_DOWN
-	add B_BUTTON
+	; could have done "ld a, PAD_A | PAD_UP | PAD_DOWN | PAD_B" instead
+	ld a, PAD_A
+	add PAD_UP
+	add PAD_DOWN
+	add PAD_B
 	ld [hli], a ; wMenuJoypadFilter
 	ld a, 1
 	ld [hli], a ; wMenuCursorY, wMenuCursorX
@@ -267,8 +267,8 @@ Function4a149:
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
-	call SetPalettes
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
+	call SetDefaultBGPAndOBP
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]
@@ -368,7 +368,7 @@ Strings_4a23d:
 Function4a28a:
 	hlcoord 2, 3
 	lb bc, 6, 1
-	ld a, " "
+	ld a, ' '
 	call Function4a6d8
 	call PlaceHollowCursor
 	call WaitBGMap
@@ -386,13 +386,13 @@ Function4a28a:
 	hlcoord 14, 1
 	ld de, String_4a34b
 	call PlaceString
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	call Function4a118
 	call ScrollingMenuJoypad
 	push af
 	call PlayClickSFX
 	pop af
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .quit
 	ld a, [wMenuCursorY]
 	cp $2
@@ -415,11 +415,11 @@ Function4a28a:
 	ld b, 3
 	ld c, 4
 	call Textbox
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	ld hl, DeletePassword_YesNo_MenuHeader
 	call LoadMenuHeader
 	call VerticalMenu
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .dont_delete_password
 	ld a, [wMenuCursorY]
 	cp $2
@@ -438,7 +438,7 @@ Function4a28a:
 	call ExitMenu
 .quit
 	call Call_ExitMenu
-	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
+	farcall Mobile_HDMATransferTilemapAndAttrmap_Menu
 	xor a
 	ret
 
@@ -502,7 +502,7 @@ Function4a39a: ; unreferenced
 	call Function4a485
 	call Function4a492
 	call Function4a3aa
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ret
 
 Function4a3a7:
@@ -528,7 +528,7 @@ Function4a3aa:
 	ld a, $3
 	call Function4a6d8
 	lb bc, 1, 1
-	ld a, " "
+	ld a, ' '
 	call Function4a6d8
 	hlcoord 1, 0
 	ld a, $1
@@ -544,7 +544,7 @@ Function4a3aa:
 	ld a, $2
 	call Function4a6d8
 	lb bc, 11, 18
-	ld a, " "
+	ld a, ' '
 	call Function4a6d8
 	hlcoord 19, 0
 	lb bc, 3, 1
@@ -566,7 +566,7 @@ Function4a3aa:
 	ld a, $3
 	call Function4a6d8
 	lb bc, 1, 1
-	ld a, " "
+	ld a, ' '
 	call Function4a6d8
 	ret
 
@@ -591,7 +591,7 @@ Function4a449: ; unreferenced
 	ld a, $3
 	call ByteFill
 	ld bc, SCREEN_WIDTH
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	ret
 
@@ -676,7 +676,7 @@ Function4a4c4:
 	hlcoord 1, 16
 	call PlaceString
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call StaticMenuJoypad
 	ld hl, wMenuCursorY
 	ld b, [hl]

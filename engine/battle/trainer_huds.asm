@@ -41,7 +41,7 @@ ShowOTTrainerMonsRemaining:
 	ld [hl], 4 * TILE_WIDTH
 	ld a, -TILE_WIDTH
 	ld [wPlaceBallsDirection], a
-	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * OBJ_SIZE
 	jp LoadTrainerHudOAM
 
 StageBallTilesData:
@@ -197,7 +197,7 @@ LinkBattle_TrainerHuds:
 	ld a, 10 * TILE_WIDTH
 	ld [hli], a
 	ld [hl], 13 * TILE_WIDTH
-	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * SPRITEOAMSTRUCT_LENGTH
+	ld hl, wShadowOAMSprite00 + PARTY_LENGTH * OBJ_SIZE
 	jp LoadTrainerHudOAM
 
 LoadTrainerHudOAM:
@@ -246,13 +246,13 @@ _ShowLinkBattleParticipants:
 	ld de, wOTPlayerName
 	call PlaceString
 	hlcoord 9, 8
-	ld a, "<BOLD_V>"
+	ld a, '<BOLD_V>'
 	ld [hli], a
-	ld [hl], "<BOLD_S>"
+	ld [hl], '<BOLD_S>'
 	farcall LinkBattle_TrainerHuds ; no need to farcall
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, $e4
 	ldh [rOBP0], a
 	ret

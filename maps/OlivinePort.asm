@@ -44,7 +44,7 @@ OlivinePortSailorAtGangwayScript:
 	waitsfx
 	applymovement PLAYER, OlivinePortEnterFastShipMovement
 	playsound SFX_EXIT_BUILDING
-	special FadeOutPalettes
+	special FadeOutToWhite
 	waitsfx
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iffalse .FirstTime

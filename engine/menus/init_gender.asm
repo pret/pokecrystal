@@ -1,21 +1,21 @@
 InitCrystalData:
 	ld a, $1
-	ld [wd474], a
+	ld [wPlayerPrefecture], a
 	xor a
-	ld [wd473], a
+	ld [wPlayerAge], a
 	ld [wPlayerGender], a
-	ld [wd475], a
-	ld [wd476], a
-	ld [wd477], a
-	ld [wd478], a
+	ld [wPlayerPostalCode], a
+	ld [wPlayerPostalCode+1], a
+	ld [wPlayerPostalCode+2], a
+	ld [wPlayerPostalCode+3], a
 	ld [wd002], a
 	ld [wd003], a
-	ld a, [wd479]
+	ld a, [wCrystalFlags]
 	res 0, a ; ???
-	ld [wd479], a
-	ld a, [wd479]
+	ld [wCrystalFlags], a
+	ld a, [wCrystalFlags]
 	res 1, a ; ???
-	ld [wd479], a
+	ld [wCrystalFlags], a
 	ret
 
 INCLUDE "mobile/mobile_12.asm"
@@ -25,7 +25,7 @@ InitGender:
 	call LoadGenderScreenPal
 	call LoadGenderScreenLightBlueTile
 	call WaitBGMap2
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld hl, AreYouABoyOrAreYouAGirlText
 	call PrintText
 	ld hl, .MenuHeader
@@ -69,11 +69,11 @@ InitGenderScreen:
 	call InitCrystalData
 	call LoadFontsExtra
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	ld a, $0
 	call ByteFill
 	hlcoord 0, 0, wAttrmap
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	xor a
 	call ByteFill
 	ret

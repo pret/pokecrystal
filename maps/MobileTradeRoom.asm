@@ -18,11 +18,11 @@ MobileTradeRoomInitializeAndPreparePokecenter2FScript:
 	end
 
 MobileTradeRoomConsoleScript:
-	refreshscreen
+	reanchormap
 	special Function1037c2
 	writetext MobileTradeRoom_EstablishingCommsText
 	waitbutton
-	reloadmappart
+	refreshmap
 	special Function101231
 	closetext
 	end

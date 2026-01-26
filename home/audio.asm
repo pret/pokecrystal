@@ -10,13 +10,13 @@ InitSound::
 	push af
 	ld a, BANK(_InitSound)
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	call _InitSound
 
 	pop af
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	pop af
 	pop bc
@@ -34,13 +34,13 @@ UpdateSound::
 	push af
 	ld a, BANK(_UpdateSound)
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	call _UpdateSound
 
 	pop af
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	pop af
 	pop bc
@@ -51,14 +51,14 @@ UpdateSound::
 _LoadMusicByte::
 ; [wCurMusicByte] = [a:de]
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	ld a, [de]
 	ld [wCurMusicByte], a
 	ld a, BANK(LoadMusicByte)
 
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ret
 
 PlayMusic::
@@ -73,7 +73,7 @@ PlayMusic::
 	push af
 	ld a, BANK(_PlayMusic) ; aka BANK(_InitSound)
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	ld a, e
 	and a
@@ -88,7 +88,7 @@ PlayMusic::
 .end
 	pop af
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	pop af
 	pop bc
 	pop de
@@ -107,7 +107,7 @@ PlayMusic2::
 	push af
 	ld a, BANK(_PlayMusic)
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	push de
 	ld de, MUSIC_NONE
@@ -118,7 +118,7 @@ PlayMusic2::
 
 	pop af
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	pop af
 	pop bc
@@ -140,7 +140,7 @@ PlayCry::
 	; Cries are stuck in one bank.
 	ld a, BANK(PokemonCries)
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	ld hl, PokemonCries
 rept MON_CRY_LENGTH
@@ -163,13 +163,13 @@ endr
 
 	ld a, BANK(_PlayCry)
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	call _PlayCry
 
 	pop af
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	pop af
 	pop bc
@@ -200,7 +200,7 @@ PlaySFX::
 	push af
 	ld a, BANK(_PlaySFX)
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 	ld a, e
 	ld [wCurSFX], a
@@ -208,7 +208,7 @@ PlaySFX::
 
 	pop af
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 
 .done
 	pop af
@@ -229,16 +229,16 @@ WaitSFX::
 
 .wait
 	ld hl, wChannel5Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .wait
 	ld hl, wChannel6Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .wait
 	ld hl, wChannel7Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .wait
 	ld hl, wChannel8Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .wait
 
 	pop hl
@@ -250,16 +250,16 @@ IsSFXPlaying::
 	push hl
 
 	ld hl, wChannel5Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .playing
 	ld hl, wChannel6Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .playing
 	ld hl, wChannel7Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .playing
 	ld hl, wChannel8Flags1
-	bit 0, [hl]
+	bit SOUND_CHANNEL_ON, [hl]
 	jr nz, .playing
 
 	pop hl
@@ -487,16 +487,16 @@ PlaceBCDNumberSprite:: ; unreferenced
 	ld b, a
 	swap a
 	and $f
-	add "0"
+	add '0'
 	ld [wShadowOAMSprite38TileID], a
 	ld a, b
 	and $f
-	add "0"
+	add '0'
 	ld [wShadowOAMSprite39TileID], a
 	ret
 
 .max
-	ld a, "9"
+	ld a, '9'
 	ld [wShadowOAMSprite38TileID], a
 	ld [wShadowOAMSprite39TileID], a
 	ret
@@ -504,16 +504,16 @@ PlaceBCDNumberSprite:: ; unreferenced
 CheckSFX::
 ; Return carry if any SFX channels are active.
 	ld a, [wChannel5Flags1]
-	bit 0, a
+	bit SOUND_CHANNEL_ON, a
 	jr nz, .playing
 	ld a, [wChannel6Flags1]
-	bit 0, a
+	bit SOUND_CHANNEL_ON, a
 	jr nz, .playing
 	ld a, [wChannel7Flags1]
-	bit 0, a
+	bit SOUND_CHANNEL_ON, a
 	jr nz, .playing
 	ld a, [wChannel8Flags1]
-	bit 0, a
+	bit SOUND_CHANNEL_ON, a
 	jr nz, .playing
 	and a
 	ret
@@ -525,11 +525,11 @@ TerminateExpBarSound::
 	xor a
 	ld [wChannel5Flags1], a
 	ld [wPitchSweep], a
-	ldh [rNR10], a
-	ldh [rNR11], a
-	ldh [rNR12], a
-	ldh [rNR13], a
-	ldh [rNR14], a
+	ldh [rAUD1SWEEP], a
+	ldh [rAUD1LEN], a
+	ldh [rAUD1ENV], a
+	ldh [rAUD1LOW], a
+	ldh [rAUD1HIGH], a
 	ret
 
 ChannelsOff::

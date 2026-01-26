@@ -49,7 +49,7 @@ DEF CHANNEL_PITCH                       rb
 DEF CHANNEL_OCTAVE                      rb
 DEF CHANNEL_TRANSPOSITION               rb
 DEF CHANNEL_NOTE_DURATION               rb
-DEF CHANNEL_FIELD16                     rb
+DEF CHANNEL_NOTE_DURATION_MODIFIER      rb
                                         rb_skip
 DEF CHANNEL_LOOP_COUNT                  rb
 DEF CHANNEL_TEMPO                       rw
@@ -113,11 +113,7 @@ DEF NOISE_CHAN_F EQU 2 ; bit set in CHAN5-CHAN7
 	const NOTE_VIBRATO_OVERRIDE ; 6
 
 ; wVolume
-DEF VOLUME_SO1_F     EQU 3
-DEF VOLUME_SO2_F     EQU 7
-DEF VOLUME_SO1_LEVEL EQU %00000111
-DEF VOLUME_SO2_LEVEL EQU %01110000
-DEF MAX_VOLUME       EQU $77
+DEF MAX_VOLUME EQU AUDVOL_LEFT | AUDVOL_RIGHT
 
 ; wSoundInput
 DEF SOUND_INPUT_CH1_F    EQU 0

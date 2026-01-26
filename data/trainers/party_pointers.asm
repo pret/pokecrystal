@@ -2,7 +2,7 @@
 
 TrainerGroups:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
-	table_width 2, TrainerGroups
+	table_width 2
 	dw FalknerGroup
 	dw WhitneyGroup
 	dw BugsyGroup

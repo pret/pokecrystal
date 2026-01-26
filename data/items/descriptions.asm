@@ -1,6 +1,6 @@
 ItemDescriptions:
 ; entries correspond to item ids (see constants/item_constants.asm)
-	table_width 2, ItemDescriptions
+	table_width 2
 	dw MasterBallDesc
 	dw UltraBallDesc
 	dw BrightpowderDesc

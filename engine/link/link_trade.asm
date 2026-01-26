@@ -11,7 +11,7 @@ __LoadTradeScreenBorderGFX:
 LoadMobileTradeBorderTilemap:
 	ld hl, MobileTradeBorderTilemap
 	decoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	call CopyBytes
 	ret
 
@@ -27,7 +27,7 @@ TestMobileTradeBorderTilemap: ; unreferenced
 	farcall LoadMobileTradeBorderTilemap ; useless to farcall
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call WaitBGMap
 	call JoyWaitAorB
 	call Call_ExitMenu
@@ -88,7 +88,7 @@ _LinkTextbox:
 	push hl
 	ld a, $33
 	ld [hli], a
-	ld a, " "
+	ld a, ' '
 	call .PlaceRow
 	ld [hl], $34
 	pop hl
@@ -156,15 +156,15 @@ LinkTextbox:
 	call _LinkTextbox
 	ret
 
-PrintWaitingTextAndSyncAndExchangeNybble:
+PlaceWaitingTextAndSyncAndExchangeNybble:
 	call LoadStandardMenuHeader
-	call .PrintWaitingText
+	call .PlaceWaitingText
 	farcall WaitLinkTransfer
 	call Call_ExitMenu
 	call WaitBGMap2
 	ret
 
-.PrintWaitingText:
+.PlaceWaitingText:
 	hlcoord 4, 10
 	ld b, 1
 	ld c, 10
@@ -189,10 +189,10 @@ LinkTradeMenu:
 	push bc
 	push af
 	ldh a, [hJoyLast]
-	and D_PAD
+	and PAD_CTRL_PAD
 	ld b, a
 	ldh a, [hJoyPressed]
-	and BUTTONS
+	and PAD_BUTTONS
 	or b
 	ld b, a
 	pop af
@@ -203,7 +203,7 @@ LinkTradeMenu:
 
 .MenuAction:
 	ld hl, w2DMenuFlags2
-	res 7, [hl]
+	res _2DMENU_EXITING_F, [hl]
 	ldh a, [hBGMapMode]
 	push af
 	call .loop
@@ -219,7 +219,7 @@ LinkTradeMenu:
 	farcall _2DMenuInterpretJoypad
 	jr c, .done
 	ld a, [w2DMenuFlags1]
-	bit 7, a
+	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, a
 	jr nz, .done
 	call .GetJoypad
 	ld b, a
@@ -247,7 +247,7 @@ LinkTradeMenu:
 	call .TryAnims
 	ret c
 	ld a, [w2DMenuFlags1]
-	bit 7, a
+	bit _2DMENU_DISABLE_JOYPAD_FILTER_F, a
 	jr z, .loop2
 	and a
 	ret
@@ -330,7 +330,7 @@ LinkTradeMenu:
 
 .TryAnims:
 	ld a, [w2DMenuFlags1]
-	bit 6, a
+	bit _2DMENU_ENABLE_SPRITE_ANIMS_F, a
 	jr z, .skip_anims
 	farcall PlaySpriteAnimationsAndDelayFrame
 .skip_anims

@@ -19,7 +19,7 @@ _ResetClock:
 	jr c, .wrongpassword
 	ld a, BANK(sRTCStatusFlags)
 	call OpenSRAM
-	ld a, $80
+	ld a, RTC_RESET
 	ld [sRTCStatusFlags], a
 	call CloseSRAM
 	ld hl, .PasswordAskResetText
@@ -72,10 +72,10 @@ ClockResetPassword:
 	call JoyTextDelay
 	ldh a, [hJoyLast]
 	ld b, a
-	and A_BUTTON
+	and PAD_A
 	jr nz, .confirm
 	ld a, b
-	and D_PAD
+	and PAD_CTRL_PAD
 	jr z, .loop2
 	call .dpadinput
 	ld c, 3
@@ -108,35 +108,35 @@ ClockResetPassword:
 	ld c, 5
 .loop3
 	ld a, [de]
-	add "0"
+	add '0'
 	ld [hli], a
 	inc de
 	dec c
 	jr nz, .loop3
 	hlcoord 14, 16
 	ld bc, 5
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	hlcoord 14, 16
 	ld a, [wStringBuffer2 + 5]
 	ld e, a
 	ld d, 0
 	add hl, de
-	ld [hl], "▲"
+	ld [hl], '▲'
 	ret
 
 .dpadinput
 	ld a, b
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, b
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 	ld a, b
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, b
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ret
 
@@ -243,7 +243,7 @@ ClockResetPassword:
 
 .ComponentFromString:
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	ret z
 	add e
 	ld e, a

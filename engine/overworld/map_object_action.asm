@@ -1,6 +1,6 @@
 ObjectActionPairPointers:
 ; entries correspond to OBJECT_ACTION_* constants (see constants/map_object_constants.asm)
-	table_width 2 + 2, ObjectActionPairPointers
+	table_width 2 + 2
 	;  normal action,                  frozen action
 	dw SetFacingStanding,              SetFacingStanding
 	dw SetFacingStandAction,           SetFacingCurrent
@@ -275,8 +275,8 @@ SetFacingBoulderDust:
 	and 2
 	ld a, FACING_BOULDER_DUST_1
 	jr z, .ok
-	inc a
 	assert FACING_BOULDER_DUST_1 + 1 == FACING_BOULDER_DUST_2
+	inc a
 .ok
 	ld [hl], a
 	ret
@@ -291,8 +291,8 @@ SetFacingGrassShake:
 	and 4
 	ld a, FACING_GRASS_1
 	jr z, .ok
-	inc a ; FACING_GRASS_2
-
+	assert FACING_GRASS_1 + 1 == FACING_GRASS_2
+	inc a
 .ok
 	ld [hl], a
 	ret

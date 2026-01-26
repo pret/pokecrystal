@@ -2,7 +2,7 @@
 
 Music:
 ; entries correspond to MUSIC_* constants
-	table_width 3, Music
+	table_width 3
 	dba Music_Nothing
 	dba Music_TitleScreen
 	dba Music_Route1

@@ -24,7 +24,7 @@ _MemoryGame:
 	ld [hli], a
 	ld [hl], $00
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	xor a
 	call ByteFill
 	xor a
@@ -44,7 +44,7 @@ _MemoryGame:
 
 .JumptableLoop:
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	call .ExecuteJumptable
 	callfar PlaySpriteAnimations
@@ -80,7 +80,7 @@ _MemoryGame:
 	call UnusedCursor_InterpretJoypad_AnimateCursor
 	jr nc, .proceed
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .proceed
@@ -120,7 +120,7 @@ endr
 .CheckTriesRemaining:
 	ld a, [wMemoryGameNumberTriesRemaining]
 	hlcoord 17, 0
-	add "0"
+	add '0'
 	ld [hl], a
 	ld hl, wMemoryGameNumberTriesRemaining
 	ld a, [hl]
@@ -201,7 +201,7 @@ endr
 
 .RevealAll:
 	ldh a, [hJoypadPressed]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	xor a
 	ld [wMemoryGameCounter], a
@@ -235,7 +235,7 @@ endr
 	call UnusedCursor_InterpretJoypad_AnimateCursor
 	jr nc, .restart
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .restart
@@ -447,7 +447,7 @@ MemoryGame_DeleteCard:
 
 MemoryGame_InitStrings:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, $1
 	call ByteFill
 	hlcoord 0, 0
@@ -500,19 +500,19 @@ MemoryGame_InterpretJoypad_AnimateCursor:
 	call JoyTextDelay
 	ld hl, hJoypadPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .pressed_a
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .pressed_left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .pressed_right
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .pressed_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .pressed_down
 	ret
 

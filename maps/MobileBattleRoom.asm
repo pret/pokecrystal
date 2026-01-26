@@ -18,7 +18,7 @@ MobileBattleRoomInitializeAndPreparePokecenter2FScript:
 	end
 
 MobileBattleRoomConsoleScript:
-	refreshscreen
+	reanchormap
 	special Function1037c2
 	ifequal $1, .one
 	special Function1037eb
@@ -31,13 +31,13 @@ MobileBattleRoomConsoleScript:
 	writetext MobileBattleRoom_HealText
 	pause 20
 	closetext
-	special FadeOutPalettes
+	special FadeOutToWhite
 	playmusic MUSIC_HEAL
 	special LoadMapPalettes
 	pause 60
-	special FadeInPalettes
+	special FadeInFromWhite
 	special RestartMapMusic
-	refreshscreen
+	reanchormap
 .two_
 	special StubbedTrainerRankings_Healings
 	special HealParty
@@ -47,7 +47,7 @@ MobileBattleRoomConsoleScript:
 	special Function10387b
 	writetext MobileBattleRoom_EstablishingCommsText
 	waitbutton
-	reloadmappart
+	refreshmap
 	special Function101225
 .false
 	closetext

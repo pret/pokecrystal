@@ -164,20 +164,20 @@ SwitchPartyMons:
 	ld a, PARTYMENUACTION_MOVE
 	ld [wPartyMenuActionText], a
 	farcall WritePartyMenuTilemap
-	farcall PrintPartyMenuText
+	farcall PlacePartyMenuText
 
 	hlcoord 0, 1
 	ld bc, SCREEN_WIDTH * 2
 	ld a, [wSwitchMon]
 	dec a
 	call AddNTimes
-	ld [hl], "▷"
+	ld [hl], '▷'
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DelayFrame
 
 	farcall PartyMenuSelect
-	bit 1, b
+	bit B_PAD_B, b
 	jr c, .DontSwitch
 
 	farcall _SwitchPartyMons
@@ -815,14 +815,14 @@ ChooseMoveToDelete:
 	call Load2DMenuData
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	jr .enter_loop
 
 .loop
 	call ScrollingMenuJoypad
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jp nz, .b_button
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jp nz, .a_button
 
 .enter_loop
@@ -842,7 +842,7 @@ ChooseMoveToDelete:
 	xor a
 	ld [wSwitchMon], a
 	ld hl, w2DMenuFlags1
-	res 6, [hl]
+	res _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call ClearSprites
 	call ClearTilemap
 	pop af
@@ -851,9 +851,10 @@ ChooseMoveToDelete:
 DeleteMoveScreen2DMenuData:
 	db 3, 1 ; cursor start y, x
 	db 3, 1 ; rows, columns
-	db $40, $00 ; flags
+	db _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db 0 ; flags 2
 	dn 2, 0 ; cursor offset
-	db D_UP | D_DOWN | A_BUTTON | B_BUTTON ; accepted buttons
+	db PAD_UP | PAD_DOWN | PAD_A | PAD_B ; accepted buttons
 
 ManagePokemonMoves:
 	ld a, [wCurPartySpecies]
@@ -883,18 +884,18 @@ MoveScreenLoop:
 .loop
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
-	set 6, [hl]
+	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	jr .skip_joy
 
 .joy_loop
 	call ScrollingMenuJoypad
-	bit 1, a
+	bit B_PAD_B, a
 	jp nz, .b_button
-	bit 0, a
+	bit B_PAD_A, a
 	jp nz, .a_button
-	bit 4, a
+	bit B_PAD_RIGHT, a
 	jp nz, .d_right
-	bit 5, a
+	bit B_PAD_LEFT, a
 	jp nz, .d_left
 
 .skip_joy
@@ -906,7 +907,7 @@ MoveScreenLoop:
 	jp .joy_loop
 
 .moving_move
-	ld a, " "
+	ld a, ' '
 	hlcoord 1, 11
 	ld bc, 5
 	call ByteFill
@@ -1073,16 +1074,17 @@ MoveScreenLoop:
 	xor a
 	ld [wSwappingMove], a
 	ld hl, w2DMenuFlags1
-	res 6, [hl]
+	res _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
 	call ClearSprites
 	jp ClearTilemap
 
 MoveScreen2DMenuData:
 	db 3, 1 ; cursor start y, x
 	db 3, 1 ; rows, columns
-	db $40, $00 ; flags
+	db _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db 0 ; flags 2
 	dn 2, 0 ; cursor offsets
-	db D_UP | D_DOWN | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON ; accepted buttons
+	db PAD_CTRL_PAD | PAD_A | PAD_B ; accepted buttons
 
 String_MoveWhere:
 	db "Where?@"
@@ -1151,7 +1153,7 @@ SetUpMoveList:
 	hlcoord 10, 4
 	predef ListMovePP
 	call WaitBGMap
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, [wNumMoves]
 	inc a
 	ld [w2DMenuNumRows], a
@@ -1259,7 +1261,7 @@ PlaceMoveScreenLeftArrow:
 
 .legal
 	hlcoord 16, 0
-	ld [hl], "◀"
+	ld [hl], '◀'
 	ret
 
 PlaceMoveScreenRightArrow:
@@ -1290,5 +1292,5 @@ PlaceMoveScreenRightArrow:
 
 .legal
 	hlcoord 18, 0
-	ld [hl], "▶"
+	ld [hl], '▶'
 	ret

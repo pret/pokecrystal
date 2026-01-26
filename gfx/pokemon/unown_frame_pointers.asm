@@ -1,5 +1,5 @@
 UnownFramesPointers:
-	table_width 2, UnownFramesPointers
+	table_width 2
 	dw UnownAFrames
 	dw UnownBFrames
 	dw UnownCFrames

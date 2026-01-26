@@ -11,7 +11,7 @@ FarCall::
 SECTION "rst10", ROM0[$0010]
 Bankswitch::
 	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ret
 
 SECTION "rst18", ROM0[$0018]
@@ -68,3 +68,5 @@ Start::
 ; This makes sure it doesn't get used for anything else.
 
 	ds $0150 - @, $00
+
+ENDSECTION

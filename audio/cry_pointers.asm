@@ -1,6 +1,6 @@
 Cries:
 ; entries correspond to CRY_* constants (see constants/cry_constants.asm)
-	table_width 3, Cries
+	table_width 3
 	dba Cry_Nidoran_M
 	dba Cry_Nidoran_F
 	dba Cry_Slowpoke

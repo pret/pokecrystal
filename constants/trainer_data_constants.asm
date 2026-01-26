@@ -24,20 +24,13 @@ DEF NO_AI EQU 0
 
 ; TRNATTR_AI_ITEM_SWITCH bit flags
 	const_def
-	const SWITCH_OFTEN_F     ; 0
-	const SWITCH_RARELY_F    ; 1
-	const SWITCH_SOMETIMES_F ; 2
-	const_skip               ; 3
-	const ALWAYS_USE_F       ; 4
-	const UNKNOWN_USE_F      ; 5
-	const CONTEXT_USE_F      ; 6
-
-DEF SWITCH_OFTEN       EQU 1 << SWITCH_OFTEN_F
-DEF SWITCH_RARELY      EQU 1 << SWITCH_RARELY_F
-DEF SWITCH_SOMETIMES   EQU 1 << SWITCH_SOMETIMES_F
-DEF ALWAYS_USE         EQU 1 << ALWAYS_USE_F
-DEF UNKNOWN_USE        EQU 1 << UNKNOWN_USE_F
-DEF CONTEXT_USE        EQU 1 << CONTEXT_USE_F
+	shift_const SWITCH_OFTEN     ; 0
+	shift_const SWITCH_RARELY    ; 1
+	shift_const SWITCH_SOMETIMES ; 2
+	const_skip
+	shift_const ALWAYS_USE       ; 4
+	shift_const UNKNOWN_USE      ; 5
+	shift_const CONTEXT_USE      ; 6
 
 ; TrainerTypes indexes (see engine/battle/read_trainer_party.asm)
 	const_def

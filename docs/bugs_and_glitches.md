@@ -10,7 +10,7 @@ Fixes are written in the `diff` format. If you've used Git before, this should l
 +add green + lines
 ```
 
-Fixes in the [multi-player battle engine](#multi-player-battle-engine) category will break compatibility with standard Pokémon Gold/Silver/Crystal for link battles, unless otherwise noted. This can be avoided by writing more complicated fixes that only apply if the value at `[wLinkMode]` is not `LINK_COLOSSEUM`. That's how Crystal itself fixed two bugs in Gold and Silver regarding the moves [Reflect and Light Screen](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024) and [Present](#present-damage-is-incorrect-in-link-battles).
+Fixes in the [multi-player battle engine](#multi-player-battle-engine) category will break compatibility with standard Pokémon Gold/Silver/Crystal for link battles. This can be avoided by writing more complicated fixes that only apply if the value at `[wLinkMode]` is not `LINK_COLOSSEUM`. That's how Crystal itself fixed two bugs in Gold and Silver regarding the moves [Reflect and Light Screen](#reflect-and-light-screen-can-make-special-defense-wrap-around-above-1024) and [Present](#present-damage-is-incorrect-in-link-battles).
 
 
 ## Contents
@@ -31,15 +31,12 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Lock-On and Mind Reader don't always bypass Fly and Dig](#lock-on-and-mind-reader-dont-always-bypass-fly-and-dig)
   - [Beat Up can desynchronize link battles](#beat-up-can-desynchronize-link-battles)
   - [Beat Up works incorrectly with only one Pokémon in the party](#beat-up-works-incorrectly-with-only-one-pok%C3%A9mon-in-the-party)
-  - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
   - [Beat Up may trigger King's Rock even if it failed](#beat-up-may-trigger-kings-rock-even-if-it-failed)
   - [Present damage is incorrect in link battles](#present-damage-is-incorrect-in-link-battles)
   - [Return and Frustration deal no damage when the user's happiness is low or high, respectively](#return-and-frustration-deal-no-damage-when-the-users-happiness-is-low-or-high-respectively)
   - [Dragon Scale, not Dragon Fang, boosts Dragon-type moves](#dragon-scale-not-dragon-fang-boosts-dragon-type-moves)
   - [Switching out or switching against a Pokémon with max HP below 4 freezes the game](#switching-out-or-switching-against-a-pok%C3%A9mon-with-max-HP-below-4-freezes-the-game)
   - [Moves that do damage and increase your stats do not increase stats after a KO](#moves-that-do-damage-and-increase-your-stats-do-not-increase-stats-after-a-ko)
-  - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
-  - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
 - [Single-player battle engine](#single-player-battle-engine)
   - [A Transformed Pokémon can use Sketch and learn otherwise unobtainable moves](#a-transformed-pok%C3%A9mon-can-use-sketch-and-learn-otherwise-unobtainable-moves)
   - [Catching a Transformed Pokémon always catches a Ditto](#catching-a-transformed-pok%C3%A9mon-always-catches-a-ditto)
@@ -50,21 +47,24 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Love Ball boosts catch rate for the wrong gender](#love-ball-boosts-catch-rate-for-the-wrong-gender)
   - [Fast Ball only boosts catch rate for three Pokémon](#fast-ball-only-boosts-catch-rate-for-three-pok%C3%A9mon)
   - [Heavy Ball uses wrong weight value for three Pokémon](#heavy-ball-uses-wrong-weight-value-for-three-pok%C3%A9mon)
+  - [Catch rate formula breaks for Pokémon with max HP > 341](#catch-rate-formula-breaks-for-pok%C3%A9mon-with-max-hp--341)
   - [PRZ and BRN stat reductions don't apply to switched Pokémon](#prz-and-brn-stat-reductions-dont-apply-to-switched-pok%C3%A9mon)
   - [Glacier Badge may not boost Special Defense depending on the value of Special Attack](#glacier-badge-may-not-boost-special-defense-depending-on-the-value-of-special-attack)
   - ["Smart" AI encourages Mean Look if its own Pokémon is badly poisoned](#smart-ai-encourages-mean-look-if-its-own-pok%C3%A9mon-is-badly-poisoned)
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
   - ["Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-or-moonlight-during-sunny-day)
+  - ["Cautious" AI may fail to discourage residual moves](#cautious-ai-may-fail-to-discourage-residual-moves)
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
+  - [AI use of Full Heal or Full Restore does not cure Attack or Speed drops from burn or paralysis](#ai-use-of-full-heal-or-full-restore-does-not-cure-attack-or-speed-drops-from-Burn-or-Paralysis)
   - [AI might use its base reward value as an item](#ai-might-use-its-base-reward-value-as-an-item)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pok%C3%A9mon-can-always-teleport-regardless-of-level-difference)
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
   - [`HELD_CATCH_CHANCE` has no effect](#held_catch_chance-has-no-effect)
   - [Credits sequence changes move selection menu behavior](#credits-sequence-changes-move-selection-menu-behavior)
-- [Game engine](#game-engine)
+- [Overworld engine](#overworld-engine)
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
   - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
@@ -74,15 +74,21 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
   - [Two tiles in the `port` tileset are drawn incorrectly](#two-tiles-in-the-port-tileset-are-drawn-incorrectly)
   - [The Ruins of Alph research center's roof color at night looks wrong](#the-ruins-of-alph-research-centers-roof-color-at-night-looks-wrong)
+  - [Slowpoke Well's stones use the wrong corner tile](#slowpoke-wells-stones-use-the-wrong-corner-tile)
   - [A hatching Unown egg would not show the right letter](#a-hatching-unown-egg-would-not-show-the-right-letter)
+  - [Beat Up may fail to raise Substitute](#beat-up-may-fail-to-raise-substitute)
+  - [HP bar animation is slow for high HP](#hp-bar-animation-is-slow-for-high-hp)
+  - [HP bar animation off-by-one error for low HP](#hp-bar-animation-off-by-one-error-for-low-hp)
   - [Using a Park Ball in non-Contest battles has a corrupt animation](#using-a-park-ball-in-non-contest-battles-has-a-corrupt-animation)
   - [Battle transitions fail to account for the enemy's level](#battle-transitions-fail-to-account-for-the-enemys-level)
   - [Some trainer NPCs have inconsistent overworld sprites](#some-trainer-npcs-have-inconsistent-overworld-sprites)
+  - [Tackle is missing part of its hit animation](#tackle-is-missing-part-of-its-hit-animation)
 - [Audio](#audio)
   - [Slot machine payout sound effects cut each other off](#slot-machine-payout-sound-effects-cut-each-other-off)
   - [Team Rocket battle music is not used for Executives or Scientists](#team-rocket-battle-music-is-not-used-for-executives-or-scientists)
   - [No bump noise if standing on tile `$3E`](#no-bump-noise-if-standing-on-tile-3e)
   - [Playing Entei's Pokédex cry can distort Raikou's and Suicune's](#playing-enteis-pok%C3%A9dex-cry-can-distort-raikous-and-suicunes)
+  - [`SFX_RUN` does not play correctly when a wild Pokémon flees from battle](#sfx_run-does-not-play-correctly-when-a-wild-pok%C3%A9mon-flees-from-battle)
 - [Text](#text)
   - [Five-digit experience gain is printed incorrectly](#five-digit-experience-gain-is-printed-incorrectly)
   - [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
@@ -97,11 +103,13 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`CheckOwnMon` only checks the first five letters of OT names](#checkownmon-only-checks-the-first-five-letters-of-ot-names)
   - [`CheckOwnMonAnywhere` does not check the Day-Care](#checkownmonanywhere-does-not-check-the-day-care)
   - [The unused `phonecall` script command may crash](#the-unused-phonecall-script-command-may-crash)
+  - [Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon](#mania-uses-wrong-dialogue-for-trying-to-return-shuckie-with-no-other-pok%C3%A9mon)
 - [Internal engine routines](#internal-engine-routines)
   - [Saves corrupted by mid-save shutoff are not handled](#saves-corrupted-by-mid-save-shutoff-are-not-handled)
   - [`ScriptCall` can overflow `wScriptStack` and crash](#scriptcall-can-overflow-wscriptstack-and-crash)
   - [`LoadSpriteGFX` does not limit the capacity of `UsedSprites`](#loadspritegfx-does-not-limit-the-capacity-of-usedsprites)
   - [`ChooseWildEncounter` doesn't really validate the wild Pokémon species](#choosewildencounter-doesnt-really-validate-the-wild-pok%C3%A9mon-species)
+  - [`RandomUnseenWildMon` always picks a morning Pokémon species](#randomunseenwildmon-always-picks-a-morning-pok%C3%A9mon-species)
   - [`TryObjectEvent` arbitrary code execution](#tryobjectevent-arbitrary-code-execution)
   - [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
   - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
@@ -406,7 +414,7 @@ This makes the Berserk Gene use the regular confusion duration (2–5 turns).
 
 **Fix:**
 
-First, edit [wram.asm](https://github.com/pret/pokecrystal/blob/master/wram.asm):
+First, edit [wram.asm](https://github.com/pret/pokecrystal/blob/master/ram/wram.asm):
 
 ```diff
  wTurnEnded:: db
@@ -692,32 +700,6 @@ This bug prevents the rest of Beat Up's effect from being executed if the player
 ```
 
 
-### Beat Up may fail to raise Substitute
-
-*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
-
-This bug prevents Substitute from being raised if Beat Up was blocked by Protect or Detect.
-
-**Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm).
-
-```diff
--; BUG: Beat Up may fail to raise Substitute (see docs/bugs_and_glitches.md)
- 	cp EFFECT_MULTI_HIT
- 	jr z, .multihit
- 	cp EFFECT_DOUBLE_HIT
- 	jr z, .multihit
- 	cp EFFECT_POISON_MULTI_HIT
- 	jr z, .multihit
-+	cp EFFECT_BEAT_UP
-+	jr z, .multihit
- 	jp EndMoveEffect
-
- .multihit
- 	call BattleCommand_RaiseSub
- 	jp EndMoveEffect
-```
-
-
 ### Beat Up may trigger King's Rock even if it failed
 
 **Fix:** Edit `BattleCommand_BeatUpFailText` in [engine/battle/move_effects/beat_up.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/move_effects/beat_up.asm):
@@ -969,56 +951,6 @@ This changes both calculations to *HP* × (100 / *N*) / (*max HP* / *N*) for the
 ```
 
 
-### HP bar animation is slow for high HP
-
-*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
-
-([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
-
-**Fix:** Edit `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
-
-```diff
--; BUG: HP bar animation is slow for high HP (see docs/bugs_and_glitches.md)
- 	call ComputeHPBarPixels
-+	ld a, e
- 	pop bc
- 	pop de
- 	pop hl
--	ld a, e
- 	ld hl, wCurHPBarPixels
- 	cp [hl]
- 	jr z, .loop
- 	ld [hl], a
- 	and a
- 	ret
-```
-
-
-### HP bar animation off-by-one error for low HP
-
-*Fixing this cosmetic bug will* **not** *break link battle compatibility.*
-
-([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
-
-**Fix:** Edit `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
-
-```diff
- 	ld b, 0
- .loop
--; BUG: HP bar animation off-by-one error for low HP (see docs/bugs_and_glitches.md)
- 	ld a, l
- 	sub HP_BAR_LENGTH_PX
- 	ld l, a
- 	ld a, h
- 	sbc $0
- 	ld h, a
-+	jr z, .done
- 	jr c, .done
- 	inc b
- 	jr .loop
-```
-
-
 ## Single-player battle engine
 
 
@@ -1173,10 +1105,16 @@ This can occur if your party and current PC box are both full when you start the
 
 ### Moon Ball does not boost catch rate
 
+The Moon Ball checks the wrong memory address for the wrong item ID, so no Pokémon can receive the boost.
+
 **Fix:** Edit `MoonBallMultiplier` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
 
 ```diff
 -; BUG: Moon Ball does not boost catch rate (see docs/bugs_and_glitches.md)
+ 	inc hl
+-	inc hl
+-	inc hl
+
  	push bc
  	ld a, BANK("Evolutions and Attacks")
  	call GetFarByte
@@ -1185,6 +1123,8 @@ This can occur if your party and current PC box are both full when you start the
  	pop bc
  	ret nz
 ```
+
+Note that this fix only accounts for Pokémon that evolve via Moon Stone as their first evolution method. However, that is sufficient to cover all Pokémon in the game that can evolve by Moon Stone.
 
 
 ### Love Ball boosts catch rate for the wrong gender
@@ -1255,6 +1195,41 @@ This can occur if your party and current PC box are both full when you start the
  	db BANK("Pokedex Entries 065-128")
  	db BANK("Pokedex Entries 129-192")
  	db BANK("Pokedex Entries 193-251")
+```
+
+
+### Catch rate formula breaks for Pokémon with max HP > 341
+
+HP values above 341 remain larger than 1 byte after division.
+
+**Fix:** Edit `PokeBallEffect` in [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/master/engine/items/item_effects.asm):
+
+```diff
+	srl d
+	rr e
+	srl d
+	rr e
+	srl b
+	rr c
+	srl b
+	rr c
+
+-	; BUG: Catch rate formula breaks for Pokémon with max HP > 341 (see docs/bugs_and_glitches.md)
++	; Divide by 2 again if there's still something in the high byte
++	ld a, d
++	and a
++	jr z, .check_cur_low
++	srl d
++	rr e
++	srl b
++	rr c
++.check_cur_low
+	ld a, c
+	and a
+	jr nz, .okay_1
+	ld c, $1
+.okay_1
+	ld b, e
 ```
 
 
@@ -1332,13 +1307,13 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
 ```
 
 
-### "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day
+### "Smart" AI does not encourage Sunny Day when it knows Solar Beam, Flame Wheel, or Moonlight
 
 **Fix:** Edit `SunnyDayMoves` in [data/battle/ai/sunny_day_moves.asm](https://github.com/pret/pokecrystal/blob/master/data/battle/ai/sunny_day_moves.asm):
 
 ```diff
  SunnyDayMoves:
--; BUG: "Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day (see docs/bugs_and_glitches.md)
+-; BUG: "Smart" AI does not encourage Sunny Day when it knows Solar Beam, Flame Wheel, or Moonlight (see docs/bugs_and_glitches.md)
  	db FIRE_PUNCH
  	db EMBER
  	db FLAMETHROWER
@@ -1354,6 +1329,32 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
 ```
 
 
+### "Cautious" AI may fail to discourage residual moves
+
+**Fix:** Edit `AI_Cautious` in [engine/battle/ai/scoring.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/scoring.asm):
+
+```diff
+AI_Cautious:
+; 90% chance to discourage moves with residual effects after the first turn.
+
+	...
+
+	pop bc
+	pop de
+	pop hl
+	jr nc, .loop
+
+-; BUG: "Cautious" AI may fail to discourage residual moves (see docs/bugs_and_glitches.md)
+	call Random
+	cp 90 percent + 1
+-	ret nc
++	jr nc, .loop
+
+	inc [hl]
+	jr .loop
+```
+
+
 ### AI does not discourage Future Sight when it's already been used
 
 **Fix:** Edit `AI_Redundant` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
@@ -1362,7 +1363,7 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
  .FutureSight:
 -; BUG: AI does not discourage Future Sight when it's already been used (see docs/bugs_and_glitches.md)
 -	ld a, [wEnemyScreens]
--	bit 5, a
+-	bit SCREENS_UNUSED, a
 +	ld a, [wEnemyFutureSightCount]
 +	and a
  	ret
@@ -1406,6 +1407,7 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
 ```diff
  AI_HealStatus:
 -; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
+ ; BUG: AI use of Full Heal or Full Restore does not cure Attack or Speed drops from burn or paralysis (see docs/bugs_and_glitches.md)
  	ld a, [wCurOTMon]
  	ld hl, wOTPartyMon1Status
  	ld bc, PARTYMON_STRUCT_LENGTH
@@ -1441,6 +1443,7 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
 ```diff
  AI_HealStatus:
  ; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
+ ; BUG: AI use of Full Heal or Full Restore does not cure Attack or Speed drops from burn or paralysis (see docs/bugs_and_glitches.md)
  	ld a, [wCurOTMon]
  	ld hl, wOTPartyMon1Status
  	ld bc, PARTYMON_STRUCT_LENGTH
@@ -1453,6 +1456,27 @@ Pryce's dialog ("That BADGE will raise the SPECIAL stats of POKéMON.") implies 
 +	res SUBSTATUS_CONFUSED, [hl]
  	ld hl, wEnemySubStatus5
  	res SUBSTATUS_TOXIC, [hl]
+ 	ret
+```
+
+### AI use of Full Heal or Full Restore does not cure Attack or Speed drops from burn or paralysis
+
+**Fix:** Edit `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+
+```diff
+ AI_HealStatus:
+ ; BUG: AI use of Full Heal or Full Restore does not cure Nightmare status (see docs/bugs_and_glitches.md)
+-; BUG: AI use of Full Heal or Full Restore does not cure Attack or Speed drops from burn or paralysis (see docs/bugs_and_glitches.md)
+ 	ld a, [wCurOTMon]
+ 	ld hl, wOTPartyMon1Status
+ 	ld bc, PARTYMON_STRUCT_LENGTH
+ 	call AddNTimes
+ 	xor a
+ 	ld [hl], a
+ 	ld [wEnemyMonStatus], a
+ 	ld hl, wEnemySubStatus5
+ 	res SUBSTATUS_TOXIC, [hl]
++	farcall CalcEnemyStats
  	ret
 ```
 
@@ -1554,7 +1578,7 @@ To select a move in battle, you have to press and release the Up or Down buttons
 -; BUG: Credits sequence changes move selection menu behavior (see docs/bugs_and_glitches.md)
  	ldh a, [hVBlank]
  	push af
- 	ld a, $5
+ 	ld a, VBLANK_CREDITS
  	ldh [hVBlank], a
 +	ldh a, [hInMenu]
 +	push af
@@ -1570,7 +1594,7 @@ To select a move in battle, you have to press and release the Up or Down buttons
  	pop af
  	ldh [hVBlank], a
  	pop af
- 	ldh [rSVBK], a
+ 	ldh [rWBK], a
 ```
 
 The `[hInMenu]` value determines this button behavior. However, the battle moves menu doesn't actually set `[hInMenu]` to anything, so either behavior *may* have been intentional. The default 0 prevents continuous scrolling; a value of 1 allows it. (The Japanese release sets it to 0.)
@@ -1597,7 +1621,7 @@ The `[hInMenu]` value determines this button behavior. However, the battle moves
 ```
 
 
-## Game engine
+## Overworld engine
 
 
 ### `LoadMetatiles` wraps around past 128 blocks
@@ -1685,10 +1709,10 @@ Then edit `SurfStartStep` in [engine/overworld/player_object.asm](https://github
 -	slow_step UP
 -	slow_step LEFT
 -	slow_step RIGHT
-+	db D_DOWN,  0, -1
-+	db D_UP,    0, -1
-+	db D_LEFT,  0, -1
-+	db D_RIGHT, 0, -1
++	db PAD_DOWN,  0, -1
++	db PAD_UP,    0, -1
++	db PAD_LEFT,  0, -1
++	db PAD_RIGHT, 0, -1
 ```
 
 This fix will make the player enter the water at a normal walking speed, not with a slow step.
@@ -1725,7 +1749,7 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
  	cp PLAYER_SURF_PIKA
  	jr z, .fail
  	call GetFacingTileCoord
- 	call GetTileCollision
+ 	call GetTilePermission
  	cp WATER_TILE
 -	jr z, .facingwater
 +	jr nz, .fail
@@ -1739,7 +1763,7 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 
 ### Pokémon deposited in the Day-Care might lose experience
 
-When a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the minimum required for its level. This means that if it hasn't gained any levels, it may lose experience.
+When a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the minimum required for its level. This means that if it hadn't gained any levels while in the Day-Care, it may lose experience.
 
 **Fix:** Edit `RetrieveBreedmon` in [engine/pokemon/move_mon.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/move_mon.asm):
 
@@ -1831,6 +1855,17 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/ruins_of_alph_outside_cinnabar.png)
 
 
+### Slowpoke Well's stones use the wrong corner tile
+
+This is a mistake with block $5B in the `johto_modern` tileset. The bottom-left corners of the three stones around Slowpoke Well use tile $4B, but should use tile $47.
+
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/slowpoke_well.png)
+
+**Fix:** Edit block $5B with [Polished Map](https://github.com/Rangi42/polished-map) to use the same tiles as block $5C:
+
+![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/slowpoke_well_fixed.png)
+
+
 ### A hatching Unown egg would not show the right letter
 
 **Fix:** Edit both functions in [engine/pokemon/breeding.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/breeding.asm):
@@ -1860,6 +1895,76 @@ The dungeons' map group mostly has indoor maps that don't need roof colors, but 
  	predef GetUnownLetter
  	pop de
  	predef_jump GetAnimatedFrontpic
+```
+
+
+### Beat Up may fail to raise Substitute
+
+This bug prevents Substitute from being raised if Beat Up was blocked by Protect or Detect.
+
+**Fix:** Edit `BattleCommand_FailureText` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm).
+
+```diff
+-; BUG: Beat Up may fail to raise Substitute (see docs/bugs_and_glitches.md)
+ 	cp EFFECT_MULTI_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_DOUBLE_HIT
+ 	jr z, .multihit
+ 	cp EFFECT_POISON_MULTI_HIT
+ 	jr z, .multihit
++	cp EFFECT_BEAT_UP
++	jr z, .multihit
+ 	jp EndMoveEffect
+
+ .multihit
+ 	call BattleCommand_RaiseSub
+ 	jp EndMoveEffect
+```
+
+
+### HP bar animation is slow for high HP
+
+([Video](https://www.youtube.com/watch?v=SE-BfsFgZVM))
+
+**Fix:** Edit `LongAnim_UpdateVariables` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
+
+```diff
+-; BUG: HP bar animation is slow for high HP (see docs/bugs_and_glitches.md)
+ 	call ComputeHPBarPixels
++	ld a, e
+ 	pop bc
+ 	pop de
+ 	pop hl
+-	ld a, e
+ 	ld hl, wCurHPBarPixels
+ 	cp [hl]
+ 	jr z, .loop
+ 	ld [hl], a
+ 	and a
+ 	ret
+```
+
+
+### HP bar animation off-by-one error for low HP
+
+([Video](https://www.youtube.com/watch?v=9KyNVIZxJvI))
+
+**Fix:** Edit `ShortHPBar_CalcPixelFrame` in [engine/battle/anim_hp_bar.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/anim_hp_bar.asm):
+
+```diff
+ 	ld b, 0
+ .loop
+-; BUG: HP bar animation off-by-one error for low HP (see docs/bugs_and_glitches.md)
+ 	ld a, l
+ 	sub HP_BAR_LENGTH_PX
+ 	ld l, a
+ 	ld a, h
+ 	sbc $0
+ 	ld h, a
++	jr z, .done
+ 	jr c, .done
+ 	inc b
+ 	jr .loop
 ```
 
 
@@ -1992,7 +2097,7 @@ Finally, edit [engine/battle/read_trainer_party.asm](https://github.com/pret/pok
 +	ld [wCurPartyLevel], a
 +
 +	ld a, [wInBattleTowerBattle]
-+	bit 0, a
++	bit IN_BATTLE_TOWER_BATTLE_F, a
 +	ret nz
 +
 +	ld a, [wLinkMode]
@@ -2047,6 +2152,7 @@ Most trainer classes always use the same sprite and color for their overworld NP
 - [maps/Route44.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route44.asm): `TrainerPokemaniacZach` should use `PAL_NPC_BLUE`, not `PAL_NPC_GREEN`
 - [maps/UnionCaveB2F.asm](https://github.com/pret/pokecrystal/blob/master/maps/UnionCaveB2F.asm): `TrainerCooltrainermNick` should use `SPRITE_COOLTRAINER_M`, not `SPRITE_ROCKER`
 - [maps/FuchsiaPokecenter1F.asm](https://github.com/pret/pokecrystal/blob/master/maps/FuchsiaPokecenter1F.asm): `FuchsiaPokecenter1FNurseScript` should use `PAL_NPC_RED`, not `PAL_NPC_GREEN`
+- [maps/IlexForest.asm](https://github.com/pret/pokecrystal/blob/master/maps/IlexForest.asm): `TrainerBugCatcherWayne` should use `SPRITE_BUG_CATCHER` and `PAL_NPC_BROWN`, not `SPRITE_YOUNGSTER` and `PAL_NPC_GREEN`
 
 Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/pokecrystal/blob/master/maps/NationalParkBugContest.asm) and [maps/Route36NationalParkGate.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route36NationalParkGate.asm) are also inconsistent with their trainers from other maps:
 
@@ -2062,6 +2168,22 @@ Most of the NPCs in [maps/NationalParkBugContest.asm](https://github.com/pret/po
 (Note that [maps/Route8.asm](https://github.com/pret/pokecrystal/blob/master/maps/Route8.asm) has three `BIKER`s, `DWAYNE`, `HARRIS`, and `ZEKE`, that use `PAL_NPC_RED`, `PAL_NPC_GREEN`, and `PAL_NPC_BLUE` instead of `PAL_NPC_BROWN`; this is intentional since they're the "Kanto Pokémon Federation".)
 
 (The use of `SPRITE_ROCKER` instead of `SPRITE_COOLTRAINER_M` for `COOLTRAINERM NICK` may also be an intentional reference to the player's brother from the [Space World '97 beta](https://github.com/pret/pokegold-spaceworld).)
+
+
+### Tackle is missing part of its hit animation
+
+Copying two rows causes `BATTLE_BG_EFFECT_TACKLE` to hit the horizontal sprite limit. This fix restores the animation to copy only one row like in Pokémon Gold and Silver.
+
+**Fix:** Edit `BattleAnim_Tackle` in [data/moves/animations.asm](https://github.com/pret/pokecrystal/blob/master/data/moves/animations.asm):
+
+```diff
+ BattleAnim_Tackle:
+-; BUG: Tackle is missing part of its hit animation (see docs/bugs_and_glitches.md)
+ 	anim_1gfx BATTLE_ANIM_GFX_HIT
+-	anim_call BattleAnim_TargetObj_2Row
++	anim_call BattleAnim_TargetObj_1Row
+ 	anim_bgeffect BATTLE_BG_EFFECT_TACKLE, $0, BG_EFFECT_USER, $0
+```
 
 
 ## Audio
@@ -2126,7 +2248,7 @@ If `[wWalkingDirection]` is `STANDING` (`$FF`), this will check `[.EdgeWarps + $
  	ld d, 0
  	ld hl, .EdgeWarps
  	add hl, de
- 	ld a, [wPlayerTile]
+ 	ld a, [wPlayerTileCollision]
  	cp [hl]
  	jr nz, .not_warp
 
@@ -2158,6 +2280,18 @@ The exact cause of this bug is unknown.
 +	ld a, [wCurPartySpecies]
 +	call PlayMonCry
  	ret
+```
+
+
+### `SFX_RUN` does not play correctly when a wild Pokémon flees from battle
+
+**Fix:** Edit `WildFled_EnemyFled_LinkBattleCanceled` in [engine/battle/core.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/core.asm):
+
+```diff
+-; BUG: SFX_RUN does not play correctly when a wild Pokemon flees from battle (see docs/bugs_and_glitches.md)
+  ld de, SFX_RUN
+- call PlaySFX
++ call WaitPlaySFX
 ```
 
 
@@ -2503,6 +2637,17 @@ The `phonecall` script command calls the `PhoneCall` routine, which calls the `B
 You can also delete the now-unused `BrokenPlaceFarString` routine in the same file.
 
 
+### Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon
+
+**Fix**: Edit `ManiaScript.returnshuckie` in [maps/ManiasHouse.asm](https://github.com/pret/pokecrystal/blob/master/maps/ManiasHouse.asm):
+
+```diff
+-; BUG: Mania uses wrong dialogue for trying to return Shuckie with no other Pokémon (see docs/bugs_and_glitches.md)
+-	ifequal SHUCKIE_FAINTED, .default_postevent
++	ifequal SHUCKIE_FAINTED, .nothingleft
+```
+
+
 ## Internal engine routines
 
 
@@ -2605,6 +2750,25 @@ This allows Pokémon to be duplicated, among other effects. It does not have a s
 ```
 
 
+### `RandomUnseenWildMon` always picks a morning Pokémon species
+
+**Fix:** Edit `RandomUnseenWildMon` in [engine/overworld/wildmons.asm](https://github.com/pret/pokecrystal/blob/master/engine/overworld/wildmons.asm):
+
+```diff
+ .GetGrassmon:
+-; BUG: RandomUnseenWildMon always picks a morning Pokémon species (see docs/bugs_and_glitches.md)
++	ld a, [wTimeOfDay]
++	ld bc, NUM_GRASSMON * 2
++	call AddNTimes
+ 	push hl
+ 	ld bc, 5 + 4 * 2 ; Location of the level of the 5th wild Pokemon in that map
+ 	add hl, bc
+-	ld a, [wTimeOfDay]
+-	ld bc, NUM_GRASSMON * 2
+-	call AddNTimes
+```
+
+
 ### `TryObjectEvent` arbitrary code execution
 
 If `IsInArray` returns `nc`, data at `bc` will be executed as code.
@@ -2677,10 +2841,10 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
  	ld a, 1
  .bank_loop
  	push af
- 	ldh [rSVBK], a
+ 	ldh [rWBK], a
  	xor a
- 	ld hl, WRAM1_Begin
- 	ld bc, WRAM1_End - WRAM1_Begin
+ 	ld hl, STARTOF(WRAMX)
+ 	ld bc, SIZEOF(WRAMX)
  	call ByteFill
  	pop af
  	inc a

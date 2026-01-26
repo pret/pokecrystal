@@ -193,7 +193,7 @@ TeamRocketBaseB3FLockedDoor:
 	waitbutton
 	playsound SFX_ENTER_DOOR
 	changeblock 10, 8, $07 ; floor
-	reloadmappart
+	refreshmap
 	closetext
 	setevent EVENT_OPENED_DOOR_TO_GIOVANNIS_OFFICE
 	waitsfx

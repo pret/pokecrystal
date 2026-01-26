@@ -13,9 +13,9 @@ _InitString::
 	push bc
 .loop
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr z, .blank
-	cp " "
+	cp ' '
 	jr nz, .notblank
 	dec c
 	jr nz, .loop

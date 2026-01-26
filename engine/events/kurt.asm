@@ -62,7 +62,7 @@ Kurt_SelectApricorn:
 	call UpdateSprites
 	call ScrollingMenu
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .nope
 	ld a, [wMenuSelection]
 	cp -1
@@ -165,7 +165,7 @@ PlaceApricornQuantity:
 	call MenuBoxCoord2Tile
 	ld de, 2 * SCREEN_WIDTH + 10
 	add hl, de
-	ld [hl], "×"
+	ld [hl], '×'
 	inc hl
 	ld de, wItemQuantityChange
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2

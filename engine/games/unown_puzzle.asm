@@ -27,7 +27,7 @@ _UnownPuzzle:
 	call Decompress
 	call LoadUnownPuzzlePiecesGFX
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, PUZZLE_BORDER
 	call ByteFill
 	hlcoord 4, 3
@@ -60,7 +60,7 @@ _UnownPuzzle:
 .loop
 	call JoyTextDelay
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .quit
 	call UnownPuzzleJumptable
 	ld a, [wHoldingUnownPuzzlePiece]
@@ -176,23 +176,23 @@ UnownPuzzleJumptable:
 
 .Function:
 	ldh a, [hJoyPressed]
-	and START
+	and PAD_START
 	jp nz, UnownPuzzle_Quit
 	ldh a, [hJoyPressed]
-	and A_BUTTON
+	and PAD_A
 	jp nz, UnownPuzzle_A
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .d_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .d_down
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .d_left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .d_right
 	ret
 
@@ -332,7 +332,7 @@ UnownPuzzle_A:
 	ld [wSolvedUnownPuzzle], a
 UnownPuzzle_Quit:
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 UnownPuzzle_InvalidAction:
@@ -557,13 +557,13 @@ RedrawUnownPuzzlePieces:
 .OAM_NotHoldingPiece:
 	dbsprite -1, -1, -4, -4, $00, 0
 	dbsprite  0, -1, -4, -4, $01, 0
-	dbsprite  0, -1,  4, -4, $00, 0 | X_FLIP
+	dbsprite  0, -1,  4, -4, $00, 0 | OAM_XFLIP
 	dbsprite -1,  0, -4, -4, $02, 0
 	dbsprite  0,  0, -4, -4, $03, 0
-	dbsprite  0,  0,  4, -4, $02, 0 | X_FLIP
-	dbsprite -1,  0, -4,  4, $00, 0 | Y_FLIP
-	dbsprite  0,  0, -4,  4, $01, 0 | Y_FLIP
-	dbsprite  0,  0,  4,  4, $00, 0 | X_FLIP | Y_FLIP
+	dbsprite  0,  0,  4, -4, $02, 0 | OAM_XFLIP
+	dbsprite -1,  0, -4,  4, $00, 0 | OAM_YFLIP
+	dbsprite  0,  0, -4,  4, $01, 0 | OAM_YFLIP
+	dbsprite  0,  0,  4,  4, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	db -1
 
 UnownPuzzleCoordData:

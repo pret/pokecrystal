@@ -31,7 +31,7 @@ UnusedTitleScreen: ; unreferenced
 
 	ld hl, UnusedTitleBG_Tilemap
 	debgcoord 0, 0
-	ld bc, BG_MAP_WIDTH * BG_MAP_HEIGHT
+	ld bc, TILEMAP_AREA
 .copy
 	ld a, 0
 	ldh [rVBK], a
@@ -49,21 +49,21 @@ UnusedTitleScreen: ; unreferenced
 
 	ld hl, UnusedTitleFG_OAM
 	ld de, wShadowOAMSprite00
-	ld bc, SPRITEOAMSTRUCT_LENGTH * NUM_SPRITE_OAM_STRUCTS
+	ld bc, OAM_SIZE
 	call CopyBytes
 
 	call EnableLCD
 	ldh a, [rLCDC]
-	set rLCDC_SPRITES_ENABLE, a
-	set rLCDC_SPRITE_SIZE, a
+	set B_LCDC_OBJS, a
+	set B_LCDC_OBJ_SIZE, a
 	ldh [rLCDC], a
 
 	call DelayFrame
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, UnusedTitleBG_Palettes
 	ld de, wBGPals1
@@ -86,7 +86,7 @@ UnusedTitleScreen: ; unreferenced
 	call CopyBytes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
@@ -162,7 +162,7 @@ TestCrystalTitleScreen: ; unreferenced
 	call JoyTextDelay
 	ldh a, [hJoyLast]
 	ld b, a
-	and A_BUTTON
+	and PAD_A
 	jr nz, .done
 	call SuicuneFrameIterator
 	call DelayFrame

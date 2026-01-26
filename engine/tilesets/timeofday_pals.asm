@@ -15,7 +15,7 @@ _TimeOfDayPals::
 
 ; forced pals?
 	ld hl, wTimeOfDayPalFlags
-	bit 7, [hl]
+	bit FORCED_PALSET_F, [hl]
 	jr nz, .dontchange
 
 ; do we need to bother updating?
@@ -43,14 +43,14 @@ _TimeOfDayPals::
 	ld hl, wBGPals1 palette PAL_BG_TEXT
 
 ; save wram bank
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; push palette
-	ld c, NUM_PAL_COLORS
+	ld c, PAL_COLORS
 .push
 	ld d, [hl]
 	inc hl
@@ -62,7 +62,7 @@ _TimeOfDayPals::
 
 ; restore wram bank
 	ld a, b
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; update sgb pals
 	ld b, SCGB_MAPPALS
@@ -72,14 +72,14 @@ _TimeOfDayPals::
 	ld hl, wOBPals1 - 1 ; last byte in wBGPals1
 
 ; save wram bank
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld d, a
 
 	ld a, BANK(wOBPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; pop palette
-	ld e, NUM_PAL_COLORS
+	ld e, PAL_COLORS
 .pop
 	pop bc
 	ld [hl], c
@@ -91,7 +91,7 @@ _TimeOfDayPals::
 
 ; restore wram bank
 	ld a, d
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; update palettes
 	call _UpdateTimePals
@@ -112,14 +112,14 @@ _UpdateTimePals::
 	call DmgToCgbTimePals
 	ret
 
-FadeInPalettes::
+FadeInFromWhite::
 	ld c, $12
 	call GetTimePalFade
 	ld b, $4
 	call ConvertTimePalsDecHL
 	ret
 
-FadeOutPalettes::
+FadeOutToWhite::
 	call FillWhiteBGColor
 	ld c, $9
 	call GetTimePalFade
@@ -143,14 +143,14 @@ BattleTowerFade:
 	jr nz, .loop
 	ret
 
-FadeInQuickly:
+FadeInFromBlack:
 	ld c, $0
 	call GetTimePalFade
 	ld b, $4
 	call ConvertTimePalsIncHL
 	ret
 
-FadeBlackQuickly:
+FadeOutToBlack:
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
@@ -158,10 +158,11 @@ FadeBlackQuickly:
 	ret
 
 FillWhiteBGColor:
-	ldh a, [rSVBK]
+; Copy white palette of wBGPals1 Pal0 into white palette of wBGPals1 Pal1-Pal6
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wBGPals1
 	ld a, [hli]
@@ -182,7 +183,7 @@ endr
 	jr nz, .loop
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 ReplaceTimeOfDayPals:

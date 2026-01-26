@@ -31,10 +31,10 @@ DaisyScript:
 	writetext DaisyAlrightText
 	waitbutton
 	closetext
-	special FadeOutPalettes
+	special FadeOutToWhite
 	playmusic MUSIC_HEAL
 	pause 60
-	special FadeInPalettes
+	special FadeInFromWhite
 	special RestartMapMusic
 	opentext
 	writetext GroomedMonLooksContentText

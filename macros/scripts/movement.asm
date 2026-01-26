@@ -124,10 +124,10 @@ MACRO step_end
 	db movement_step_end
 ENDM
 
-	const movement_step_48 ; $48
-MACRO step_48
-	db movement_step_48
-	db \1 ; ???
+	const movement_step_wait_end ; $48
+MACRO step_wait_end
+	db movement_step_wait_end
+	db \1 ; length
 ENDM
 
 	const movement_remove_object ; $49
@@ -140,9 +140,9 @@ MACRO step_loop
 	db movement_step_loop
 ENDM
 
-	const movement_step_4b ; $4b
-MACRO step_4b
-	db movement_step_4b
+	const movement_step_stop ; $4b
+MACRO step_stop
+	db movement_step_stop
 ENDM
 
 	const movement_teleport_from ; $4c

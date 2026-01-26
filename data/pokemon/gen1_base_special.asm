@@ -1,7 +1,7 @@
 ; The original base Special stat for each Pokémon from Red/Blue
 
 KantoMonSpecials:
-	table_width 1, KantoMonSpecials
+	table_width 1
 	db  65 ; BULBASAUR
 	db  80 ; IVYSAUR
 	db 100 ; VENUSAUR

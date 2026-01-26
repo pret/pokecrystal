@@ -18,6 +18,7 @@ DEF NAME_LENGTH_JAPANESE      EQU 6
 	const ENEMY_OT_NAME         ; 6
 	const TRAINER_NAME          ; 7
 	const MOVE_DESC_NAME_BROKEN ; 8
+DEF NUM_NAME_TYPES EQU const_value - 1
 
 ; see home/text.asm
 DEF BORDER_WIDTH   EQU 2
@@ -33,16 +34,11 @@ DEF TEXTBOX_INNERY EQU TEXTBOX_Y + 2
 ; see gfx/frames/*.png
 DEF TEXTBOX_FRAME_TILES EQU 6
 
-; PrintNum bit flags
+; PrintNum bit flags (see engine/math/print_num.asm)
 	const_def 5
-	const PRINTNUM_MONEY_F        ; 5
-	const PRINTNUM_LEFTALIGN_F    ; 6
-	const PRINTNUM_LEADINGZEROS_F ; 7
-
-; PrintNum arguments (see engine/math/print_num.asm)
-DEF PRINTNUM_MONEY        EQU 1 << PRINTNUM_MONEY_F
-DEF PRINTNUM_LEFTALIGN    EQU 1 << PRINTNUM_LEFTALIGN_F
-DEF PRINTNUM_LEADINGZEROS EQU 1 << PRINTNUM_LEADINGZEROS_F
+	shift_const PRINTNUM_MONEY        ; 5
+	shift_const PRINTNUM_LEFTALIGN    ; 6
+	shift_const PRINTNUM_LEADINGZEROS ; 7
 
 ; character sets (see charmap.asm)
 DEF FIRST_REGULAR_TEXT_CHAR     EQU $60

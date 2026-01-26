@@ -1,5 +1,5 @@
 FramesPointers:
-	table_width 2, FramesPointers
+	table_width 2
 	dw BulbasaurFrames
 	dw IvysaurFrames
 	dw VenusaurFrames

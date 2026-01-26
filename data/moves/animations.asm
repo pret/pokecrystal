@@ -1,6 +1,6 @@
 BattleAnimations::
 ; entries correspond to constants/move_constants.asm
-	table_width 2, BattleAnimations
+	table_width 2
 	dw BattleAnim_Dummy
 	dw BattleAnim_Pound
 	dw BattleAnim_KarateChop
@@ -2082,6 +2082,7 @@ BattleAnim_Headbutt:
 	anim_ret
 
 BattleAnim_Tackle:
+; BUG: Tackle is missing part of its hit animation (see docs/bugs_and_glitches.md)
 	anim_1gfx BATTLE_ANIM_GFX_HIT
 	anim_call BattleAnim_TargetObj_2Row
 	anim_bgeffect BATTLE_BG_EFFECT_TACKLE, $0, BG_EFFECT_USER, $0

@@ -451,11 +451,11 @@ Function14d6c: ; unreferenced
 	ret
 
 Function14d83: ; unreferenced
-	ld a, BANK(s4_a60c) ; aka BANK(s4_a60d) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(s4_a60c) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
 	call OpenSRAM
 	xor a
 	ld [s4_a60c], a ; address of MBC30 bank
-	ld [s4_a60d], a ; address of MBC30 bank
+	ld [s4_a60c+1], a ; address of MBC30 bank
 	call CloseSRAM
 	ret
 
@@ -840,15 +840,15 @@ _SaveData:
 	call CopyBytes
 
 	; This block originally had some mobile functionality, but since we're still in
-	; BANK(sCrystalData), it instead overwrites the sixteen wEventFlags starting at 1:s4_a60e with
-	; garbage from wd479. This isn't an issue, since ErasePreviousSave is followed by a regular
+	; BANK(sCrystalData), it instead overwrites the sixteen wEventFlags starting at 1:sCrystalFlags with
+	; garbage from wCrystalFlags. This isn't an issue, since ErasePreviousSave is followed by a regular
 	; save that unwrites the garbage.
 
-	ld hl, wd479
+	ld hl, wCrystalFlags
 	ld a, [hli]
-	ld [s4_a60e + 0], a
+	ld [sCrystalFlags + 0], a
 	ld a, [hli]
-	ld [s4_a60e + 1], a
+	ld [sCrystalFlags + 1], a
 
 	jp CloseSRAM
 
@@ -861,12 +861,12 @@ _LoadData:
 	call CopyBytes
 
 	; This block originally had some mobile functionality to mirror _SaveData above, but instead it
-	; (harmlessly) writes the aforementioned wEventFlags to the unused wd479.
+	; (harmlessly) writes the aforementioned wEventFlags to the unused wCrystalFlags.
 
-	ld hl, wd479
-	ld a, [s4_a60e + 0]
+	ld hl, wCrystalFlags
+	ld a, [sCrystalFlags + 0]
 	ld [hli], a
-	ld a, [s4_a60e + 1]
+	ld a, [sCrystalFlags + 1]
 	ld [hli], a
 
 	jp CloseSRAM
@@ -1077,7 +1077,7 @@ EraseBoxes:
 	ret
 
 BoxAddresses:
-	table_width 5, BoxAddresses
+	table_width 5
 for n, 1, NUM_BOXES + 1
 	db BANK(sBox{d:n}) ; aka BANK(sBox{d:n}End)
 	dw sBox{d:n}, sBox{d:n}End

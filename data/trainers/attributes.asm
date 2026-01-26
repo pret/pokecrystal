@@ -1,6 +1,6 @@
 TrainerClassAttributes:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
-	table_width NUM_TRAINER_ATTRIBUTES, TrainerClassAttributes
+	table_width NUM_TRAINER_ATTRIBUTES
 
 ; Falkner
 	db NO_ITEM, NO_ITEM ; items

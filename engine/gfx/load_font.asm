@@ -18,47 +18,47 @@ Get2bppOptionalHDMA: ; unreferenced
 _LoadStandardFont::
 	ld de, Font
 	ld hl, vTiles1
-	lb bc, BANK(Font), 128 ; "A" to "9"
+	lb bc, BANK(Font), 128 ; 'A' to '9'
 	ldh a, [rLCDC]
-	bit rLCDC_ENABLE, a
+	bit B_LCDC_ENABLE, a
 	jp z, Copy1bpp
 
 	ld de, Font
 	ld hl, vTiles1
-	lb bc, BANK(Font), 32 ; "A" to "]"
+	lb bc, BANK(Font), 32 ; 'A' to ']'
 	call Get1bppViaHDMA
-	ld de, Font + 32 * LEN_1BPP_TILE
+	ld de, Font + 32 * TILE_1BPP_SIZE
 	ld hl, vTiles1 tile $20
-	lb bc, BANK(Font), 32 ; "a" to $bf
+	lb bc, BANK(Font), 32 ; 'a' to $bf
 	call Get1bppViaHDMA
-	ld de, Font + 64 * LEN_1BPP_TILE
+	ld de, Font + 64 * TILE_1BPP_SIZE
 	ld hl, vTiles1 tile $40
-	lb bc, BANK(Font), 32 ; "Ä" to "←"
+	lb bc, BANK(Font), 32 ; 'Ä' to '←'
 	call Get1bppViaHDMA
-	ld de, Font + 96 * LEN_1BPP_TILE
+	ld de, Font + 96 * TILE_1BPP_SIZE
 	ld hl, vTiles1 tile $60
-	lb bc, BANK(Font), 32 ; "'" to "9"
+	lb bc, BANK(Font), 32 ; '\'' to '9'
 	call Get1bppViaHDMA
 	ret
 
 _LoadFontsExtra1::
 	ld de, FontsExtra_SolidBlackGFX
-	ld hl, vTiles2 tile "■" ; $60
+	ld hl, vTiles2 tile '■' ; $60
 	lb bc, BANK(FontsExtra_SolidBlackGFX), 1
 	call Get1bppViaHDMA
 	ld de, PokegearPhoneIconGFX
-	ld hl, vTiles2 tile "☎" ; $62
+	ld hl, vTiles2 tile '☎' ; $62
 	lb bc, BANK(PokegearPhoneIconGFX), 1
 	call Get2bppViaHDMA
-	ld de, FontExtra + 3 tiles ; "<BOLD_D>"
-	ld hl, vTiles2 tile "<BOLD_D>"
-	lb bc, BANK(FontExtra), 22 ; "<BOLD_D>" to "ぉ"
+	ld de, FontExtra + 3 tiles ; '<BOLD_D>'
+	ld hl, vTiles2 tile '<BOLD_D>'
+	lb bc, BANK(FontExtra), 22 ; '<BOLD_D>' to 'ぉ'
 	call Get2bppViaHDMA
 	jr LoadFrame
 
 _LoadFontsExtra2::
 	ld de, FontsExtra2_UpArrowGFX
-	ld hl, vTiles2 tile "▲" ; $61
+	ld hl, vTiles2 tile '▲' ; $61
 	ld b, BANK(FontsExtra2_UpArrowGFX)
 	ld c, 1
 	call Get2bppViaHDMA
@@ -74,15 +74,15 @@ _LoadFontsBattleExtra::
 LoadFrame:
 	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES
-	ld bc, TEXTBOX_FRAME_TILES * LEN_1BPP_TILE
+	ld bc, TEXTBOX_FRAME_TILES * TILE_1BPP_SIZE
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
-	ld hl, vTiles2 tile "┌" ; $79
-	lb bc, BANK(Frames), TEXTBOX_FRAME_TILES ; "┌" to "┘"
+	ld hl, vTiles2 tile '┌' ; $79
+	lb bc, BANK(Frames), TEXTBOX_FRAME_TILES ; '┌' to '┘'
 	call Get1bppViaHDMA
-	ld hl, vTiles2 tile " " ; $7f
+	ld hl, vTiles2 tile ' ' ; $7f
 	ld de, TextboxSpaceGFX
 	lb bc, BANK(TextboxSpaceGFX), 1
 	call Get1bppViaHDMA
@@ -94,8 +94,8 @@ LoadBattleFontsHPBar:
 	lb bc, BANK(FontBattleExtra), 12
 	call Get2bppViaHDMA
 	ld hl, vTiles2 tile $70
-	ld de, FontBattleExtra + 16 tiles ; "<DO>"
-	lb bc, BANK(FontBattleExtra), 3 ; "<DO>" to "『"
+	ld de, FontBattleExtra + 16 tiles ; '<DO>'
+	lb bc, BANK(FontBattleExtra), 3 ; '<DO>' to '『'
 	call Get2bppViaHDMA
 	call LoadFrame
 
@@ -128,7 +128,7 @@ StatsScreen_LoadFont:
 	ld hl, vTiles2 tile $78
 	lb bc, BANK(HPExpBarBorderGFX), 1
 	call Get1bppViaHDMA
-	ld de, HPExpBarBorderGFX + 3 * LEN_1BPP_TILE
+	ld de, HPExpBarBorderGFX + 3 * TILE_1BPP_SIZE
 	ld hl, vTiles2 tile $76
 	lb bc, BANK(HPExpBarBorderGFX), 2
 	call Get1bppViaHDMA

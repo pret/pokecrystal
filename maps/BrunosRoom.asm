@@ -29,11 +29,11 @@ BrunosRoomDoorsCallback:
 
 BrunosRoomDoorLocksBehindYouScript:
 	applymovement PLAYER, BrunosRoom_EnterMovement
-	refreshscreen $86
+	reanchormap $86
 	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock 4, 14, $2a ; wall
-	reloadmappart
+	refreshmap
 	closetext
 	setscene SCENE_BRUNOSROOM_NOOP
 	setevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
@@ -59,7 +59,7 @@ BrunoScript_Battle:
 	closetext
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16 ; open door
-	reloadmappart
+	refreshmap
 	closetext
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	waitsfx

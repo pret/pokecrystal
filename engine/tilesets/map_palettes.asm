@@ -1,4 +1,7 @@
-_SwapTextboxPalettes::
+_LoadOverworldAttrmapPals::
+; Load wAttrmap palette numbers based on the tileset palettes of current map.
+; This function is only used for the initial loading of the map; incremental
+; loads while moving happen through ScrollBGMapPalettes.
 	hlcoord 0, 0
 	decoord 0, 0, wAttrmap
 	ld b, SCREEN_HEIGHT
@@ -34,7 +37,7 @@ _SwapTextboxPalettes::
 .next
 	pop hl
 	ld [de], a
-	res 7, [hl]
+	res B_OAM_BANK1 + 4, [hl]
 	inc hl
 	inc de
 	dec c
@@ -78,7 +81,7 @@ _ScrollBGMapPalettes::
 .next
 	pop hl
 	ld [de], a
-	res 7, [hl]
+	res B_OAM_BANK1 + 4, [hl]
 	inc hl
 	inc de
 	dec c

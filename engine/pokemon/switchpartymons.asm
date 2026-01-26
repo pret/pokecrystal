@@ -22,16 +22,16 @@ _SwitchPartyMons:
 	ld bc, 2 * SCREEN_WIDTH
 	call AddNTimes
 	ld bc, 2 * SCREEN_WIDTH
-	ld a, " "
+	ld a, ' '
 	call ByteFill
 	pop af
 	ld hl, wShadowOAMSprite00
-	ld bc, 4 * SPRITEOAMSTRUCT_LENGTH
+	ld bc, 4 * OBJ_SIZE
 	call AddNTimes
-	ld de, SPRITEOAMSTRUCT_LENGTH
+	ld de, OBJ_SIZE
 	ld c, 4
 .gfx_loop
-	ld [hl], SCREEN_WIDTH_PX ; y (off-screen)
+	ld [hl], OAM_YCOORD_HIDDEN
 	add hl, de
 	dec c
 	jr nz, .gfx_loop

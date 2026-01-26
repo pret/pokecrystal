@@ -1,5 +1,5 @@
 FrequencyTable:
-	table_width 2, FrequencyTable
+	table_width 2
 	dw 0     ; __
 	dw $f82c ; C_
 	dw $f89d ; C#

@@ -125,31 +125,31 @@ UpdateOverworldMap:
 
 .step_down
 	call .ScrollOverworldMapDown
-	call LoadMapPart
+	call LoadOverworldTilemap
 	call ScrollMapDown
 	ret
 
 .step_up
 	call .ScrollOverworldMapUp
-	call LoadMapPart
+	call LoadOverworldTilemap
 	call ScrollMapUp
 	ret
 
 .step_left
 	call .ScrollOverworldMapLeft
-	call LoadMapPart
+	call LoadOverworldTilemap
 	call ScrollMapLeft
 	ret
 
 .step_right
 	call .ScrollOverworldMapRight
-	call LoadMapPart
+	call LoadOverworldTilemap
 	call ScrollMapRight
 	ret
 
 .ScrollOverworldMapDown:
 	ld a, [wBGMapAnchor]
-	add 2 * BG_MAP_WIDTH
+	add 2 * TILEMAP_WIDTH
 	ld [wBGMapAnchor], a
 	jr nc, .not_overflowed
 	ld a, [wBGMapAnchor + 1]
@@ -180,7 +180,7 @@ UpdateOverworldMap:
 
 .ScrollOverworldMapUp:
 	ld a, [wBGMapAnchor]
-	sub 2 * BG_MAP_WIDTH
+	sub 2 * TILEMAP_WIDTH
 	ld [wBGMapAnchor], a
 	jr nc, .not_underflowed
 	ld a, [wBGMapAnchor + 1]

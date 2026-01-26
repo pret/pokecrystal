@@ -5,7 +5,9 @@ MACRO map_id
 	db GROUP_\1, MAP_\1
 ENDM
 
-DEF object_const_def EQUS "const_def 2"
+MACRO object_const_def
+	const_def 2
+ENDM
 
 MACRO def_scene_scripts
 	REDEF _NUM_SCENE_SCRIPTS EQUS "_NUM_SCENE_SCRIPTS_\@"
@@ -37,11 +39,17 @@ MACRO def_callbacks
 	REDEF _NUM_CALLBACKS EQUS "_NUM_CALLBACKS_\@"
 	db {_NUM_CALLBACKS}
 	DEF {_NUM_CALLBACKS} = 0
+	for x, 1, NUM_MAPCALLBACK_TYPES + 1
+		DEF map_callback_{d:x} = 0
+	endr
 ENDM
 
 MACRO callback
 ;\1: type: a MAPCALLBACK_* constant
 ;\2: script pointer
+	DEF x = \1
+	assert !map_callback_{d:x}, "Already defined a `callback \1` for this map"
+	DEF map_callback_{d:x} = 1
 	dbw \1, \2
 	DEF {_NUM_CALLBACKS} += 1
 ENDM

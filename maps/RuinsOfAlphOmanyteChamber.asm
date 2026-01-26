@@ -40,14 +40,14 @@ RuinsOfAlphOmanyteChamberWallOpenScript:
 	pause 30
 	playsound SFX_STRENGTH
 	changeblock 4, 0, $30 ; open wall
-	reloadmappart
+	refreshmap
 	earthquake 50
 	setscene SCENE_RUINSOFALPHOMANYTECHAMBER_NOOP
 	closetext
 	end
 
 RuinsOfAlphOmanyteChamberPuzzle:
-	refreshscreen
+	reanchormap
 	setval UNOWNPUZZLE_OMANYTE
 	special UnownPuzzle
 	closetext
@@ -63,7 +63,7 @@ RuinsOfAlphOmanyteChamberPuzzle:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $18 ; left hole
 	changeblock 4, 2, $19 ; right hole
-	reloadmappart
+	refreshmap
 	playsound SFX_STRENGTH
 	earthquake 80
 	applymovement PLAYER, RuinsOfAlphOmanyteChamberSkyfallTopMovement

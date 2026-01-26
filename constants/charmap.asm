@@ -76,7 +76,7 @@
 
 	charmap "<LV>",      $6e
 
-	charmap "<DO>",      $70 ; hiragana small do, unused
+	charmap "<DO>",      $70 ; precomposed hiragana do (ど), unused
 	charmap "◀",         $71
 	charmap "『",         $72 ; Japanese opening quote, unused
 	charmap "<ID>",      $73
@@ -223,6 +223,7 @@
 	charmap "<WATASHI>", $36 ; "わたし"
 	charmap "<KOKO_WA>", $37 ; "ここは"
 	charmap "<GA>",      $4a ; "が　"
+	charmap "<POKEMON>", $54 ; "ポケモン"
 
 ; Japanese kana, for those bits of text that were not translated to English
 
@@ -418,12 +419,22 @@
 	charmap "８", $fe
 	charmap "９", $ff
 
+; Unown charmap, for Unown words (see gfx/tilesets/ruins_of_alph.png)
+pushc
+	newcharmap unown
+	DEF PRINTABLE_UNOWN EQUS "ABCDEFGHIJKLMNOPQRSTUVWXYZ-"
+	for i, STRLEN(#PRINTABLE_UNOWN)
+		charmap STRSLICE(#PRINTABLE_UNOWN, i, i + 1), $10 * (i / 8) + 2 * i
+	endr
+	charmap "@", $ff ; end
+popc
+
 ; ASCII charmap, for mobile functions
 pushc
 	newcharmap ascii
 	DEF PRINTABLE_ASCII EQUS " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz\{|}~"
-	for i, STRLEN("{PRINTABLE_ASCII}")
-		charmap STRSUB("{PRINTABLE_ASCII}", i + 1, 1), i + $20
+	for i, STRLEN(#PRINTABLE_ASCII)
+		charmap STRSLICE(#PRINTABLE_ASCII, i, i + 1), i + $20
 	endr
 	charmap "\t", $09
 	charmap "\n", $0a

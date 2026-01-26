@@ -1,24 +1,24 @@
 StopRTC: ; unreferenced
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
-	set 6, a ; halt
-	ld [MBC3RTC], a
+	ld a, RAMB_RTC_DH
+	ld [rRAMB], a
+	ld a, [rRTCREG]
+	set B_RAMB_RTC_DH_HALT, a
+	ld [rRTCREG], a
 	call CloseSRAM
 	ret
 
 StartRTC:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 	call LatchClock
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	ld a, [MBC3RTC]
-	res 6, a ; halt
-	ld [MBC3RTC], a
+	ld a, RAMB_RTC_DH
+	ld [rRAMB], a
+	ld a, [rRTCREG]
+	res B_RAMB_RTC_DH_HALT, a
+	ld [rRTCREG], a
 	call CloseSRAM
 	ret
 
@@ -74,15 +74,15 @@ StageRTCTimeForSave:
 	ret
 
 SaveRTC:
-	ld a, SRAM_ENABLE
-	ld [MBC3SRamEnable], a
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
 	call LatchClock
-	ld hl, MBC3RTC
-	ld a, RTC_DH
-	ld [MBC3SRamBank], a
-	res 7, [hl]
+	ld hl, rRTCREG
+	ld a, RAMB_RTC_DH
+	ld [rRAMB], a
+	res B_RAMB_RTC_DH_CARRY, [hl]
 	ld a, BANK(sRTCStatusFlags)
-	ld [MBC3SRamBank], a
+	ld [rRAMB], a
 	xor a
 	ld [sRTCStatusFlags], a
 	call CloseSRAM
@@ -93,9 +93,7 @@ StartClock::
 	call _FixDays
 	call FixDays
 	jr nc, .skip_set
-	; bit 5: Day count exceeds 139
-	; bit 6: Day count exceeds 255
-	call RecordRTCStatus ; set flag on sRTCStatusFlags
+	call RecordRTCStatus
 
 .skip_set
 	call StartRTC
@@ -103,27 +101,26 @@ StartClock::
 
 _FixDays:
 	ld hl, hRTCDayHi
-	bit 7, [hl]
-	jr nz, .set_bit_7
-	bit 6, [hl]
-	jr nz, .set_bit_7
+	bit B_RAMB_RTC_DH_CARRY, [hl]
+	jr nz, .reset_rtc
+	bit B_RAMB_RTC_DH_HALT, [hl]
+	jr nz, .reset_rtc
 	xor a
 	ret
 
-.set_bit_7
-	; Day count exceeds 16383
-	ld a, %10000000
-	call RecordRTCStatus ; set bit 7 on sRTCStatusFlags
+.reset_rtc
+	ld a, RTC_RESET
+	call RecordRTCStatus
 	ret
 
 ClockContinue:
 	call CheckRTCStatus
 	ld c, a
-	and %11000000 ; Day count exceeded 255 or 16383
+	and RTC_RESET | RTC_DAYS_EXCEED_255
 	jr nz, .time_overflow
 
 	ld a, c
-	and %00100000 ; Day count exceeded 139
+	and RTC_DAYS_EXCEED_139
 	jr z, .dont_update
 
 	call UpdateTime

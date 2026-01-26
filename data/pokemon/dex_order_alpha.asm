@@ -1,7 +1,7 @@
 ; Every Pokémon sorted alphabetically by name.
 
 AlphabeticalPokedexOrder:
-	table_width 1, AlphabeticalPokedexOrder
+	table_width 1
 	db ABRA
 	db AERODACTYL
 	db AIPOM

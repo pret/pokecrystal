@@ -1,5 +1,5 @@
 UnownAnimationIdlePointers:
-	table_width 2, UnownAnimationIdlePointers
+	table_width 2
 	dw UnownAAnimationIdle
 	dw UnownBAnimationIdle
 	dw UnownCAnimationIdle

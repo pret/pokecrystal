@@ -107,7 +107,7 @@ ReadCaughtData:
 	ld a, SEERACTION_TRADED
 	ld [wSeerAction], a
 
-	ld a, MON_ID
+	ld a, MON_OT_ID
 	call GetPartyParamLocation
 	ld a, [wPlayerID]
 	cp [hl]
@@ -146,7 +146,7 @@ GetCaughtName:
 	ret
 
 GetCaughtLevel:
-	ld a, "@"
+	ld a, '@'
 	ld hl, wSeerCaughtLevelString
 	ld bc, 4
 	call ByteFill
@@ -265,7 +265,7 @@ GetCaughtOT:
 
 .got_grammar
 	ld de, wSeerOTGrammar
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ret
 

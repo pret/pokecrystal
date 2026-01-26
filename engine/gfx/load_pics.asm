@@ -53,11 +53,11 @@ GetMonFrontpic:
 	ld [wCurSpecies], a
 	call IsAPokemon
 	ret c
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	call _GetFrontpic
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 GetAnimatedFrontpic:
@@ -65,14 +65,14 @@ GetAnimatedFrontpic:
 	ld [wCurSpecies], a
 	call IsAPokemon
 	ret c
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	xor a
 	ldh [hBGMapMode], a
 	call _GetFrontpic
 	call GetAnimatedEnemyFrontpic
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 _GetFrontpic:
@@ -84,7 +84,7 @@ _GetFrontpic:
 	push bc
 	call GetFrontpicPointer
 	ld a, BANK(wDecompressEnemyFrontpic)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, b
 	ld de, wDecompressEnemyFrontpic
 	call FarDecompress
@@ -201,10 +201,10 @@ GetMonBackpic:
 	ld b, a
 	ld a, [wUnownLetter]
 	ld c, a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push de
 
 	; These are assumed to be at the same address in their respective banks.
@@ -241,14 +241,13 @@ GetMonBackpic:
 	ld b, a
 	call Get2bpp
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 FixPicBank:
 ; This is a thing for some reason.
 
-DEF PICS_FIX EQU $36
-EXPORT PICS_FIX
+EXPORT DEF PICS_FIX EQU $36
 
 	push hl
 	push bc
@@ -321,10 +320,10 @@ GetTrainerPic:
 	dec a
 	ld bc, 3
 	call AddNTimes
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push de
 	ld a, BANK(TrainerPicPointers)
 	call GetFarByte
@@ -343,7 +342,7 @@ GetTrainerPic:
 	ld b, a
 	call Get2bpp
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call WaitBGMap
 	ld a, 1
 	ldh [hBGMapMode], a
@@ -352,10 +351,10 @@ GetTrainerPic:
 DecompressGet2bpp:
 ; Decompress lz data from b:hl to wDecompressScratch, then copy it to address de.
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	push de
 	push bc
@@ -370,7 +369,7 @@ DecompressGet2bpp:
 	call Get2bpp
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 FixBackpicAlignment:

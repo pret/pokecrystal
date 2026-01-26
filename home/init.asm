@@ -6,7 +6,7 @@ Reset::
 	call ClearPalettes
 	xor a
 	ldh [rIF], a
-	ld a, 1 << VBLANK
+	ld a, IE_VBLANK
 	ldh [rIE], a
 	ei
 
@@ -19,7 +19,7 @@ Reset::
 	jr Init
 
 _Start::
-	cp $11
+	cp BOOTUP_A_CGB
 	jr z, .cgb
 	xor a ; FALSE
 	jr .load
@@ -64,8 +64,8 @@ Init::
 	ldh [rLCDC], a
 
 ; Clear WRAM bank 0
-	ld hl, WRAM0_Begin
-	ld bc, WRAM0_End - WRAM0_Begin
+	ld hl, STARTOF(WRAM0)
+	ld bc, SIZEOF(WRAM0)
 .ByteFill:
 	ld [hl], 0
 	inc hl
@@ -82,8 +82,8 @@ Init::
 	ldh a, [hSystemBooted]
 	push af
 	xor a
-	ld hl, HRAM_Begin
-	ld bc, HRAM_End - HRAM_Begin
+	ld hl, STARTOF(HRAM)
+	ld bc, SIZEOF(HRAM)
 	call ByteFill
 	pop af
 	ldh [hSystemBooted], a
@@ -92,7 +92,7 @@ Init::
 
 	call ClearWRAM
 	ld a, 1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call ClearVRAM
 	call ClearSprites
 	call ClearsScratch
@@ -108,14 +108,14 @@ Init::
 	ldh [hSCY], a
 	ldh [rJOYP], a
 
-	ld a, $8 ; HBlank int enable
+	ld a, STAT_MODE_0
 	ldh [rSTAT], a
 
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ldh [rWY], a
 
-	ld a, 7
+	ld a, WX_OFS
 	ldh [hWX], a
 	ldh [rWX], a
 
@@ -142,9 +142,9 @@ Init::
 
 	farcall StartClock
 
-	xor a ; SRAM_DISABLE
-	ld [MBC3LatchClock], a
-	ld [MBC3SRamEnable], a
+	xor a ; RAMG_SRAM_DISABLE
+	ld [rRTCLATCH], a
+	ld [rRAMG], a
 
 	ldh a, [hCGB]
 	and a
@@ -177,8 +177,8 @@ ClearVRAM::
 	xor a ; 0
 	ldh [rVBK], a
 .clear
-	ld hl, VRAM_Begin
-	ld bc, VRAM_End - VRAM_Begin
+	ld hl, STARTOF(VRAM)
+	ld bc, SIZEOF(VRAM)
 	xor a
 	call ByteFill
 	ret
@@ -191,10 +191,10 @@ ClearWRAM::
 	ld a, 1
 .bank_loop
 	push af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	xor a
-	ld hl, WRAM1_Begin
-	ld bc, WRAM1_End - WRAM1_Begin
+	ld hl, STARTOF(WRAMX)
+	ld bc, SIZEOF(WRAMX)
 	call ByteFill
 	pop af
 	inc a

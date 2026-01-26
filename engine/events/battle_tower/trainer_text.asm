@@ -3,10 +3,10 @@ BattleTowerText::
 ; 1: Intro text
 ; 2: Player lost
 ; 3: Player won
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBT_OTTrainerClass)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 if DEF(_CRYSTAL11)
 	ld hl, wBT_OTTrainerClass
 else
@@ -79,8 +79,8 @@ endc
 	ld h, a
 	bccoord 1, 14
 	pop af
-	ldh [rSVBK], a
-	call PlaceHLTextAtBC
+	ldh [rWBK], a
+	call PrintTextboxTextAt
 	ret
 
 INCLUDE "mobile/fixed_words.asm"

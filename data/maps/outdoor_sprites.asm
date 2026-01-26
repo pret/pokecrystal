@@ -3,7 +3,7 @@
 
 OutdoorSprites:
 ; entries correspond to MAPGROUP_* constants
-	table_width 2, OutdoorSprites
+	table_width 2
 	dw OlivineGroupSprites
 	dw MahoganyGroupSprites
 	dw DungeonsGroupSprites

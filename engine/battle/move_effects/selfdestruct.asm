@@ -1,7 +1,7 @@
 BattleCommand_Selfdestruct:
 	farcall StubbedTrainerRankings_Selfdestruct
-	ld a, BATTLEANIM_PLAYER_DAMAGE
-	ld [wNumHits], a
+	ld a, ANIM_PLAYER_DAMAGE - BATTLE_AFTERANIMS
+	ld [wBattleAfterAnim], a
 	ld c, 3
 	call DelayFrames
 	ld a, BATTLE_VARS_STATUS

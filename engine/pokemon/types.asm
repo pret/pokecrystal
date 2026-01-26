@@ -29,7 +29,7 @@ PrintMonTypes:
 .hide_type_2
 	; Erase any type name that was here before.
 	; Seems to be pointless in localized versions.
-	ld a, " "
+	ld a, ' '
 	ld bc, SCREEN_WIDTH - 3
 	add hl, bc
 	ld [hl], a

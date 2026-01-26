@@ -179,10 +179,10 @@ Sfx_BallPoof:
 	channel 5, Sfx_BallPoof_Ch5
 	channel 8, Sfx_BallPoof_Ch8
 
-Sfx_Unknown3A:
+Sfx_Faint:
 	channel_count 2
-	channel 5, Sfx_Unknown3A_Ch5
-	channel 8, Sfx_Unknown3A_Ch8
+	channel 5, Sfx_Faint_Ch5
+	channel 8, Sfx_Faint_Ch8
 
 Sfx_Run:
 	channel_count 1
@@ -549,7 +549,7 @@ Sfx_DexFanfare5079_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 12
+	drum_note 1, 12
 	sound_ret
 
 Sfx_KeyItem:
@@ -615,7 +615,7 @@ Sfx_KeyItem_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 16
+	drum_note 1, 16
 	sound_ret
 
 Sfx_DexFanfare2049:
@@ -694,7 +694,7 @@ Sfx_DexFanfare2049_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 16
+	drum_note 1, 16
 	rest 16
 	sound_ret
 
@@ -769,7 +769,7 @@ Sfx_Item_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 16
+	drum_note 1, 16
 	rest 16
 	sound_ret
 
@@ -847,7 +847,7 @@ Sfx_CaughtMon_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 16
+	drum_note 1, 16
 	rest 16
 	sound_ret
 
@@ -938,7 +938,7 @@ Sfx_DexFanfare80109_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 16
+	drum_note 1, 16
 	rest 16
 	sound_ret
 
@@ -1022,7 +1022,7 @@ Sfx_Unused_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 16
+	drum_note 1, 16
 	rest 16
 	sound_ret
 
@@ -1114,7 +1114,7 @@ Sfx_RegisterPhoneNumber_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 2
+	drum_note 1, 2
 	rest 16
 	rest 16
 	sound_ret
@@ -1383,7 +1383,7 @@ Sfx_MoveDeleted_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 3
 	drum_speed 12
-	note F_, 8
+	drum_note 6, 8
 	rest 16
 	rest 16
 	rest 6
@@ -1499,11 +1499,11 @@ Sfx_2ndPlace_Ch8:
 	sfx_toggle_noise 3
 	drum_speed 8
 .loop1:
-	note C#, 1
+	drum_note 2, 1
 	sound_loop 6, .loop1
-	note B_, 12
-	note B_, 12
-	note B_, 12
+	drum_note 12, 12
+	drum_note 12, 12
+	drum_note 12, 12
 	rest 6
 	sound_ret
 
@@ -1609,18 +1609,18 @@ Sfx_1stPlace_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 6
-	note D_, 4
-	note D_, 4
-	note D_, 4
-	note B_, 12
-	note B_, 10
-	note C#, 1
-	note C#, 1
-	note D_, 4
-	note D_, 4
-	note D_, 4
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 12, 12
+	drum_note 12, 10
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 4
 	drum_speed 12
-	note B_, 10
+	drum_note 12, 10
 	rest 6
 	sound_ret
 
@@ -1751,23 +1751,23 @@ Sfx_ChooseACard_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 6
-	note D_, 2
-	note C#, 2
-	note B_, 4
-	note D_, 2
-	note C#, 2
-	note B_, 4
-	note D_, 2
-	note C#, 2
-	note D_, 1
-	note C#, 1
-	note D_, 1
-	note C#, 1
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note B_, 16
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 12, 4
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 12, 4
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 12, 16
 	sound_ret
 
 	toggle_sfx ; unused
@@ -1863,17 +1863,17 @@ Sfx_GetTm_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 6
-	note D_, 4
-	note C#, 2
-	note D_, 2
-	note B_, 8
-	note D_, 4
-	note C#, 4
-	note D_, 4
-	note C#, 1
-	note C#, 1
-	note D_, 2
-	note B_, 16
+	drum_note 3, 4
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 12, 8
+	drum_note 3, 4
+	drum_note 2, 4
+	drum_note 3, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 2
+	drum_note 12, 16
 	rest 6
 	sound_ret
 
@@ -2022,22 +2022,22 @@ Sfx_GetBadge_Ch8:
 	sfx_toggle_noise 4
 	drum_speed 6
 .loop1:
-	note B_, 12
-	note D_, 1
-	note D_, 1
-	note D_, 2
-	note D_, 4
-	note D_, 4
-	note D_, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
+	drum_note 12, 12
+	drum_note 3, 1
+	drum_note 3, 1
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	sound_loop 2, .loop1
-	note B_, 16
+	drum_note 12, 16
 	rest 6
 	sound_ret
 
@@ -2144,17 +2144,17 @@ Sfx_QuitSlots_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 3
 	drum_speed 8
-	note D#, 6
-	note D_, 4
-	note D#, 2
-	note D#, 4
-	note D#, 2
-	note D_, 4
-	note D#, 2
-	note D_, 4
-	note D#, 2
-	note D_, 4
-	note B_, 14
+	drum_note 4, 6
+	drum_note 3, 4
+	drum_note 4, 2
+	drum_note 4, 4
+	drum_note 4, 2
+	drum_note 3, 4
+	drum_note 4, 2
+	drum_note 3, 4
+	drum_note 4, 2
+	drum_note 3, 4
+	drum_note 12, 14
 	rest 6
 	sound_ret
 
@@ -2472,11 +2472,11 @@ Sfx_BellyDrum_Ch8:
 	noise_note 12, 11, 1, 108
 	sound_ret
 
-Sfx_Unknown7F:
+Sfx_Toxic:
 	channel_count 1
-	channel 5, Sfx_Unknown7F_Ch5
+	channel 5, Sfx_Toxic_Ch5
 
-Sfx_Unknown7F_Ch5:
+Sfx_Toxic_Ch5:
 	duty_cycle 2
 	pitch_sweep 9, 5
 	square_note 2, 12, -1, 947
@@ -3101,7 +3101,7 @@ Sfx_DexFanfareLessThan20_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C#, 6
+	drum_note 2, 6
 	rest 16
 	rest 12
 	sound_ret
@@ -3208,15 +3208,15 @@ Sfx_DexFanfare140169_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 12
-	note C_, 4
+	drum_note 1, 4
 .loop1:
-	note D_, 4
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
+	drum_note 3, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	sound_loop 3, .loop1
-	note D_, 8
+	drum_note 3, 8
 	sound_ret
 
 	toggle_sfx ; unused
@@ -3317,20 +3317,20 @@ Sfx_DexFanfare170199_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 8
-	note D_, 2
-	note D_, 2
-	note D_, 4
-	note D_, 4
-	note D_, 2
-	note D_, 2
-	note D_, 4
-	note D_, 4
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	drum_speed 12
-	note B_, 16
+	drum_note 12, 16
 	sound_ret
 
 	db sound_loop_cmd ; unused
@@ -3440,27 +3440,27 @@ Sfx_DexFanfare200229_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 8
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note D_, 4
-	note D_, 4
-	note D_, 4
-	note D_, 4
-	note D_, 4
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note D_, 4
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note B_, 12
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 12, 12
 	sound_ret
 
 	toggle_sfx ; unused
@@ -3608,34 +3608,34 @@ Sfx_DexFanfare230Plus_Ch8:
 	toggle_sfx
 	sfx_toggle_noise 4
 	drum_speed 8
-	note D_, 2
-	note D_, 2
-	note D_, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
 .loop1:
-	note D_, 6
-	note D_, 2
-	note D_, 2
-	note D_, 2
-	note D_, 6
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
-	note C#, 1
+	drum_note 3, 6
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 3, 6
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 2, 1
 	sound_loop 2, .loop1
-	note D_, 6
-	note D_, 2
-	note D_, 2
-	note C#, 1
-	note C#, 1
-	note D_, 4
-	note D_, 4
-	note D_, 4
+	drum_note 3, 6
+	drum_note 3, 2
+	drum_note 3, 2
+	drum_note 2, 1
+	drum_note 2, 1
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 4
 .loop2:
-	note C#, 1
+	drum_note 2, 1
 	sound_loop 18, .loop2
-	note D_, 6
+	drum_note 3, 6
 	sound_ret
 
 	toggle_sfx ; unused
@@ -4229,12 +4229,12 @@ Sfx_BallPoof_Ch8:
 	noise_note 15, 10, 2, 34
 	sound_ret
 
-Sfx_Unknown3A_Ch5:
+Sfx_Faint_Ch5:
 	square_note 15, 13, 1, 512
 	pitch_sweep 0, 8
 	sound_ret
 
-Sfx_Unknown3A_Ch8:
+Sfx_Faint_Ch8:
 	noise_note 4, 15, 5, 51
 	noise_note 8, 15, 4, 34
 	noise_note 15, 15, 2, 33
@@ -5033,21 +5033,21 @@ Sfx_Fanfare2_Ch6:
 Sfx_Fanfare2_Ch8:
 	toggle_sfx
 	drum_speed 6
-	note C_, 1
+	drum_note 1, 1
 	octave 5
-	note C#, 2
+	drum_note 2, 2
 	rest 2
-	note C#, 2
+	drum_note 2, 2
 	rest 2
 	drum_speed 4
-	note C_, 1
-	note C#, 2
+	drum_note 1, 1
+	drum_note 2, 2
 	rest 2
-	note C#, 2
-	note D#, 2
+	drum_note 2, 2
+	drum_note 4, 2
 	rest 2
-	note F_, 2
-	note G#, 6
+	drum_note 6, 2
+	drum_note 9, 6
 	sound_ret
 
 Sfx_Fanfare_Ch5:
@@ -5119,26 +5119,26 @@ Sfx_Fanfare_Ch6:
 Sfx_Fanfare_Ch8:
 	toggle_sfx
 	drum_speed 6
-	note C_, 1
+	drum_note 1, 1
 	octave 4
-	note A#, 4
+	drum_note 11, 4
 	rest 4
-	note B_, 4
+	drum_note 12, 4
 	rest 4
 	octave 5
-	note C#, 4
+	drum_note 2, 4
 	rest 4
-	note D#, 4
+	drum_note 4, 4
 	rest 4
 	drum_speed 4
-	note C_, 1
-	note F_, 4
-	note D#, 4
-	note C#, 4
-	note A#, 4
-	note G#, 4
-	note F_, 4
-	note F#, 6
+	drum_note 1, 1
+	drum_note 6, 4
+	drum_note 4, 4
+	drum_note 2, 4
+	drum_note 11, 4
+	drum_note 9, 4
+	drum_note 6, 4
+	drum_note 7, 6
 	sound_ret
 
 Sfx_HangUp_Ch5:

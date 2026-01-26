@@ -153,11 +153,11 @@ PrintEZChatBattleMessage:
 	inc a
 	ld [wJumptableIndex], a
 	; if we're on line 2, insert "<NEXT>"
-	ld [hl], "<NEXT>"
+	ld [hl], '<NEXT>'
 	rra
 	jr c, .got_line_terminator
 	; else, insert "<CONT>"
-	ld [hl], "<CONT>"
+	ld [hl], '<CONT>'
 
 .got_line_terminator
 	inc hl
@@ -171,7 +171,7 @@ PrintEZChatBattleMessage:
 	; add the space, unless we're at the start of the line
 	cp 18
 	jr z, .skip_space
-	ld [hl], " "
+	ld [hl], ' '
 	inc hl
 
 .skip_space
@@ -182,7 +182,7 @@ PrintEZChatBattleMessage:
 .place_string_loop
 	; load the string from de to hl
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr z, .done
 	inc de
 	ld [hli], a
@@ -194,11 +194,11 @@ PrintEZChatBattleMessage:
 	dec a
 	jr nz, .loop
 	; we're finished, place "<DONE>"
-	ld [hl], "<DONE>"
+	ld [hl], '<DONE>'
 	; now, let's place the string from wc618 to bc
 	pop bc
 	ld hl, wc618
-	call PlaceHLTextAtBC
+	call PrintTextboxTextAt
 	; restore the original values of [wJumptableIndex] and [wcf64]
 	pop hl
 	ld a, l
@@ -212,17 +212,17 @@ GetLengthOfWordAtC608:
 	ld hl, wc608
 .loop
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	ret z
 	inc c
 	jr .loop
 
 CopyMobileEZChatToC608:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
-	ld a, "@"
+	ldh [rWBK], a
+	ld a, '@'
 	ld hl, wc608
 	ld bc, NAME_LENGTH
 	call ByteFill
@@ -256,7 +256,7 @@ CopyMobileEZChatToC608:
 	call CopyBytes
 	ld de, wc608
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .get_name
@@ -279,13 +279,13 @@ Function11c1ab:
 
 Function11c1b9:
 	call .InitKanaMode
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call EZChat_MasterLoop
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .InitKanaMode:
@@ -309,7 +309,7 @@ Function11c1b9:
 	call ClearSprites
 	call ClearScreen
 	call Function11d323
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DisableLCD
 	ld hl, SelectStartGFX
 	ld de, vTiles2
@@ -319,20 +319,20 @@ Function11c1b9:
 	ld de, vTiles0
 	call Decompress
 	call EnableLCD
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	farcall ClearSpriteAnims
 	farcall LoadPokemonData
 	farcall Pokedex_ABCMode
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wc6d0
 	ld de, wLYOverrides
 	ld bc, $100
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call EZChat_GetCategoryWordsByKana
 	call EZChat_GetSeenPokemonByKana
 	ret
@@ -358,7 +358,7 @@ Function11c254:
 	ret
 
 EZChat_ClearBottom12Rows:
-	ld a, "　"
+	ld a, '　'
 	hlcoord 0, 6
 	ld bc, (SCREEN_HEIGHT - 6) * SCREEN_WIDTH
 	call ByteFill
@@ -370,11 +370,11 @@ EZChat_MasterLoop:
 	ldh a, [hJoyPressed]
 	ldh [hJoypadPressed], a
 	ld a, [wJumptableIndex]
-	bit 7, a
+	bit JUMPTABLE_EXIT_F, a
 	jr nz, .exit
 	call .DoJumptableFunction
 	farcall PlaySpriteAnimations
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	jr .loop
 
 .exit
@@ -703,7 +703,7 @@ Function11c4be:
 	hlcoord 0, 14, wAttrmap
 	ld bc, $28
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11c4db:
@@ -729,37 +729,37 @@ Function11c53d:
 	ld de, hJoypadPressed
 
 	ld a, [de]
-	and START
+	and PAD_START
 	jr nz, .start
 
 	ld a, [de]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 
 	ld de, hJoyLast
 
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 
 	ret
@@ -882,7 +882,7 @@ EZChat_PlaceCategoryNames:
 .find_next_string_loop
 	inc de
 	ld a, [de]
-	cp "@"
+	cp '@'
 	jr z, .find_next_string_loop
 	pop bc
 	pop af
@@ -898,7 +898,7 @@ Function11c618:
 	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 EZChatString_Stop_Mode_Cancel:
@@ -937,16 +937,16 @@ Function11c675:
 	ld hl, wMobileCommsJumptableIndex
 	ld de, hJoypadPressed
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 	ld a, [de]
-	and START
+	and PAD_START
 	jr nz, .start
 	ld a, [de]
-	and SELECT
+	and PAD_SELECT
 	jr z, .select
 
 	ld a, [wcd26]
@@ -989,16 +989,16 @@ Function11c675:
 .select
 	ld de, hJoyLast
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11c708
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11c731
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .asm_11c746
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .asm_11c755
 	ret
 
@@ -1349,10 +1349,10 @@ BCD2String: ; unreferenced
 	farcall Function11a80c
 	pop hl
 	ld a, [wcd63]
-	add "０"
+	add '０'
 	ld [hli], a
 	ld a, [wcd62]
-	add "０"
+	add '０'
 	ld [hli], a
 	ret
 
@@ -1498,7 +1498,7 @@ Function11c9ab:
 	hlcoord 0, 6, wAttrmap
 	ld bc, $c8
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 Function11c9bd:
@@ -1588,7 +1588,7 @@ Function11ca19:
 	add hl, de
 	dec c
 	jr nz, .asm_11ca22
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11ca38:
@@ -1686,7 +1686,7 @@ Function11cab3:
 
 .asm_11caf3
 	ld hl, wJumptableIndex
-	set 7, [hl]
+	set JUMPTABLE_EXIT_F, [hl]
 	ret
 
 .asm_11caf9
@@ -1936,16 +1936,16 @@ Function11cd54:
 	ld hl, wcd2c
 	ld de, hJoypadPressed
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_11cd6f
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .asm_11cd73
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .asm_11cd8b
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .asm_11cd94
 	ret
 
@@ -2000,7 +2000,7 @@ Function11cdaa:
 	hlcoord 0, 12, wAttrmap
 	ld bc, 4 * SCREEN_WIDTH
 	call ByteFill
-	farcall ReloadMapPart
+	farcall HDMATransferTilemapAndAttrmap_Overworld
 	ret
 
 String_11cdc7:
@@ -2041,30 +2041,30 @@ Function11ce2b:
 
 	ld de, hJoypadPressed
 	ld a, [de]
-	and START
+	and PAD_START
 	jr nz, .start
 	ld a, [de]
-	and SELECT
+	and PAD_SELECT
 	jr nz, .select
 	ld a, [de]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a
 	ld a, [de]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b
 
 	ld de, hJoyLast
 	ld a, [de]
-	and D_UP
+	and PAD_UP
 	jr nz, .up
 	ld a, [de]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .down
 	ld a, [de]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .left
 	ld a, [de]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .right
 
 	ret
@@ -2854,16 +2854,16 @@ AnimateEZChatCursor:
 	ret
 
 Function11d323:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, Palette_11d33a
 	ld de, wBGPals1
 	ld bc, 16 palettes
 	call CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 Palette_11d33a:
@@ -2948,7 +2948,7 @@ Palette_11d33a:
 	RGB 00, 00, 00
 
 EZChat_GetSeenPokemonByKana:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld hl, wc648
 	ld a, LOW(w5_d800)
@@ -3005,21 +3005,21 @@ EZChat_GetSeenPokemonByKana:
 .loop1
 ; copy 2*bc bytes from 3:hl to 5:de
 	ld a, $3
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [hli]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	pop af
 	ld [de], a
 	inc de
 
 	ld a, $3
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [hli]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	pop af
 	ld [de], a
 	inc de
@@ -3121,7 +3121,7 @@ EZChat_GetSeenPokemonByKana:
 
 .ExitMasterLoop:
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .CheckSeenMon:
@@ -3129,11 +3129,11 @@ EZChat_GetSeenPokemonByKana:
 	push bc
 	push de
 	dec a
-	ld hl, rSVBK
+	ld hl, rWBK
 	ld e, $1
 	ld [hl], e
 	call CheckSeenMon
-	ld hl, rSVBK
+	ld hl, rWBK
 	ld e, $5
 	ld [hl], e
 	pop de
@@ -3142,10 +3142,10 @@ EZChat_GetSeenPokemonByKana:
 	ret
 
 EZChat_GetCategoryWordsByKana:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $3
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	; load pointers
 	ld hl, MobileEZChatCategoryPointers
@@ -3222,7 +3222,7 @@ EZChat_GetCategoryWordsByKana:
 	dec a
 	jr nz, .loop1
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 INCLUDE "data/pokemon/ezchat_order.asm"

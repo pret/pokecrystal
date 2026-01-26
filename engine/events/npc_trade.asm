@@ -316,14 +316,14 @@ CopyTradeName:
 Trade_CopyFourCharString: ; unreferenced
 	ld bc, 4
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ret
 
 Trade_CopyThreeCharString: ; unreferenced
 	ld bc, 3
 	call CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	ret
 
@@ -363,7 +363,7 @@ GetTradeMonNames:
 	ld hl, wStringBuffer1
 .loop
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr nz, .loop
 
 	dec hl
@@ -375,13 +375,13 @@ GetTradeMonNames:
 	and a ; TRADE_GENDER_EITHER
 	ret z
 	cp TRADE_GENDER_MALE
-	ld a, "♂"
+	ld a, '♂'
 	jr z, .done
 	; TRADE_GENDER_FEMALE
-	ld a, "♀"
+	ld a, '♀'
 .done
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	ret
 
 INCLUDE "data/events/npc_trades.asm"
@@ -405,6 +405,7 @@ PrintTradeText:
 
 TradeTexts:
 ; entries correspond to TRADE_DIALOG_* × TRADE_DIALOGSET_* constants
+	table_width 2
 ; TRADE_DIALOG_INTRO
 	dw NPCTradeIntroText1
 	dw NPCTradeIntroText2
@@ -430,6 +431,7 @@ TradeTexts:
 	dw NPCTradeAfterText2
 	dw NPCTradeAfterText4
 	dw NPCTradeAfterText3
+	assert_table_length NUM_TRADE_DIALOGS * NUM_TRADE_DIALOGSETS
 
 NPCTradeCableText:
 	text_far _NPCTradeCableText

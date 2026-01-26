@@ -26,9 +26,9 @@ CheckForMobileBattleRules:
 
 _CheckForBattleTowerRules:
 	ld hl, wStringBuffer2
-	ld [hl], "3"
+	ld [hl], '3'
 	inc hl
-	ld [hl], "@"
+	ld [hl], '@'
 	ld de, .PointerTables
 	call BattleTower_ExecuteJumptable
 	ret z

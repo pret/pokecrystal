@@ -48,7 +48,7 @@ _BillsPC:
 	ld a, $1
 .loop
 	ld [wMenuCursorPosition], a
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	xor a
 	ld [wWhichIndexSet], a
 	ldh [hBGMapMode], a
@@ -235,8 +235,8 @@ ClearPCItemScreen:
 	call ClearBGPalettes
 	call ClearSprites
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	ld a, " "
+	ld bc, SCREEN_AREA
+	ld a, ' '
 	call ByteFill
 	hlcoord 0, 0
 	lb bc, 10, 18
@@ -245,7 +245,7 @@ ClearPCItemScreen:
 	lb bc, 4, 18
 	call Textbox
 	call WaitBGMap2
-	call SetPalettes ; load regular palettes?
+	call SetDefaultBGPAndOBP
 	ret
 
 CopyBoxmonToTempMon:
@@ -365,7 +365,7 @@ LoadBoxMonListing: ; unreferenced
 	ret
 
 .BoxAddresses:
-	table_width 3, LoadBoxMonListing.BoxAddresses
+	table_width 3
 for n, 1, NUM_BOXES + 1
 	dba sBox{d:n}
 endr

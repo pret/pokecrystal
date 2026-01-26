@@ -240,7 +240,7 @@ EvolutionAnimation:
 	call JoyTextDelay
 	ldh a, [hJoyDown]
 	pop bc
-	and B_BUTTON
+	and PAD_B
 	jr nz, .pressed_b
 .loop3
 	dec c
@@ -341,12 +341,12 @@ EvolutionAnimation:
 	and $7
 	ld b, a
 	ld hl, wShadowOAMSprite00Attributes
-	ld c, NUM_SPRITE_OAM_STRUCTS
+	ld c, OAM_COUNT
 .loop6
 	ld a, [hl]
 	or b
 	ld [hli], a ; attributes
-rept SPRITEOAMSTRUCT_LENGTH - 1
+rept OBJ_SIZE - 1
 	inc hl
 endr
 	dec c

@@ -1,6 +1,14 @@
 MACRO add_mapsetup
 \1_MapSetupCmd:
-	dba \1
+	; A second argument of TRUE indicates taking a parameter.
+	if _NARG < 2
+		dba \1
+	elif \2
+		db (1 << MAPSETUPSCRIPT_HAS_PARAM_F) | BANK(\1)
+		dw \1
+	else
+		dba \1
+	endc
 ENDM
 
 MapSetupCommands:
@@ -33,8 +41,8 @@ MapSetupCommands:
 	add_mapsetup LoadMapAttributes ; 1a
 	add_mapsetup LoadMapAttributes_SkipObjects ; 1b
 	add_mapsetup ClearBGPalettes ; 1c
-	add_mapsetup FadeOutPalettes ; 1d
-	add_mapsetup FadeInPalettes ; 1e
+	add_mapsetup FadeOutToWhite ; 1d
+	add_mapsetup FadeInFromWhite ; 1e
 	add_mapsetup GetMapScreenCoords ; 1f
 	add_mapsetup GetWarpDestCoords ; 20
 	add_mapsetup SpawnInFacingDown ; 21
