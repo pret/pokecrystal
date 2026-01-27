@@ -1,5 +1,5 @@
-DEF CARDFLIP_LIGHT_OFF EQU $ef ; '♂'
-DEF CARDFLIP_LIGHT_ON  EQU $f5 ; '♀'
+DEF CARDFLIP_LIGHT_OFF EQU '♂' ; $ef
+DEF CARDFLIP_LIGHT_ON  EQU '♀' ; $f5
 
 MemoryGameGFX:
 ; Graphics for an unused Game Corner

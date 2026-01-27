@@ -1,5 +1,5 @@
-DEF UNOWNSTAMP_BOLD_A EQU $ef ; '♂'
-DEF UNOWNSTAMP_BOLD_B EQU $f5 ; '♀'
+DEF UNOWNSTAMP_BOLD_A EQU '♂' ; $ef
+DEF UNOWNSTAMP_BOLD_B EQU '♀' ; $f5
 
 _UnownPrinter:
 	ld a, [wUnownDex]
