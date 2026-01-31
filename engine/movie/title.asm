@@ -105,9 +105,9 @@ _TitleScreen:
 	call ByteFill
 
 ; Draw Pokemon logo
-	hlcoord 0, 3
-	lb bc, 7, 20
-	ld d, $80
+	hlcoord 1, 3
+	lb bc, 8, 18
+	ld d, $80 + 1
 	ld e, 20
 	call DrawTitleGraphic
 
