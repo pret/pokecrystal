@@ -70,7 +70,14 @@ struct command * merge_command_sequences (const struct command * current, unsign
   const struct command * saved_current;
   const struct command * saved_new;
   unsigned short current_pos, new_pos;
+  // Track iteration limit to prevent infinite loops from malformed input
+  unsigned int iteration_limit = (unsigned int)current_length + new_length + 1;
+  unsigned int iterations = 0;
   while (current_length) {
+    if (++iterations > iteration_limit) {
+      // Prevent infinite loop from malformed command sequences
+      break;
+    }
     if (current -> count == new -> count) {
       *(current_command ++) = pick_best_command(2, *(current ++), *(new ++));
       current_length --;
@@ -81,12 +88,20 @@ struct command * merge_command_sequences (const struct command * current, unsign
     current_pos = (current ++) -> count;
     new_pos = (new ++) -> count;
     current_length --;
-    while (current_pos != new_pos)
+    while (current_pos != new_pos) {
+      if (++iterations > iteration_limit) {
+        // Prevent infinite loop from zero-count commands
+        break;
+      }
       if (current_pos < new_pos) {
+        if (current -> count == 0) break; // Prevent infinite loop
         current_pos += (current ++) -> count;
         current_length --;
-      } else
+      } else {
+        if (new -> count == 0) break; // Prevent infinite loop
         new_pos += (new ++) -> count;
+      }
+    }
     current_pos = compressed_length(saved_current, current - saved_current);
     new_pos = compressed_length(saved_new, new - saved_new);
     if (new_pos < current_pos) {
