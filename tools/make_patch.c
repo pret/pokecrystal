@@ -236,8 +236,11 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		}
 	}
 
-	// Get the arguments
-	char *argv[argc]; // VLA
+	// Get the arguments (use heap allocation instead of VLA to avoid stack overflow)
+	char **argv = NULL;
+	if (argc > 0) {
+		argv = xmalloc(argc * sizeof(char *));
+	}
 	char *arg = command;
 	for (int i = 0; i < argc; i++) {
 		while (*arg && !isspace((unsigned)*arg)) {
@@ -345,8 +348,10 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		}
 
 	} else {
+		free(argv);
 		error_exit("Error: Unknown command: \"%s\"\n", command);
 	}
+	free(argv);
 }
 
 void skip_to_next_line(FILE *restrict input, FILE *restrict output) {
