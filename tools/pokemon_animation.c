@@ -87,40 +87,40 @@ void make_frames(const uint8_t *tilemap, long tilemap_size, int width, struct Fr
 	const uint8_t *first_frame = &tilemap[0];
 	const uint8_t *this_frame = &tilemap[num_tiles_per_frame];
 	for (int i = 0; i < num_frames; i++) {
-		struct Frame *frame = xmalloc(sizeof *frame);
-		frame->data = xmalloc(num_tiles_per_frame);
-		frame->size = 0;
+		// Use stack variables instead of heap to avoid memory leaks
+		struct Frame frame;
+		frame.data = xmalloc(num_tiles_per_frame);
+		frame.size = 0;
 
-		struct Bitmask *bitmask = xmalloc(sizeof *bitmask);
-		bitmask->data = xcalloc((num_tiles_per_frame + 7) / 8);
-		bitmask->bitlength = 0;
+		struct Bitmask bitmask;
+		bitmask.data = xcalloc((num_tiles_per_frame + 7) / 8);
+		bitmask.bitlength = 0;
 
 		for (int j = 0; j < num_tiles_per_frame; j++) {
-			if (bitmask->bitlength % 8 == 0) {
-				bitmask->data[bitmask->bitlength / 8] = 0;
+			if (bitmask.bitlength % 8 == 0) {
+				bitmask.data[bitmask.bitlength / 8] = 0;
 			}
-			bitmask->data[bitmask->bitlength / 8] >>= 1;
+			bitmask.data[bitmask.bitlength / 8] >>= 1;
 			if (this_frame[j] != first_frame[j]) {
-				frame->data[frame->size] = this_frame[j];
-				frame->size++;
-				bitmask->data[bitmask->bitlength / 8] |= (1 << 7);
+				frame.data[frame.size] = this_frame[j];
+				frame.size++;
+				bitmask.data[bitmask.bitlength / 8] |= (1 << 7);
 			}
-			bitmask->bitlength++;
+			bitmask.bitlength++;
 		}
 		// tile order ABCDEFGHIJKLMNOP... becomes db order %HGFEDCBA %PONMLKJI ...
-		int last = bitmask->bitlength - 1;
-		bitmask->data[last / 8] >>= (7 - (last % 8));
+		int last = bitmask.bitlength - 1;
+		bitmask.data[last / 8] >>= (7 - (last % 8));
 
-		frame->bitmask = bitmask_exists(bitmask, bitmasks);
-		if (frame->bitmask == -1) {
-			frame->bitmask = bitmasks->num_bitmasks;
-			bitmasks->bitmasks[bitmasks->num_bitmasks] = *bitmask;
+		frame.bitmask = bitmask_exists(&bitmask, bitmasks);
+		if (frame.bitmask == -1) {
+			frame.bitmask = bitmasks->num_bitmasks;
+			bitmasks->bitmasks[bitmasks->num_bitmasks] = bitmask;
 			bitmasks->num_bitmasks++;
 		} else {
-			free(bitmask->data);
-			free(bitmask);
+			free(bitmask.data);
 		}
-		frames->frames[i] = *frame;
+		frames->frames[i] = frame;
 		this_frame += num_tiles_per_frame;
 	}
 }
@@ -164,6 +164,20 @@ void print_bitmasks(const struct Bitmasks *bitmasks) {
 	}
 }
 
+void free_frames(struct Frames *frames) {
+	for (int i = 0; i < frames->num_frames; i++) {
+		free(frames->frames[i].data);
+	}
+	free(frames->frames);
+}
+
+void free_bitmasks(struct Bitmasks *bitmasks) {
+	for (int i = 0; i < bitmasks->num_bitmasks; i++) {
+		free(bitmasks->bitmasks[i].data);
+	}
+	free(bitmasks->bitmasks);
+}
+
 int main(int argc, char *argv[]) {
 	struct Options options = {0};
 	parse_args(argc, argv, &options);
@@ -190,6 +204,8 @@ int main(int argc, char *argv[]) {
 		print_bitmasks(&bitmasks);
 	}
 
+	free_frames(&frames);
+	free_bitmasks(&bitmasks);
 	free(tilemap);
 	return 0;
 }
