@@ -79,7 +79,7 @@ struct command find_best_copy (const unsigned char * data, unsigned short positi
 }
 
 unsigned short scan_forwards (const unsigned char * target, unsigned short limit, const unsigned char * source, unsigned short real_position, short * offset) {
-  unsigned short best_match, best_length = 0;
+  unsigned short best_match = 0, best_length = 0;
   unsigned short current_length;
   unsigned short position;
   for (position = 0; position < real_position; position ++) {
@@ -100,7 +100,7 @@ unsigned short scan_forwards (const unsigned char * target, unsigned short limit
 
 unsigned short scan_backwards (const unsigned char * data, unsigned short limit, unsigned short real_position, short * offset) {
   if (real_position < limit) limit = real_position;
-  unsigned short best_match, best_length = 0;
+  unsigned short best_match = 0, best_length = 0;
   unsigned short current_length;
   unsigned short position;
   for (position = 0; position < real_position; position ++) {
