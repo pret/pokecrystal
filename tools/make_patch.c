@@ -35,7 +35,16 @@ struct Buffer *buffer_create(size_t item_size) {
 
 void buffer_append(struct Buffer *buffer, const void *item) {
 	if (buffer->size >= buffer->capacity) {
-		buffer->capacity = (buffer->capacity + 1) * 2;
+		size_t new_capacity = (buffer->capacity + 1) * 2;
+		// Check for overflow in capacity calculation
+		if (new_capacity <= buffer->capacity) {
+			error_exit("Error: Buffer capacity overflow\n");
+		}
+		// Check for overflow in allocation size calculation
+		if (new_capacity > SIZE_MAX / buffer->item_size) {
+			error_exit("Error: Buffer allocation size overflow\n");
+		}
+		buffer->capacity = new_capacity;
 		buffer->data = xrealloc(buffer->data, buffer->capacity * buffer->item_size);
 	}
 	memcpy((char *)buffer->data + (buffer->size++ * buffer->item_size), item, buffer->item_size);
