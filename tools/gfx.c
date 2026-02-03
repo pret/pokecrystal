@@ -3,6 +3,9 @@
 
 #include "common.h"
 
+#include <errno.h>
+#include <limits.h>
+
 struct Options {
 	bool trim_whitespace;
 	bool remove_whitespace;
@@ -19,6 +22,20 @@ struct Options {
 };
 
 struct Options options = {.depth = 2};
+
+// Safe strtoul wrapper with error checking
+static unsigned long parse_ulong(const char *str, const char *what) {
+	char *endptr;
+	errno = 0;
+	unsigned long val = strtoul(str, &endptr, 0);
+	if (errno == ERANGE || val > INT_MAX) {
+		error_exit("Error: %s value out of range: \"%s\"\n", what, str);
+	}
+	if (endptr == str || *endptr != '\0') {
+		error_exit("Error: Invalid %s value: \"%s\"\n", what, str);
+	}
+	return val;
+}
 
 void parse_args(int argc, char *argv[]) {
 	struct option long_options[] = {
@@ -62,11 +79,11 @@ void parse_args(int argc, char *argv[]) {
 		case 'r':
 			for (char *token = strtok(optarg, ","); token; token = strtok(NULL, ",")) {
 				options.preserved = xrealloc(options.preserved, ++options.num_preserved * sizeof(*options.preserved));
-				options.preserved[options.num_preserved-1] = strtoul(token, NULL, 0);
+				options.preserved[options.num_preserved-1] = (int)parse_ulong(token, "preserve index");
 			}
 			break;
 		case 'd':
-			options.depth = strtoul(optarg, NULL, 0);
+			options.depth = (int)parse_ulong(optarg, "depth");
 			break;
 		case 'p':
 			options.png_file = optarg;
