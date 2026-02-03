@@ -75,8 +75,17 @@ int bitmask_exists(const struct Bitmask *bitmask, const struct Bitmasks *bitmask
 }
 
 void make_frames(const uint8_t *tilemap, long tilemap_size, int width, struct Frames *frames, struct Bitmasks *bitmasks) {
+	if (width <= 0) {
+		error_exit("Error: Invalid width: %d\n", width);
+	}
 	int num_tiles_per_frame = width * width;
+	if (num_tiles_per_frame <= 0 || tilemap_size < num_tiles_per_frame) {
+		error_exit("Error: Invalid tilemap size or width\n");
+	}
 	int num_frames = tilemap_size / num_tiles_per_frame - 1;
+	if (num_frames <= 0) {
+		error_exit("Error: Not enough frames in tilemap\n");
+	}
 
 	frames->frames = xmalloc((sizeof *frames->frames) * num_frames);
 	frames->num_frames = num_frames;
