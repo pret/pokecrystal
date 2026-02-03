@@ -206,15 +206,23 @@ const uint8_t flipped[256] = {
 	0x0f, 0x8f, 0x4f, 0xcf, 0x2f, 0xaf, 0x6f, 0xef, 0x1f, 0x9f, 0x5f, 0xdf, 0x3f, 0xbf, 0x7f, 0xff
 };
 
+// Maximum tile size to prevent excessive memory allocation (depth 255 * 16 = 4080)
+#define MAX_TILE_SIZE 4096
+
 bool flip_exists(const uint8_t *tile, const uint8_t *tiles, int tile_size, int num_tiles, bool xflip, bool yflip) {
-	uint8_t flip[tile_size]; // VLA
+	if (tile_size <= 0 || tile_size > MAX_TILE_SIZE) {
+		error_exit("Invalid tile size: %d\n", tile_size);
+	}
+	uint8_t *flip = xmalloc(tile_size);
 	memset(flip, 0, tile_size);
 	int half_size = tile_size / 2;
 	for (int i = 0; i < tile_size; i++) {
 		int j = yflip ? (options.interleave && i < half_size ? half_size : tile_size) - 1 - (i ^ 1) : i;
 		flip[j] = xflip ? flipped[tile[i]] : tile[i];
 	}
-	return tile_exists(flip, tiles, tile_size, num_tiles);
+	bool result = tile_exists(flip, tiles, tile_size, num_tiles);
+	free(flip);
+	return result;
 }
 
 void remove_flip(struct Graphic *graphic, bool xflip, bool yflip) {
