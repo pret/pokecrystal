@@ -60,19 +60,8 @@ CorrectNickErrors::
 	pop bc
 	ret
 
-; Valid character ranges:
-; $05 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $5d, $7f - $ff
-
-; Similar to CheckStringForErrors (mobile/mobile_5f.asm),
-; but there are some differences in which characters are considered valid.
-; In this list:
-; • $00 ('<NULL>') is treated as invalid
-; • $4e ('<NEXT>') is treated as invalid
-; • $5d ('<TRAINER>') is treated as valid (since it appears in OT names)
-; • $60 - $7e are treated as invalid
-
 .textcommands
-; table defining which characters are not valid characters in names
+; table defining which characters are not valid in nicknames
 
 ; format:
 	;  ≥    <
