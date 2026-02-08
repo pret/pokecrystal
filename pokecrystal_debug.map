@@ -47765,8 +47765,8 @@ SRAM bank #2:
 	         $adc4 = sBox4Mon6CaughtLocation
 	         $adc5 = sBox4Mon6Level
 	         $adc6 = sBox4Mon7
-	         $adc6 = sBox4Mon7Species
 	         $adc6 = sBox4Mon6BoxEnd
+	         $adc6 = sBox4Mon7Species
 	         $adc7 = sBox4Mon7Item
 	         $adc8 = sBox4Mon7Moves
 	         $adcc = sBox4Mon7ID
@@ -48873,8 +48873,8 @@ SRAM bank #2:
 	         $b6e4 = sBox6Mon10CaughtGender
 	         $b6e5 = sBox6Mon10Level
 	         $b6e6 = sBox6Mon11Species
-	         $b6e6 = sBox6Mon11
 	         $b6e6 = sBox6Mon10BoxEnd
+	         $b6e6 = sBox6Mon11
 	         $b6e7 = sBox6Mon11Item
 	         $b6e8 = sBox6Mon11Moves
 	         $b6ec = sBox6Mon11ID
@@ -54974,8 +54974,8 @@ WRAM0 bank #0:
 	         $c800 = wBillsPCData
 	         $c800 = wLinkData
 	         $c800 = wBillsPCPokemonList
-	         $c800 = wc800
 	         $c800 = wDebugOriginalColors
+	         $c800 = wc800
 	         $c800 = wHallOfFamePokemonListWinCount
 	         $c800 = wOverworldMapBlocks
 	         $c800 = wGameboyPrinterRAM

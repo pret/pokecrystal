@@ -46933,8 +46933,8 @@ SRAM bank #2:
 	         $a8ed = sBox3Mon2PP
 	         $a8f1 = sBox3Mon2Happiness
 	         $a8f2 = sBox3Mon2PokerusStatus
-	         $a8f3 = sBox3Mon2CaughtTime
 	         $a8f3 = sBox3Mon2CaughtLevel
+	         $a8f3 = sBox3Mon2CaughtTime
 	         $a8f3 = sBox3Mon2CaughtData
 	         $a8f4 = sBox3Mon2CaughtLocation
 	         $a8f4 = sBox3Mon2CaughtGender
@@ -54749,8 +54749,8 @@ WRAM0 bank #0:
 	         $c800 = wBillsPCData
 	         $c800 = wLinkData
 	         $c800 = wBillsPCPokemonList
-	         $c800 = wc800
 	         $c800 = wDebugOriginalColors
+	         $c800 = wc800
 	         $c800 = wHallOfFamePokemonListWinCount
 	         $c800 = wOverworldMapBlocks
 	         $c800 = wGameboyPrinterRAM
