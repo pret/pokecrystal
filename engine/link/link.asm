@@ -2267,13 +2267,13 @@ WaitForOtherPlayerToExit:
 	ret
 
 SetBitsForLinkTradeRequest:
-	ld a, LINK_TRADECENTER - 1
+	ld a, CABLECLUBROOM_TRADECENTER
 	ld [wPlayerLinkAction], a
 	ld [wChosenCableClubRoom], a
 	ret
 
 SetBitsForBattleRequest:
-	ld a, LINK_COLOSSEUM - 1
+	ld a, CABLECLUBROOM_COLOSSEUM
 	ld [wPlayerLinkAction], a
 	ld [wChosenCableClubRoom], a
 	ret
@@ -2287,7 +2287,7 @@ SetBitsForTimeCapsuleRequest:
 	ldh [rSC], a
 	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a
-	xor a ; LINK_NULL
+	xor a ; CABLECLUBROOM_NULL
 	ld [wPlayerLinkAction], a
 	ld [wChosenCableClubRoom], a
 	ret

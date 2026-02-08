@@ -6,6 +6,12 @@
 	const LINK_COLOSSEUM   ; 3
 	const LINK_MOBILE      ; 4
 
+; wChosenCableClubRoom
+	const_def
+	const CABLECLUBROOM_NULL        ; 0
+	const CABLECLUBROOM_TRADECENTER ; 1
+	const CABLECLUBROOM_COLOSSEUM   ; 2
+
 ; hSerialReceive high nybbles
 DEF SERIAL_TIMECAPSULE EQU $60
 DEF SERIAL_TRADECENTER EQU $70
