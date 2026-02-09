@@ -61,14 +61,15 @@ CorrectNickErrors::
 	ret
 
 .textcommands
-; table defining which characters are actually text commands
+; table defining which characters are not valid in nicknames
+
 ; format:
-	;      ≥           <
-	db '<NULL>',   'ガ'
-	db '<PLAY_G>', '<JP_18>' + 1
-	db '<NI>',     '<NO>'    + 1
-	db '<ROUTE>',  '<GREEN>' + 1
-	db '<ENEMY>',  '<ENEMY>' + 1
-	db '<MOM>',    '<TM>'    + 1
-	db '<ROCKET>', '┘'       + 1
+	;  ≥    <
+	db $00, $04 + 1 ; '<NULL>'   to 'オ゙'
+	db $14, $18 + 1 ; '<PLAY_G>' to '<JP_18>' (ノ゙)
+	db $1d, $25 + 1 ; '<NI>'     to '<NO>'
+	db $35, $39 + 1 ; '<ROUTE>'  to '<GREEN>'
+	db $3f, $3f + 1 ; '<ENEMY>'
+	db $49, $5c + 1 ; '<MOM>'    to '<TM>'
+	db $5e, $7e + 1 ; '<ROCKET>' to '┘'
 	db -1 ; end
