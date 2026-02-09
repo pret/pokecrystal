@@ -1,6 +1,9 @@
 # compiled objects
 *.o
 
+# build artifacts
+build/
+
 # compiled graphics
 *.1bpp
 *.2bpp
