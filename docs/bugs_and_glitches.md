@@ -59,7 +59,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
   - [AI use of Full Heal or Full Restore does not cure Attack or Speed drops from burn or paralysis](#ai-use-of-full-heal-or-full-restore-does-not-cure-attack-or-speed-drops-from-Burn-or-Paralysis)
-  - [AI can use Nightmare on any status condition not only sleep](#ai-can-use-nightmare-on-any-status) 
+  - [AI can use Nightmare on any status condition not only sleep](#ai-can-use-nightmare-on-any-status-condition) 
   - [AI might use its base reward value as an item](#ai-might-use-its-base-reward-value-as-an-item)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pok%C3%A9mon-can-always-teleport-regardless-of-level-difference)
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
