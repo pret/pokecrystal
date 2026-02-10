@@ -59,6 +59,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
   - [AI use of Full Heal or Full Restore does not cure Attack or Speed drops from burn or paralysis](#ai-use-of-full-heal-or-full-restore-does-not-cure-attack-or-speed-drops-from-Burn-or-Paralysis)
+  - [AI can use Nightmare on any status condition not only sleep](#ai-can-use-nightmare-on-any-status) 
   - [AI might use its base reward value as an item](#ai-might-use-its-base-reward-value-as-an-item)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pok%C3%A9mon-can-always-teleport-regardless-of-level-difference)
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
@@ -1479,6 +1480,24 @@ AI_Cautious:
 +	farcall CalcEnemyStats
  	ret
 ```
+
+### AI can use Nightmare on any status condition
+
+In the check for redundancy all status conditions are treated the same. That means the check is only passed when the player has no status. 
+
+**Fix** Edit redundancy check to consider anything except the sleep condition in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm)
+```diff
+
+ .Nightmare:
+ 	ld a, [wBattleMonStatus]
+-	and a
++	and SLP_MASK
+ 	jr z, .Redundant
+ 	ld a, [wPlayerSubStatus1]
+ 	bit SUBSTATUS_NIGHTMARE, a
+ 	ret
+```
+
 
 ### AI might use its base reward value as an item
 
