@@ -797,7 +797,7 @@ Bide:
 	checkobedience
 	doturn
 	usedmovetext
-	unleashenergy
+	startbide
 	resettypematchup
 	checkhit
 	moveanim
