@@ -63,23 +63,23 @@ hEnemyMonSpeed:: dw
 UNION
 ; math-related values
 
-UNION
-; inputs to Multiply
-	ds 1
-hMultiplicand:: ds 3
-hMultiplier::   db
-NEXTU
-; result of Multiply
-hProduct::      ds 4
-NEXTU
-; inputs to Divide
-hDividend::     ds 4
-hDivisor::      db
-NEXTU
-; results of Divide
-hQuotient::     ds 4
-hRemainder::    db
-ENDU
+	UNION
+	; inputs to Multiply
+		ds 1
+	hMultiplicand:: ds 3
+	hMultiplier::   db
+	NEXTU
+	; result of Multiply
+	hProduct::      ds 4
+	NEXTU
+	; inputs to Divide
+	hDividend::     ds 4
+	hDivisor::      db
+	NEXTU
+	; results of Divide
+	hQuotient::     ds 4
+	hRemainder::    db
+	ENDU
 
 hMathBuffer:: ds 5
 
