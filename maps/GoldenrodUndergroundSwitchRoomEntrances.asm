@@ -1,35 +1,42 @@
-; block ids
-DEF UNDERGROUND_DOOR_CLOSED1 EQU $2a
-DEF UNDERGROUND_DOOR_CLOSED2 EQU $3e
-DEF UNDERGROUND_DOOR_CLOSED3 EQU $3f
-DEF UNDERGROUND_DOOR_OPEN1   EQU $2d
-DEF UNDERGROUND_DOOR_OPEN2   EQU $3d
+DEF ugdoor_n = 0
 
-MACRO ugdoor
-	DEF UGDOOR_\1_XCOORD EQU \2
-	DEF UGDOOR_\1_YCOORD EQU \3
+MACRO ugdoor_def
+;\1: x coord
+;\2: y coord
+;\3: closed block id
+;\4: open block id
+;...
+	DEF ugdoor_n += 1
+	DEF UGDOOR_{d:ugdoor_n}_SIZE EQU _NARG / 4
+	for i, UGDOOR_{d:ugdoor_n}_SIZE
+		DEF UGDOOR_{d:ugdoor_n}_X_{d:i}      EQU \1
+		DEF UGDOOR_{d:ugdoor_n}_Y_{d:i}      EQU \2
+		DEF UGDOOR_{d:ugdoor_n}_CLOSED_{d:i} EQU \3
+		DEF UGDOOR_{d:ugdoor_n}_OPEN_{d:i}   EQU \4
+		shift 4
+	endr
 ENDM
 
-	;      id,  x,  y
-	ugdoor  1,  6, 16
-	ugdoor  2,  6, 10
-	ugdoor  3,  6,  2
-	ugdoor  4, 10,  2
-	ugdoor  5, 10, 10
-	ugdoor  6, 10, 16
-	ugdoor  7,  6, 12
-	ugdoor  8,  8, 12
-	ugdoor  9,  6,  6
-	ugdoor 10,  8,  6
-	ugdoor 11, 10, 12
-	ugdoor 12, 12, 12
-	ugdoor 13, 10,  6
-	ugdoor 14, 12,  6
-	ugdoor 15, 10, 18
-	ugdoor 16, 12, 18
+	;           x,  y, closed, open,  x,  y, closed, open ; id
+	ugdoor_def 16,  6,    $3e,  $2d                       ;  1
+	ugdoor_def 10,  6,    $3e,  $2d                       ;  2
+	ugdoor_def  2,  6,    $3e,  $2d                       ;  3
+	ugdoor_def  2, 10,    $3e,  $2d                       ;  4
+	ugdoor_def 10, 10,    $3e,  $2d                       ;  5
+	ugdoor_def 16, 10,    $3e,  $2d                       ;  6
+	ugdoor_def 12,  6,    $3f,  $2a, 12,  8,    $3d,  $2d ;  7
+	ugdoor_def  6,  6,    $3f,  $2a,  6,  8,    $3d,  $2d ;  8
+	ugdoor_def 12, 10,    $3f,  $2a, 12, 12,    $3d,  $2d ;  9
+	ugdoor_def  6, 10,    $3f,  $2a,  6, 12,    $3d,  $2d ; 10
+	ugdoor_def 18, 10,    $3f,  $2a, 18, 12,    $3d,  $2d ; 11
 
-MACRO doorstate
-	changeblock UGDOOR_\1_YCOORD, UGDOOR_\1_XCOORD, UNDERGROUND_DOOR_\2
+MACRO changeugdoor
+;\1: ugdoor id
+;\2: state (CLOSED or OPEN)
+	DEF n = \1
+	for i, UGDOOR_{d:n}_SIZE
+		changeblock UGDOOR_{d:n}_X_{d:i}, UGDOOR_{d:n}_Y_{d:i}, UGDOOR_{d:n}_\2_{d:i}
+	endr
 ENDM
 
 	object_const_def
@@ -60,55 +67,12 @@ GoldenrodUndergroundSwitchRoomEntrancesNoop2Scene:
 	end
 
 GoldenrodUndergroundSwitchRoomEntrancesUpdateDoorPositionsCallback:
-	checkevent EVENT_SWITCH_4
-	iffalse .false4
-	doorstate 1, OPEN1
-.false4
-	checkevent EVENT_SWITCH_5
-	iffalse .false5
-	doorstate 2, OPEN1
-.false5
-	checkevent EVENT_SWITCH_6
-	iffalse .false6
-	doorstate 3, OPEN1
-.false6
-	checkevent EVENT_SWITCH_7
-	iffalse .false7
-	doorstate 4, OPEN1
-.false7
-	checkevent EVENT_SWITCH_8
-	iffalse .false8
-	doorstate 5, OPEN1
-.false8
-	checkevent EVENT_SWITCH_9
-	iffalse .false9
-	doorstate 6, OPEN1
-.false9
-	checkevent EVENT_SWITCH_10
-	iffalse .false10
-	doorstate 7, CLOSED1
-	doorstate 8, OPEN1
-.false10
-	checkevent EVENT_SWITCH_11
-	iffalse .false11
-	doorstate 9, CLOSED1
-	doorstate 10, OPEN1
-.false11
-	checkevent EVENT_SWITCH_12
-	iffalse .false12
-	doorstate 11, CLOSED1
-	doorstate 12, OPEN1
-.false12
-	checkevent EVENT_SWITCH_13
-	iffalse .false13
-	doorstate 13, CLOSED1
-	doorstate 14, OPEN1
-.false13
-	checkevent EVENT_SWITCH_14
-	iffalse .false14
-	doorstate 15, CLOSED1
-	doorstate 16, OPEN1
-.false14
+for n, 1, ugdoor_n + 1
+	checkevent EVENT_DOOR_{d:n}_OPEN
+	iffalse .door_{d:n}_closed
+	changeugdoor n, OPEN
+.door_{d:n}_closed
+endr
 	endcallback
 
 GoldenrodUndergroundSwitchRoomEntrancesSuperNerdScript:
@@ -391,237 +355,131 @@ GoldenrodUndergroundSwitchRoomEntrances_UpdateDoors:
 	ifequal 7, .EmergencyPosition
 .Position0:
 	playsound SFX_ENTER_DOOR
-	scall .Clear4
-	scall .Clear5
-	scall .Clear6
-	scall .Clear7
-	scall .Clear8
-	scall .Clear9
-	scall .Clear10
-	scall .Clear11
-	scall .Clear12
-	scall .Clear13
-	scall .Clear14
+	scall .CloseDoor1
+	scall .CloseDoor2
+	scall .CloseDoor3
+	scall .CloseDoor4
+	scall .CloseDoor5
+	scall .CloseDoor6
+	scall .CloseDoor7
+	scall .CloseDoor8
+	scall .CloseDoor9
+	scall .CloseDoor10
+	scall .CloseDoor11
 	refreshmap
 	closetext
 	end
 
 .Position1:
 	playsound SFX_ENTER_DOOR
-	scall .Set4
-	scall .Set10
-	scall .Set13
-	scall .Clear9
-	scall .Clear11
-	scall .Clear12
-	scall .Clear14
+	scall .OpenDoor1
+	scall .OpenDoor7
+	scall .OpenDoor10
+	scall .CloseDoor6
+	scall .CloseDoor8
+	scall .CloseDoor9
+	scall .CloseDoor11
 	refreshmap
 	closetext
 	end
 
 .Position2:
 	playsound SFX_ENTER_DOOR
-	scall .Set5
-	scall .Set11
-	scall .Set12
-	scall .Clear8
-	scall .Clear10
-	scall .Clear13
-	scall .Clear14
+	scall .OpenDoor2
+	scall .OpenDoor8
+	scall .OpenDoor9
+	scall .CloseDoor5
+	scall .CloseDoor7
+	scall .CloseDoor10
+	scall .CloseDoor11
 	refreshmap
 	closetext
 	end
 
 .Position3:
 	playsound SFX_ENTER_DOOR
-	scall .Set6
-	scall .Set10
-	scall .Set13
-	scall .Clear7
-	scall .Clear11
-	scall .Clear12
-	scall .Clear14
+	scall .OpenDoor3
+	scall .OpenDoor7
+	scall .OpenDoor10
+	scall .CloseDoor4
+	scall .CloseDoor8
+	scall .CloseDoor9
+	scall .CloseDoor11
 	refreshmap
 	closetext
 	end
 
 .Position4:
 	playsound SFX_ENTER_DOOR
-	scall .Set7
-	scall .Set11
-	scall .Set12
-	scall .Clear6
-	scall .Clear10
-	scall .Clear13
-	scall .Clear14
+	scall .OpenDoor4
+	scall .OpenDoor8
+	scall .OpenDoor9
+	scall .CloseDoor3
+	scall .CloseDoor7
+	scall .CloseDoor10
+	scall .CloseDoor11
 	refreshmap
 	closetext
 	end
 
 .Position5:
 	playsound SFX_ENTER_DOOR
-	scall .Set8
-	scall .Set10
-	scall .Set13
-	scall .Clear5
-	scall .Clear11
-	scall .Clear12
-	scall .Clear14
+	scall .OpenDoor5
+	scall .OpenDoor7
+	scall .OpenDoor10
+	scall .CloseDoor2
+	scall .CloseDoor8
+	scall .CloseDoor9
+	scall .CloseDoor11
 	refreshmap
 	closetext
 	end
 
 .Position6:
 	playsound SFX_ENTER_DOOR
-	scall .Set9
-	scall .Set11
-	scall .Set12
-	scall .Set14
-	scall .Clear4
-	scall .Clear10
-	scall .Clear13
+	scall .OpenDoor6
+	scall .OpenDoor8
+	scall .OpenDoor9
+	scall .OpenDoor11
+	scall .CloseDoor1
+	scall .CloseDoor7
+	scall .CloseDoor10
 	refreshmap
 	closetext
 	end
 
 .EmergencyPosition:
 	playsound SFX_ENTER_DOOR
-	scall .Clear4
-	scall .Clear5
-	scall .Set6
-	scall .Clear7
-	scall .Set8
-	scall .Set9
-	scall .Clear10
-	scall .Set11
-	scall .Set12
-	scall .Clear13
-	scall .Set14
+	scall .CloseDoor1
+	scall .CloseDoor2
+	scall .OpenDoor3
+	scall .CloseDoor4
+	scall .OpenDoor5
+	scall .OpenDoor6
+	scall .CloseDoor7
+	scall .OpenDoor8
+	scall .OpenDoor9
+	scall .CloseDoor10
+	scall .OpenDoor11
 	refreshmap
 	closetext
 	setval 6
 	writemem wUndergroundSwitchPositions
 	end
 
-.Set4:
-	doorstate 1, OPEN1
-	setevent EVENT_SWITCH_4
+for n, 1, ugdoor_n + 1
+.OpenDoor{d:n}:
+	changeugdoor n, OPEN
+	setevent EVENT_DOOR_{d:n}_OPEN
 	end
+endr
 
-.Set5:
-	doorstate 2, OPEN1
-	setevent EVENT_SWITCH_5
+for n, 1, ugdoor_n + 1
+.CloseDoor{d:n}:
+	changeugdoor n, CLOSED
+	clearevent EVENT_DOOR_{d:n}_OPEN
 	end
-
-.Set6:
-	doorstate 3, OPEN1
-	setevent EVENT_SWITCH_6
-	end
-
-.Set7:
-	doorstate 4, OPEN1
-	setevent EVENT_SWITCH_7
-	end
-
-.Set8:
-	doorstate 5, OPEN1
-	setevent EVENT_SWITCH_8
-	end
-
-.Set9:
-	doorstate 6, OPEN1
-	setevent EVENT_SWITCH_9
-	end
-
-.Set10:
-	doorstate 7, CLOSED1
-	doorstate 8, OPEN1
-	setevent EVENT_SWITCH_10
-	end
-
-.Set11:
-	doorstate 9, CLOSED1
-	doorstate 10, OPEN1
-	setevent EVENT_SWITCH_11
-	end
-
-.Set12:
-	doorstate 11, CLOSED1
-	doorstate 12, OPEN1
-	setevent EVENT_SWITCH_12
-	end
-
-.Set13:
-	doorstate 13, CLOSED1
-	doorstate 14, OPEN1
-	setevent EVENT_SWITCH_13
-	end
-
-.Set14:
-	doorstate 15, CLOSED1
-	doorstate 16, OPEN1
-	setevent EVENT_SWITCH_14
-	end
-
-.Clear4:
-	doorstate 1, CLOSED2
-	clearevent EVENT_SWITCH_4
-	end
-
-.Clear5:
-	doorstate 2, CLOSED2
-	clearevent EVENT_SWITCH_5
-	end
-
-.Clear6:
-	doorstate 3, CLOSED2
-	clearevent EVENT_SWITCH_6
-	end
-
-.Clear7:
-	doorstate 4, CLOSED2
-	clearevent EVENT_SWITCH_7
-	end
-
-.Clear8:
-	doorstate 5, CLOSED2
-	clearevent EVENT_SWITCH_8
-	end
-
-.Clear9:
-	doorstate 6, CLOSED2
-	clearevent EVENT_SWITCH_9
-	end
-
-.Clear10:
-	doorstate 7, CLOSED3
-	doorstate 8, OPEN2
-	clearevent EVENT_SWITCH_10
-	end
-
-.Clear11:
-	doorstate 9, CLOSED3
-	doorstate 10, OPEN2
-	clearevent EVENT_SWITCH_11
-	end
-
-.Clear12:
-	doorstate 11, CLOSED3
-	doorstate 12, OPEN2
-	clearevent EVENT_SWITCH_12
-	end
-
-.Clear13:
-	doorstate 13, CLOSED3
-	doorstate 14, OPEN2
-	clearevent EVENT_SWITCH_13
-	end
-
-.Clear14:
-	doorstate 15, CLOSED3
-	doorstate 16, OPEN2
-	clearevent EVENT_SWITCH_14
-	end
+endr
 
 GoldenrodUndergroundSwitchRoomEntrancesSmokeBall:
 	itemball SMOKE_BALL
