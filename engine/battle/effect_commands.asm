@@ -6432,7 +6432,7 @@ BattleCommand_TimeBasedHealContinue:
 .start
 ; Index for .Multipliers
 ; Default restores half max HP.
-	ld c, 3
+	ld c, 2
 
 ; Don't bother healing if HP is already full.
 	push bc
