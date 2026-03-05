@@ -32,9 +32,7 @@ LakeOfRageFlypointCallback:
 	endcallback
 
 LakeOfRageWesleyCallback:
-	readvar VAR_WEEKDAY
-	ifequal WEDNESDAY, .WesleyAppears
-	disappear LAKEOFRAGE_WESLEY
+	.WesleyAppears
 	endcallback
 
 .WesleyAppears:
@@ -192,8 +190,6 @@ WesleyScript:
 	opentext
 	checkevent EVENT_GOT_BLACKBELT_FROM_WESLEY
 	iftrue WesleyWednesdayScript
-	readvar VAR_WEEKDAY
-	ifnotequal WEDNESDAY, WesleyNotWednesdayScript
 	checkevent EVENT_MET_WESLEY_OF_WEDNESDAY
 	iftrue .MetWesley
 	writetext MeetWesleyText
@@ -214,12 +210,6 @@ WesleyWednesdayScript:
 	writetext WesleyWednesdayText
 	waitbutton
 WesleyDoneScript:
-	closetext
-	end
-
-WesleyNotWednesdayScript:
-	writetext WesleyNotWednesdayText
-	waitbutton
 	closetext
 	end
 
@@ -472,12 +462,6 @@ WesleyWednesdayText:
 
 	para "Or did you just"
 	line "get lucky?"
-	done
-
-WesleyNotWednesdayText:
-	text "WESLEY: Today's"
-	line "not Wednesday."
-	cont "That's too bad."
 	done
 
 LakeOfRageSignText:
