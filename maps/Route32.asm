@@ -33,9 +33,7 @@ Route32Noop3Scene:
 	end
 
 Route32FriedaCallback:
-	readvar VAR_WEEKDAY
-	ifequal FRIDAY, .FriedaAppears
-	disappear ROUTE32_FRIEDA
+	.FriedaAppears
 	endcallback
 
 .FriedaAppears:
@@ -454,8 +452,6 @@ FriedaScript:
 	opentext
 	checkevent EVENT_GOT_POISON_BARB_FROM_FRIEDA
 	iftrue .Friday
-	readvar VAR_WEEKDAY
-	ifnotequal FRIDAY, .NotFriday
 	checkevent EVENT_MET_FRIEDA_OF_FRIDAY
 	iftrue .MetFrieda
 	writetext MeetFriedaText
@@ -476,12 +472,6 @@ FriedaScript:
 	writetext FriedaFridayText
 	waitbutton
 .Done:
-	closetext
-	end
-
-.NotFriday:
-	writetext FriedaNotFridayText
-	waitbutton
 	closetext
 	end
 
@@ -857,7 +847,8 @@ Text_RoarOutro:
 
 MeetFriedaText:
 	text "FRIEDA: Yahoo!"
-	line "It's Friday!"
+	line "It's Friday"
+	cont "somewhere!"
 
 	para "I'm FRIEDA of"
 	line "Friday!"
@@ -895,13 +886,6 @@ FriedaFridayText:
 	line "it's great too?"
 	done
 
-FriedaNotFridayText:
-	text "FRIEDA: Isn't it"
-	line "Friday today?"
-
-	para "It's so boring"
-	line "when it's not!"
-	done
 
 Route32SignText:
 	text "ROUTE 32"
