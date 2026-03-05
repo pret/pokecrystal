@@ -434,8 +434,9 @@ MeetWesleyText:
 	text "WESLEY: Well, how"
 	line "do you do?"
 
-	para "Seeing as how it's"
-	line "Wednesday today,"
+	para "Seeing as how it"
+	line "feels like a"
+	cont "Wednesday today,"
 
 	para "I'm WESLEY of"
 	line "Wednesday."
