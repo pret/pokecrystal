@@ -7,7 +7,7 @@ JohtoGrassWildMons:
 	; morn
 	db 3, RATTATA
 	db 4, RATTATA
-	db 5, MR__MIME
+	db 5, SMEARGLE
 	db 3, RATTATA
 	db 6, RATTATA
 	db 5, RATTATA
@@ -15,7 +15,7 @@ JohtoGrassWildMons:
 	; day
 	db 3, RATTATA
 	db 4, RATTATA
-	db 5, MR__MIME
+	db 5, SMEARGLE
 	db 3, RATTATA
 	db 6, RATTATA
 	db 5, RATTATA
@@ -23,7 +23,7 @@ JohtoGrassWildMons:
 	; nite
 	db 3, GASTLY
 	db 4, GASTLY
-	db 5, MR__MIME
+	db 5, SMEARGLE
 	db 3, RATTATA
 	db 6, GASTLY
 	db 5, RATTATA
@@ -35,7 +35,7 @@ JohtoGrassWildMons:
 	; morn
 	db 3, RATTATA
 	db 4, RATTATA
-	db 5, MR__MIME
+	db 5, SMEARGLE
 	db 3, RATTATA
 	db 6, RATTATA
 	db 5, RATTATA
@@ -43,7 +43,7 @@ JohtoGrassWildMons:
 	; day
 	db 3, RATTATA
 	db 4, RATTATA
-	db 5, MR__MIME
+	db 5, SMEARGLE
 	db 3, RATTATA
 	db 6, RATTATA
 	db 5, RATTATA
@@ -51,7 +51,7 @@ JohtoGrassWildMons:
 	; nite
 	db 3, GASTLY
 	db 4, GASTLY
-	db 5, MR__MIME
+	db 5, SMEARGLE
 	db 3, RATTATA
 	db 6, GASTLY
 	db 5, RATTATA
