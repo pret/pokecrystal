@@ -384,8 +384,8 @@ YoungsterGroup:
 
 	; YOUNGSTER (3)
 	db "ALBERT@", TRAINERTYPE_NORMAL
-	db  6, RATTATA
-	db  8, ZUBAT
+	db  7, RATTATA
+	db  10, ZUBAT
 	db -1 ; end
 
 	; YOUNGSTER (4)
@@ -1271,7 +1271,7 @@ PokemaniacGroup:
 
 	; POKEMANIAC (7)
 	db "RON@", TRAINERTYPE_NORMAL
-	db 34, NIDOKING
+	db 27, NIDOKING
 	db -1 ; end
 
 	; POKEMANIAC (8)
@@ -1328,14 +1328,14 @@ GruntMGroup:
 	; GRUNTM (1)
 	db "GRUNT@", TRAINERTYPE_NORMAL
 	db 14, KOFFING
-	db 12, GRIMER
+	db 15, GRIMER
 	db -1 ; end
 
 	; GRUNTM (2)
 	db "GRUNT@", TRAINERTYPE_NORMAL
-	db  8, RATTATA
-	db 10, ZUBAT
-	db 10, ZUBAT
+	db  9, RATTATA
+	db 11, ZUBAT
+	db 11, ZUBAT
 	db -1 ; end
 
 	; GRUNTM (3)
@@ -1369,10 +1369,10 @@ GruntMGroup:
 
 	; GRUNTM (7)
 	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 33, WEEZING
+	db 36, WEEZING
 	db 38, MUK
-	db 33, MURKROW
-	db 33, WOBBUFFET
+	db 35, MURKROW
+	db 38, WOBBUFFET
 	db -1 ; end
 
 	; GRUNTM (8)
@@ -1413,7 +1413,7 @@ GruntMGroup:
 
 	; GRUNTM (14)
 	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 34, VENOMOTH
+	db 36, VENOMOTH
 	db 40, MURKROW
 	db -1 ; end
 
@@ -1519,7 +1519,7 @@ GruntMGroup:
 
 	; GRUNTM (31)
 	db "GRUNT@", TRAINERTYPE_NORMAL
-	db 40, CROBAT
+	db 60, CROBAT
 	db -1 ; end
 
 GentlemanGroup:
@@ -2399,9 +2399,9 @@ HikerGroup:
 
 	; HIKER (2)
 	db "RUSSELL@", TRAINERTYPE_NORMAL
-	db  6, GEODUDE
-	db  6, GEODUDE
-	db  8, GEODUDE
+	db  7, GEODUDE
+	db  7, GEODUDE
+	db  9, GEODUDE
 	db -1 ; end
 
 	; HIKER (3)
@@ -2481,8 +2481,8 @@ HikerGroup:
 
 	; HIKER (14)
 	db "NOLAND@", TRAINERTYPE_NORMAL
-	db 31, SANDSLASH
-	db 33, GOLEM
+	db 41, SANDSLASH
+	db 43, GOLEM
 	db -1 ; end
 
 	; HIKER (15)
@@ -3275,9 +3275,9 @@ SageGroup:
 
 	; SAGE (7)
 	db "EDMOND@", TRAINERTYPE_NORMAL
-	db  4, BELLSPROUT
-	db  4, BELLSPROUT
-	db  4, BELLSPROUT
+	db  5, BELLSPROUT
+	db  5, BELLSPROUT
+	db  5, BELLSPROUT
 	db -1 ; end
 
 	; SAGE (8)
@@ -3506,8 +3506,8 @@ TwinsGroup:
 
 	; TWINS (2)
 	db "ANN & ANNE@", TRAINERTYPE_MOVES
-	db 16, CLEFAIRY,   GROWL, ENCORE, DOUBLESLAP, METRONOME
-	db 16, JIGGLYPUFF, SING, DEFENSE_CURL, FIRE_PUNCH, NIGHTMARE
+	db 17, CLEFAIRY,   GROWL, ENCORE, DOUBLESLAP, METRONOME
+	db 17, JIGGLYPUFF, SING, DEFENSE_CURL, FIRE_PUNCH, NIGHTMARE
 	db -1 ; end
 
 	; TWINS (3)
@@ -3538,8 +3538,8 @@ TwinsGroup:
 
 	; TWINS (7)
 	db "MEG & PEG@", TRAINERTYPE_NORMAL
-	db 42, URSARING
-	db 42, DONPHAN
+	db 46, URSARING
+	db 45, DONPHAN
 	db -1 ; end
 
 	; TWINS (8)
