@@ -3304,11 +3304,17 @@ StantlerEvosAttacks:
 SmeargleEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, SKETCH
+	db 6, SKETCH
 	db 11, SKETCH
+	db 13, SKETCH
 	db 15, SKETCH
+	db 18, SKETCH
 	db 21, SKETCH
+	db 23, SKETCH
 	db 25, SKETCH
+	db 28, SKETCH
 	db 31, SKETCH
+	db 33, SKETCH
 	db 35, SKETCH
 	db 41, SKETCH
 	db 45, SKETCH
