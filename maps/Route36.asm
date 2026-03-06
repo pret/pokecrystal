@@ -8,6 +8,7 @@
 	const ROUTE36_ARTHUR
 	const ROUTE36_FLORIA
 	const ROUTE36_SUICUNE
+	const ROUTE36_ERICA
 
 Route36_MapScripts:
 	def_scene_scripts
@@ -397,6 +398,67 @@ Route36SuicuneMovement:
 	fast_jump_step RIGHT
 	remove_sliding
 	step_end
+GiftPokemonDudeScript:
+	faceplayer
+	checkevent EVENT_GOT_ROUTE_32_GIFT_POKE
+	iftrue .AlreadyGotGiftPoke
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, .PartyFullGift
+	opentext
+	writetext GiftPokemonDudeGiftText
+	promptbutton
+	getmonname STRING_BUFFER_3, MEWTWO
+	writetext ReceivedGiftText
+	promptbutton
+	givepoke MEW, 10, BERRY
+	setevent EVENT_GOT_ROUTE_32_GIFT_POKE
+	closetext
+	end
+	
+.PartyFullGift:
+	opentext
+	writetext PartyFullGiftText
+	waitbutton
+	closetext
+	end
+.AlreadyGotGiftPoke:
+	opentext
+	writetext AlreadyGotGiftText
+	waitbutton
+	closetext
+	end
+
+PartyFullGiftText:
+	text "I was going to"
+	line "give you something"
+
+	para "but your party"
+	line "seems to be full."
+	done
+
+GiftPokemonDudeGiftText:
+	text "I caught so"
+	line "many #MON!"
+
+	para "This guy seems"
+	line "weak though,"
+	cont "you can have it."
+
+	para "I only collect"
+	line "strong bug types"
+	cont "like Caterpie."
+	done
+
+ReceivedGiftText:
+	text "<PLAYER> received"
+	line "@"
+	text_ram wStringBuffer3
+	text "!"
+	done
+AlreadyGotGiftText:
+	text "Take good care of"
+	line "that gift #MON!"
+	done
 
 UseSquirtbottleText:
 	text "It's a weird tree."
@@ -670,3 +732,4 @@ Route36_MapEvents:
 	object_event 46,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ArthurScript, EVENT_ROUTE_36_ARTHUR_OF_THURSDAY
 	object_event 33, 12, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route36FloriaScript, EVENT_FLORIA_AT_SUDOWOODO
 	object_event 21,  6, SPRITE_SUICUNE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_SAW_SUICUNE_ON_ROUTE_36
+    object_event 45,  6, SPRITE_ERIKA, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GiftPokemonDudeScript, -1
