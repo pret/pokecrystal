@@ -21,9 +21,7 @@ BlackthornCityFlypointCallback:
 	endcallback
 
 BlackthornCitySantosCallback:
-	readvar VAR_WEEKDAY
-	ifequal SATURDAY, .SantosAppears
-	disappear BLACKTHORNCITY_SANTOS
+	.SantosAppears
 	endcallback
 
 .SantosAppears:
@@ -90,8 +88,6 @@ SantosScript:
 	opentext
 	checkevent EVENT_GOT_SPELL_TAG_FROM_SANTOS
 	iftrue .Saturday
-	readvar VAR_WEEKDAY
-	ifnotequal SATURDAY, .NotSaturday
 	checkevent EVENT_MET_SANTOS_OF_SATURDAY
 	iftrue .MetSantos
 	writetext MeetSantosText
@@ -112,12 +108,6 @@ SantosScript:
 	writetext SantosSaturdayText
 	waitbutton
 .Done:
-	closetext
-	end
-
-.NotSaturday:
-	writetext SantosNotSaturdayText
-	waitbutton
 	closetext
 	end
 
@@ -228,6 +218,7 @@ MeetSantosText:
 	text "SANTOS: …"
 
 	para "It's Saturday…"
+	cont "... somewhere."
 
 	para "I'm SANTOS of"
 	line "Saturday…"
@@ -257,11 +248,14 @@ SantosSaturdayText:
 
 	para "I won't have any"
 	line "more gifts…"
-	done
 
-SantosNotSaturdayText:
-	text "SANTOS: Today's"
-	line "not Saturday…"
+	para "But once you"
+	line "have collected"
+	cont "all seven..."
+
+	para "A special prize"
+	line "lays in wait..."
+	
 	done
 
 BlackthornCooltrainerF2Text:
