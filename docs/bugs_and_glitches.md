@@ -54,6 +54,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
   - ["Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-or-moonlight-during-sunny-day)
   - ["Cautious" AI may fail to discourage residual moves](#cautious-ai-may-fail-to-discourage-residual-moves)
+  - [AI does not discourage Nightmare if the player has any status condition](#ai-does-not-discourage-nightmare-if-the-player-has-any-status-condition)
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
@@ -1355,9 +1356,26 @@ AI_Cautious:
 ```
 
 
+### AI does not discourage Nightmare if the player has any status condition
+
+**Fix** Edit `AI_Redundant.Nightmare` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
+
+```diff
+ .Nightmare:
+-; BUG: AI does not discourage Nightmare if the player has any status condition (see docs/bugs_and_glitches.md)
+ 	ld a, [wBattleMonStatus]
+-	and a
++	and SLP_MASK
+ 	jr z, .Redundant
+ 	ld a, [wPlayerSubStatus1]
+ 	bit SUBSTATUS_NIGHTMARE, a
+ 	ret
+```
+
+
 ### AI does not discourage Future Sight when it's already been used
 
-**Fix:** Edit `AI_Redundant` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
+**Fix:** Edit `AI_Redundant.FutureSight` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
 
 ```diff
  .FutureSight:
@@ -1479,6 +1497,7 @@ AI_Cautious:
 +	farcall CalcEnemyStats
  	ret
 ```
+
 
 ### AI might use its base reward value as an item
 
