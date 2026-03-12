@@ -54,12 +54,12 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - ["Smart" AI discourages Conversion2 after the first turn](#smart-ai-discourages-conversion2-after-the-first-turn)
   - ["Smart" AI does not encourage Solar Beam, Flame Wheel, or Moonlight during Sunny Day](#smart-ai-does-not-encourage-solar-beam-flame-wheel-or-moonlight-during-sunny-day)
   - ["Cautious" AI may fail to discourage residual moves](#cautious-ai-may-fail-to-discourage-residual-moves)
+  - [AI does not discourage Nightmare if the player has any status condition](#ai-does-not-discourage-nightmare-if-the-player-has-any-status-condition)
   - [AI does not discourage Future Sight when it's already been used](#ai-does-not-discourage-future-sight-when-its-already-been-used)
   - [AI makes a false assumption about `CheckTypeMatchup`](#ai-makes-a-false-assumption-about-checktypematchup)
   - [AI use of Full Heal or Full Restore does not cure Nightmare status](#ai-use-of-full-heal-or-full-restore-does-not-cure-nightmare-status)
   - [AI use of Full Heal does not cure confusion status](#ai-use-of-full-heal-does-not-cure-confusion-status)
   - [AI use of Full Heal or Full Restore does not cure Attack or Speed drops from burn or paralysis](#ai-use-of-full-heal-or-full-restore-does-not-cure-attack-or-speed-drops-from-Burn-or-Paralysis)
-  - [AI can use Nightmare on any status condition not only sleep](#ai-can-use-nightmare-on-any-status-condition) 
   - [AI might use its base reward value as an item](#ai-might-use-its-base-reward-value-as-an-item)
   - [Wild Pokémon can always Teleport regardless of level difference](#wild-pok%C3%A9mon-can-always-teleport-regardless-of-level-difference)
   - [`RIVAL2` has lower DVs than `RIVAL1`](#rival2-has-lower-dvs-than-rival1)
@@ -1356,9 +1356,25 @@ AI_Cautious:
 ```
 
 
+### AI does not discourage Nightmare if the player has any status condition
+
+**Fix** Edit `AI_Redundant.Nightmare` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
+
+```diff
+ .Nightmare:
+ 	ld a, [wBattleMonStatus]
+-	and a
++	and SLP_MASK
+ 	jr z, .Redundant
+ 	ld a, [wPlayerSubStatus1]
+ 	bit SUBSTATUS_NIGHTMARE, a
+ 	ret
+```
+
+
 ### AI does not discourage Future Sight when it's already been used
 
-**Fix:** Edit `AI_Redundant` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
+**Fix:** Edit `AI_Redundant.FutureSight` in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm):
 
 ```diff
  .FutureSight:
@@ -1478,23 +1494,6 @@ AI_Cautious:
  	ld hl, wEnemySubStatus5
  	res SUBSTATUS_TOXIC, [hl]
 +	farcall CalcEnemyStats
- 	ret
-```
-
-### AI can use Nightmare on any status condition
-
-In the check for redundancy all status conditions are treated the same. That means the check is only passed when the player has no status. 
-
-**Fix** Edit redundancy check to consider anything except the sleep condition in [engine/battle/ai/redundant.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/redundant.asm)
-```diff
-
- .Nightmare:
- 	ld a, [wBattleMonStatus]
--	and a
-+	and SLP_MASK
- 	jr z, .Redundant
- 	ld a, [wPlayerSubStatus1]
- 	bit SUBSTATUS_NIGHTMARE, a
  	ret
 ```
 
