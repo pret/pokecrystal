@@ -1328,19 +1328,7 @@ Copyright:
 	jp PlaceString
 
 CopyrightString:
-	; ©1995-2001 Nintendo
-	db   $60, $61, $62, $63, $64, $65, $66
-	db   $67, $68, $69, $6a, $6b, $6c
-
-	; ©1995-2001 Creatures inc.
-	next $60, $61, $62, $63, $64, $65, $66
-	db   $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
-
-	; ©1995-2001 GAME FREAK inc.
-	next $60, $61, $62, $63, $64, $65, $66
-	db   $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c
-
-	db "@"
+INCLUDE "data/copyright.asm"
 
 GameInit::
 	farcall TryLoadSaveData
