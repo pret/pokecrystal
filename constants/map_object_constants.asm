@@ -59,11 +59,11 @@ DEF OW_RIGHT EQU RIGHT << 2
 	shift_const LOW_PRIORITY   ; 0
 	shift_const HIGH_PRIORITY  ; 1
 	shift_const BOULDER_MOVING ; 2
-	shift_const OVERHEAD       ; 3
+	shift_const IN_GRASS       ; 3
 	shift_const USE_OBP1       ; 4
 	shift_const FROZEN         ; 5
 	shift_const OFF_SCREEN     ; 6
-	shift_const OBJ_FLAGS2_7   ; 7
+	shift_const UNDER_TILES    ; 7
 
 ; object_struct OBJECT_PALETTE bit flags
 	const_def 5

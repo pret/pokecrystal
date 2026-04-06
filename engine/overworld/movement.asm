@@ -753,7 +753,7 @@ JumpStep:
 
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
-	res OVERHEAD_F, [hl]
+	res IN_GRASS_F, [hl]
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
