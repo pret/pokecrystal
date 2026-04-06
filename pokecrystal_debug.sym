@@ -1701,9 +1701,9 @@
 01:59f6 InitSprites.next_sprite
 01:5a0d InitSprites.InitSprite
 01:5a1d InitSprites.not_vram1
-01:5a28 InitSprites.not_priority
+01:5a28 InitSprites.not_under_tiles
 01:5a2e InitSprites.not_obp_num
-01:5a3f InitSprites.not_overhead
+01:5a3f InitSprites.not_in_grass
 01:5a8e InitSprites.addsprite
 01:5aa3 InitSprites.nope1
 01:5aaf InitSprites.nope2

@@ -1744,9 +1744,9 @@ ROMX bank #1:
 	         $59f6 = InitSprites.next_sprite
 	         $5a0d = InitSprites.InitSprite
 	         $5a1d = InitSprites.not_vram1
-	         $5a28 = InitSprites.not_priority
+	         $5a28 = InitSprites.not_under_tiles
 	         $5a2e = InitSprites.not_obp_num
-	         $5a3f = InitSprites.not_overhead
+	         $5a3f = InitSprites.not_in_grass
 	         $5a8e = InitSprites.addsprite
 	         $5aa3 = InitSprites.nope1
 	         $5aaf = InitSprites.nope2
