@@ -1,20 +1,48 @@
 #define PROGRAM_NAME "scan_includes"
-#define USAGE_OPTS "[-h|--help] [-s|--strict] filename.asm"
+#define USAGE_OPTS "[-h|--help] [-b|--build-prefix dir] [-s|--strict] filename.asm"
 
 #include "common.h"
 
 #include <ctype.h>
+#include <unistd.h>
 
-void parse_args(int argc, char *argv[], bool *strict) {
+struct Options {
+	const char *build_prefix;
+	bool strict;
+};
+
+struct Options options = {0};
+
+char *join_build_prefix(const char *path) {
+	if (!options.build_prefix || !*options.build_prefix) {
+		size_t len = strlen(path) + 1;
+		char *out = xmalloc(len);
+		memcpy(out, path, len);
+		return out;
+	} else {
+		size_t prefix_len = strlen(options.build_prefix);
+		bool needs_slash = options.build_prefix[prefix_len - 1] != '/';
+		size_t len = prefix_len + (needs_slash ? 1 : 0) + strlen(path) + 1;
+		char *out = xmalloc(len);
+		snprintf(out, len, "%s%s%s", options.build_prefix, needs_slash ? "/" : "", path);
+		return out;
+	}
+}
+
+void parse_args(int argc, char *argv[]) {
 	struct option long_options[] = {
+		{"build-prefix", required_argument, 0, 'b'},
 		{"strict", no_argument, 0, 's'},
 		{"help", no_argument, 0, 'h'},
 		{0}
 	};
-	for (int opt; (opt = getopt_long(argc, argv, "sh", long_options)) != -1;) {
+	for (int opt; (opt = getopt_long(argc, argv, "b:sh", long_options)) != -1;) {
 		switch (opt) {
+		case 'b':
+			options.build_prefix = optarg;
+			break;
 		case 's':
-			*strict = true;
+			options.strict = true;
 			break;
 		case 'h':
 			usage_exit(0);
@@ -25,11 +53,11 @@ void parse_args(int argc, char *argv[], bool *strict) {
 	}
 }
 
-void scan_file(const char *filename, bool strict) {
+void scan_file(const char *filename) {
 	errno = 0;
 	FILE *f = fopen(filename, "rb");
 	if (!f) {
-		if (strict) {
+		if (options.strict) {
 			error_exit("Could not open file \"%s\": %s\n", filename, strerror(errno));
 		} else {
 			return;
@@ -88,10 +116,17 @@ void scan_file(const char *filename, bool strict) {
 					size_t length = strcspn(ptr, "\"");
 					ptr += length + 1;
 					include_path[length] = '\0';
-					printf("%s ", include_path);
-					if (is_include) {
-						scan_file(include_path, strict);
+					const char *printed_path = include_path;
+					char *prefixed_path = NULL;
+					if (options.build_prefix && access(include_path, F_OK) != 0) {
+						prefixed_path = join_build_prefix(include_path);
+						printed_path = prefixed_path;
 					}
+					printf("%s ", printed_path);
+					if (is_include) {
+						scan_file(include_path);
+					}
+					free(prefixed_path);
 				} else {
 					fprintf(stderr, "%s: no file path after INC%s\n", filename, is_include ? "LUDE" : "BIN");
 					// Continue to process a comment
@@ -108,8 +143,7 @@ void scan_file(const char *filename, bool strict) {
 }
 
 int main(int argc, char *argv[]) {
-	bool strict = false;
-	parse_args(argc, argv, &strict);
+	parse_args(argc, argv);
 
 	argc -= optind;
 	argv += optind;
@@ -117,6 +151,6 @@ int main(int argc, char *argv[]) {
 		usage_exit(1);
 	}
 
-	scan_file(argv[0], strict);
+	scan_file(argv[0]);
 	return 0;
 }
