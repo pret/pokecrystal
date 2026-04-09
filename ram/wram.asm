@@ -1335,21 +1335,21 @@ wMobileMonIndex::
 wMobileMonMiscSpecies::
 wcd2a:: db
 
-UNION
-wTempOddEggNickname:: ds MON_NAME_LENGTH
-NEXTU
-wcd2b:: ds 1
-wcd2c:: ds 1
-wcd2d:: ds 1
-wcd2e:: ds 1
-wcd2f:: ds 1
-wcd30:: ds 1
-wcd31:: ds 1
-wcd32:: ds 1
-wcd33:: ds 1
-wcd34:: ds 1
-wcd35:: ds 1
-ENDU
+	UNION
+	wTempOddEggNickname:: ds MON_NAME_LENGTH
+	NEXTU
+	wcd2b:: ds 1
+	wcd2c:: ds 1
+	wcd2d:: ds 1
+	wcd2e:: ds 1
+	wcd2f:: ds 1
+	wcd30:: ds 1
+	wcd31:: ds 1
+	wcd32:: ds 1
+	wcd33:: ds 1
+	wcd34:: ds 1
+	wcd35:: ds 1
+	ENDU
 
 ; current time for link/mobile?
 wcd36:: db ; hours
