@@ -1,4 +1,4 @@
-	db ONIX-C ; 152
+	db CHIKORITA ; 152
 
 	db  70,  90,  250,  140,  70,  160
 	;   hp  atk  def  spd  sat  sdf
