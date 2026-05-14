@@ -3048,7 +3048,7 @@ MonFaintedAnimation:
 	dec b
 	jr nz, .InnerLoop
 
-	ld bc, 20
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld de, .Spaces
 	call PlaceString
@@ -4869,7 +4869,9 @@ UpdateHPPal:
 	jp FinishBattleAnim
 
 Battle_DummyFunction:
-; called before placing either battler's nickname in the HUD
+; Called before placing either battler's nickname in the HUD.
+; This was CenterMonName in Gen 1.
+; In Gen 2, pokemon nicknames are always left-aligned on the HUD.
 	ret
 
 BattleMenu:
@@ -8501,7 +8503,7 @@ ReadAndPrintLinkBattleRecord:
 	pop hl
 	call PlaceString
 	pop hl
-	ld de, 26
+	ld de, SCREEN_WIDTH + 6
 	add hl, de
 	push hl
 	ld de, wLinkBattleRecordWins

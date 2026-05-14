@@ -101,7 +101,7 @@ MoveMailFromPCToParty:
 	ld bc, MAIL_STRUCT_LENGTH
 	call CopyBytes
 	pop hl
-	ld de, PARTYMON_STRUCT_LENGTH - MON_MOVES
+	ld de, MAIL_STRUCT_LENGTH - 1 ; message type
 	add hl, de
 	ld d, [hl]
 	ld a, [wCurPartyMon]
