@@ -2784,17 +2784,9 @@ StereoTracks:
 
 ChannelPointers:
 	table_width 2
-; music channels
-	dw wChannel1
-	dw wChannel2
-	dw wChannel3
-	dw wChannel4
-	assert_table_length NUM_MUSIC_CHANS
-; sfx channels
-	dw wChannel5
-	dw wChannel6
-	dw wChannel7
-	dw wChannel8
+for n, 1, NUM_CHANNELS + 1
+	dw wChannel{d:n}
+endr
 	assert_table_length NUM_CHANNELS
 
 ClearChannels::
