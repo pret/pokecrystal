@@ -16,7 +16,7 @@ PlaceMenuItemQuantity:
 	pop hl
 	and a
 	jr nz, .done
-	ld de, $15
+	ld de, SCREEN_WIDTH + 1
 	add hl, de
 	ld [hl], '×'
 	inc hl
