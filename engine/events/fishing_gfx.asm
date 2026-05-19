@@ -11,13 +11,13 @@ LoadFishingGFX:
 	ld de, KrisFishingGFX
 .got_gender
 
-	ld hl, vTiles0 tile $02
+	ld hl, vTiles3 tile $02
 	call .LoadGFX
-	ld hl, vTiles0 tile $06
+	ld hl, vTiles3 tile $06
 	call .LoadGFX
-	ld hl, vTiles0 tile $0a
+	ld hl, vTiles3 tile $0a
 	call .LoadGFX
-	ld hl, vTiles0 tile $fc
+	ld hl, vTiles3 tile $fc
 	call .LoadGFX
 
 	pop af

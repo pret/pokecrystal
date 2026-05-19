@@ -259,7 +259,7 @@ Function170cc6:
 	ld a, 1
 	ldh [rVBK], a
 	ld de, wDecompressScratch
-	ld hl, vTiles0
+	ld hl, vTiles3
 	lb bc, BANK(wDecompressScratch), 193
 	call Get2bpp
 	xor a
@@ -279,7 +279,7 @@ Function170d02:
 	ld a, $1
 	ldh [rVBK], a
 	ld de, PichuBorderMobileGFX
-	ld hl, vTiles0 tile $c1
+	ld hl, vTiles3 tile $c1
 	lb bc, BANK(PichuBorderMobileGFX), 24
 	call Get2bpp
 	xor a
