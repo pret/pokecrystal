@@ -1765,6 +1765,10 @@ RapidSpin:
 	checkfaint
 	buildopponentrage
 	kingsrock
+	speedup
+	statupanim
+	statupmessage
+	statupfailtext
 	endmove
 
 MorningSun:

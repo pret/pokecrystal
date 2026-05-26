@@ -51,10 +51,11 @@ DEF MOVE_ANIM   rb ; 0
 DEF MOVE_EFFECT rb ; 1
 DEF MOVE_POWER  rb ; 2
 DEF MOVE_TYPE   rb ; 3
-DEF MOVE_ACC    rb ; 4
-DEF MOVE_PP     rb ; 5
-DEF MOVE_CHANCE rb ; 6
-DEF MOVE_LENGTH EQU _RS
+DEF MOVE_ACC      rb ; 4
+DEF MOVE_PP       rb ; 5
+DEF MOVE_CHANCE   rb ; 6
+DEF MOVE_CATEGORY rb ; 7
+DEF MOVE_LENGTH   EQU _RS
 
 ; stat constants
 ; indexes for:
