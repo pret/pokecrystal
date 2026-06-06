@@ -922,7 +922,7 @@ BattleTower_GiveReward:
 	cp c
 	jr nz, .next
 	ld a, [hl]
-	cp 95
+	cp MAX_ITEM_STACK - BATTLETOWER_REWARD_QUANTITY + 1
 	ret c
 .next
 	inc hl
@@ -957,12 +957,14 @@ BattleTower_RandomlyChooseReward:
 .loop
 	call Random
 	ldh a, [hRandomAdd]
-	and $7
-	cp 6
+	maskbits BATTLETOWER_MAX_REWARD - BATTLETOWER_MIN_REWARD + 1
+	cp BATTLETOWER_MAX_REWARD - BATTLETOWER_MIN_REWARD + 1
 	jr c, .okay
-	sub 6
+	sub BATTLETOWER_MAX_REWARD - BATTLETOWER_MIN_REWARD + 1
 .okay
-	add HP_UP
+	add BATTLETOWER_MIN_REWARD
+	; LUCKY_PUNCH is in-between the stat boosting items, but is not a valid reward
+	assert LUCKY_PUNCH >= BATTLETOWER_MIN_REWARD && LUCKY_PUNCH <= BATTLETOWER_MAX_REWARD
 	cp LUCKY_PUNCH
 	jr z, .loop
 	push af
