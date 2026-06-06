@@ -50909,8 +50909,8 @@ SRAM bank #3:
 	         $ab31 = sBox10Mon20Happiness
 	         $ab32 = sBox10Mon20PokerusStatus
 	         $ab33 = sBox10Mon20CaughtLevel
-	         $ab33 = sBox10Mon20CaughtTime
 	         $ab33 = sBox10Mon20CaughtData
+	         $ab33 = sBox10Mon20CaughtTime
 	         $ab34 = sBox10Mon20CaughtLocation
 	         $ab34 = sBox10Mon20CaughtGender
 	         $ab35 = sBox10Mon20Level

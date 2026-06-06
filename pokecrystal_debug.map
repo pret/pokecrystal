@@ -51460,8 +51460,8 @@ SRAM bank #3:
 	         $ae83 = sBox11Mon12CaughtTime
 	         $ae83 = sBox11Mon12CaughtData
 	         $ae83 = sBox11Mon12CaughtLevel
-	         $ae84 = sBox11Mon12CaughtGender
 	         $ae84 = sBox11Mon12CaughtLocation
+	         $ae84 = sBox11Mon12CaughtGender
 	         $ae85 = sBox11Mon12Level
 	         $ae86 = sBox11Mon13Species
 	         $ae86 = sBox11Mon13
