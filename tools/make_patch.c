@@ -155,7 +155,7 @@ struct Symbol *parse_symbols(const char *filename) {
 		}
 	}
 
-	fclose(file);
+	xfclose(file);
 	buffer_free(buffer);
 	return symbols;
 }
@@ -431,8 +431,8 @@ struct Buffer *process_template(
 	rewind(orig_rom);
 	rewind(new_rom);
 
-	fclose(input);
-	fclose(output);
+	xfclose(input);
+	xfclose(output);
 	buffer_free(buffer);
 	return patches;
 }
@@ -521,8 +521,8 @@ int main(int argc, char *argv[]) {
 	}
 
 	symbol_free(symbols);
-	fclose(new_rom);
-	fclose(orig_rom);
+	xfclose(new_rom);
+	xfclose(orig_rom);
 	buffer_free(patches);
 	return 0;
 }

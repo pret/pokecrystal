@@ -39,7 +39,7 @@ void scan_file(const char *filename, bool strict) {
 	long size = xfsize(filename, f);
 	char *contents = xmalloc(size + 1);
 	xfread((uint8_t *)contents, size, filename, f);
-	fclose(f);
+	xfclose(f);
 	contents[size] = '\0';
 
 	for (char *ptr = contents; ptr && ptr < contents + size; ptr++) {
