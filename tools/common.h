@@ -108,8 +108,27 @@ long xfsize(const char *filename, FILE *f) {
 	return size;
 }
 
+uint8_t *read_stdin(long *size) {
+	uint8_t buffer[0x1000] = {0};
+	*size = 0;
+	uint8_t *data = xmalloc(*size);
+	for (;;) {
+		size_t n = fread(buffer, 1, sizeof(buffer), stdin);
+		if (n == 0) {
+			break;
+		}
+		data = xrealloc(data, *size + n);
+		memcpy(data + *size, buffer, n);
+		*size += n;
+	}
+	return data;
+}
+
 uint8_t *read_u8(const char *filename, long *size) {
 	FILE *f = xfopen(filename, 'r');
+	if (f == stdin) {
+		return read_stdin(size);
+	}
 	*size = xfsize(filename, f);
 	uint8_t *data = xmalloc(*size);
 	xfread(data, *size, filename, f);
