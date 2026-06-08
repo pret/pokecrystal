@@ -1756,7 +1756,7 @@ HandleWeather:
 .ended
 	ld hl, .WeatherEndedMessages
 	call .PrintWeatherMessage
-	xor a
+	xor a ; WEATHER_NONE
 	ld [wBattleWeather], a
 	ret
 
@@ -1774,15 +1774,19 @@ HandleWeather:
 
 .WeatherMessages:
 ; entries correspond to WEATHER_* constants
+	table_width 2
 	dw BattleText_RainContinuesToFall
 	dw BattleText_TheSunlightIsStrong
 	dw BattleText_TheSandstormRages
+	assert_table_length NUM_WEATHERS
 
 .WeatherEndedMessages:
 ; entries correspond to WEATHER_* constants
+	table_width 2
 	dw BattleText_TheRainStopped
 	dw BattleText_TheSunlightFaded
 	dw BattleText_TheSandstormSubsided
+	assert_table_length NUM_WEATHERS
 
 SubtractHPFromTarget:
 	call SubtractHP
