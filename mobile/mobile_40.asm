@@ -1501,7 +1501,7 @@ Function1009d2:
 	ldh [rVBK], a
 
 	ld hl, w3_d800
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	lb bc, $03, $24
 	call Get2bpp
 

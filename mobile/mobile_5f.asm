@@ -64,12 +64,12 @@ Function17c000:
 	ldh [rVBK], a
 
 	ld hl, HaveWantGFX
-	ld de, vTiles2
+	ld de, vTiles5
 	ld bc, $80 tiles
 	call CopyBytes
 
 	ld hl, HaveWantGFX + $80 tiles
-	ld de, vTiles1
+	ld de, vTiles4
 	ld bc, $10 tiles
 	call CopyBytes
 
@@ -613,15 +613,15 @@ Function17d370:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, PokemonNewsGFX
-	ld de, vTiles1
+	ld de, vTiles4
 	ld bc, $48 tiles
 	call CopyBytes
 	xor a
-	ld hl, vTiles2 tile $7f
+	ld hl, vTiles5 tile $7f
 	ld bc, 1 tiles
 	call ByteFill
 	ld hl, wc608
-	ld de, vTiles0 tile $ee
+	ld de, vTiles3 tile $ee
 	ld bc, 1 tiles
 	call CopyBytes
 	xor a
@@ -660,15 +660,15 @@ Function17d405:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, PokemonNewsGFX
-	ld de, vTiles1
+	ld de, vTiles4
 	ld bc, $48 tiles
 	call CopyBytes
 	xor a
-	ld hl, vTiles2 tile $7f
+	ld hl, vTiles5 tile $7f
 	ld bc, 1 tiles
 	call ByteFill
 	ld hl, wc608
-	ld de, vTiles0 tile $ee
+	ld de, vTiles3 tile $ee
 	ld bc, 1 tiles
 	call CopyBytes
 	xor a

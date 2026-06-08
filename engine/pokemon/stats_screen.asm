@@ -980,7 +980,7 @@ StatsScreen_LoadTextboxSpaceGFX:
 	ldh [rVBK], a
 	ld de, TextboxSpaceGFX
 	lb bc, BANK(TextboxSpaceGFX), 1
-	ld hl, vTiles2 tile ' '
+	ld hl, vTiles5 tile ' '
 	call Get2bpp
 	pop af
 	ldh [rVBK], a

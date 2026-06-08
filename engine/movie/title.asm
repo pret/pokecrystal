@@ -23,26 +23,26 @@ _TitleScreen:
 
 ; Decompress running Suicune gfx
 	ld hl, TitleSuicuneGFX
-	ld de, vTiles1
+	ld de, vTiles4
 	call Decompress
 
 ; Clear screen palettes
-	hlbgcoord 0, 0
+	hlbgcoord 0, 0 ; vBGMap2
 	ld bc, 20 * TILEMAP_WIDTH
 	xor a
 	call ByteFill
 
 ; Fill tile palettes:
 
-; BG Map 1:
+; BG Attr Map 1:
 
 ; line 0 (copyright)
-	hlbgcoord 0, 0, vBGMap1
+	hlbgcoord 0, 0, vBGMap3
 	ld bc, TILEMAP_WIDTH
 	ld a, 7 ; palette
 	call ByteFill
 
-; BG Map 0:
+; BG Attr Map 0:
 
 ; Apply logo gradient:
 

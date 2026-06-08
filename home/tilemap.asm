@@ -117,7 +117,7 @@ _CopyTilemapAtOnce:
 .loop
 rept SCREEN_WIDTH / 2
 	pop de
-; if in v/hblank, wait until not in v/hblank
+; wait until PPU v/hblank mode
 .loop\@
 	ldh a, [c]
 	and b

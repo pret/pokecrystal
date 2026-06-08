@@ -103,7 +103,7 @@ IntroScene1:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroUnownAAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -179,7 +179,7 @@ IntroScene3:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroBackgroundAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -242,7 +242,7 @@ IntroScene5:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroUnownHIAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -340,7 +340,7 @@ IntroScene7:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroBackgroundAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 
 	ld hl, IntroPichuWooperGFX
@@ -510,7 +510,7 @@ IntroScene11:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroUnownsAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -633,7 +633,7 @@ IntroScene13:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroBackgroundAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -737,7 +737,7 @@ IntroScene15:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroSuicuneJumpAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -819,7 +819,7 @@ IntroScene17:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroSuicuneCloseAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -885,7 +885,7 @@ IntroScene19:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroSuicuneBackAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -1063,7 +1063,7 @@ IntroScene26:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroCrystalUnownsAttrmap
-	debgcoord 0, 0
+	debgcoord 0, 0 ; vBGMap2
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
