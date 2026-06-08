@@ -514,6 +514,9 @@ int main(int argc, char *argv[]) {
 
 	FILE *new_rom = xfopen(argv[1], 'r');
 	FILE *orig_rom = xfopen(argv[2], 'r');
+	if (new_rom == stdin || orig_rom == stdin) {
+		error_exit("Error: Cannot read ROM file from stdin (not rewindable)");
+	}
 	struct Buffer *patches = process_template(argv[3], argv[4], new_rom, orig_rom, symbols, ignore_addr, ignore_size);
 
 	if (!verify_completeness(orig_rom, new_rom, patches)) {

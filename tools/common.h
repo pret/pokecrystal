@@ -111,10 +111,13 @@ long xfsize(const char *filename, FILE *f) {
 uint8_t *read_stdin(long *size) {
 	uint8_t buffer[0x1000] = {0};
 	*size = 0;
-	uint8_t *data = xmalloc(*size);
+	uint8_t *data = malloc(0);
 	for (;;) {
 		size_t n = fread(buffer, 1, sizeof(buffer), stdin);
 		if (n == 0) {
+			if (ferror(stdin)) {
+				error_exit("Could not read from stdin: %s\n", strerror(errno));
+			}
 			break;
 		}
 		data = xrealloc(data, *size + n);
