@@ -17370,11 +17370,11 @@ ROMX bank #35:
 	         $426d = DoBattleTransition.InitGFX
 	         $4288 = DoBattleTransition.mobile
 	         $428b = DoBattleTransition.resume
-	         $42a0 = DoBattleTransition.NonMobile_LoadPokeballTiles
-	         $42aa = LoadTrainerBattlePokeballTiles
-	         $42cf = ConvertTrainerBattlePokeballTilesTo2bpp
-	         $42dd = ConvertTrainerBattlePokeballTilesTo2bpp.loop
-	         $42f4 = TrainerBattlePokeballTiles
+	         $42a0 = DoBattleTransition.NonMobile_LoadBattleTransitionTiles
+	         $42aa = LoadBattleTransitionGFX
+	         $42cf = InitBattleTransitionBGMap
+	         $42dd = InitBattleTransitionBGMap.loop
+	         $42f4 = BattleTransitionTiles
 	         $4314 = BattleTransitionJumptable
 	         $4323 = BattleTransitionJumptable.Jumptable
 	         $4365 = StartTrainerBattle_DetermineWhichAnimation
@@ -38220,7 +38220,7 @@ ROMX bank #100:
 	         $409b = MahoganyTownRagecandybarSign
 	         $409e = MahoganyGymSign
 	         $40a1 = MahoganyTownPokecenterSign
-	         $40a4 = MahoganyTownCollideDownFaceLeftMovement
+	         $40a4 = MahoganyTownMartSign
 	         $40a7 = MahoganyTownPlayerStepLeftMovement
 	         $40a9 = MahoganyTownRageCandyBarMerchantBlocksYouMovement
 	         $40ad = MahoganyTownRageCandyBarMerchantReturnsMovement
