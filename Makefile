@@ -186,7 +186,7 @@ pokecrystal11_vc.gbc:    RGBFIXFLAGS += -i BYTE -n 1
 include gfx/lz.mk
 
 %.lz: %
-	tools/lzcomp $(LZFLAGS) -- $< $@
+	tools/lzcompress $(LZFLAGS) -- $< $@
 
 
 ### Pokemon pic animation rules
