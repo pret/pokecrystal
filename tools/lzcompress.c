@@ -30,7 +30,7 @@ enum lz_command {
 struct command {
 	enum lz_command cmd; // Picked compression command
 	unsigned int length; // Command length N
-	int offset;          // Offset for lookback commands
+	int offset;          // Offset for lookback commands; bytes for sequence commands
 	uint8_t value;       // Uncompressed byte value
 };
 
@@ -536,10 +536,10 @@ void find_optimal_commands(void) {
 			do {
 				length++;
 				if (length >= 3) {
-					int offset = (raw_data[plen - length + 1] << 8) | (raw_data[plen - length]);
+					int bytes = (raw_data[plen - length + 1] << 8) | (raw_data[plen - length]);
 					consider(
 						plen,
-						&(struct command){LZ_ALTERNATE, length, offset, 0}
+						&(struct command){LZ_ALTERNATE, length, bytes, 0}
 					);
 				}
 			} while (length < LONG_MAX_LENGTH && length < plen && raw_data[plen - (length + 1)] == raw_data[plen - (length - 1)]);
@@ -607,15 +607,21 @@ void write_commands_dynamic(FILE *file) {
 		}
 
 		switch (command.cmd) {
-		case LZ_ITERATE:
-		case LZ_ALTERNATE:
-			if ((command.offset < 0) || (command.offset >= (1 << (command.cmd << 3)))) {
-				error_exit("invalid LZ command $%02x (offset %d) in output\n", command.cmd, command.offset);
-			}
-			for (unsigned int n = 0; n < command.cmd; n++) {
-				*(buf_pos++) = command.offset >> (n << 3);
-			}
 		case LZ_LITERAL:
+			break;
+		case LZ_ITERATE:
+			if (command.offset < 0 || command.offset > 0xff) {
+				error_exit("invalid LZ command $%02x (byte $%x) in output\n", command.cmd, command.offset);
+			}
+			*(buf_pos++) = command.offset & 0xff;
+			break;
+		case LZ_ALTERNATE:
+			if (command.offset < 0 || command.offset > 0xffff) {
+				error_exit("invalid LZ command $%02x (bytes $%x) in output\n", command.cmd, command.offset);
+			}
+			*(buf_pos++) = command.offset & 0xff;
+			*(buf_pos++) = command.offset >> 8;
+			break;
 		case LZ_ZERO:
 			break;
 		case LZ_REPEAT:
