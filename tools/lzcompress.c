@@ -1,5 +1,5 @@
 #define PROGRAM_NAME "lzcompress"
-#define USAGE_OPTS "[-h|--help] [-u|--uncompress] [-m|--matching [-a|--align alignment] [-bcdilnr]] infile outfile"
+#define USAGE_OPTS "[-h|--help] [-u|--uncompress] [-m|--matching [-bcdilnr]] [-a|--align alignment] infile outfile"
 
 #include "common.h"
 
@@ -37,20 +37,16 @@ struct command {
 /**************************************** Argument options ****************************************/
 
 struct Options {
-	// Options to control the mode of input and output
-	bool decompress;        // [-u] Decompress LZ-compressed input, instead of LZ-compressing raw input
-	// Option to control the compression algorithm
-	bool matching;          // [-m] Use a less efficient compression algorithm to match the original ROMs
-	// Options that apply to the dynamic and the matching compression algorithms
-	uint8_t alignment;      // [-a] Alignment of the final compressed byte
-	// Options that only apply to the matching compression algorithm
-	bool no_lookback_3;     // [-c] Don't use LZ_FLIP/LZ_REVERSE/LZ_LONG for uncompressed length 3
-	bool odd_alternate;     // [-d] Allow odd-length LZ_ALTERNATE
-	bool prefer_alternate;  // [-r] Use LZ_ALTERNATE over LZ_ITERATE when their compressed lengths tie
-	bool literal_only;      // [-l] Only use LZ_LITERAL
-	bool iterate_only;      // [-i] Only use LZ_LITERAL and LZ_ITERATE
-	bool long_32;           // [-n] Use LZ_LONG for length 32 (SHORT_MAX_LENGTH - 1)
-	bool skip_initial_byte; // [-b] Start at index 1 (assume that index 0 will always be a data command)
+	bool decompress;
+	bool matching;
+	uint8_t alignment;
+	bool skip_initial_byte;
+	bool no_lookback_3;
+	bool odd_alternate;
+	bool iterate_only;
+	bool literal_only;
+	bool long_32;
+	bool prefer_alternate;
 };
 
 struct Options options = {0};
@@ -60,13 +56,13 @@ void parse_args(int argc, char *argv[]) {
 	    {"uncompress", no_argument, 0, 'u'},
 	    {"matching", no_argument, 0, 'm'},
 	    {"align", required_argument, 0, 'a'},
+	    {"skip-initial-byte", no_argument, 0, 'b'},
 	    {"no-lookback-3", no_argument, 0, 'c'},
 	    {"odd-alternate", no_argument, 0, 'd'},
-	    {"prefer-alternate", no_argument, 0, 'r'},
-	    {"literal-only", no_argument, 0, 'l'},
 	    {"iterate-only", no_argument, 0, 'i'},
+	    {"literal-only", no_argument, 0, 'l'},
 	    {"long-32", no_argument, 0, 'n'},
-	    {"skip-initial-byte", no_argument, 0, 'b'},
+	    {"prefer-alternate", no_argument, 0, 'r'},
 	    {"help", no_argument, 0, 'h'},
 	    {0}
 	};
@@ -103,7 +99,17 @@ void parse_args(int argc, char *argv[]) {
 			options.skip_initial_byte = true;
 			break;
 		case 'h':
-			usage_exit(0);
+			fprintf(stderr, "Usage: " PROGRAM_NAME " " USAGE_OPTS "\n\n");
+			fputs("Flags to adjust --matching compression:\n", stderr);
+			fputs("  -a, --align N            Alignment of the final compressed byte (2^N)\n", stderr);
+			fputs("  -b, --skip-initial-byte  First byte will always use LZ_LITERAL\n", stderr);
+			fputs("  -c, --no-lookback-3      Don't use LZ_FLIP/LZ_REVERSE/LZ_LONG for length 3\n", stderr);
+			fputs("  -d, --odd-alternate      Allow odd-length LZ_ALTERNATE\n", stderr);
+			fputs("  -i, --iterate-only       Only use LZ_LITERAL and LZ_ITERATE\n", stderr);
+			fputs("  -l, --literal-only       Only use LZ_LITERAL\n", stderr);
+			fputs("  -n, --long-32            Use LZ_LONG for length 32\n", stderr);
+			fputs("  -r, --prefer-alternate   Use LZ_ALTERNATE instead of equally-large LZ_ITERATE\n", stderr);
+			exit(0);
 			break;
 		default:
 			usage_exit(1);
@@ -274,9 +280,23 @@ void pick_best_command(unsigned int i) {
 	multimap_put(&reverse_idxs, reverse_key, i);
 }
 
-unsigned int command_length(struct command *d) {
-	return 1 + (d->cmd != LZ_LITERAL && d->cmd != LZ_ZERO) + (d->cmd == LZ_ALTERNATE) +
-		(d->cmd >= LZ_REPEAT && d->offset >= LOOKBACK_MAX_OFFSET);
+unsigned int command_length(const struct command *command) {
+	switch (command->cmd) {
+	case LZ_LITERAL:
+		return 1;
+	case LZ_ITERATE:
+		return 2;
+	case LZ_ALTERNATE:
+		return 3;
+	case LZ_ZERO:
+		return 1;
+	case LZ_REPEAT:
+	case LZ_FLIP:
+	case LZ_REVERSE:
+		return 2 + (command->offset >= LOOKBACK_MAX_OFFSET);
+	default:
+		error_exit("invalid LZ command $%02x\n", command->cmd);
+	}
 }
 
 void pick_optimized_commands(void) {
@@ -408,11 +428,11 @@ void compress_matching(char const *input_name, char const *output_name) {
 // Dynamic programming `dpcomp` algorithm by mei <https://github.com/meithecatte/lzcomp>
 // Licensed with the Unlicense into the public domain <https://unlicense.org>
 
-// best_size[i] = the best compressed length for the first i bytes of input
+// best_sizes[i] = the best compressed length for the first i bytes of input
 // Note that this is nondecreasing, since truncating even in the middle of a command won't enlarge it.
-unsigned int *best_size = NULL;
-// best_command[i] = the last command of the commands that yields best_size[i]
-struct command *best_command = NULL;
+unsigned int *best_sizes = NULL;
+// best_commands[i] = the last command of the commands that yields best_sizes[i]
+struct command *best_commands = NULL;
 
 // Uncompressed data
 uint8_t *raw_data = NULL;
@@ -422,19 +442,31 @@ unsigned int min(unsigned int a, unsigned int b) {
 	return a < b ? a : b;
 }
 
-unsigned int command_size(struct command command) {
-	unsigned int header_size = 1 + (command.length > SHORT_MAX_LENGTH);
-	if (command.cmd & 4) {
-		return header_size + 1 + (command.offset >= 0);
+unsigned int command_size(const struct command *command) {
+	unsigned int header_size = 1 + (command->length > SHORT_MAX_LENGTH);
+	switch (command->cmd) {
+	case LZ_LITERAL:
+		return header_size + command->length;
+	case LZ_ITERATE:
+		return header_size + 1;
+	case LZ_ALTERNATE:
+		return header_size + 2;
+	case LZ_ZERO:
+		return header_size;
+	case LZ_REPEAT:
+	case LZ_FLIP:
+	case LZ_REVERSE:
+		return header_size + 1 + (command->offset >= 0);
+	default:
+		error_exit("invalid LZ command $%02x\n", command->cmd);
 	}
-	return header_size + ((unsigned int[]){command.length, 1, 2, 0})[command.cmd];
 }
 
-void consider(unsigned int pos, struct command cmd) {
-	unsigned int new_size = best_size[pos - cmd.length] + command_size(cmd);
-	if (new_size < best_size[pos]) {
-		best_size[pos] = new_size;
-		best_command[pos] = cmd;
+void consider(unsigned int pos, const struct command *command) {
+	unsigned int new_size = best_sizes[pos - command->length] + command_size(command);
+	if (new_size < best_sizes[pos]) {
+		best_sizes[pos] = new_size;
+		best_commands[pos] = *command;
 	}
 }
 
@@ -462,16 +494,16 @@ unsigned int match_left(unsigned int pos, unsigned int at) {
 	return n;
 }
 
-int encode_delta(int pos, int at) {
+int encode_offset(int pos, int at) {
 	return at - pos >= -LOOKBACK_MAX_OFFSET ? at - pos : at;
 }
 
 void find_optimal_commands(void) {
-	best_size = xmalloc(sizeof(*best_size) * (raw_data_size + 1));
-	best_command = xmalloc(sizeof(*best_command) * (raw_data_size + 1));
-	best_size[0] = 0;
+	best_sizes = xmalloc(sizeof(*best_sizes) * (raw_data_size + 1));
+	best_commands = xmalloc(sizeof(*best_commands) * (raw_data_size + 1));
+	best_sizes[0] = 0;
 	for (unsigned int i = 1; i <= raw_data_size; i++) {
-		best_size[i] = -1u;
+		best_sizes[i] = -1u;
 	}
 
 	for (unsigned int plen = 1; plen <= raw_data_size; plen++) {
@@ -479,25 +511,22 @@ void find_optimal_commands(void) {
 		for (unsigned int prev = plen > LONG_MAX_LENGTH ? plen - LONG_MAX_LENGTH : 0; prev < plen; prev++) {
 			consider(
 			    plen,
-			    (struct command){
-			        .cmd = LZ_LITERAL,
-			        .length = plen - prev,
-			        .offset = prev,
-			    }
+			    &(struct command){LZ_LITERAL, plen - prev, prev, 0}
 			);
 		}
 
 		unsigned int length = 0;
 		do {
 			length++;
-			if (!cur_byte || length >= 2) {
+			if (!cur_byte) {
 				consider(
-				    plen,
-				    (struct command){
-				        .cmd = cur_byte ? LZ_ITERATE : LZ_ZERO,
-				        .length = length,
-				        .offset = cur_byte,
-				    }
+					plen,
+					&(struct command){LZ_ZERO, length, cur_byte, 0}
+				);
+			} else if (length >= 2) {
+				consider(
+					plen,
+					&(struct command){LZ_ITERATE, length, cur_byte, 0}
 				);
 			}
 		} while (length < LONG_MAX_LENGTH && length < plen && raw_data[plen - (length + 1)] == cur_byte);
@@ -507,13 +536,10 @@ void find_optimal_commands(void) {
 			do {
 				length++;
 				if (length >= 3) {
+					int offset = (raw_data[plen - length + 1] << 8) | (raw_data[plen - length]);
 					consider(
-					    plen,
-					    (struct command){
-					        .cmd = LZ_ALTERNATE,
-					        .length = length,
-					        .offset = (raw_data[plen - length + 1] << 8) | (raw_data[plen - length]),
-					    }
+						plen,
+						&(struct command){LZ_ALTERNATE, length, offset, 0}
 					);
 				}
 			} while (length < LONG_MAX_LENGTH && length < plen && raw_data[plen - (length + 1)] == raw_data[plen - (length - 1)]);
@@ -523,55 +549,43 @@ void find_optimal_commands(void) {
 			unsigned int k = min(LONG_MAX_LENGTH, match_right(plen - 1, at));
 			for (unsigned int i = 2; i <= k; i++) {
 				consider(
-				    plen + i - 1,
-				    (struct command){
-				        .cmd = LZ_REPEAT,
-				        .length = i,
-				        .offset = encode_delta(plen - 1, at),
-				    }
+					plen + i - 1,
+					&(struct command){LZ_REPEAT, i, encode_offset(plen - 1, at), 0}
 				);
 			}
 
 			k = min(LONG_MAX_LENGTH, match_left(plen - 1, at));
 			for (unsigned int i = 2; i <= k; i++) {
 				consider(
-				    plen + i - 1,
-				    (struct command){
-				        .cmd = LZ_REVERSE,
-				        .length = i,
-				        .offset = encode_delta(plen - 1, at),
-				    }
+					plen + i - 1,
+					&(struct command){LZ_REVERSE, i, encode_offset(plen - 1, at), 0}
 				);
 			}
 
 			k = min(LONG_MAX_LENGTH, match_flipped(plen - 1, at));
 			for (unsigned int i = 2; i <= k; i++) {
 				consider(
-				    plen + i - 1,
-				    (struct command){
-				        .cmd = LZ_FLIP,
-				        .length = i,
-				        .offset = encode_delta(plen - 1, at),
-				    }
+					plen + i - 1,
+					&(struct command){LZ_FLIP, i, encode_offset(plen - 1, at), 0}
 				);
 			}
 		}
 	}
 
 	unsigned int command_count = 0;
-	for (unsigned int pos = raw_data_size; pos > 0; pos -= best_command[pos].length) {
+	for (unsigned int pos = raw_data_size; pos > 0; pos -= best_commands[pos].length) {
 		command_count++;
 	}
 	commands_size = command_count;
 
 	commands = xmalloc(sizeof(*commands) * command_count);
-	for (unsigned int pos = raw_data_size; pos > 0; pos -= best_command[pos].length) {
-		commands[--command_count] = best_command[pos];
+	for (unsigned int pos = raw_data_size; pos > 0; pos -= best_commands[pos].length) {
+		commands[--command_count] = best_commands[pos];
 	}
 }
 
 void write_commands_dynamic(FILE *file) {
-	unsigned int total_size = 0;
+	unsigned int compressed_size = 0;
 
 	for (unsigned int i = 0; i < commands_size; i++) {
 		struct command command = commands[i];
@@ -627,13 +641,13 @@ void write_commands_dynamic(FILE *file) {
 			fwrite(raw_data + command.offset, 1, command.length, file);
 		}
 
-		total_size += command_size(commands[i]);
+		compressed_size += command_size(&commands[i]);
 	}
 
 	putc(LZ_END, file);
 
-	total_size = ~total_size & ((1 << options.alignment) - 1);
-	while (total_size--) {
+	unsigned int padding_size = ~compressed_size & ((1 << options.alignment) - 1);
+	while (padding_size--) {
 		putc(0, file);
 	}
 }
@@ -644,6 +658,9 @@ void compress_dynamic(char const *input_name, char const *output_name) {
 
 	raw_data_size = (unsigned int)input_size;
 	find_optimal_commands();
+
+	free(best_commands);
+	free(best_sizes);
 
 	FILE *output = xfopen(output_name, 'w');
 	write_commands_dynamic(output);
@@ -659,6 +676,8 @@ struct command *read_commands(char const *filename, unsigned int *num_commands) 
 	long filesize;
 	uint8_t *data = read_u8(filename, &filesize);
 
+	// There will be at most one command per byte of compressed data, so
+	// `filesize` is a valid upper bound for the count of `command_data`
 	struct command *command_data = xmalloc(sizeof(*command_data) * filesize);
 	*num_commands = 0;
 
@@ -826,7 +845,13 @@ int main(int argc, char *argv[]) {
 		usage_exit(1);
 	}
 
-	(options.decompress ? decompress : options.matching ? compress_matching : compress_dynamic)(argv[0], argv[1]);
+	if (options.decompress) {
+		decompress(argv[0], argv[1]);
+	} else if (options.matching) {
+		compress_matching(argv[0], argv[1]);
+	} else {
+		compress_dynamic(argv[0], argv[1]);
+	}
 
 	return 0;
 }
