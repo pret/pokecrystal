@@ -126,13 +126,13 @@ struct list {
 	unsigned int *items;
 	unsigned int size;
 	unsigned int capacity;
-} list;
+};
 
 struct multimap {
 	uint32_t key;
 	struct list *values;
 	struct multimap *next;
-} multimap;
+};
 
 struct multimap **multimap_find(struct multimap **mp, uint32_t key) {
 	while (*mp && (*mp)->key != key) {
@@ -156,7 +156,7 @@ void multimap_put(struct multimap **mp, uint32_t key, unsigned int value) {
 	values->items[values->size++] = value;
 }
 
-// Input data
+// Input and output data
 struct command *commands = NULL;
 unsigned int commands_size = 0;
 
@@ -428,15 +428,15 @@ void compress_matching(char const *input_name, char const *output_name) {
 // Dynamic programming `dpcomp` algorithm by mei <https://github.com/meithecatte/lzcomp>
 // Licensed with the Unlicense into the public domain <https://unlicense.org>
 
-// best_sizes[i] = the best compressed length for the first i bytes of input
-// Note that this is nondecreasing, since truncating even in the middle of a command won't enlarge it.
-unsigned int *best_sizes = NULL;
-// best_commands[i] = the last command of the commands that yields best_sizes[i]
-struct command *best_commands = NULL;
-
 // Uncompressed data
 uint8_t *raw_data = NULL;
 unsigned int raw_data_size = 0;
+
+// best_sizes[i] = the best compressed length for the first i bytes of input
+// Note that this is nondecreasing, since truncating even in the middle of a command won't enlarge it
+unsigned int *best_sizes = NULL;
+// best_commands[i] = the last command of the commands that yields best_sizes[i]
+struct command *best_commands = NULL;
 
 unsigned int min(unsigned int a, unsigned int b) {
 	return a < b ? a : b;
@@ -501,73 +501,51 @@ int encode_offset(int pos, int at) {
 void find_optimal_commands(void) {
 	best_sizes = xmalloc(sizeof(*best_sizes) * (raw_data_size + 1));
 	best_commands = xmalloc(sizeof(*best_commands) * (raw_data_size + 1));
+
 	best_sizes[0] = 0;
 	for (unsigned int i = 1; i <= raw_data_size; i++) {
 		best_sizes[i] = -1u;
 	}
 
-	for (unsigned int plen = 1; plen <= raw_data_size; plen++) {
-		uint8_t cur_byte = raw_data[plen - 1];
-		for (unsigned int prev = plen > LONG_MAX_LENGTH ? plen - LONG_MAX_LENGTH : 0; prev < plen; prev++) {
-			consider(
-			    plen,
-			    &(struct command){LZ_LITERAL, plen - prev, prev, 0}
-			);
+	for (unsigned int i = 1; i <= raw_data_size; i++) {
+		uint8_t byte = raw_data[i - 1];
+		for (unsigned int prev = i > LONG_MAX_LENGTH ? i - LONG_MAX_LENGTH : 0; prev < i; prev++) {
+			consider(i, &(struct command){LZ_LITERAL, i - prev, prev, 0});
 		}
 
-		unsigned int length = 0;
+		unsigned int len = 0;
 		do {
-			length++;
-			if (!cur_byte) {
-				consider(
-					plen,
-					&(struct command){LZ_ZERO, length, cur_byte, 0}
-				);
-			} else if (length >= 2) {
-				consider(
-					plen,
-					&(struct command){LZ_ITERATE, length, cur_byte, 0}
-				);
+			len++;
+			if (len >= 2) {
+				consider(i, &(struct command){byte ? LZ_ITERATE : LZ_ZERO, len, byte, 0});
 			}
-		} while (length < LONG_MAX_LENGTH && length < plen && raw_data[plen - (length + 1)] == cur_byte);
+		} while (len < LONG_MAX_LENGTH && len < i && raw_data[i - (len + 1)] == byte);
 
-		if (plen > 1) {
-			length = 1;
+		if (i > 1) {
+			len = 1;
 			do {
-				length++;
-				if (length >= 3) {
-					int bytes = (raw_data[plen - length + 1] << 8) | (raw_data[plen - length]);
-					consider(
-						plen,
-						&(struct command){LZ_ALTERNATE, length, bytes, 0}
-					);
+				len++;
+				if (len >= 3) {
+					int bytes = (raw_data[i - len + 1] << 8) | (raw_data[i - len]);
+					consider(i, &(struct command){LZ_ALTERNATE, len, bytes, 0});
 				}
-			} while (length < LONG_MAX_LENGTH && length < plen && raw_data[plen - (length + 1)] == raw_data[plen - (length - 1)]);
+			} while (len < LONG_MAX_LENGTH && len < i && raw_data[i - (len + 1)] == raw_data[i - (len - 1)]);
 		}
 
-		for (unsigned int at = 0; at < plen - 1; at++) {
-			unsigned int k = min(LONG_MAX_LENGTH, match_right(plen - 1, at));
-			for (unsigned int i = 2; i <= k; i++) {
-				consider(
-					plen + i - 1,
-					&(struct command){LZ_REPEAT, i, encode_offset(plen - 1, at), 0}
-				);
+		for (unsigned int at = 0; at < i - 1; at++) {
+			unsigned int k = min(LONG_MAX_LENGTH, match_right(i - 1, at));
+			for (unsigned int j = 2; j <= k; j++) {
+				consider(i + j - 1, &(struct command){LZ_REPEAT, j, encode_offset(i - 1, at), 0});
 			}
 
-			k = min(LONG_MAX_LENGTH, match_left(plen - 1, at));
-			for (unsigned int i = 2; i <= k; i++) {
-				consider(
-					plen + i - 1,
-					&(struct command){LZ_REVERSE, i, encode_offset(plen - 1, at), 0}
-				);
+			k = min(LONG_MAX_LENGTH, match_left(i - 1, at));
+			for (unsigned int j = 2; j <= k; j++) {
+				consider(i + j - 1, &(struct command){LZ_REVERSE, j, encode_offset(i - 1, at), 0});
 			}
 
-			k = min(LONG_MAX_LENGTH, match_flipped(plen - 1, at));
-			for (unsigned int i = 2; i <= k; i++) {
-				consider(
-					plen + i - 1,
-					&(struct command){LZ_FLIP, i, encode_offset(plen - 1, at), 0}
-				);
+			k = min(LONG_MAX_LENGTH, match_flipped(i - 1, at));
+			for (unsigned int j = 2; j <= k; j++) {
+				consider(i + j - 1, &(struct command){LZ_FLIP, j, encode_offset(i - 1, at), 0});
 			}
 		}
 	}
