@@ -199,5 +199,6 @@ int main(int argc, char *argv[]) {
 		calculate_checksums(file, european);
 	}
 	write_u8(filename, file, filesize);
+	free(file);
 	return 0;
 }
