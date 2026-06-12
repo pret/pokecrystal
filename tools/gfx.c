@@ -67,6 +67,9 @@ void parse_args(int argc, char *argv[]) {
 			break;
 		case 'd':
 			options.depth = strtoul(optarg, NULL, 0);
+			if (options.depth != 1 && options.depth != 2) {
+				error_exit("bit depth must be 1 or 2, not %d\n", options.depth);
+			}
 			break;
 		case 'p':
 			options.png_file = optarg;

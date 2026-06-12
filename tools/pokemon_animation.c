@@ -118,10 +118,12 @@ void make_frames(const uint8_t *tilemap, long tilemap_size, int width, struct Fr
 			bitmasks->num_bitmasks++;
 		} else {
 			free(bitmask->data);
-			free(bitmask);
 		}
 		frames->frames[i] = *frame;
 		this_frame += num_tiles_per_frame;
+
+		free(frame);
+		free(bitmask);
 	}
 }
 
@@ -191,5 +193,13 @@ int main(int argc, char *argv[]) {
 	}
 
 	free(tilemap);
+	for (int i = 0; i < frames.num_frames; i++) {
+		free(frames.frames[i].data);
+	}
+	free(frames.frames);
+	for (int i = 0; i < bitmasks.num_bitmasks; i++) {
+		free(bitmasks.bitmasks[i].data);
+	}
+	free(bitmasks.bitmasks);
 	return 0;
 }
