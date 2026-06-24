@@ -191,8 +191,10 @@ MACRO battle_tower_struct
 ENDM
 
 MACRO mailmsg
-\1Message::     ds MAIL_MSG_LENGTH
-\1MessageEnd::  db
+\1Message::
+\1Line1::       ds MAIL_LINE_LENGTH
+\1LineBreak::   db ; '<NEXT>'
+\1Line2::       ds MAIL_LINE_LENGTH
 \1Author::      ds PLAYER_NAME_LENGTH
 \1Nationality:: dw
 \1AuthorID::    dw
@@ -202,8 +204,10 @@ MACRO mailmsg
 ENDM
 
 MACRO mailmsg_jp
-\1Message::    ds MAIL_MSG_LENGTH
-\1MessageEnd:: db
+\1Message::
+\1Line1::      ds MAIL_LINE_LENGTH
+\1LineBreak::  db ; '<NEXT>'
+\1Line2::      ds MAIL_LINE_LENGTH
 \1Author::     ds NAME_LENGTH_JAPANESE - 1
 \1AuthorID::   dw
 \1Species::    db
