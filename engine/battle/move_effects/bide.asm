@@ -59,7 +59,7 @@ BattleCommand_StoreEnergy:
 	ld a, BIDE
 	ld [hl], a
 
-	ld b, unleashenergy_command
+	ld b, startbide_command
 	jp SkipToBattleCommand
 
 .still_storing
@@ -67,7 +67,7 @@ BattleCommand_StoreEnergy:
 	call StdBattleTextbox
 	jp EndMoveEffect
 
-BattleCommand_UnleashEnergy:
+BattleCommand_StartBide:
 	ld de, wPlayerDamageTaken
 	ld bc, wPlayerRolloutCount
 	ldh a, [hBattleTurn]
