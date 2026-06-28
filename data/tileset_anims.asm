@@ -64,7 +64,8 @@ TilesetJohtoAnim:
 	tileframe StandingTileFrame8
 	tileframe DoneTileAnimation
 
-UnusedTilesetAnim1: ; unreferenced
+UnusedTilesetFlowerAnim: ; unreferenced
+; Leftover from pokegold-spaceworld.
 ; Scrolls tile $03 like cave water, but also has the standard $03 flower tile.
 	tileframe ReadTileToAnimBuffer,    vTiles2 tile $03
 	tileframe ScrollTileRightLeft,     wTileAnimBuffer
@@ -78,7 +79,8 @@ UnusedTilesetAnim1: ; unreferenced
 	tileframe WaitTileAnimation
 	tileframe DoneTileAnimation
 
-UnusedTilesetAnim2: ; unreferenced
+UnusedTilesetWaterAnim: ; unreferenced
+; Leftover from pokegold-spaceworld.
 ; Scrolls tile $14 like cave water.
 	tileframe ReadTileToAnimBuffer,    vTiles2 tile $14
 	tileframe ScrollTileRightLeft,     wTileAnimBuffer
@@ -116,7 +118,8 @@ TilesetEliteFourRoomAnim:
 	tileframe StandingTileFrame8
 	tileframe DoneTileAnimation
 
-UnusedTilesetAnim3: ; unreferenced
+UnusedTilesetGenericAnim: ; unreferenced
+; Leftover from pokegold-spaceworld.
 ; Scrolls tile $53 like a waterfall; scrolls tile $03 like cave water.
 	tileframe ReadTileToAnimBuffer,    vTiles2 tile $53
 	tileframe ScrollTileDown,          wTileAnimBuffer
@@ -131,7 +134,8 @@ UnusedTilesetAnim3: ; unreferenced
 	tileframe WriteTileFromAnimBuffer, vTiles2 tile $53
 	tileframe DoneTileAnimation
 
-UnusedTilesetAnim4: ; unreferenced
+UnusedTilesetFontAnim: ; unreferenced
+; Leftover from pokegold-spaceworld.
 ; Scrolls tile $54 like a waterfall; scrolls tile $03 like cave water.
 	tileframe ReadTileToAnimBuffer,    vTiles2 tile $54
 	tileframe ScrollTileDown,          wTileAnimBuffer
@@ -209,7 +213,8 @@ TilesetTowerAnim:
 	tileframe WaitTileAnimation
 	tileframe DoneTileAnimation
 
-UnusedTilesetAnim5: ; unreferenced
+UnusedTilesetRocketHouseAnim: ; unreferenced
+; Leftover from pokegold-spaceworld.
 ; Scrolls tile $4f like cave water.
 	tileframe ReadTileToAnimBuffer,    vTiles2 tile $4f
 	tileframe ScrollTileRightLeft,     wTileAnimBuffer
