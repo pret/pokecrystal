@@ -34,7 +34,7 @@
 	charmap "<TM>",      $5c ; "TM"
 	charmap "<TRAINER>", $5d ; "TRAINER"
 	charmap "<ROCKET>",  $5e ; "ROCKET"
-	charmap "<DEXEND>",  $5f
+	charmap "<DEXEND>",  $5f ; "." to end a Gen 1 Pokédex entry
 
 ; Actual characters (from gfx/font/font_extra.png)
 
