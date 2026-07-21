@@ -43,7 +43,6 @@ DEF SERIAL_MAIL_PREAMBLE_BYTE    EQU $20
 DEF SERIAL_MAIL_PREAMBLE_LENGTH  EQU 5
 ; used to replace SERIAL_NO_DATA_BYTE
 DEF SERIAL_MAIL_REPLACEMENT_BYTE EQU $21
-; length of the mail patch list (it's bigger than the mail patched area by 18 bytes)
 
 ; timeout duration after exchanging a byte
 DEF SERIAL_LINK_BYTE_TIMEOUT EQU $5000
