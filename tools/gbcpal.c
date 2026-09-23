@@ -56,7 +56,14 @@ int compare_luminance(const void *color1, const void *color2) {
 	double lum1 = luminance(*(const struct Color *)color1);
 	double lum2 = luminance(*(const struct Color *)color2);
 	// sort lightest to darkest, or darkest to lightest if reversed
-	return ((lum1 < lum2) - (lum1 > lum2)) * (reverse ? -1 : 1);
+	int order = (lum1 < lum2) - (lum1 > lum2);
+	if (!order) {
+		// break ties by packed color values
+		uint16_t packed1 = pack_color(*(const struct Color *)color1);
+		uint16_t packed2 = pack_color(*(const struct Color *)color2);
+		order = (packed1 < packed2) - (packed1 > packed2);
+	}
+	return order * (reverse ? -1 : 1);
 }
 
 void read_gbcpal(const char *filename, struct Color **colors, size_t *num_colors) {
