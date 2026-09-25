@@ -3031,7 +3031,7 @@ InitSprites:
 .Addresses:
 	table_width 2
 	dw wPlayerStruct
-; wObjectStruct1 - wObjectStruct12
+; wObject1Struct - wObject12Struct
 for n, 1, NUM_OBJECT_STRUCTS
 	dw wObject{d:n}Struct
 endr

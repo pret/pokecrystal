@@ -1,6 +1,6 @@
 ; macros taken from pokered's data/sgb_packets.asm
 ; names taken from pandocs
-; http://gbdev.gg8.se/wiki/articles/SGB_Functions#SGB_Palette_Commands
+; https://gbdev.io/pandocs/SGB_Command_Palettes.html
 
 MACRO sgb_pal_trn
 	db (SGB_PAL_TRN << 3) + 1

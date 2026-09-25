@@ -1,6 +1,6 @@
 ; macros taken from pokered's data/sgb_packets.asm
 ; names taken from pandocs
-; http://gbdev.gg8.se/wiki/articles/SGB_Functions#SGB_Palette_Commands
+; https://gbdev.io/pandocs/SGB_Command_Palettes.html
 
 MACRO attr_blk
 	db (SGB_ATTR_BLK << 3) + ((\1 * 6) / 16 + 1)
