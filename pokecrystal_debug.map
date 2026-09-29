@@ -46610,8 +46610,8 @@ SRAM bank #2:
 	         $a278 = sBox1Mon20Moves
 	         $a27c = sBox1Mon20ID
 	         $a27e = sBox1Mon20Exp
-	         $a281 = sBox1Mon20StatExp
 	         $a281 = sBox1Mon20HPExp
+	         $a281 = sBox1Mon20StatExp
 	         $a283 = sBox1Mon20AtkExp
 	         $a285 = sBox1Mon20DefExp
 	         $a287 = sBox1Mon20SpdExp
