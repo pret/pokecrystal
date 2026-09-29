@@ -82,10 +82,12 @@ ReadTrainerParty:
 
 TrainerTypes:
 ; entries correspond to TRAINERTYPE_* constants
+	table_width 2
 	dw TrainerType1 ; level, species
 	dw TrainerType2 ; level, species, moves
 	dw TrainerType3 ; level, species, item
 	dw TrainerType4 ; level, species, item, moves
+	assert_table_length NUM_TRAINERTYPES
 
 TrainerType1:
 ; normal (level, species)
