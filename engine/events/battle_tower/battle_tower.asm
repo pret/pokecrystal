@@ -1110,7 +1110,7 @@ BattleTowerAction_17:
 
 .asm_170849
 	ld hl, wCurDay
-	ld a, 140
+	ld a, RTC_DAY_CYCLE
 	sub c
 	add [hl]
 	cp 11
