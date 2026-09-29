@@ -32,7 +32,7 @@ Otherwise, continue reading below for [the older Windows instructions](#windows-
 
 ## Windows 8 or older
 
-Download [**Cygwin**](http://cygwin.com/install.html): **setup-x86_64.exe** for 64-bit Windows, **setup-x86.exe** for 32-bit.
+Download [**Cygwin**](https://cygwin.com/install.html): **setup-x86_64.exe** for 64-bit Windows, **setup-x86.exe** for 32-bit.
 
 Run setup and leave the default settings. At the "**Select Packages**" step, choose to install the following, all of which are in the "**Devel**" category:
 

@@ -128,7 +128,7 @@ DEF SCGB_DEFAULT EQU $ff
 DEF NUM_PREDEF_PALS EQU const_value
 
 ; SGB system command codes
-; http://gbdev.gg8.se/wiki/articles/SGB_Functions#SGB_System_Command_Table
+; https://gbdev.io/pandocs/SGB_Command_Summary.html#sgb-system-command-table
 	const_def
 	const SGB_PAL01
 	const SGB_PAL23

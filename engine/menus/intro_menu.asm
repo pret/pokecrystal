@@ -814,7 +814,7 @@ ShrinkPlayer:
 	ld de, SFX_ESCAPE_ROPE
 	call PlaySFX
 	pop af
-	rst Bankswitch
+	rst Bankswitch ; pointless (and not allowed outside Home bank)
 
 	ld c, 8
 	call DelayFrames

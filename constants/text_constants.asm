@@ -40,7 +40,7 @@ DEF TEXTBOX_FRAME_TILES EQU 6
 	shift_const PRINTNUM_LEFTALIGN    ; 6
 	shift_const PRINTNUM_LEADINGZEROS ; 7
 
-; character sets (see charmap.asm)
+; character sets (see constants/charmap.asm)
 DEF FIRST_REGULAR_TEXT_CHAR     EQU $60
 DEF FIRST_HIRAGANA_DAKUTEN_CHAR EQU $20
 
