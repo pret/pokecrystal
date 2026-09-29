@@ -29,6 +29,9 @@ DEF SAVE_CHECK_VALUE_2 EQU 127
 ; RTC halted check value
 DEF RTC_HALT_VALUE EQU $1234
 
+; the RTC day count wraps after 20 weeks, preserving the day of the week
+DEF RTC_DAY_CYCLE EQU 20 * 7
+
 ; time of day boundaries
 DEF MORN_HOUR EQU 4  ; 4 AM
 DEF DAY_HOUR  EQU 10 ; 10 AM

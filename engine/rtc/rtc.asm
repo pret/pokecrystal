@@ -185,7 +185,7 @@ _InitTime::
 	sbc [hl]
 	dec hl
 	jr nc, .okay_days
-	add 140
+	add RTC_DAY_CYCLE
 	ld c, 7
 	call SimpleDivide
 
