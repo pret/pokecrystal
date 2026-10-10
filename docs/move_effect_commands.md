@@ -102,7 +102,7 @@ Defined in [macros/scripts/battle_commands.asm](https://github.com/pret/pokecrys
 ## `$21`: `storeenergy`
 
 
-## `$22`: `unleashenergy`
+## `$22`: `startbide`
 
 
 ## `$23`: `forceswitch`
