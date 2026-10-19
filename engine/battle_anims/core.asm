@@ -48,7 +48,7 @@ endr
 	ld [hli], a ; BATTLEANIMSTRUCT_FIX_Y
 	ld a, [de]
 	inc de
-	ld [hli], a ; BATTLEANIMSTRUCT_FRAMESET_ID
+	ld [hli], a ; BATTLEANIMSTRUCT_CELSET_ID
 	ld a, [de]
 	inc de
 	ld [hli], a ; BATTLEANIMSTRUCT_FUNCTION

@@ -163,7 +163,7 @@ _InitSpriteAnimStruct::
 	ld [hli], a ; SPRITEANIMSTRUCT_INDEX
 ; Copy the table entry to the next two fields.
 	ld a, [de]
-	ld [hli], a ; SPRITEANIMSTRUCT_FRAMESET_ID
+	ld [hli], a ; SPRITEANIMSTRUCT_CELSET_ID
 	inc de
 	ld a, [de]
 	ld [hli], a ; SPRITEANIMSTRUCT_ANIM_SEQ_ID
@@ -191,7 +191,7 @@ _InitSpriteAnimStruct::
 	ld [hli], a ; SPRITEANIMSTRUCT_DURATIONOFFSET
 ; load -1 into the next field
 	dec a
-	ld [hli], a ; SPRITEANIMSTRUCT_FRAME
+	ld [hli], a ; SPRITEANIMSTRUCT_CEL
 ; load 0 into the last five fields
 	xor a
 	ld [hli], a ; SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -399,13 +399,13 @@ GetSpriteAnimVTile:
 	ret
 
 _ReinitSpriteAnimFrame::
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_DURATION
 	add hl, bc
 	ld [hl], 0
-	ld hl, SPRITEANIMSTRUCT_FRAME
+	ld hl, SPRITEANIMSTRUCT_CEL
 	add hl, bc
 	ld [hl], -1
 	ret
@@ -424,7 +424,7 @@ GetSpriteAnimFrame:
 	jr .okay
 
 .next_frame
-	ld hl, SPRITEANIMSTRUCT_FRAME
+	ld hl, SPRITEANIMSTRUCT_CEL
 	add hl, bc
 	inc [hl]
 	call .GetPointer
@@ -447,7 +447,7 @@ GetSpriteAnimFrame:
 	pop hl
 .okay
 	ld a, [hl]
-	and OAM_YFLIP << 1 | OAM_XFLIP << 1 ; The << 1 is compensated in the "oamframe" macro
+	and OAM_YFLIP << 1 | OAM_XFLIP << 1 ; The << 1 is compensated in the "oamcel" macro
 	srl a
 	ld [wCurSpriteOAMFlags], a
 	pop af
@@ -459,7 +459,7 @@ GetSpriteAnimFrame:
 	add hl, bc
 	ld [hl], a
 
-	ld hl, SPRITEANIMSTRUCT_FRAME
+	ld hl, SPRITEANIMSTRUCT_CEL
 	add hl, bc
 	dec [hl]
 	dec [hl]
@@ -472,23 +472,23 @@ GetSpriteAnimFrame:
 	ld [hl], a
 
 	dec a
-	ld hl, SPRITEANIMSTRUCT_FRAME
+	ld hl, SPRITEANIMSTRUCT_CEL
 	add hl, bc
 	ld [hl], a
 	jr .loop
 
 .GetPointer:
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
-	ld hl, SpriteAnimFrameData
+	ld hl, SpriteAnim_CelSets
 	add hl, de
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, SPRITEANIMSTRUCT_FRAME
+	ld hl, SPRITEANIMSTRUCT_CEL
 	add hl, bc
 	ld l, [hl]
 	ld h, 0
@@ -530,7 +530,7 @@ INCLUDE "data/sprite_anims/objects.asm"
 
 INCLUDE "engine/sprite_anims/functions.asm"
 
-INCLUDE "data/sprite_anims/framesets.asm"
+INCLUDE "data/sprite_anims/celsets.asm"
 
 INCLUDE "data/sprite_anims/oam.asm"
 

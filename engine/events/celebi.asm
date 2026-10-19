@@ -204,25 +204,25 @@ UpdateCelebiPosition:
 	jr c, .left
 	cp -(3 * TILE_WIDTH + 2)
 	jr nc, .left
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
-	ld a, SPRANIM_FRAMESET_CELEBI_RIGHT
+	ld a, SPRANIM_CELSET_CELEBI_RIGHT
 	call ReinitSpriteAnimFrame
 	jr .done
 
 .left
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
-	ld a, SPRANIM_FRAMESET_CELEBI_LEFT
+	ld a, SPRANIM_CELSET_CELEBI_LEFT
 	call ReinitSpriteAnimFrame
 .done
 	ret
 
 .FreezeCelebiPosition:
 	pop af
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
-	ld a, SPRANIM_FRAMESET_CELEBI_LEFT
+	ld a, SPRANIM_CELSET_CELEBI_LEFT
 	call ReinitSpriteAnimFrame
 	ret
 

@@ -819,7 +819,7 @@ Hatch_InitShellFragments:
 
 	pop de
 	ld a, e
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	add [hl]
 	ld [hl], a
@@ -837,24 +837,24 @@ Hatch_InitShellFragments:
 	ret
 
 MACRO shell_fragment
-; y tile, y pxl, x tile, x pxl, frameset, angle
+; y tile, y pxl, x tile, x pxl, celset, angle
 	db (\1) * TILE_WIDTH + (\2) ; y coord
 	db (\3) * TILE_WIDTH + (\4) ; x coord
-	db (\5) - SPRANIM_FRAMESET_EGG_HATCH_1 ; frameset offset
+	db (\5) - SPRANIM_CELSET_EGG_HATCH_1 ; celset offset
 	db \6 ; angle (6 bits)
 ENDM
 
 .SpriteData:
-	shell_fragment 10, 4,  9, 0, SPRANIM_FRAMESET_EGG_HATCH_1, $3c
-	shell_fragment 11, 4,  9, 0, SPRANIM_FRAMESET_EGG_HATCH_2, $04
-	shell_fragment 10, 4, 10, 0, SPRANIM_FRAMESET_EGG_HATCH_1, $30
-	shell_fragment 11, 4, 10, 0, SPRANIM_FRAMESET_EGG_HATCH_2, $10
-	shell_fragment 10, 4, 11, 0, SPRANIM_FRAMESET_EGG_HATCH_3, $24
-	shell_fragment 11, 4, 11, 0, SPRANIM_FRAMESET_EGG_HATCH_4, $1c
-	shell_fragment 10, 0,  9, 4, SPRANIM_FRAMESET_EGG_HATCH_1, $36
-	shell_fragment 12, 0,  9, 4, SPRANIM_FRAMESET_EGG_HATCH_2, $0a
-	shell_fragment 10, 0, 10, 4, SPRANIM_FRAMESET_EGG_HATCH_3, $2a
-	shell_fragment 12, 0, 10, 4, SPRANIM_FRAMESET_EGG_HATCH_4, $16
+	shell_fragment 10, 4,  9, 0, SPRANIM_CELSET_EGG_HATCH_1, $3c
+	shell_fragment 11, 4,  9, 0, SPRANIM_CELSET_EGG_HATCH_2, $04
+	shell_fragment 10, 4, 10, 0, SPRANIM_CELSET_EGG_HATCH_1, $30
+	shell_fragment 11, 4, 10, 0, SPRANIM_CELSET_EGG_HATCH_2, $10
+	shell_fragment 10, 4, 11, 0, SPRANIM_CELSET_EGG_HATCH_3, $24
+	shell_fragment 11, 4, 11, 0, SPRANIM_CELSET_EGG_HATCH_4, $1c
+	shell_fragment 10, 0,  9, 4, SPRANIM_CELSET_EGG_HATCH_1, $36
+	shell_fragment 12, 0,  9, 4, SPRANIM_CELSET_EGG_HATCH_2, $0a
+	shell_fragment 10, 0, 10, 4, SPRANIM_CELSET_EGG_HATCH_3, $2a
+	shell_fragment 12, 0, 10, 4, SPRANIM_CELSET_EGG_HATCH_4, $16
 	db -1
 
 Hatch_ShellFragmentLoop:

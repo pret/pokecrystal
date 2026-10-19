@@ -1267,7 +1267,7 @@ UpdateTitleTrailSprite: ; unreferenced
 	and %00000011
 	ret nz
 	ld bc, wSpriteAnim10
-	ld hl, SPRITEANIMSTRUCT_FRAME
+	ld hl, SPRITEANIMSTRUCT_CEL
 	add hl, bc
 	ld l, [hl]
 	ld h, 0

@@ -1195,7 +1195,7 @@ CrystalIntro_InitUnownAnim:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $8
-	ld a, SPRANIM_FRAMESET_INTRO_UNOWN_4
+	ld a, SPRANIM_CELSET_INTRO_UNOWN_4
 	call ReinitSpriteAnimFrame
 	pop de
 
@@ -1205,7 +1205,7 @@ CrystalIntro_InitUnownAnim:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $18
-	ld a, SPRANIM_FRAMESET_INTRO_UNOWN_3
+	ld a, SPRANIM_CELSET_INTRO_UNOWN_3
 	call ReinitSpriteAnimFrame
 	pop de
 
@@ -1215,7 +1215,7 @@ CrystalIntro_InitUnownAnim:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $28
-	ld a, SPRANIM_FRAMESET_INTRO_UNOWN_1
+	ld a, SPRANIM_CELSET_INTRO_UNOWN_1
 	call ReinitSpriteAnimFrame
 	pop de
 
@@ -1224,7 +1224,7 @@ CrystalIntro_InitUnownAnim:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $38
-	ld a, SPRANIM_FRAMESET_INTRO_UNOWN_2
+	ld a, SPRANIM_CELSET_INTRO_UNOWN_2
 	call ReinitSpriteAnimFrame
 	ret
 

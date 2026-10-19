@@ -366,7 +366,7 @@ ENDM
 
 MACRO sprite_anim_struct
 \1Index::          db
-\1FramesetID::     db
+\1CelsetID::     db
 \1AnimSeqID::      db
 \1TileID::         db
 \1XCoord::         db
@@ -387,7 +387,7 @@ MACRO battle_anim_struct
 \1Index::          db
 \1OAMFlags::       db
 \1FixY::           db
-\1FramesetID::     db
+\1CelsetID::     db
 \1Function::       db
 \1Palette::        db
 \1TileID::         db

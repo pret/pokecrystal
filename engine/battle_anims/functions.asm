@@ -303,15 +303,15 @@ BattleAnimFunc_PokeBall:
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	ld a, BATTLE_ANIM_FRAMESET_POKE_BALL_3
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_POKE_BALL_3
+	call ReinitBattleAnimCelset
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
 .three
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLE_ANIM_FRAMESET_POKE_BALL_1
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_POKE_BALL_1
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $0
@@ -340,14 +340,14 @@ BattleAnimFunc_PokeBall:
 	sub $4
 	ld [hl], a
 	ret nz
-	ld a, BATTLE_ANIM_FRAMESET_POKE_BALL_4
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_POKE_BALL_4
+	call ReinitBattleAnimCelset
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
 .six
-	ld a, BATTLE_ANIM_FRAMESET_POKE_BALL_5
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_POKE_BALL_5
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	dec [hl]
@@ -358,8 +358,8 @@ BattleAnimFunc_PokeBall:
 
 .seven
 	call GetBallAnimPal
-	ld a, BATTLE_ANIM_FRAMESET_POKE_BALL_2
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_POKE_BALL_2
+	call ReinitBattleAnimCelset
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
@@ -495,8 +495,8 @@ BattleAnimFunc_Ember:
 
 .three
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLE_ANIM_FRAMESET_FLAMETHROWER
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_FLAMETHROWER
+	call ReinitBattleAnimCelset
 .four
 	ret
 
@@ -733,8 +733,8 @@ BattleAnimFunc_FireBlast:
 	ld [hl], a
 	cp $7
 	jr z, .seven
-	ld a, BATTLE_ANIM_FRAMESET_BURNED
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_BURNED
+	call ReinitBattleAnimCelset
 	ret
 
 .seven
@@ -752,8 +752,8 @@ BattleAnimFunc_FireBlast:
 
 .set_up_eight
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLE_ANIM_FRAMESET_EMBER
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_EMBER
+	call ReinitBattleAnimCelset
 .eight
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
@@ -814,7 +814,7 @@ BattleAnimFunc_FireBlast:
 
 BattleAnimFunc_RazorLeaf:
 ; Object moves at an arc
-; Obj Param: Bit 6 defines offset from base frameset BATTLE_ANIM_FRAMESET_RAZOR_LEAF_2
+; Obj Param: Bit 6 defines offset from base celset BATTLE_ANIM_CELSET_RAZOR_LEAF_2
 ;            Rest defines arc radius
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -844,8 +844,8 @@ BattleAnimFunc_RazorLeaf:
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
-	ld a, BATTLE_ANIM_FRAMESET_RAZOR_LEAF_2
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_RAZOR_LEAF_2
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	bit 6, [hl]
@@ -940,8 +940,8 @@ BattleAnimFunc_RazorLeaf:
 	ret
 
 .three
-	ld a, BATTLE_ANIM_FRAMESET_RAZOR_LEAF_1
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_RAZOR_LEAF_1
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_OAMFLAGS
 	add hl, bc
 	res B_OAM_XFLIP, [hl]
@@ -1004,7 +1004,7 @@ BattleAnim_ScatterHorizontal:
 BattleAnimFunc_RockSmash:
 ; Object moves at an arc
 ; Obj Param: Bit 7 makes arc flip horizontally
-;            Bit 6 defines offset from base frameset FRAMESET_19
+;            Bit 6 defines offset from base celset CELSET_19
 ;            Rest defines arc radius
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -1017,8 +1017,8 @@ BattleAnimFunc_RockSmash:
 	and $40
 	rlca
 	rlca
-	add BATTLE_ANIM_FRAMESET_BIG_ROCK
-	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+	add BATTLE_ANIM_CELSET_BIG_ROCK
+	ld hl, BATTLEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld [hl], a
 	call BattleAnim_IncAnonJumptableIndex
@@ -1096,8 +1096,8 @@ BattleAnimFunc_Bubble:
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $0
-	ld a, BATTLE_ANIM_FRAMESET_PULSING_BUBBLE
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_PULSING_BUBBLE
+	call ReinitBattleAnimCelset
 .two
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -1246,11 +1246,11 @@ BattleAnimFunc_Sing:
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
-	ld a, BATTLE_ANIM_FRAMESET_MUSIC_NOTE_1
-	assert BATTLE_ANIM_FRAMESET_MUSIC_NOTE_1 + 1 == BATTLE_ANIM_FRAMESET_MUSIC_NOTE_2 \
-		&& BATTLE_ANIM_FRAMESET_MUSIC_NOTE_2 + 1 == BATTLE_ANIM_FRAMESET_MUSIC_NOTE_3
+	ld a, BATTLE_ANIM_CELSET_MUSIC_NOTE_1
+	assert BATTLE_ANIM_CELSET_MUSIC_NOTE_1 + 1 == BATTLE_ANIM_CELSET_MUSIC_NOTE_2 \
+		&& BATTLE_ANIM_CELSET_MUSIC_NOTE_2 + 1 == BATTLE_ANIM_CELSET_MUSIC_NOTE_3
 	add [hl]
-	call ReinitBattleAnimFrameset
+	call ReinitBattleAnimCelset
 
 .one
 	ld hl, BATTLEANIMSTRUCT_XCOORD
@@ -1306,8 +1306,8 @@ BattleAnimFunc_WaterGun:
 
 .run_down
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLE_ANIM_FRAMESET_WATER_GUN_2
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_WATER_GUN_2
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], $0
@@ -1330,8 +1330,8 @@ BattleAnimFunc_WaterGun:
 
 .splash
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLE_ANIM_FRAMESET_WATER_GUN_3
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_WATER_GUN_3
+	call ReinitBattleAnimCelset
 .three
 	ret
 
@@ -1448,8 +1448,8 @@ BattleAnimFunc_ThunderWave:
 
 .one
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLE_ANIM_FRAMESET_THUNDER_WAVE_EXTRA
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_THUNDER_WAVE_EXTRA
+	call ReinitBattleAnimCelset
 .zero
 .two
 	ret
@@ -1460,8 +1460,8 @@ BattleAnimFunc_ThunderWave:
 
 BattleAnimFunc_Clamp_Encore:
 ; Claps two objects together, twice. Also used by Encore
-; Second object's frameset and position relative to first are both defined via this function
-; Obj Param: Distance from center (masked with $7F). Bit 7 flips object horizontally by switching to a different frameset
+; Second object's celset and position relative to first are both defined via this function
+; Obj Param: Distance from center (masked with $7F). Bit 7 flips object horizontally by switching to a different celset
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -1474,7 +1474,7 @@ BattleAnimFunc_Clamp_Encore:
 
 .zero
 	call BattleAnim_IncAnonJumptableIndex
-	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+	ld hl, BATTLEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld a, [hl]
 	ld hl, BATTLEANIMSTRUCT_VAR2
@@ -1515,17 +1515,17 @@ BattleAnimFunc_Clamp_Encore:
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
-	assert BATTLE_ANIM_FRAMESET_CLAMP + 1 ==  BATTLE_ANIM_FRAMESET_CLAMP_FLIPPED
-	assert BATTLE_ANIM_FRAMESET_ENCORE_HAND + 1 == BATTLE_ANIM_FRAMESET_ENCORE_HAND_FLIPPED
+	assert BATTLE_ANIM_CELSET_CLAMP + 1 ==  BATTLE_ANIM_CELSET_CLAMP_FLIPPED
+	assert BATTLE_ANIM_CELSET_ENCORE_HAND + 1 == BATTLE_ANIM_CELSET_ENCORE_HAND_FLIPPED
 	inc a
 	jr .reinit
 
 .load_no_inc
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
-	ld a, [hl] ; BATTLE_ANIM_FRAMESET_CLAMP or BATTLE_ANIM_FRAMESET_ENCORE_HAND
+	ld a, [hl] ; BATTLE_ANIM_CELSET_CLAMP or BATTLE_ANIM_CELSET_ENCORE_HAND
 .reinit
-	call ReinitBattleAnimFrameset
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
@@ -1547,8 +1547,8 @@ BattleAnimFunc_Clamp_Encore:
 
 BattleAnimFunc_Bite:
 ; Claps two objects together (vertically), twice
-; Second object's frameset and position relative to first are both defined via this function
-; Obj Param: Distance from center (masked with $7F). Bit 7 flips object vertically by switching to a different frameset
+; Second object's celset and position relative to first are both defined via this function
+; Obj Param: Distance from center (masked with $7F). Bit 7 flips object vertically by switching to a different celset
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -1594,13 +1594,13 @@ BattleAnimFunc_Bite:
 	ld [hl], a
 	bit 7, a
 	jr nz, .flipped2
-	ld a, BATTLE_ANIM_FRAMESET_BITE_2
-	jr .got_frameset
+	ld a, BATTLE_ANIM_CELSET_BITE_2
+	jr .got_celset
 
 .flipped2
-	ld a, BATTLE_ANIM_FRAMESET_BITE_1
-.got_frameset
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_BITE_1
+.got_celset
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
@@ -1838,7 +1838,7 @@ BattleAnimFunc_Absorb:
 	ret
 
 BattleAnimFunc_Wrap:
-; Plays out object frameset. Use anim_incobj to move to next frameset
+; Plays out object celset. Use anim_incobj to move to next celset
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -1846,14 +1846,14 @@ BattleAnimFunc_Wrap:
 	dw .two
 
 .one
-	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+	ld hl, BATTLEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld a, [hl]
-	assert BATTLE_ANIM_FRAMESET_BIND_1 + 1 == BATTLE_ANIM_FRAMESET_BIND_2 \ 
-		&& BATTLE_ANIM_FRAMESET_BIND_2 + 1 == BATTLE_ANIM_FRAMESET_BIND_3 \
-		&& BATTLE_ANIM_FRAMESET_BIND_3 + 1 == BATTLE_ANIM_FRAMESET_BIND_4
+	assert BATTLE_ANIM_CELSET_BIND_1 + 1 == BATTLE_ANIM_CELSET_BIND_2 \ 
+		&& BATTLE_ANIM_CELSET_BIND_2 + 1 == BATTLE_ANIM_CELSET_BIND_3 \
+		&& BATTLE_ANIM_CELSET_BIND_3 + 1 == BATTLE_ANIM_CELSET_BIND_4
 	inc a
-	call ReinitBattleAnimFrameset
+	call ReinitBattleAnimCelset
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR1 ; Unused?
 	add hl, bc
@@ -1887,8 +1887,8 @@ BattleAnimFunc_LeechSeed:
 
 .sprout
 	ld [hl], $40
-	ld a, BATTLE_ANIM_FRAMESET_LEECH_SEED_2
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_LEECH_SEED_2
+	call ReinitBattleAnimCelset
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
@@ -1903,8 +1903,8 @@ BattleAnimFunc_LeechSeed:
 
 .flutter
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLE_ANIM_FRAMESET_LEECH_SEED_3
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_LEECH_SEED_3
+	call ReinitBattleAnimCelset
 .three
 	ret
 
@@ -2203,9 +2203,9 @@ BattleAnimFunc_Egg:
 	ret
 
 .seven
-	; Switches Softboiled frameset to egg wobbling
-	ld a, BATTLE_ANIM_FRAMESET_EGG_WOBBLE ; Egg wobbling
-	call ReinitBattleAnimFrameset
+	; Switches Softboiled celset to egg wobbling
+	ld a, BATTLE_ANIM_CELSET_EGG_WOBBLE ; Egg wobbling
+	call ReinitBattleAnimCelset
 	call BattleAnim_IncAnonJumptableIndex
 	ret
 
@@ -2224,9 +2224,9 @@ BattleAnimFunc_Egg:
 	ret
 
 .nine
-	; First Softboiled BATTLE_ANIM_OBJ_EGG turns into the bottom half frameset
-	ld a, BATTLE_ANIM_FRAMESET_EGG_CRACKED_BOTTOM ; Cracked egg bottom
-	call ReinitBattleAnimFrameset
+	; First Softboiled BATTLE_ANIM_OBJ_EGG turns into the bottom half celset
+	ld a, BATTLE_ANIM_CELSET_EGG_CRACKED_BOTTOM ; Cracked egg bottom
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], $4
@@ -2235,8 +2235,8 @@ BattleAnimFunc_Egg:
 
 .eleven
 	; Second Softboiled BATTLE_ANIM_OBJ_EGG
-	ld a, BATTLE_ANIM_FRAMESET_EGG_CRACKED_TOP ; Cracked egg top
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_EGG_CRACKED_TOP ; Cracked egg top
+	call ReinitBattleAnimCelset
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
@@ -2326,7 +2326,7 @@ BattleAnimFunc_MoveUp:
 
 BattleAnimFunc_Sound:
 ; Moves object back and forth in one of three angles using a sine behavior and disappear after 8 frames. Used in Growl, Snore and Kinesis
-; Obj Param: Used to define object angle. How much to increase from base frameset, which is hardcoded as BATTLE_ANIM_FRAMESET_SOUND_1
+; Obj Param: Used to define object angle. How much to increase from base celset, which is hardcoded as BATTLE_ANIM_CELSET_SOUND_1
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -2350,11 +2350,11 @@ BattleAnimFunc_Sound:
 	ld [hl], $8 ; duration
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
-	ld a, BATTLE_ANIM_FRAMESET_SOUND_1
-	assert BATTLE_ANIM_FRAMESET_SOUND_1 + 1 == BATTLE_ANIM_FRAMESET_SOUND_2 \
-		&& BATTLE_ANIM_FRAMESET_SOUND_2 + 1 == BATTLE_ANIM_FRAMESET_SOUND_3
+	ld a, BATTLE_ANIM_CELSET_SOUND_1
+	assert BATTLE_ANIM_CELSET_SOUND_1 + 1 == BATTLE_ANIM_CELSET_SOUND_2 \
+		&& BATTLE_ANIM_CELSET_SOUND_2 + 1 == BATTLE_ANIM_CELSET_SOUND_3
 	add [hl]
-	call ReinitBattleAnimFrameset
+	call ReinitBattleAnimCelset
 	ret
 
 .one
@@ -2429,9 +2429,9 @@ BattleAnimFunc_ConfuseRay:
 	and $80
 	rlca
 	ld [hl], a
-	assert BATTLE_ANIM_FRAMESET_CONFUSE_RAY_1 + 1 == BATTLE_ANIM_FRAMESET_CONFUSE_RAY_2
-	add BATTLE_ANIM_FRAMESET_CONFUSE_RAY_1
-	call ReinitBattleAnimFrameset
+	assert BATTLE_ANIM_CELSET_CONFUSE_RAY_1 + 1 == BATTLE_ANIM_CELSET_CONFUSE_RAY_2
+	add BATTLE_ANIM_CELSET_CONFUSE_RAY_1
+	call ReinitBattleAnimCelset
 	ret
 
 .one
@@ -2478,7 +2478,7 @@ BattleAnimFunc_ConfuseRay:
 	ret
 
 BattleAnimFunc_Dizzy:
-; Moves object in a circle where the height is 1/4 the width, with the next frameset from base whether moving left or right. Also used for Nightmare
+; Moves object in a circle where the height is 1/4 the width, with the next celset from base whether moving left or right. Also used for Nightmare
 ; Obj Param: Defines starting position in the circle (masked with $80). Bit 7 flips it at the start
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -2487,7 +2487,7 @@ BattleAnimFunc_Dizzy:
 
 .zero
 	call BattleAnim_IncAnonJumptableIndex
-	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+	ld hl, BATTLEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld a, [hl]
 	ld hl, BATTLEANIMSTRUCT_VAR1
@@ -2500,10 +2500,10 @@ BattleAnimFunc_Dizzy:
 	rlca
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	assert BATTLE_ANIM_FRAMESET_CHICK_1 + 1 ==  BATTLE_ANIM_FRAMESET_CHICK_2
-	assert BATTLE_ANIM_FRAMESET_IMP + 1 == BATTLE_ANIM_FRAMESET_IMP_FLIPPED
+	assert BATTLE_ANIM_CELSET_CHICK_1 + 1 ==  BATTLE_ANIM_CELSET_CHICK_2
+	assert BATTLE_ANIM_CELSET_IMP + 1 == BATTLE_ANIM_CELSET_IMP_FLIPPED
 	add [hl]
-	call ReinitBattleAnimFrameset
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
@@ -2539,22 +2539,22 @@ BattleAnimFunc_Dizzy:
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
-	assert BATTLE_ANIM_FRAMESET_CHICK_1 + 1 ==  BATTLE_ANIM_FRAMESET_CHICK_2
-	assert BATTLE_ANIM_FRAMESET_IMP + 1 == BATTLE_ANIM_FRAMESET_IMP_FLIPPED
+	assert BATTLE_ANIM_CELSET_CHICK_1 + 1 ==  BATTLE_ANIM_CELSET_CHICK_2
+	assert BATTLE_ANIM_CELSET_IMP + 1 == BATTLE_ANIM_CELSET_IMP_FLIPPED
 	inc a
-	jr .got_frameset
+	jr .got_celset
 
 .not_flipped
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	ld a, [hl] ; BATTLE_ANIM_FRAMESET_CHICK_1 or BATTLE_ANIM_FRAMESET_IMP
-.got_frameset
-	call ReinitBattleAnimFrameset
+	ld a, [hl] ; BATTLE_ANIM_CELSET_CHICK_1 or BATTLE_ANIM_CELSET_IMP
+.got_celset
+	call ReinitBattleAnimCelset
 	ret
 
 BattleAnimFunc_Amnesia:
 ; Creates 3 objects based on Obj Param
-; Obj Param: How much to increase from base frameset, which is hardcoded as BATTLE_ANIM_FRAMESET_AMNESIA_1
+; Obj Param: How much to increase from base celset, which is hardcoded as BATTLE_ANIM_CELSET_AMNESIA_1
 ; anim_incobj is used to DeInit object (used by Present)
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -2567,10 +2567,10 @@ BattleAnimFunc_Amnesia:
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
-	assert BATTLE_ANIM_FRAMESET_AMNESIA_1 + 1 == BATTLE_ANIM_FRAMESET_AMNESIA_2 \
-		&& BATTLE_ANIM_FRAMESET_AMNESIA_2 + 1 == BATTLE_ANIM_FRAMESET_AMNESIA_3
-	add BATTLE_ANIM_FRAMESET_AMNESIA_1
-	call ReinitBattleAnimFrameset
+	assert BATTLE_ANIM_CELSET_AMNESIA_1 + 1 == BATTLE_ANIM_CELSET_AMNESIA_2 \
+		&& BATTLE_ANIM_CELSET_AMNESIA_2 + 1 == BATTLE_ANIM_CELSET_AMNESIA_3
+	add BATTLE_ANIM_CELSET_AMNESIA_1
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld e, [hl]
@@ -2657,16 +2657,16 @@ BattleAnimFunc_String:
 	add hl, bc
 	set B_OAM_YFLIP, [hl]
 .not_param_zero
-	assert BATTLE_ANIM_FRAMESET_STRING_SHOT_1 + 1 == BATTLE_ANIM_FRAMESET_STRING_SHOT_2 \
-		&& BATTLE_ANIM_FRAMESET_STRING_SHOT_2 + 1 == BATTLE_ANIM_FRAMESET_STRING_SHOT_3
-	add BATTLE_ANIM_FRAMESET_STRING_SHOT_1
-	call ReinitBattleAnimFrameset
+	assert BATTLE_ANIM_CELSET_STRING_SHOT_1 + 1 == BATTLE_ANIM_CELSET_STRING_SHOT_2 \
+		&& BATTLE_ANIM_CELSET_STRING_SHOT_2 + 1 == BATTLE_ANIM_CELSET_STRING_SHOT_3
+	add BATTLE_ANIM_CELSET_STRING_SHOT_1
+	call ReinitBattleAnimCelset
 .one
 	ret
 
 BattleAnimFunc_Paralyzed:
 ; Also used by Disable
-; Obj Param: When bit 7 is set, frameset is replaced with flipped version. This bit is discarded and object then moves back and forth between position in lower nybble and upper nybble of Param every other frame
+; Obj Param: When bit 7 is set, celset is replaced with flipped version. This bit is discarded and object then moves back and forth between position in lower nybble and upper nybble of Param every other frame
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -2700,8 +2700,8 @@ BattleAnimFunc_Paralyzed:
 	xor $ff
 	inc a
 	ld [hl], a
-	ld a, BATTLE_ANIM_FRAMESET_PARALYZED_FLIPPED
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_PARALYZED_FLIPPED
+	call ReinitBattleAnimCelset
 	ret
 
 .one
@@ -3556,10 +3556,10 @@ BattleAnimFunc_SpeedLine:
 	add hl, bc
 	ld a, [hl]
 	and $7f
-	assert BATTLE_ANIM_FRAMESET_SPEED_LINE_1 + 1 == BATTLE_ANIM_FRAMESET_SPEED_LINE_2 \
-		&& BATTLE_ANIM_FRAMESET_SPEED_LINE_2 + 1 == BATTLE_ANIM_FRAMESET_SPEED_LINE_3
-	add BATTLE_ANIM_FRAMESET_SPEED_LINE_1
-	call ReinitBattleAnimFrameset
+	assert BATTLE_ANIM_CELSET_SPEED_LINE_1 + 1 == BATTLE_ANIM_CELSET_SPEED_LINE_2 \
+		&& BATTLE_ANIM_CELSET_SPEED_LINE_2 + 1 == BATTLE_ANIM_CELSET_SPEED_LINE_3
+	add BATTLE_ANIM_CELSET_SPEED_LINE_1
+	call ReinitBattleAnimCelset
 .one
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
@@ -3577,7 +3577,7 @@ BattleAnimFunc_SpeedLine:
 	ret
 
 BattleAnimFunc_Sludge:
-; Object moves upward for $c frames and switches to BATTLE_ANIM_FRAMESET_SLUDGE_BUBBLE_BURST
+; Object moves upward for $c frames and switches to BATTLE_ANIM_CELSET_SLUDGE_BUBBLE_BURST
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -3602,8 +3602,8 @@ BattleAnimFunc_Sludge:
 
 .done
 	call BattleAnim_IncAnonJumptableIndex
-	ld a, BATTLE_ANIM_FRAMESET_SLUDGE_BUBBLE_BURST
-	call ReinitBattleAnimFrameset
+	ld a, BATTLE_ANIM_CELSET_SLUDGE_BUBBLE_BURST
+	call ReinitBattleAnimCelset
 .two
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -3712,7 +3712,7 @@ BattleAnimFunc_SafeguardProtect:
 
 BattleAnimFunc_LockOnMindReader:
 ; Moves objects towards a center position
-; Obj Param: Used to define object angle from 0 to 3. Lower nybble defines how much to increase from base frameset while upper nybble defines angle of movement. The object moves for $28 frames, then waits for $10 frames and disappears
+; Obj Param: Used to define object angle from 0 to 3. Lower nybble defines how much to increase from base celset while upper nybble defines angle of movement. The object moves for $28 frames, then waits for $10 frames and disappears
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -3728,16 +3728,16 @@ BattleAnimFunc_LockOnMindReader:
 	add hl, bc
 	ld a, [hl]
 	and $f
-	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+	ld hl, BATTLEANIMSTRUCT_CELSET_ID
 	add hl, bc
-	assert BATTLE_ANIM_FRAMESET_LOCK_ON_1 + 1 == BATTLE_ANIM_FRAMESET_LOCK_ON_2 \
-		&& BATTLE_ANIM_FRAMESET_LOCK_ON_2 + 1 == BATTLE_ANIM_FRAMESET_LOCK_ON_3 \
-		&& BATTLE_ANIM_FRAMESET_LOCK_ON_3 + 1 == BATTLE_ANIM_FRAMESET_LOCK_ON_4
-	assert BATTLE_ANIM_FRAMESET_MIND_READER_1 + 1 == BATTLE_ANIM_FRAMESET_MIND_READER_2 \
-		&& BATTLE_ANIM_FRAMESET_MIND_READER_2 + 1 == BATTLE_ANIM_FRAMESET_MIND_READER_3 \
-		&& BATTLE_ANIM_FRAMESET_MIND_READER_3 + 1 == BATTLE_ANIM_FRAMESET_MIND_READER_4
+	assert BATTLE_ANIM_CELSET_LOCK_ON_1 + 1 == BATTLE_ANIM_CELSET_LOCK_ON_2 \
+		&& BATTLE_ANIM_CELSET_LOCK_ON_2 + 1 == BATTLE_ANIM_CELSET_LOCK_ON_3 \
+		&& BATTLE_ANIM_CELSET_LOCK_ON_3 + 1 == BATTLE_ANIM_CELSET_LOCK_ON_4
+	assert BATTLE_ANIM_CELSET_MIND_READER_1 + 1 == BATTLE_ANIM_CELSET_MIND_READER_2 \
+		&& BATTLE_ANIM_CELSET_MIND_READER_2 + 1 == BATTLE_ANIM_CELSET_MIND_READER_3 \
+		&& BATTLE_ANIM_CELSET_MIND_READER_3 + 1 == BATTLE_ANIM_CELSET_MIND_READER_4
 	add [hl]
-	call ReinitBattleAnimFrameset
+	call ReinitBattleAnimCelset
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
@@ -3785,7 +3785,7 @@ BattleAnimFunc_LockOnMindReader:
 
 BattleAnimFunc_HealBellNotes:
 ; Object moves horizontally in a sine wave, while also moving left every other frame and downwards for $38 frames after which it disappears
-; Obj Param: Defines a frameset offset from FRAMESET_24
+; Obj Param: Defines a celset offset from CELSET_24
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -3795,11 +3795,11 @@ BattleAnimFunc_HealBellNotes:
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
-	ld a, BATTLE_ANIM_FRAMESET_MUSIC_NOTE_1
-	assert BATTLE_ANIM_FRAMESET_MUSIC_NOTE_1 + 1 == BATTLE_ANIM_FRAMESET_MUSIC_NOTE_2 \
-		&& BATTLE_ANIM_FRAMESET_MUSIC_NOTE_2 + 1 == BATTLE_ANIM_FRAMESET_MUSIC_NOTE_3
+	ld a, BATTLE_ANIM_CELSET_MUSIC_NOTE_1
+	assert BATTLE_ANIM_CELSET_MUSIC_NOTE_1 + 1 == BATTLE_ANIM_CELSET_MUSIC_NOTE_2 \
+		&& BATTLE_ANIM_CELSET_MUSIC_NOTE_2 + 1 == BATTLE_ANIM_CELSET_MUSIC_NOTE_3
 	add [hl]
-	call ReinitBattleAnimFrameset
+	call ReinitBattleAnimCelset
 .one
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc

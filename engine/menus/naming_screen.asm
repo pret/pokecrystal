@@ -170,7 +170,7 @@ NamingScreenJumptable:
 	depixel 4, 4, 4, 0
 	ld a, SPRANIM_OBJ_RED_WALK
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld [hl], $0
 	hlcoord 5, 2
@@ -385,7 +385,7 @@ NamingScreenJoypadLoop:
 	ld [wNamingScreenCursorObjectPointer], a
 	ld a, b
 	ld [wNamingScreenCursorObjectPointer + 1], a
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld a, [hl]
 	ld hl, SPRITEANIMSTRUCT_VAR3
@@ -522,15 +522,15 @@ NamingScreen_AnimateCursor:
 .ok
 	cp d
 	ld de, .LetterEntries
-	ld a, SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR - SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 0
+	ld a, SPRANIM_CELSET_TEXT_ENTRY_CURSOR - SPRANIM_CELSET_TEXT_ENTRY_CURSOR ; 0
 	jr nz, .ok2
 	ld de, .CaseDelEnd
-	ld a, SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG - SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 1
+	ld a, SPRANIM_CELSET_TEXT_ENTRY_CURSOR_BIG - SPRANIM_CELSET_TEXT_ENTRY_CURSOR ; 1
 .ok2
 	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
-	add [hl] ; default SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	add [hl] ; default SPRANIM_CELSET_TEXT_ENTRY_CURSOR
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_VAR1
@@ -1059,7 +1059,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	ld [wNamingScreenCursorObjectPointer], a
 	ld a, b
 	ld [wNamingScreenCursorObjectPointer + 1], a
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld a, [hl]
 	ld hl, SPRITEANIMSTRUCT_VAR3
@@ -1176,7 +1176,7 @@ ComposeMail_AnimateCursor:
 	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	add [hl]
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_VAR1

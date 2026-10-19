@@ -1,10 +1,10 @@
 ; Battle and sprite OAM animations
 
-MACRO oamframe
+MACRO oamcel
 	db \1 ; duration
 	DEF x = \2
 	assert !(x & (1 << (B_OAM_XFLIP + 1) | 1 << (B_OAM_YFLIP + 1))), \
-		"oamframe duration overflows into X/Y flip bits"
+		"oamcel duration overflows into X/Y flip bits"
 	if _NARG > 2
 		rept _NARG - 2
 			DEF x |= 1 << (\3 + 1)

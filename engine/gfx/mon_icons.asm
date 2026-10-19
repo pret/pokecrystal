@@ -66,16 +66,16 @@ Unused_InitFastAnimatedMonIcon:
 	pop bc
 	pop hl
 	jr c, .mail
-	ld a, SPRANIM_FRAMESET_PARTY_MON_WITH_ITEM_FAST
-	jr .got_frameset
+	ld a, SPRANIM_CELSET_PARTY_MON_WITH_ITEM_FAST
+	jr .got_celset
 .mail
-	ld a, SPRANIM_FRAMESET_PARTY_MON_WITH_MAIL_FAST
+	ld a, SPRANIM_CELSET_PARTY_MON_WITH_MAIL_FAST
 	; fallthrough
 
 .no_item
-	ld a, SPRANIM_FRAMESET_PARTY_MON_FAST
-.got_frameset
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld a, SPRANIM_CELSET_PARTY_MON_FAST
+.got_celset
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld [hl], a
 	ret
@@ -140,13 +140,13 @@ PartyMenu_InitAnimatedMonIcon:
 	pop bc
 	pop hl
 	jr c, .mail
-	ld a, SPRANIM_FRAMESET_PARTY_MON_WITH_ITEM
-	jr .got_frameset
+	ld a, SPRANIM_CELSET_PARTY_MON_WITH_ITEM
+	jr .got_celset
 
 .mail
-	ld a, SPRANIM_FRAMESET_PARTY_MON_WITH_MAIL
-.got_frameset
-	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
+	ld a, SPRANIM_CELSET_PARTY_MON_WITH_MAIL
+.got_celset
+	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld [hl], a
 	ret

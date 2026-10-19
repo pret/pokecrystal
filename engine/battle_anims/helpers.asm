@@ -1,5 +1,5 @@
-ReinitBattleAnimFrameset:
-	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+ReinitBattleAnimCelset:
+	ld hl, BATTLEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld [hl], a
 	ld hl, BATTLEANIMSTRUCT_DURATION
@@ -44,7 +44,7 @@ GetBattleAnimFrame:
 	pop hl
 .okay
 	ld a, [hl]
-	and OAM_YFLIP << 1 | OAM_XFLIP << 1 ; The << 1 is compensated in the "oamframe" macro
+	and OAM_YFLIP << 1 | OAM_XFLIP << 1 ; The << 1 is compensated in the "oamcel" macro
 	srl a
 	ld [wBattleAnimTempFrameOAMFlags], a
 	pop af
@@ -75,7 +75,7 @@ GetBattleAnimFrame:
 	jr .loop
 
 .GetPointer:
-	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+	ld hl, BATTLEANIMSTRUCT_CELSET_ID
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -123,7 +123,7 @@ LoadBattleAnimGFX:
 	pop bc
 	ret
 
-INCLUDE "data/battle_anims/framesets.asm"
+INCLUDE "data/battle_anims/celsets.asm"
 
 INCLUDE "data/battle_anims/oam.asm"
 
