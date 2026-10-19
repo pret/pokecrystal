@@ -1155,7 +1155,7 @@ ReelAction_InitGolem:
 	depixel 12, 13
 	ld a, SPRANIM_OBJ_SLOTS_GOLEM
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_VAR3
+	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	pop af
 	ld [hl], a
@@ -1969,7 +1969,7 @@ endr
 	ret
 
 Slots_AnimateGolem:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -1987,7 +1987,7 @@ Slots_AnimateGolem:
 	dw .roll
 
 .init
-	ld hl, SPRITEANIMSTRUCT_VAR3
+	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -2001,10 +2001,10 @@ Slots_AnimateGolem:
 
 .retain
 	dec [hl]
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $30
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
@@ -2012,7 +2012,7 @@ Slots_AnimateGolem:
 	ld [hl], $0
 
 .fall
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	cp $20
@@ -2028,10 +2028,10 @@ Slots_AnimateGolem:
 	ret
 
 .play_sound
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld [hl], $2
 	ld a, 1
@@ -2050,7 +2050,7 @@ Slots_AnimateGolem:
 	jr nc, .restart
 	and $3
 	ret nz
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 	xor $ff
@@ -2060,7 +2060,7 @@ Slots_AnimateGolem:
 	ret
 
 .restart
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	xor a
 	ld [hl], a
@@ -2068,7 +2068,7 @@ Slots_AnimateGolem:
 	ret
 
 Slots_AnimateChansey:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -2099,7 +2099,7 @@ Slots_AnimateChansey:
 	ret
 
 .limit
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
 	ld a, 1
@@ -2117,14 +2117,14 @@ Slots_AnimateChansey:
 	ret
 
 .retain
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $8
 .two
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -2133,7 +2133,7 @@ Slots_AnimateChansey:
 	ret
 
 .spawn_egg
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	dec [hl]
 	push bc

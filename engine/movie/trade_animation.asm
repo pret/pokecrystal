@@ -360,7 +360,7 @@ TradeAnim_InitTubeAnim:
 	ld a, SPRANIM_OBJ_TRADEMON_ICON
 	call InitSpriteAnimStruct
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	pop bc
 	ld [hl], b
@@ -369,7 +369,7 @@ TradeAnim_InitTubeAnim:
 	ld a, SPRANIM_OBJ_TRADEMON_BUBBLE
 	call InitSpriteAnimStruct
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	pop bc
 	ld [hl], b
@@ -1021,7 +1021,7 @@ TradeAnim_DropBall:
 	depixel 10, 11, 4, 0
 	ld a, SPRANIM_OBJ_TRADE_POKE_BALL
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $1
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
@@ -1055,7 +1055,7 @@ TradeAnim_BulgeThroughTube:
 	ret
 
 TradeAnim_AnimateTrademonInTube:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -1077,20 +1077,20 @@ TradeAnim_AnimateTrademonInTube:
 	dw .WaitTimer2
 
 .JumptableNext:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
 	ret
 
 .InitTimer:
 	call .JumptableNext
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $80
 	ret
 
 .WaitTimer1:
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
@@ -1148,13 +1148,13 @@ TradeAnim_AnimateTrademonInTube:
 
 .done_move_left
 	call .JumptableNext
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $80
 	ret
 
 .WaitTimer2:
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	dec [hl]

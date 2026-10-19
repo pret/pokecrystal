@@ -76,7 +76,7 @@ SpriteAnimFunc_PartyMonSwitch:
 	add hl, bc
 	ld [hl], 8 * 3
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	ld d, a
@@ -84,7 +84,7 @@ SpriteAnimFunc_PartyMonSwitch:
 	and $f
 	ret nz
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld e, [hl]
 
@@ -146,14 +146,14 @@ SpriteAnimFunc_GSTitleTrail:
 	add hl, bc
 	ld a, [hl]
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	and $3
 	ld [hl], a
 	inc [hl]
 	swap a
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], a
 
@@ -164,7 +164,7 @@ SpriteAnimFunc_GSTitleTrail:
 	cp $a4
 	jr nc, .delete
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	add 4
 
@@ -176,14 +176,14 @@ SpriteAnimFunc_GSTitleTrail:
 	add hl, bc
 	inc [hl]
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 	sla a
 	sla a
 
 	ld d, 2
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	add 3
@@ -200,7 +200,7 @@ SpriteAnimFunc_GSTitleTrail:
 	ret
 
 SpriteAnimFunc_GSIntroHoOhLugia:
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	inc a
@@ -226,7 +226,7 @@ SpriteAnimFunc_GameFreakLogo:
 	ret
 
 SpriteAnimFunc_GSGameFreakLogoStar:
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -237,12 +237,12 @@ SpriteAnimFunc_GSGameFreakLogoStar:
 	ld d, a
 	and $1f
 	jr nz, .stay
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	dec [hl]
 
 .stay
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -260,11 +260,11 @@ SpriteAnimFunc_GSGameFreakLogoStar:
 	add hl, bc
 	ld [hl], a
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	add [hl]
 	ld [hl], a
@@ -277,17 +277,17 @@ SpriteAnimFunc_GSGameFreakLogoStar:
 	ret
 
 SpriteAnimFunc_GSGameFreakLogoSparkle:
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hli]
 	or [hl]
 	jr z, .delete
 
-	ld hl, SPRITEANIMSTRUCT_VAR4
+	ld hl, SPRITEANIMSTRUCT_VAR5
 	add hl, bc
 	ld d, [hl]
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -305,13 +305,13 @@ SpriteAnimFunc_GSGameFreakLogoSparkle:
 	add hl, bc
 	ld [hl], a
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 
-	ld hl, SPRITEANIMSTRUCT_VAR3
+	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -320,13 +320,13 @@ SpriteAnimFunc_GSGameFreakLogoSparkle:
 	ld e, l
 	ld d, h
 
-	ld hl, SPRITEANIMSTRUCT_VAR3
+	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -336,13 +336,13 @@ SpriteAnimFunc_GSGameFreakLogoSparkle:
 	ld e, l
 	ld d, h
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	xor $20
@@ -369,7 +369,7 @@ SpriteAnimFunc_SlotsChansey:
 	ret
 
 SpriteAnimFunc_SlotsChanseyEgg:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
@@ -428,17 +428,17 @@ SpriteAnimFunc_TradePokeBall:
 	ld a, SPRANIM_CELSET_TRADE_POKE_BALL_WOBBLE
 	call _ReinitSpriteAnimFrame
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], 2 ; .two
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $20
 	ret
 
 .two
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -449,12 +449,12 @@ SpriteAnimFunc_TradePokeBall:
 .next
 	call AnimSeqs_IncAnonJumptableIndex
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $40
 
 .three
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	cp 48
@@ -474,28 +474,28 @@ SpriteAnimFunc_TradePokeBall:
 	jr .delete
 
 .one
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], $4
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $30
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld [hl], $24
 	ret
 
 .four
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 	and a
 	jr z, .done2
 
 	ld d, a
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	call Sprites_Sine
@@ -504,18 +504,18 @@ SpriteAnimFunc_TradePokeBall:
 	add hl, bc
 	ld [hl], a
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	inc [hl]
 	ld a, [hl]
 	and $3f
 	ret nz
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $20
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 	sub $c
@@ -560,7 +560,7 @@ SpriteAnimFunc_TrademonInTube:
 	ret
 
 SpriteAnimFunc_RevealNewMon:
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	cp $80
@@ -569,7 +569,7 @@ SpriteAnimFunc_RevealNewMon:
 	add 8
 	ld [hl], a
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	xor $20
@@ -601,7 +601,7 @@ SpriteAnimFunc_RadioTuningKnob:
 	ret
 
 SpriteAnimFunc_CutLeaves:
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -611,13 +611,13 @@ SpriteAnimFunc_CutLeaves:
 	ld e, l
 	ld d, h
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld [hl], e
 	inc hl
 	ld [hl], d
 
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -646,7 +646,7 @@ SpriteAnimFunc_FlyFrom:
 	and a
 	ret z
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -658,7 +658,7 @@ SpriteAnimFunc_FlyFrom:
 	dec [hl]
 	dec [hl]
 
-	ld hl, SPRITEANIMSTRUCT_VAR4
+	ld hl, SPRITEANIMSTRUCT_VAR5
 	add hl, bc
 	ld a, [hl]
 	ld d, a
@@ -667,7 +667,7 @@ SpriteAnimFunc_FlyFrom:
 	add 8
 	ld [hl], a
 .skip
-	ld hl, SPRITEANIMSTRUCT_VAR3
+	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -692,7 +692,7 @@ SpriteAnimFunc_FlyLeaf:
 	dec [hl]
 
 	ld d, $40
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -719,7 +719,7 @@ SpriteAnimFunc_FlyTo:
 	inc [hl]
 	inc [hl]
 
-	ld hl, SPRITEANIMSTRUCT_VAR4
+	ld hl, SPRITEANIMSTRUCT_VAR5
 	add hl, bc
 	ld a, [hl]
 	ld d, a
@@ -728,7 +728,7 @@ SpriteAnimFunc_FlyTo:
 	sub $2
 	ld [hl], a
 .stay
-	ld hl, SPRITEANIMSTRUCT_VAR3
+	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
@@ -758,7 +758,7 @@ SpriteAnimFunc_IntroSuicune:
 	add hl, bc
 	ld [hl], $0
 
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld a, [hl]
 	add 2
@@ -776,7 +776,7 @@ SpriteAnimFunc_IntroSuicune:
 	ret
 
 SpriteAnimFunc_IntroPichuWooper:
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	cp 20
@@ -795,13 +795,13 @@ SpriteAnimFunc_IntroPichuWooper:
 	ret
 
 SpriteAnimFunc_IntroUnown:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld d, [hl]
 	inc [hl]
 	inc [hl]
 	inc [hl]
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
 	push af
@@ -851,7 +851,7 @@ AnimSeqs_AnonJumptable:
 	ld d, [hl]
 	inc de
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld l, [hl]
 	ld h, 0
@@ -863,7 +863,7 @@ AnimSeqs_AnonJumptable:
 	ret
 
 AnimSeqs_IncAnonJumptableIndex:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
 	ret

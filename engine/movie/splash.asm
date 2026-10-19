@@ -94,10 +94,10 @@ GameFreakPresentsInit:
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], OAM_YCOORD_HIDDEN
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], 96
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld [hl], 48
 	xor a
@@ -199,7 +199,7 @@ GameFreakPresents_WaitForTimer:
 	ret
 
 GameFreakLogoSpriteAnim:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld e, [hl]
 	ld d, 0
@@ -219,7 +219,7 @@ GameFreakLogoSpriteAnim:
 	dw GameFreakLogo_Done
 
 GameFreakLogo_Init:
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
 	ret
@@ -230,7 +230,7 @@ GameFreakLogo_Bounce:
 ; Sine offset starts at 48 (32+32/2, or pi+pi/2), so it starts at the maximum
 ; value of the sine wave (i.e. the top of the screen).
 
-	ld hl, SPRITEANIMSTRUCT_VAR1 ; jump height
+	ld hl, SPRITEANIMSTRUCT_VAR2 ; jump height
 	add hl, bc
 	ld a, [hl]
 	and a
@@ -238,7 +238,7 @@ GameFreakLogo_Bounce:
 
 ; Load the sine offset, make sure it doesn't reach the negative part of the wave
 	ld d, a
-	ld hl, SPRITEANIMSTRUCT_VAR2 ; sine offset
+	ld hl, SPRITEANIMSTRUCT_VAR3 ; sine offset
 	add hl, bc
 	ld a, [hl]
 	and $3f ; full circle = 2*pi = 2*32
@@ -254,7 +254,7 @@ GameFreakLogo_Bounce:
 	ld [hl], e
 
 ; Decrement the sine offset
-	ld hl, SPRITEANIMSTRUCT_VAR2 ; sine offset
+	ld hl, SPRITEANIMSTRUCT_VAR3 ; sine offset
 	add hl, bc
 	ld a, [hl]
 	dec [hl]
@@ -262,7 +262,7 @@ GameFreakLogo_Bounce:
 	ret nz
 
 ; If the ditto's reached the ground, decrement the jump height and play the sfx
-	ld hl, SPRITEANIMSTRUCT_VAR1 ; jump height
+	ld hl, SPRITEANIMSTRUCT_VAR2 ; jump height
 	add hl, bc
 	ld a, [hl]
 	sub 48
@@ -272,10 +272,10 @@ GameFreakLogo_Bounce:
 	ret
 
 .done
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld [hl], 0
 	ld de, SFX_DITTO_POP_UP
@@ -284,7 +284,7 @@ GameFreakLogo_Bounce:
 
 GameFreakLogo_Ditto:
 ; Wait a little, then start transforming
-	ld hl, SPRITEANIMSTRUCT_VAR2 ; frame count
+	ld hl, SPRITEANIMSTRUCT_VAR3 ; frame count
 	add hl, bc
 	ld a, [hl]
 	cp 32
@@ -293,10 +293,10 @@ GameFreakLogo_Ditto:
 	ret
 
 .start_transform
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld [hl], 0
 	ld de, SFX_DITTO_TRANSFORM
@@ -304,7 +304,7 @@ GameFreakLogo_Ditto:
 	ret
 
 GameFreakLogo_Transform:
-	ld hl, SPRITEANIMSTRUCT_VAR2 ; frame count
+	ld hl, SPRITEANIMSTRUCT_VAR3 ; frame count
 	add hl, bc
 	ld a, [hl]
 	cp 64
@@ -334,7 +334,7 @@ GameFreakLogo_Transform:
 	ret
 
 .done
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	inc [hl]
 	call GameFreakPresents_NextScene

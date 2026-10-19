@@ -194,7 +194,7 @@ SetPartyMonIconAnimSpeed:
 	ld [hl], a
 	rlca
 	rlca
-	ld hl, SPRITEANIMSTRUCT_VAR2
+	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
 	ld [hl], a
 	ret

@@ -824,7 +824,7 @@ Hatch_InitShellFragments:
 	add [hl]
 	ld [hl], a
 
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], d
 

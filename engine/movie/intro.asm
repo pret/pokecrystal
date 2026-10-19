@@ -1192,7 +1192,7 @@ CrystalIntro_InitUnownAnim:
 	push de
 	ld a, SPRANIM_OBJ_INTRO_UNOWN
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $8
 	ld a, SPRANIM_CELSET_INTRO_UNOWN_4
@@ -1202,7 +1202,7 @@ CrystalIntro_InitUnownAnim:
 	push de
 	ld a, SPRANIM_OBJ_INTRO_UNOWN
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $18
 	ld a, SPRANIM_CELSET_INTRO_UNOWN_3
@@ -1212,7 +1212,7 @@ CrystalIntro_InitUnownAnim:
 	push de
 	ld a, SPRANIM_OBJ_INTRO_UNOWN
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $28
 	ld a, SPRANIM_CELSET_INTRO_UNOWN_1
@@ -1221,7 +1221,7 @@ CrystalIntro_InitUnownAnim:
 
 	ld a, SPRANIM_OBJ_INTRO_UNOWN
 	call InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_VAR1
+	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], $38
 	ld a, SPRANIM_CELSET_INTRO_UNOWN_2

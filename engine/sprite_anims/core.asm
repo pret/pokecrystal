@@ -194,11 +194,11 @@ _InitSpriteAnimStruct::
 	ld [hli], a ; SPRITEANIMSTRUCT_CEL
 ; load 0 into the last five fields
 	xor a
-	ld [hli], a ; SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	ld [hli], a ; SPRITEANIMSTRUCT_VAR1
 	ld [hli], a ; SPRITEANIMSTRUCT_VAR2
 	ld [hli], a ; SPRITEANIMSTRUCT_VAR3
-	ld [hl], a  ; SPRITEANIMSTRUCT_VAR4
+	ld [hli], a ; SPRITEANIMSTRUCT_VAR4
+	ld [hl], a  ; SPRITEANIMSTRUCT_VAR5
 ; back up the address of the first field to wSpriteAnimAddrBackup
 	ld a, c
 	ld [wSpriteAnimAddrBackup], a
