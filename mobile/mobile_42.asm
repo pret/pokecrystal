@@ -1188,7 +1188,7 @@ asm_108966:
 	ld hl, vTiles2
 	lb bc, BANK(TradeGameBoyLZ), $31
 	call Request2bpp
-	call WaitTop
+	call FinishBGMapTransfer
 	call MobileTradeAnim_ClearTilemap
 	hlcoord 7, 2
 	xor a
@@ -1201,7 +1201,7 @@ asm_108966:
 Function10898a:
 	ld de, vTiles2
 	call MobileTradeAnim_GetFrontpic
-	call WaitTop
+	call FinishBGMapTransfer
 	call MobileTradeAnim_ClearTilemap
 	hlcoord 7, 2
 	xor a
@@ -1248,7 +1248,7 @@ MobileTradeAnim_DisplayReceivedMon:
 	ret
 
 MobileTradeAnim_DisplayEggData:
-	call WaitTop
+	call FinishBGMapTransfer
 	call MobileTradeAnim_ClearTilemap
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
@@ -1269,7 +1269,7 @@ MobileTradeAnim_DisplayEggData:
 	db   "@"
 
 Function108a33:
-	call WaitTop
+	call FinishBGMapTransfer
 	call MobileTradeAnim_ClearTilemap
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
@@ -1287,7 +1287,7 @@ Function108a33:
 	db "なぞのタマゴ@"
 
 MobileTradeAnim_LoadMonTemplate:
-	call WaitTop
+	call FinishBGMapTransfer
 	call MobileTradeAnim_ClearTilemap
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
@@ -1309,7 +1309,7 @@ MobileTradeAnim_LoadMonTemplate:
 
 MobileTradeAnim_MonDisplay_UpdateBGMap:
 	call WaitBGMap
-	call WaitTop
+	call FinishBGMapTransfer
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a
 	ret
