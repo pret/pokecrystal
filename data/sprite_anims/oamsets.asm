@@ -4,198 +4,198 @@ MACRO spriteanimoam
 	dw \2
 ENDM
 
-SpriteAnimOAMData:
+SpriteAnim_OAMSets:
 ; entries correspond to SPRANIM_OAMSET_* constants (see constants/sprite_anim_constants.asm)
 	table_width 3
-	spriteanimoam $00, .OAMData_RedWalk                  ; SPRANIM_OAMSET_RED_WALK_1
-	spriteanimoam $04, .OAMData_RedWalk                  ; SPRANIM_OAMSET_RED_WALK_2
-	spriteanimoam $4c, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_BUBBLE_1
-	spriteanimoam $5c, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_BUBBLE_2
-	spriteanimoam $6c, .OAMData_GSIntroShellder          ; SPRANIM_OAMSET_GS_INTRO_SHELLDER_1
-	spriteanimoam $6e, .OAMData_GSIntroShellder          ; SPRANIM_OAMSET_GS_INTRO_SHELLDER_2
-	spriteanimoam $2d, .OAMData_GSIntroMagikarp          ; SPRANIM_OAMSET_GS_INTRO_MAGIKARP_1
-	spriteanimoam $4d, .OAMData_GSIntroMagikarp          ; SPRANIM_OAMSET_GS_INTRO_MAGIKARP_2
-	spriteanimoam $60, .OAMData_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_UNUSED_LAPRAS
-	spriteanimoam $00, .OAMData_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_1
-	spriteanimoam $00, .OAMData_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_2
-	spriteanimoam $06, .OAMData_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_3
-	spriteanimoam $0c, .OAMData_GSIntroNote              ; SPRANIM_OAMSET_GS_INTRO_NOTE
-	spriteanimoam $0d, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_INVISIBLE_NOTE
-	spriteanimoam $00, .OAMData_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1
-	spriteanimoam $04, .OAMData_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2
-	spriteanimoam $08, .OAMData_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_3
-	spriteanimoam $40, .OAMData_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_1
-	spriteanimoam $44, .OAMData_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_2
-	spriteanimoam $48, .OAMData_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_3
-	spriteanimoam $4c, .OAMData_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_4
-	spriteanimoam $80, .OAMData_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_1
-	spriteanimoam $85, .OAMData_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_2
-	spriteanimoam $8a, .OAMData_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_3
-	spriteanimoam $00, .OAMData_IntroUnownF2_1           ; SPRANIM_OAMSET_GS_INTRO_SMALL_FIREBALL
-	spriteanimoam $01, .OAMData_TradePoofBubble          ; SPRANIM_OAMSET_GS_INTRO_MED_FIREBALL
-	spriteanimoam $09, .OAMData_GSIntroBigFireball       ; SPRANIM_OAMSET_GS_INTRO_BIG_FIREBALL
-	spriteanimoam $10, .OAMData_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_CHIKORITA
-	spriteanimoam $29, .OAMData_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_CYNDAQUIL
-	spriteanimoam $42, .OAMData_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_TOTODILE
-	spriteanimoam $f8, .OAMData_GSTitleTrail             ; SPRANIM_OAMSET_GS_TITLE_TRAIL_1
-	spriteanimoam $fa, .OAMData_GSTitleTrail             ; SPRANIM_OAMSET_GS_TITLE_TRAIL_2
-	spriteanimoam $00, .OAMData_TextEntryCursor          ; SPRANIM_OAMSET_TEXT_ENTRY_CURSOR
-	spriteanimoam $00, .OAMData_TextEntryCursorBig       ; SPRANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG
-	spriteanimoam $00, .OAMData_GSGameFreakLogo          ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO
-	spriteanimoam $0f, .OAMData_GSGameFreakLogoStar      ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR
-	spriteanimoam $11, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_1
-	spriteanimoam $12, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_2
-	spriteanimoam $13, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_3
-	spriteanimoam $00, .OAMData_SlotsGolem               ; SPRANIM_OAMSET_SLOTS_GOLEM_1
-	spriteanimoam $08, .OAMData_SlotsGolem               ; SPRANIM_OAMSET_SLOTS_GOLEM_2
-	spriteanimoam $10, .OAMData_SlotsChansey1            ; SPRANIM_OAMSET_SLOTS_CHANSEY_1
-	spriteanimoam $10, .OAMData_SlotsChansey2            ; SPRANIM_OAMSET_SLOTS_CHANSEY_2
-	spriteanimoam $10, .OAMData_SlotsChansey3            ; SPRANIM_OAMSET_SLOTS_CHANSEY_3
-	spriteanimoam $10, .OAMData_SlotsChansey4            ; SPRANIM_OAMSET_SLOTS_CHANSEY_4
-	spriteanimoam $10, .OAMData_SlotsChansey5            ; SPRANIM_OAMSET_SLOTS_CHANSEY_5
-	spriteanimoam $3a, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_SLOTS_EGG
-	spriteanimoam $00, .OAMData_RedWalk                  ; SPRANIM_OAMSET_STILL_CURSOR
-	spriteanimoam $00, .OAMData_TradePokeBall1           ; SPRANIM_OAMSET_TRADE_POKE_BALL_1
-	spriteanimoam $02, .OAMData_MagnetTrainRed           ; SPRANIM_OAMSET_TRADE_POKE_BALL_2
-	spriteanimoam $06, .OAMData_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_1
-	spriteanimoam $0a, .OAMData_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_2
-	spriteanimoam $0e, .OAMData_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_3
-	spriteanimoam $12, .OAMData_TradeTubeBulge           ; SPRANIM_OAMSET_TRADE_TUBE_BULGE_1
-	spriteanimoam $13, .OAMData_TradeTubeBulge           ; SPRANIM_OAMSET_TRADE_TUBE_BULGE_2
-	spriteanimoam $00, .OAMData_RedWalk                  ; SPRANIM_OAMSET_TRADEMON_ICON_1
-	spriteanimoam $04, .OAMData_RedWalk                  ; SPRANIM_OAMSET_TRADEMON_ICON_2
-	spriteanimoam $10, .OAMData_TradePoofBubble          ; SPRANIM_OAMSET_TRADEMON_BUBBLE
-	spriteanimoam $00, .OAMData_MagnetTrainRed           ; SPRANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_1
-	spriteanimoam $04, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_2
-	spriteanimoam $00, .OAMData_RadioTuningKnob          ; SPRANIM_OAMSET_RADIO_TUNING_KNOB
-	spriteanimoam $00, .OAMData_PartyMonWithMail1        ; SPRANIM_OAMSET_PARTY_MON_WITH_MAIL_1
-	spriteanimoam $00, .OAMData_PartyMonWithMail2        ; SPRANIM_OAMSET_PARTY_MON_WITH_MAIL_2
-	spriteanimoam $00, .OAMData_PartyMonWithItem1        ; SPRANIM_OAMSET_PARTY_MON_WITH_ITEM_1
-	spriteanimoam $00, .OAMData_PartyMonWithItem2        ; SPRANIM_OAMSET_PARTY_MON_WITH_ITEM_2
-	spriteanimoam $00, .OAMData_MagnetTrainRed           ; SPRANIM_OAMSET_MAGNET_TRAIN_RED_1
-	spriteanimoam $04, .OAMData_MagnetTrainRed           ; SPRANIM_OAMSET_MAGNET_TRAIN_RED_2
-	spriteanimoam $00, .OAMData_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_43
-	spriteanimoam $30, .OAMData_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_44
-	spriteanimoam $03, .OAMData_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_45
-	spriteanimoam $33, .OAMData_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_46
-	spriteanimoam $06, .OAMData_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_47
-	spriteanimoam $36, .OAMData_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_48
-	spriteanimoam $09, .OAMData_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_49
-	spriteanimoam $39, .OAMData_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_4A
-	spriteanimoam $0c, .OAMData_Unused4B                 ; SPRANIM_OAMSET_UNUSED_4B
-	spriteanimoam $0c, .OAMData_Unused4C                 ; SPRANIM_OAMSET_UNUSED_4C
-	spriteanimoam $3c, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_UNUSED_4D
-	spriteanimoam $3e, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_UNUSED_4E
-	spriteanimoam $00, .OAMData_Leaf                     ; SPRANIM_OAMSET_LEAF
-	spriteanimoam $00, .OAMData_Tree                     ; SPRANIM_OAMSET_TREE_1
-	spriteanimoam $00, .OAMData_CutTree2                 ; SPRANIM_OAMSET_CUT_TREE_2
-	spriteanimoam $00, .OAMData_CutTree3                 ; SPRANIM_OAMSET_CUT_TREE_3
-	spriteanimoam $00, .OAMData_CutTree4                 ; SPRANIM_OAMSET_CUT_TREE_4
-	spriteanimoam $00, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_EGG_CRACK
-	spriteanimoam $01, .OAMData_1x1_Palette0             ; SPRANIM_OAMSET_EGG_HATCH
-	spriteanimoam $00, .OAMData_GSIntroHoOhLugia1        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_1
-	spriteanimoam $00, .OAMData_GSIntroHoOhLugia2        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_2
-	spriteanimoam $00, .OAMData_GSIntroHoOhLugia3        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_3
-	spriteanimoam $00, .OAMData_GSIntroHoOhLugia4        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_4
-	spriteanimoam $00, .OAMData_GSIntroHoOhLugia5        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_5
-	spriteanimoam $04, .OAMData_Tree                     ; SPRANIM_OAMSET_HEADBUTT_TREE_2
-	spriteanimoam $00, .OAMData_EZChatCursor1            ; SPRANIM_OAMSET_EZCHAT_CURSOR_1
-	spriteanimoam $00, .OAMData_EZChatCursor2            ; SPRANIM_OAMSET_EZCHAT_CURSOR_2
-	spriteanimoam $00, .OAMData_EZChatCursor3            ; SPRANIM_OAMSET_EZCHAT_CURSOR_3
-	spriteanimoam $00, .OAMData_EZChatCursor4            ; SPRANIM_OAMSET_EZCHAT_CURSOR_4
-	spriteanimoam $00, .OAMData_EZChatCursor5            ; SPRANIM_OAMSET_EZCHAT_CURSOR_5
-	spriteanimoam $00, .OAMData_EZChatCursor6            ; SPRANIM_OAMSET_EZCHAT_CURSOR_6
-	spriteanimoam $00, .OAMData_EZChatCursor7            ; SPRANIM_OAMSET_EZCHAT_CURSOR_7
-	spriteanimoam $00, .OAMData_BlueWalk                 ; SPRANIM_OAMSET_BLUE_WALK_1
-	spriteanimoam $04, .OAMData_BlueWalk                 ; SPRANIM_OAMSET_BLUE_WALK_2
-	spriteanimoam $00, .OAMData_MagnetTrainBlue          ; SPRANIM_OAMSET_MAGNET_TRAIN_BLUE_1
-	spriteanimoam $04, .OAMData_MagnetTrainBlue          ; SPRANIM_OAMSET_MAGNET_TRAIN_BLUE_2
-	spriteanimoam $20, .OAMData_MobileTradeCableBulge    ; SPRANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_1
-	spriteanimoam $21, .OAMData_MobileTradeCableBulge    ; SPRANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_2
-	spriteanimoam $22, .OAMData_MobileTradePing1         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_1
-	spriteanimoam $23, .OAMData_MobileTradePing2         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_2
-	spriteanimoam $27, .OAMData_MobileTradePing3         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_3
-	spriteanimoam $2a, .OAMData_MobileTradeSentPulse     ; SPRANIM_OAMSET_MOBILE_TRADE_SENT_PULSE
-	spriteanimoam $2a, .OAMData_MobileTradeOTPulse       ; SPRANIM_OAMSET_MOBILE_TRADE_OT_PULSE
-	spriteanimoam $00, .OAMData_IntroSuicune1            ; SPRANIM_OAMSET_INTRO_SUICUNE_1
-	spriteanimoam $08, .OAMData_IntroSuicune2            ; SPRANIM_OAMSET_INTRO_SUICUNE_2
-	spriteanimoam $60, .OAMData_IntroSuicune3            ; SPRANIM_OAMSET_INTRO_SUICUNE_3
-	spriteanimoam $68, .OAMData_IntroSuicune4            ; SPRANIM_OAMSET_INTRO_SUICUNE_4
-	spriteanimoam $00, .OAMData_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_1
-	spriteanimoam $05, .OAMData_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_2
-	spriteanimoam $0a, .OAMData_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_3
-	spriteanimoam $50, .OAMData_IntroWooper              ; SPRANIM_OAMSET_INTRO_WOOPER
-	spriteanimoam $00, .OAMData_IntroUnown1              ; SPRANIM_OAMSET_INTRO_UNOWN_1
-	spriteanimoam $01, .OAMData_IntroUnown2              ; SPRANIM_OAMSET_INTRO_UNOWN_2
-	spriteanimoam $04, .OAMData_IntroUnown3              ; SPRANIM_OAMSET_INTRO_UNOWN_3
-	spriteanimoam $00, .OAMData_IntroUnownF2_1           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_1
-	spriteanimoam $01, .OAMData_IntroUnownF2_2           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_2
-	spriteanimoam $03, .OAMData_IntroUnownF2_3           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_3
-	spriteanimoam $08, .OAMData_IntroUnownF2_4_5         ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_4
-	spriteanimoam $1c, .OAMData_IntroUnownF2_4_5         ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_5
-	spriteanimoam $80, .OAMData_IntroSuicuneAway         ; SPRANIM_OAMSET_INTRO_SUICUNE_AWAY
-	spriteanimoam $00, .OAMData_Celebi                   ; SPRANIM_OAMSET_CELEBI_1
-	spriteanimoam $04, .OAMData_Celebi                   ; SPRANIM_OAMSET_CELEBI_2
-	spriteanimoam $d0, .OAMData_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_1
-	spriteanimoam $d3, .OAMData_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_2
-	spriteanimoam $d6, .OAMData_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_3
-	spriteanimoam $6c, .OAMData_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_4
-	spriteanimoam $68, .OAMData_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_5
-	spriteanimoam $64, .OAMData_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_6
-	spriteanimoam $60, .OAMData_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_7
-	spriteanimoam $0c, .OAMData_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_8
-	spriteanimoam $08, .OAMData_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_9
-	spriteanimoam $04, .OAMData_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_10
-	spriteanimoam $00, .OAMData_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_11
+	spriteanimoam $00, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_RED_WALK_1
+	spriteanimoam $04, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_RED_WALK_2
+	spriteanimoam $4c, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_BUBBLE_1
+	spriteanimoam $5c, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_BUBBLE_2
+	spriteanimoam $6c, .OAMSet_GSIntroShellder          ; SPRANIM_OAMSET_GS_INTRO_SHELLDER_1
+	spriteanimoam $6e, .OAMSet_GSIntroShellder          ; SPRANIM_OAMSET_GS_INTRO_SHELLDER_2
+	spriteanimoam $2d, .OAMSet_GSIntroMagikarp          ; SPRANIM_OAMSET_GS_INTRO_MAGIKARP_1
+	spriteanimoam $4d, .OAMSet_GSIntroMagikarp          ; SPRANIM_OAMSET_GS_INTRO_MAGIKARP_2
+	spriteanimoam $60, .OAMSet_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_UNUSED_LAPRAS
+	spriteanimoam $00, .OAMSet_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_1
+	spriteanimoam $00, .OAMSet_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_2
+	spriteanimoam $06, .OAMSet_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_3
+	spriteanimoam $0c, .OAMSet_GSIntroNote              ; SPRANIM_OAMSET_GS_INTRO_NOTE
+	spriteanimoam $0d, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_INVISIBLE_NOTE
+	spriteanimoam $00, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1
+	spriteanimoam $04, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2
+	spriteanimoam $08, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_3
+	spriteanimoam $40, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_1
+	spriteanimoam $44, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_2
+	spriteanimoam $48, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_3
+	spriteanimoam $4c, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_4
+	spriteanimoam $80, .OAMSet_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_1
+	spriteanimoam $85, .OAMSet_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_2
+	spriteanimoam $8a, .OAMSet_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_3
+	spriteanimoam $00, .OAMSet_IntroUnownF2_1           ; SPRANIM_OAMSET_GS_INTRO_SMALL_FIREBALL
+	spriteanimoam $01, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_GS_INTRO_MED_FIREBALL
+	spriteanimoam $09, .OAMSet_GSIntroBigFireball       ; SPRANIM_OAMSET_GS_INTRO_BIG_FIREBALL
+	spriteanimoam $10, .OAMSet_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_CHIKORITA
+	spriteanimoam $29, .OAMSet_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_CYNDAQUIL
+	spriteanimoam $42, .OAMSet_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_TOTODILE
+	spriteanimoam $f8, .OAMSet_GSTitleTrail             ; SPRANIM_OAMSET_GS_TITLE_TRAIL_1
+	spriteanimoam $fa, .OAMSet_GSTitleTrail             ; SPRANIM_OAMSET_GS_TITLE_TRAIL_2
+	spriteanimoam $00, .OAMSet_TextEntryCursor          ; SPRANIM_OAMSET_TEXT_ENTRY_CURSOR
+	spriteanimoam $00, .OAMSet_TextEntryCursorBig       ; SPRANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG
+	spriteanimoam $00, .OAMSet_GSGameFreakLogo          ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO
+	spriteanimoam $0f, .OAMSet_GSGameFreakLogoStar      ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR
+	spriteanimoam $11, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_1
+	spriteanimoam $12, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_2
+	spriteanimoam $13, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_3
+	spriteanimoam $00, .OAMSet_SlotsGolem               ; SPRANIM_OAMSET_SLOTS_GOLEM_1
+	spriteanimoam $08, .OAMSet_SlotsGolem               ; SPRANIM_OAMSET_SLOTS_GOLEM_2
+	spriteanimoam $10, .OAMSet_SlotsChansey1            ; SPRANIM_OAMSET_SLOTS_CHANSEY_1
+	spriteanimoam $10, .OAMSet_SlotsChansey2            ; SPRANIM_OAMSET_SLOTS_CHANSEY_2
+	spriteanimoam $10, .OAMSet_SlotsChansey3            ; SPRANIM_OAMSET_SLOTS_CHANSEY_3
+	spriteanimoam $10, .OAMSet_SlotsChansey4            ; SPRANIM_OAMSET_SLOTS_CHANSEY_4
+	spriteanimoam $10, .OAMSet_SlotsChansey5            ; SPRANIM_OAMSET_SLOTS_CHANSEY_5
+	spriteanimoam $3a, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_SLOTS_EGG
+	spriteanimoam $00, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_STILL_CURSOR
+	spriteanimoam $00, .OAMSet_TradePokeBall1           ; SPRANIM_OAMSET_TRADE_POKE_BALL_1
+	spriteanimoam $02, .OAMSet_MagnetTrainRed           ; SPRANIM_OAMSET_TRADE_POKE_BALL_2
+	spriteanimoam $06, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_1
+	spriteanimoam $0a, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_2
+	spriteanimoam $0e, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_3
+	spriteanimoam $12, .OAMSet_TradeTubeBulge           ; SPRANIM_OAMSET_TRADE_TUBE_BULGE_1
+	spriteanimoam $13, .OAMSet_TradeTubeBulge           ; SPRANIM_OAMSET_TRADE_TUBE_BULGE_2
+	spriteanimoam $00, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_TRADEMON_ICON_1
+	spriteanimoam $04, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_TRADEMON_ICON_2
+	spriteanimoam $10, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_TRADEMON_BUBBLE
+	spriteanimoam $00, .OAMSet_MagnetTrainRed           ; SPRANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_1
+	spriteanimoam $04, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_2
+	spriteanimoam $00, .OAMSet_RadioTuningKnob          ; SPRANIM_OAMSET_RADIO_TUNING_KNOB
+	spriteanimoam $00, .OAMSet_PartyMonWithMail1        ; SPRANIM_OAMSET_PARTY_MON_WITH_MAIL_1
+	spriteanimoam $00, .OAMSet_PartyMonWithMail2        ; SPRANIM_OAMSET_PARTY_MON_WITH_MAIL_2
+	spriteanimoam $00, .OAMSet_PartyMonWithItem1        ; SPRANIM_OAMSET_PARTY_MON_WITH_ITEM_1
+	spriteanimoam $00, .OAMSet_PartyMonWithItem2        ; SPRANIM_OAMSET_PARTY_MON_WITH_ITEM_2
+	spriteanimoam $00, .OAMSet_MagnetTrainRed           ; SPRANIM_OAMSET_MAGNET_TRAIN_RED_1
+	spriteanimoam $04, .OAMSet_MagnetTrainRed           ; SPRANIM_OAMSET_MAGNET_TRAIN_RED_2
+	spriteanimoam $00, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_43
+	spriteanimoam $30, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_44
+	spriteanimoam $03, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_45
+	spriteanimoam $33, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_46
+	spriteanimoam $06, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_47
+	spriteanimoam $36, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_48
+	spriteanimoam $09, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_49
+	spriteanimoam $39, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_4A
+	spriteanimoam $0c, .OAMSet_Unused4B                 ; SPRANIM_OAMSET_UNUSED_4B
+	spriteanimoam $0c, .OAMSet_Unused4C                 ; SPRANIM_OAMSET_UNUSED_4C
+	spriteanimoam $3c, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_UNUSED_4D
+	spriteanimoam $3e, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_UNUSED_4E
+	spriteanimoam $00, .OAMSet_Leaf                     ; SPRANIM_OAMSET_LEAF
+	spriteanimoam $00, .OAMSet_Tree                     ; SPRANIM_OAMSET_TREE_1
+	spriteanimoam $00, .OAMSet_CutTree2                 ; SPRANIM_OAMSET_CUT_TREE_2
+	spriteanimoam $00, .OAMSet_CutTree3                 ; SPRANIM_OAMSET_CUT_TREE_3
+	spriteanimoam $00, .OAMSet_CutTree4                 ; SPRANIM_OAMSET_CUT_TREE_4
+	spriteanimoam $00, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_EGG_CRACK
+	spriteanimoam $01, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_EGG_HATCH
+	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia1        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_1
+	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia2        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_2
+	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia3        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_3
+	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia4        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_4
+	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia5        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_5
+	spriteanimoam $04, .OAMSet_Tree                     ; SPRANIM_OAMSET_HEADBUTT_TREE_2
+	spriteanimoam $00, .OAMSet_EZChatCursor1            ; SPRANIM_OAMSET_EZCHAT_CURSOR_1
+	spriteanimoam $00, .OAMSet_EZChatCursor2            ; SPRANIM_OAMSET_EZCHAT_CURSOR_2
+	spriteanimoam $00, .OAMSet_EZChatCursor3            ; SPRANIM_OAMSET_EZCHAT_CURSOR_3
+	spriteanimoam $00, .OAMSet_EZChatCursor4            ; SPRANIM_OAMSET_EZCHAT_CURSOR_4
+	spriteanimoam $00, .OAMSet_EZChatCursor5            ; SPRANIM_OAMSET_EZCHAT_CURSOR_5
+	spriteanimoam $00, .OAMSet_EZChatCursor6            ; SPRANIM_OAMSET_EZCHAT_CURSOR_6
+	spriteanimoam $00, .OAMSet_EZChatCursor7            ; SPRANIM_OAMSET_EZCHAT_CURSOR_7
+	spriteanimoam $00, .OAMSet_BlueWalk                 ; SPRANIM_OAMSET_BLUE_WALK_1
+	spriteanimoam $04, .OAMSet_BlueWalk                 ; SPRANIM_OAMSET_BLUE_WALK_2
+	spriteanimoam $00, .OAMSet_MagnetTrainBlue          ; SPRANIM_OAMSET_MAGNET_TRAIN_BLUE_1
+	spriteanimoam $04, .OAMSet_MagnetTrainBlue          ; SPRANIM_OAMSET_MAGNET_TRAIN_BLUE_2
+	spriteanimoam $20, .OAMSet_MobileTradeCableBulge    ; SPRANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_1
+	spriteanimoam $21, .OAMSet_MobileTradeCableBulge    ; SPRANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_2
+	spriteanimoam $22, .OAMSet_MobileTradePing1         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_1
+	spriteanimoam $23, .OAMSet_MobileTradePing2         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_2
+	spriteanimoam $27, .OAMSet_MobileTradePing3         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_3
+	spriteanimoam $2a, .OAMSet_MobileTradeSentPulse     ; SPRANIM_OAMSET_MOBILE_TRADE_SENT_PULSE
+	spriteanimoam $2a, .OAMSet_MobileTradeOTPulse       ; SPRANIM_OAMSET_MOBILE_TRADE_OT_PULSE
+	spriteanimoam $00, .OAMSet_IntroSuicune1            ; SPRANIM_OAMSET_INTRO_SUICUNE_1
+	spriteanimoam $08, .OAMSet_IntroSuicune2            ; SPRANIM_OAMSET_INTRO_SUICUNE_2
+	spriteanimoam $60, .OAMSet_IntroSuicune3            ; SPRANIM_OAMSET_INTRO_SUICUNE_3
+	spriteanimoam $68, .OAMSet_IntroSuicune4            ; SPRANIM_OAMSET_INTRO_SUICUNE_4
+	spriteanimoam $00, .OAMSet_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_1
+	spriteanimoam $05, .OAMSet_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_2
+	spriteanimoam $0a, .OAMSet_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_3
+	spriteanimoam $50, .OAMSet_IntroWooper              ; SPRANIM_OAMSET_INTRO_WOOPER
+	spriteanimoam $00, .OAMSet_IntroUnown1              ; SPRANIM_OAMSET_INTRO_UNOWN_1
+	spriteanimoam $01, .OAMSet_IntroUnown2              ; SPRANIM_OAMSET_INTRO_UNOWN_2
+	spriteanimoam $04, .OAMSet_IntroUnown3              ; SPRANIM_OAMSET_INTRO_UNOWN_3
+	spriteanimoam $00, .OAMSet_IntroUnownF2_1           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_1
+	spriteanimoam $01, .OAMSet_IntroUnownF2_2           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_2
+	spriteanimoam $03, .OAMSet_IntroUnownF2_3           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_3
+	spriteanimoam $08, .OAMSet_IntroUnownF2_4_5         ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_4
+	spriteanimoam $1c, .OAMSet_IntroUnownF2_4_5         ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_5
+	spriteanimoam $80, .OAMSet_IntroSuicuneAway         ; SPRANIM_OAMSET_INTRO_SUICUNE_AWAY
+	spriteanimoam $00, .OAMSet_Celebi                   ; SPRANIM_OAMSET_CELEBI_1
+	spriteanimoam $04, .OAMSet_Celebi                   ; SPRANIM_OAMSET_CELEBI_2
+	spriteanimoam $d0, .OAMSet_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_1
+	spriteanimoam $d3, .OAMSet_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_2
+	spriteanimoam $d6, .OAMSet_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_3
+	spriteanimoam $6c, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_4
+	spriteanimoam $68, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_5
+	spriteanimoam $64, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_6
+	spriteanimoam $60, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_7
+	spriteanimoam $0c, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_8
+	spriteanimoam $08, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_9
+	spriteanimoam $04, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_10
+	spriteanimoam $00, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_11
 	assert_table_length NUM_SPRANIM_OAMSETS
 
-.OAMData_1x1_Palette0:
+.OAMSet_1x1_Palette0:
 	db 1
 	dbsprite -1, -1,  4,  4, $00, 0
 
-.OAMData_GSIntroShellder:
+.OAMSet_GSIntroShellder:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 0
 	dbsprite  0, -1,  0,  0, $01, 0
 	dbsprite -1,  0,  0,  0, $10, 0
 	dbsprite  0,  0,  0,  0, $11, 0
 
-.OAMData_GSGameFreakLogoStar:
+.OAMSet_GSGameFreakLogoStar:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 0
 	dbsprite  0, -1,  0,  0, $00, 0 | OAM_XFLIP
 	dbsprite -1,  0,  0,  0, $01, 0
 	dbsprite  0,  0,  0,  0, $01, 0 | OAM_XFLIP
 
-.OAMData_TradePokeBall1:
+.OAMSet_TradePokeBall1:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 0 | OAM_PRIO
 	dbsprite  0, -1,  0,  0, $00, 0 | OAM_XFLIP | OAM_PRIO
 	dbsprite -1,  0,  0,  0, $01, 0 | OAM_PRIO
 	dbsprite  0,  0,  0,  0, $01, 0 | OAM_XFLIP | OAM_PRIO
 
-.OAMData_IntroUnownF2_1:
+.OAMSet_IntroUnownF2_1:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 0
 	dbsprite  0, -1,  0,  0, $00, 0 | OAM_XFLIP
 	dbsprite -1,  0,  0,  0, $00, 0 | OAM_YFLIP
 	dbsprite  0,  0,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_TradeTubeBulge:
+.OAMSet_TradeTubeBulge:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 7
 	dbsprite  0, -1,  0,  0, $00, 7 | OAM_XFLIP
 	dbsprite -1,  0,  0,  0, $00, 7 | OAM_YFLIP
 	dbsprite  0,  0,  0,  0, $00, 7 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_Unknown1: ; unreferenced
+.OAMSet_Unknown1: ; unreferenced
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 0 | OAM_PRIO
 	dbsprite  0, -1,  0,  0, $00, 0 | OAM_XFLIP | OAM_PRIO
 	dbsprite -1,  0,  0,  0, $00, 0 | OAM_YFLIP | OAM_PRIO
 	dbsprite  0,  0,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP | OAM_PRIO
 
-.OAMData_TradePoofBubble:
+.OAMSet_TradePoofBubble:
 	db 16
 	dbsprite -2, -2,  0,  0, $00, 0
 	dbsprite -1, -2,  0,  0, $01, 0
@@ -214,7 +214,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  1,  0,  0, $01, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  1,  1,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_GSIntroBigFireball:
+.OAMSet_GSIntroBigFireball:
 	db 36
 	dbsprite -3, -3,  0,  0, $00, 0
 	dbsprite -2, -3,  0,  0, $01, 0
@@ -253,7 +253,7 @@ SpriteAnimOAMData:
 	dbsprite  1,  2,  0,  0, $01, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  2,  2,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_Unused43_4A:
+.OAMSet_Unused43_4A:
 	db 9
 	dbsprite -2, -2,  4,  4, $00, 0
 	dbsprite -1, -2,  4,  4, $01, 0
@@ -265,7 +265,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  4, $21, 0
 	dbsprite  0,  0,  4,  4, $22, 0
 
-.OAMData_GSIntroJigglypuffPikachu:
+.OAMSet_GSIntroJigglypuffPikachu:
 	db 16
 	dbsprite -2, -2,  0,  0, $00, 0
 	dbsprite -1, -2,  0,  0, $01, 0
@@ -284,7 +284,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  1,  0,  0, $32, 0
 	dbsprite  1,  1,  0,  0, $33, 0
 
-.OAMData_GSIntroStarter:
+.OAMSet_GSIntroStarter:
 	db 25
 	dbsprite -3, -3,  4,  4, $00, 0
 	dbsprite -3, -2,  4,  4, $01, 0
@@ -312,7 +312,7 @@ SpriteAnimOAMData:
 	dbsprite  1,  0,  4,  4, $17, 0
 	dbsprite  1,  1,  4,  4, $18, 0
 
-.OAMData_Unknown2: ; unreferenced
+.OAMSet_Unknown2: ; unreferenced
 	db 36
 	dbsprite -3, -3,  0,  0, $00, 0
 	dbsprite -2, -3,  0,  0, $01, 0
@@ -351,49 +351,49 @@ SpriteAnimOAMData:
 	dbsprite  1,  2,  0,  0, $22, 0
 	dbsprite  2,  2,  0,  0, $23, 0
 
-.OAMData_RedWalk:
+.OAMSet_RedWalk:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, PAL_OW_RED
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_RED
 	dbsprite -1,  0,  0,  0, $02, PAL_OW_RED
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_RED
 
-.OAMData_MagnetTrainRed:
+.OAMSet_MagnetTrainRed:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, PAL_OW_RED | OAM_PRIO
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_RED | OAM_PRIO
 	dbsprite -1,  0,  0,  0, $02, PAL_OW_RED | OAM_PRIO
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_RED | OAM_PRIO
 
-.OAMData_PartyMonWithMail1:
+.OAMSet_PartyMonWithMail1:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, PAL_OW_RED
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_RED
 	dbsprite -1,  0,  0,  0, $08, PAL_OW_RED
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_RED
 
-.OAMData_PartyMonWithMail2:
+.OAMSet_PartyMonWithMail2:
 	db 4
 	dbsprite -1, -1,  0,  0, $04, PAL_OW_RED
 	dbsprite  0, -1,  0,  0, $05, PAL_OW_RED
 	dbsprite -1,  0,  0,  0, $08, PAL_OW_RED
 	dbsprite  0,  0,  0,  0, $07, PAL_OW_RED
 
-.OAMData_PartyMonWithItem1:
+.OAMSet_PartyMonWithItem1:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, PAL_OW_RED
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_RED
 	dbsprite -1,  0,  0,  0, $09, PAL_OW_RED
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_RED
 
-.OAMData_PartyMonWithItem2:
+.OAMSet_PartyMonWithItem2:
 	db 4
 	dbsprite -1, -1,  0,  0, $04, PAL_OW_RED
 	dbsprite  0, -1,  0,  0, $05, PAL_OW_RED
 	dbsprite -1,  0,  0,  0, $09, PAL_OW_RED
 	dbsprite  0,  0,  0,  0, $07, PAL_OW_RED
 
-.OAMData_GSIntroMagikarp:
+.OAMSet_GSIntroMagikarp:
 	db 6
 	dbsprite -2, -1,  4,  0, $00, 1
 	dbsprite -1, -1,  4,  0, $01, 1
@@ -402,7 +402,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  0, $11, 1
 	dbsprite  0,  0,  4,  0, $12, 1
 
-.OAMData_GSIntroLapras:
+.OAMSet_GSIntroLapras:
 	db 29
 	dbsprite -3, -3,  0,  0, $00, 0
 	dbsprite -2, -3,  0,  0, $01, 0
@@ -434,12 +434,12 @@ SpriteAnimOAMData:
 	dbsprite  1,  2,  0,  0, $54, 0 | OAM_PRIO
 	dbsprite  2,  2,  0,  0, $55, 0 | OAM_PRIO
 
-.OAMData_GSIntroNote:
+.OAMSet_GSIntroNote:
 	db 2
 	dbsprite -1, -1,  4,  0, $00, 0
 	dbsprite -1,  0,  4,  0, $10, 0
 
-.OAMData_GSIntroPikachuTail:
+.OAMSet_GSIntroPikachuTail:
 	db 5
 	dbsprite  3, -2,  0,  0, $00, 0
 	dbsprite  4, -2,  0,  0, $01, 0
@@ -447,25 +447,25 @@ SpriteAnimOAMData:
 	dbsprite  3, -1,  0,  0, $03, 0
 	dbsprite  2,  0,  0,  0, $04, 0
 
-.OAMData_Leaf:
+.OAMSet_Leaf:
 	db 1
 	dbsprite -1, -1,  4,  4, $00, PAL_OW_TREE
 
-.OAMData_Tree:
+.OAMSet_Tree:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, PAL_OW_TREE
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_TREE
 	dbsprite -1,  0,  0,  0, $02, PAL_OW_TREE
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_TREE
 
-.OAMData_TextEntryCursor:
+.OAMSet_TextEntryCursor:
 	db 4
 	dbsprite -1, -1,  7,  7, $00, 0
 	dbsprite  0, -1,  0,  7, $00, 0 | OAM_XFLIP
 	dbsprite -1,  0,  7,  0, $00, 0 | OAM_YFLIP
 	dbsprite  0,  0,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_TextEntryCursorBig:
+.OAMSet_TextEntryCursorBig:
 	db 10
 	dbsprite  0, -1,  0,  7, $00, 0
 	dbsprite  1, -1,  0,  7, $01, 0
@@ -478,7 +478,7 @@ SpriteAnimOAMData:
 	dbsprite  3,  0,  0,  0, $01, 0 | OAM_YFLIP
 	dbsprite  4,  0,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_GSGameFreakLogo:
+.OAMSet_GSGameFreakLogo:
 	db 15
 	dbsprite -2, -3,  4,  4, $00, 1 | OAM_PAL1
 	dbsprite -1, -3,  4,  4, $01, 1 | OAM_PAL1
@@ -496,7 +496,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  1,  4,  4, $0d, 1 | OAM_PAL1
 	dbsprite  0,  1,  4,  4, $0e, 1 | OAM_PAL1
 
-.OAMData_SlotsGolem:
+.OAMSet_SlotsGolem:
 	db 6
 	dbsprite -2, -2,  4,  4, $00, 5 | OAM_PAL1
 	dbsprite -1, -2,  4,  4, $02, 5 | OAM_PAL1
@@ -505,7 +505,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  4, $06, 5 | OAM_PAL1
 	dbsprite  0,  0,  4,  4, $04, 5 | OAM_PAL1 | OAM_XFLIP
 
-.OAMData_SlotsChansey1:
+.OAMSet_SlotsChansey1:
 	db 6
 	dbsprite -2, -2,  4,  4, $00, 6 | OAM_PAL1
 	dbsprite -1, -2,  4,  4, $02, 6 | OAM_PAL1
@@ -514,7 +514,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  4, $08, 6 | OAM_PAL1
 	dbsprite  0,  0,  4,  4, $0a, 6 | OAM_PAL1
 
-.OAMData_SlotsChansey2:
+.OAMSet_SlotsChansey2:
 	db 6
 	dbsprite -2, -2,  4,  4, $00, 6 | OAM_PAL1
 	dbsprite -1, -2,  4,  4, $02, 6 | OAM_PAL1
@@ -523,7 +523,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  4, $0e, 6 | OAM_PAL1
 	dbsprite  0,  0,  4,  4, $10, 6 | OAM_PAL1
 
-.OAMData_SlotsChansey3:
+.OAMSet_SlotsChansey3:
 	db 6
 	dbsprite -2, -2,  4,  4, $00, 6 | OAM_PAL1
 	dbsprite -1, -2,  4,  4, $02, 6 | OAM_PAL1
@@ -532,7 +532,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  4, $14, 6 | OAM_PAL1
 	dbsprite  0,  0,  4,  4, $16, 6 | OAM_PAL1
 
-.OAMData_SlotsChansey4:
+.OAMSet_SlotsChansey4:
 	db 6
 	dbsprite -2, -2,  4,  4, $00, 6 | OAM_PAL1
 	dbsprite -1, -2,  4,  4, $02, 6 | OAM_PAL1
@@ -541,7 +541,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  4, $1a, 6 | OAM_PAL1
 	dbsprite  0,  0,  4,  4, $1c, 6 | OAM_PAL1
 
-.OAMData_SlotsChansey5:
+.OAMSet_SlotsChansey5:
 	db 6
 	dbsprite -2, -2,  4,  4, $1e, 6 | OAM_PAL1
 	dbsprite -1, -2,  4,  4, $20, 6 | OAM_PAL1
@@ -550,13 +550,13 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  4, $26, 6 | OAM_PAL1
 	dbsprite  0,  0,  4,  4, $28, 6 | OAM_PAL1
 
-.OAMData_RadioTuningKnob:
+.OAMSet_RadioTuningKnob:
 	db 3
 	dbsprite -1, -2,  4,  4, $00, 0 | OAM_PAL1
 	dbsprite -1, -1,  4,  4, $00, 0 | OAM_PAL1
 	dbsprite -1,  0,  4,  4, $00, 0 | OAM_PAL1
 
-.OAMData_Unused4B:
+.OAMSet_Unused4B:
 	db 6
 	dbsprite  0,  0,  0,  0, $00, 0
 	dbsprite  1,  0,  0,  0, $01, 0
@@ -565,35 +565,35 @@ SpriteAnimOAMData:
 	dbsprite  4,  0,  0,  0, $02, 0
 	dbsprite  5,  0,  0,  0, $03, 0
 
-.OAMData_Unused4C:
+.OAMSet_Unused4C:
 	db 4
 	dbsprite  0,  0,  0,  0, $00, 0
 	dbsprite  1,  0,  0,  0, $01, 0
 	dbsprite  2,  0,  0,  0, $02, 0
 	dbsprite  3,  0,  0,  0, $03, 0
 
-.OAMData_CutTree2:
+.OAMSet_CutTree2:
 	db 4
 	dbsprite -2, -1,  6,  0, $00, PAL_OW_TREE
 	dbsprite  0, -1,  2,  0, $01, PAL_OW_TREE
 	dbsprite -2,  0,  6,  0, $02, PAL_OW_TREE
 	dbsprite  0,  0,  2,  0, $03, PAL_OW_TREE
 
-.OAMData_CutTree3:
+.OAMSet_CutTree3:
 	db 4
 	dbsprite -2, -1,  4,  0, $00, PAL_OW_TREE
 	dbsprite  0, -1,  4,  0, $01, PAL_OW_TREE
 	dbsprite -2,  0,  4,  0, $02, PAL_OW_TREE
 	dbsprite  0,  0,  4,  0, $03, PAL_OW_TREE
 
-.OAMData_CutTree4:
+.OAMSet_CutTree4:
 	db 4
 	dbsprite -2, -1,  0,  0, $00, PAL_OW_TREE
 	dbsprite  1, -1,  0,  0, $01, PAL_OW_TREE
 	dbsprite -2,  0,  0,  0, $02, PAL_OW_TREE
 	dbsprite  1,  0,  0,  0, $03, PAL_OW_TREE
 
-.OAMData_GSIntroHoOhLugia1:
+.OAMSet_GSIntroHoOhLugia1:
 	db 19
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -615,7 +615,7 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSIntroHoOhLugia2:
+.OAMSet_GSIntroHoOhLugia2:
 	db 16
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -634,7 +634,7 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSIntroHoOhLugia3:
+.OAMSet_GSIntroHoOhLugia3:
 	db 15
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -652,7 +652,7 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSIntroHoOhLugia4:
+.OAMSet_GSIntroHoOhLugia4:
 	db 17
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -672,7 +672,7 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSIntroHoOhLugia5:
+.OAMSet_GSIntroHoOhLugia5:
 	db 17
 	dbsprite -4, -1,  0,  0, $00, 0
 	dbsprite -3, -2,  0,  0, $02, 0
@@ -692,11 +692,11 @@ SpriteAnimOAMData:
 	dbsprite  3, -2,  0,  0, $22, 0
 	dbsprite  3,  0,  0,  0, $24, 0
 
-.OAMData_GSTitleTrail:
+.OAMSet_GSTitleTrail:
 	db 1
 	dbsprite -1, -1,  4,  4, $00, 1 | OAM_PAL1
 
-.OAMData_EZChatCursor1:
+.OAMSet_EZChatCursor1:
 	db 12
 	dbsprite  0,  0,  0,  0, $30, 0
 	dbsprite  1,  0,  0,  0, $31, 0
@@ -711,18 +711,18 @@ SpriteAnimOAMData:
 	dbsprite  4,  1,  0,  0, $34, 0
 	dbsprite  5,  1,  0,  0, $35, 0
 
-.OAMData_EZChatCursor2:
+.OAMSet_EZChatCursor2:
 	db 1
 	dbsprite  0,  0,  0,  0, $ed, 0
 
-.OAMData_EZChatCursor3:
+.OAMSet_EZChatCursor3:
 	db 4
 	dbsprite -1, -1,  7,  7, $30, 0
 	dbsprite  0, -1,  1,  7, $32, 0
 	dbsprite -1,  0,  7,  1, $33, 0
 	dbsprite  0,  0,  1,  1, $35, 0
 
-.OAMData_EZChatCursor4:
+.OAMSet_EZChatCursor4:
 	db 8
 	dbsprite -1, -1,  7,  7, $30, 0
 	dbsprite  0, -1,  4,  7, $31, 0
@@ -733,60 +733,60 @@ SpriteAnimOAMData:
 	dbsprite  1,  0,  4,  1, $34, 0
 	dbsprite  2,  0,  1,  1, $35, 0
 
-.OAMData_EZChatCursor5:
+.OAMSet_EZChatCursor5:
 	db 1
 	dbsprite  0,  0,  0,  0, $34, 0
 
-.OAMData_EZChatCursor6:
+.OAMSet_EZChatCursor6:
 	db 2
 	dbsprite  0,  0,  0,  0, $30, 0
 	dbsprite  0,  1,  0,  0, $33, 0
 
-.OAMData_EZChatCursor7:
+.OAMSet_EZChatCursor7:
 	db 2
 	dbsprite  0,  0,  0,  0, $32, 0
 	dbsprite  0,  1,  0,  0, $35, 0
 
-.OAMData_BlueWalk:
+.OAMSet_BlueWalk:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, PAL_OW_BLUE
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_BLUE
 	dbsprite -1,  0,  0,  0, $02, PAL_OW_BLUE
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_BLUE
 
-.OAMData_MagnetTrainBlue:
+.OAMSet_MagnetTrainBlue:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, PAL_OW_BLUE | OAM_PRIO
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_BLUE | OAM_PRIO
 	dbsprite -1,  0,  0,  0, $02, PAL_OW_BLUE | OAM_PRIO
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_BLUE | OAM_PRIO
 
-.OAMData_MobileTradeCableBulge:
+.OAMSet_MobileTradeCableBulge:
 	db 1
 	dbsprite -1, -1,  4,  4, $00, 2
 
-.OAMData_MobileTradeSentPulse:
+.OAMSet_MobileTradeSentPulse:
 	db 4
 	dbsprite -1, -2,  4,  0, $00, 3
 	dbsprite -1, -1,  4,  0, $01, 3
 	dbsprite -1,  0,  4,  0, $02, 3
 	dbsprite -1,  1,  4,  0, $03, 3
 
-.OAMData_MobileTradeOTPulse:
+.OAMSet_MobileTradeOTPulse:
 	db 4
 	dbsprite -1, -2,  4,  0, $03, 4 | OAM_YFLIP
 	dbsprite -1, -1,  4,  0, $02, 4 | OAM_YFLIP
 	dbsprite -1,  0,  4,  0, $01, 4 | OAM_YFLIP
 	dbsprite -1,  1,  4,  0, $00, 4 | OAM_YFLIP
 
-.OAMData_MobileTradePing1:
+.OAMSet_MobileTradePing1:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, 1
 	dbsprite  0, -1,  0,  0, $00, 1 | OAM_XFLIP
 	dbsprite -1,  0,  0,  0, $00, 1 | OAM_YFLIP
 	dbsprite  0,  0,  0,  0, $00, 1 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_MobileTradePing2:
+.OAMSet_MobileTradePing2:
 	db 8
 	dbsprite -2, -2,  4,  4, $00, 1
 	dbsprite -1, -2,  4,  4, $01, 1
@@ -797,7 +797,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  4, $01, 1 | OAM_YFLIP
 	dbsprite  0,  0,  4,  4, $00, 1 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_MobileTradePing3:
+.OAMSet_MobileTradePing3:
 	db 12
 	dbsprite -2, -2,  0,  0, $00, 1
 	dbsprite -1, -2,  0,  0, $01, 1
@@ -812,7 +812,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  1,  0,  0, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  1,  1,  0,  0, $00, 1 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_IntroSuicune1:
+.OAMSet_IntroSuicune1:
 	db 36
 	dbsprite  1, -3,  0,  0, $05, 0
 	dbsprite  2, -3,  0,  0, $06, 0
@@ -851,7 +851,7 @@ SpriteAnimOAMData:
 	dbsprite -3,  2,  0,  0, $51, 0
 	dbsprite  3,  2,  0,  0, $57, 0
 
-.OAMData_IntroSuicune2:
+.OAMSet_IntroSuicune2:
 	db 28
 	dbsprite  0, -3,  0,  0, $04, 0
 	dbsprite  1, -3,  0,  0, $05, 0
@@ -882,7 +882,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  2,  0,  0, $54, 0
 	dbsprite  1,  2,  0,  0, $55, 0
 
-.OAMData_IntroSuicune3:
+.OAMSet_IntroSuicune3:
 	db 30
 	dbsprite  0, -3,  0,  0, $04, 0
 	dbsprite  1, -3,  0,  0, $05, 0
@@ -915,7 +915,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  2,  0,  0, $54, 0
 	dbsprite  1,  2,  0,  0, $55, 0
 
-.OAMData_IntroSuicune4:
+.OAMSet_IntroSuicune4:
 	db 31
 	dbsprite -3, -2,  0,  0, $11, 0
 	dbsprite -2, -2,  0,  0, $12, 0
@@ -949,7 +949,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  2,  0,  0, $54, 0
 	dbsprite  1,  2,  0,  0, $55, 0
 
-.OAMData_IntroPichu:
+.OAMSet_IntroPichu:
 	db 25
 	dbsprite -3, -3,  4,  4, $00, 1 | OAM_BANK1
 	dbsprite -2, -3,  4,  4, $01, 1 | OAM_BANK1
@@ -977,7 +977,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  1,  4,  4, $43, 1 | OAM_BANK1
 	dbsprite  1,  1,  4,  4, $44, 1 | OAM_BANK1
 
-.OAMData_IntroWooper:
+.OAMSet_IntroWooper:
 	db 16
 	dbsprite -3, -2,  4,  0, $00, 2 | OAM_BANK1
 	dbsprite -2, -2,  4,  0, $01, 2 | OAM_BANK1
@@ -996,17 +996,17 @@ SpriteAnimOAMData:
 	dbsprite -1,  1,  4,  0, $0e, 2 | OAM_BANK1
 	dbsprite  0,  1,  4,  0, $0f, 2 | OAM_BANK1
 
-.OAMData_IntroUnown1:
+.OAMSet_IntroUnown1:
 	db 1
 	dbsprite -1, -1,  4,  4, $00, 0
 
-.OAMData_IntroUnown2:
+.OAMSet_IntroUnown2:
 	db 3
 	dbsprite -1,  0,  0,  0, $00, 0
 	dbsprite -1, -1,  0,  0, $01, 0
 	dbsprite  0, -1,  0,  0, $02, 0
 
-.OAMData_IntroUnown3:
+.OAMSet_IntroUnown3:
 	db 7
 	dbsprite -2,  1,  0,  0, $00, 0
 	dbsprite -2,  0,  0,  0, $01, 0
@@ -1016,7 +1016,7 @@ SpriteAnimOAMData:
 	dbsprite  0, -2,  0,  0, $05, 0
 	dbsprite  1, -2,  0,  0, $06, 0
 
-.OAMData_IntroUnownF2_2:
+.OAMSet_IntroUnownF2_2:
 	db 8
 	dbsprite -2, -1,  0,  0, $00, 0
 	dbsprite -1, -1,  0,  0, $01, 0
@@ -1027,7 +1027,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  0,  0,  0, $01, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  1,  0,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_IntroUnownF2_3:
+.OAMSet_IntroUnownF2_3:
 	db 12
 	dbsprite -1, -3,  0,  0, $00, 0
 	dbsprite -1, -2,  0,  0, $01, 0
@@ -1042,7 +1042,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  1,  0,  0, $01, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  0,  2,  0,  0, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
-.OAMData_IntroUnownF2_4_5:
+.OAMSet_IntroUnownF2_4_5:
 	db 20
 	dbsprite -2, -3,  0,  4, $00, 0
 	dbsprite -1, -3,  0,  4, $01, 0
@@ -1065,7 +1065,7 @@ SpriteAnimOAMData:
 	dbsprite  0,  1,  0,  4, $12, 0
 	dbsprite  1,  1,  0,  4, $13, 0
 
-.OAMData_IntroSuicuneAway:
+.OAMSet_IntroSuicuneAway:
 	db 20
 	dbsprite   1,  0,  0,  0, $00, 1 | OAM_PRIO
 	dbsprite   2,  1,  0,  0, $00, 1 | OAM_PRIO
@@ -1088,14 +1088,14 @@ SpriteAnimOAMData:
 	dbsprite -13,  2,  0,  0, $00, 1 | OAM_PRIO
 	dbsprite -12,  3,  0,  0, $00, 1 | OAM_PRIO
 
-.OAMData_Celebi:
+.OAMSet_Celebi:
 	db 4
 	dbsprite -1, -1,  0,  0, $00, PAL_OW_GREEN
 	dbsprite  0, -1,  0,  0, $01, PAL_OW_GREEN
 	dbsprite -1,  0,  0,  0, $02, PAL_OW_GREEN
 	dbsprite  0,  0,  0,  0, $03, PAL_OW_GREEN
 
-.OAMData_GameFreakLogo1_3:
+.OAMSet_GameFreakLogo1_3:
 	db 9
 	dbsprite -2, -2,  4,  0, $00, 1
 	dbsprite -1, -2,  4,  0, $01, 1
@@ -1107,7 +1107,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  4,  0, $21, 1
 	dbsprite  0,  0,  4,  0, $22, 1
 
-.OAMData_GameFreakLogo4_11:
+.OAMSet_GameFreakLogo4_11:
 	db 24
 	dbsprite -2, -5,  4,  0, $00, 1
 	dbsprite -1, -5,  4,  0, $01, 1

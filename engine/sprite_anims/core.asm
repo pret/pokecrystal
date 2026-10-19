@@ -499,7 +499,7 @@ GetSpriteAnimFrame:
 GetFrameOAMPointer:
 	ld e, a
 	ld d, 0
-	ld hl, SpriteAnimOAMData
+	ld hl, SpriteAnim_OAMSets
 	add hl, de
 	add hl, de
 	add hl, de
@@ -532,7 +532,7 @@ INCLUDE "engine/sprite_anims/behaviors.asm"
 
 INCLUDE "data/sprite_anims/celsets.asm"
 
-INCLUDE "data/sprite_anims/oam.asm"
+INCLUDE "data/sprite_anims/oamsets.asm"
 
 INCLUDE "data/sprite_anims/unused_gfx.asm"
 
