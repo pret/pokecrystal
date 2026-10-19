@@ -27517,7 +27517,7 @@
 39:799d IntroGrass1GFX
 39:79dd IntroGrass2GFX
 39:7a1d IntroGrass3GFX
-39:7a5d IntroGrass4GFX
+39:7a5d IntroMotionLineGFX
 3a:4000 _InitSound
 3a:4015 _InitSound.clearsound
 3a:4029 _InitSound.clearaudio

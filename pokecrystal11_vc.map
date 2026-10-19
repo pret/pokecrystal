@@ -27851,7 +27851,7 @@ ROMX bank #57:
 	         $799d = IntroGrass1GFX
 	         $79dd = IntroGrass2GFX
 	         $7a1d = IntroGrass3GFX
-	         $7a5d = IntroGrass4GFX
+	         $7a5d = IntroMotionLineGFX
 	EMPTY: $7a6d-$7fff ($0593 bytes)
 	TOTAL EMPTY: $0593 bytes
 
