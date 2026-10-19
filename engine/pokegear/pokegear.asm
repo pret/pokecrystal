@@ -164,7 +164,7 @@ INCBIN "gfx/pokegear/fast_ship.2bpp"
 
 InitPokegearModeIndicatorArrow:
 	depixel 4, 2, 4, 0
-	ld a, SPRITE_ANIM_OBJ_POKEGEAR_ARROW
+	ld a, SPRANIM_OBJ_POKEGEAR_ARROW
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -656,11 +656,11 @@ PokegearMap_ContinueMap:
 PokegearMap_InitPlayerIcon:
 	push af
 	depixel 0, 0
-	ld b, SPRITE_ANIM_OBJ_RED_WALK
+	ld b, SPRANIM_OBJ_RED_WALK
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
-	ld b, SPRITE_ANIM_OBJ_BLUE_WALK
+	ld b, SPRANIM_OBJ_BLUE_WALK
 .got_gender
 	ld a, b
 	call InitSpriteAnimStruct
@@ -683,14 +683,14 @@ PokegearMap_InitPlayerIcon:
 PokegearMap_InitCursor:
 	push af
 	depixel 0, 0
-	ld a, SPRITE_ANIM_OBJ_POKEGEAR_ARROW
+	ld a, SPRANIM_OBJ_POKEGEAR_ARROW
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $04
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_FUNC_NULL
+	ld [hl], SPRANIM_FUNC_NULL
 	pop af
 	push bc
 	call PokegearMap_UpdateCursorPosition
@@ -741,7 +741,7 @@ TownMap_GetKantoLandmarkLimits:
 PokegearRadio_Init:
 	call InitPokegearTilemap
 	depixel 4, 10, 4, 4
-	ld a, SPRITE_ANIM_OBJ_RADIO_TUNING_KNOB
+	ld a, SPRANIM_OBJ_RADIO_TUNING_KNOB
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -2721,14 +2721,14 @@ TownMapMon:
 	farcall GetSpeciesIcon
 ; Animation/palette
 	depixel 0, 0
-	ld a, SPRITE_ANIM_OBJ_PARTY_MON
+	ld a, SPRANIM_OBJ_PARTY_MON
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $08
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_FUNC_NULL
+	ld [hl], SPRANIM_FUNC_NULL
 	ret
 
 TownMapPlayerIcon:
@@ -2750,11 +2750,11 @@ TownMapPlayerIcon:
 	call Request2bpp
 ; Animation/palette
 	depixel 0, 0
-	ld b, SPRITE_ANIM_OBJ_RED_WALK ; Male
+	ld b, SPRANIM_OBJ_RED_WALK ; Male
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
-	ld b, SPRITE_ANIM_OBJ_BLUE_WALK ; Female
+	ld b, SPRANIM_OBJ_BLUE_WALK ; Female
 .got_gender
 	ld a, b
 	call InitSpriteAnimStruct

@@ -3,7 +3,7 @@
 	shift_const MENU_RESTORE_TILES  ; 0
 	const_skip 2
 	shift_const MENU_NO_CLICK_SFX   ; 3
-	shift_const MENU_SPRITE_ANIMS   ; 4
+	shift_const MENU_SPRANIMS   ; 4
 	shift_const MENU_UNUSED         ; 5
 	shift_const MENU_BACKUP_TILES   ; 6
 	shift_const MENU_BACKUP_TILES_2 ; 7
@@ -44,7 +44,7 @@
 	shift_const _2DMENU_EXIT_DOWN             ; 3
 	shift_const _2DMENU_WRAP_LEFT_RIGHT       ; 4
 	shift_const _2DMENU_WRAP_UP_DOWN          ; 5
-	shift_const _2DMENU_ENABLE_SPRITE_ANIMS   ; 6
+	shift_const _2DMENU_ENABLE_SPRANIMS   ; 6
 	shift_const _2DMENU_DISABLE_JOYPAD_FILTER ; 7
 
 ; _2DMenu more flags 2

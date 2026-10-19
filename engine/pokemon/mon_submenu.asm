@@ -45,7 +45,7 @@ MonMenuLoop:
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
-	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+	set _2DMENU_ENABLE_SPRANIMS_F, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -259,7 +259,7 @@ BattleMonMenu:
 	jr z, .set_carry
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
-	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+	set _2DMENU_ENABLE_SPRANIMS_F, [hl]
 	call StaticMenuJoypad
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX

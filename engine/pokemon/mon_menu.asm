@@ -375,7 +375,7 @@ TakePartyItem:
 	ret
 
 GiveTakeItemMenuData:
-	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
+	db MENU_SPRANIMS | MENU_BACKUP_TILES ; flags
 	menu_coords 12, 12, SCREEN_WIDTH - 1, SCREEN_HEIGHT - 1
 	dw .Items
 	db 1 ; default option
@@ -815,7 +815,7 @@ ChooseMoveToDelete:
 	call Load2DMenuData
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
-	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+	set _2DMENU_ENABLE_SPRANIMS_F, [hl]
 	jr .enter_loop
 
 .loop
@@ -842,7 +842,7 @@ ChooseMoveToDelete:
 	xor a
 	ld [wSwitchMon], a
 	ld hl, w2DMenuFlags1
-	res _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+	res _2DMENU_ENABLE_SPRANIMS_F, [hl]
 	call ClearSprites
 	call ClearTilemap
 	pop af
@@ -851,7 +851,7 @@ ChooseMoveToDelete:
 DeleteMoveScreen2DMenuData:
 	db 3, 1 ; cursor start y, x
 	db 3, 1 ; rows, columns
-	db _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db _2DMENU_ENABLE_SPRANIMS ; flags 1
 	db 0 ; flags 2
 	dn 2, 0 ; cursor offset
 	db PAD_UP | PAD_DOWN | PAD_A | PAD_B ; accepted buttons
@@ -884,7 +884,7 @@ MoveScreenLoop:
 .loop
 	call SetUpMoveList
 	ld hl, w2DMenuFlags1
-	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+	set _2DMENU_ENABLE_SPRANIMS_F, [hl]
 	jr .skip_joy
 
 .joy_loop
@@ -1074,14 +1074,14 @@ MoveScreenLoop:
 	xor a
 	ld [wSwappingMove], a
 	ld hl, w2DMenuFlags1
-	res _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+	res _2DMENU_ENABLE_SPRANIMS_F, [hl]
 	call ClearSprites
 	jp ClearTilemap
 
 MoveScreen2DMenuData:
 	db 3, 1 ; cursor start y, x
 	db 3, 1 ; rows, columns
-	db _2DMENU_ENABLE_SPRITE_ANIMS ; flags 1
+	db _2DMENU_ENABLE_SPRANIMS ; flags 1
 	db 0 ; flags 2
 	dn 2, 0 ; cursor offsets
 	db PAD_CTRL_PAD | PAD_A | PAD_B ; accepted buttons

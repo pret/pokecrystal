@@ -782,7 +782,7 @@ EggHatch_CrackShell:
 	add 9 * TILE_WIDTH + 4
 	ld d, a
 	ld e, 11 * TILE_WIDTH
-	ld a, SPRITE_ANIM_OBJ_EGG_CRACK
+	ld a, SPRANIM_OBJ_EGG_CRACK
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -810,7 +810,7 @@ Hatch_InitShellFragments:
 	push hl
 	push bc
 
-	ld a, SPRITE_ANIM_OBJ_EGG_HATCH
+	ld a, SPRANIM_OBJ_EGG_HATCH
 	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
@@ -840,21 +840,21 @@ MACRO shell_fragment
 ; y tile, y pxl, x tile, x pxl, frameset, angle
 	db (\1) * TILE_WIDTH + (\2) ; y coord
 	db (\3) * TILE_WIDTH + (\4) ; x coord
-	db (\5) - SPRITE_ANIM_FRAMESET_EGG_HATCH_1 ; frameset offset
+	db (\5) - SPRANIM_FRAMESET_EGG_HATCH_1 ; frameset offset
 	db \6 ; angle (6 bits)
 ENDM
 
 .SpriteData:
-	shell_fragment 10, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $3c
-	shell_fragment 11, 4,  9, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $04
-	shell_fragment 10, 4, 10, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $30
-	shell_fragment 11, 4, 10, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $10
-	shell_fragment 10, 4, 11, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_3, $24
-	shell_fragment 11, 4, 11, 0, SPRITE_ANIM_FRAMESET_EGG_HATCH_4, $1c
-	shell_fragment 10, 0,  9, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_1, $36
-	shell_fragment 12, 0,  9, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_2, $0a
-	shell_fragment 10, 0, 10, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_3, $2a
-	shell_fragment 12, 0, 10, 4, SPRITE_ANIM_FRAMESET_EGG_HATCH_4, $16
+	shell_fragment 10, 4,  9, 0, SPRANIM_FRAMESET_EGG_HATCH_1, $3c
+	shell_fragment 11, 4,  9, 0, SPRANIM_FRAMESET_EGG_HATCH_2, $04
+	shell_fragment 10, 4, 10, 0, SPRANIM_FRAMESET_EGG_HATCH_1, $30
+	shell_fragment 11, 4, 10, 0, SPRANIM_FRAMESET_EGG_HATCH_2, $10
+	shell_fragment 10, 4, 11, 0, SPRANIM_FRAMESET_EGG_HATCH_3, $24
+	shell_fragment 11, 4, 11, 0, SPRANIM_FRAMESET_EGG_HATCH_4, $1c
+	shell_fragment 10, 0,  9, 4, SPRANIM_FRAMESET_EGG_HATCH_1, $36
+	shell_fragment 12, 0,  9, 4, SPRANIM_FRAMESET_EGG_HATCH_2, $0a
+	shell_fragment 10, 0, 10, 4, SPRANIM_FRAMESET_EGG_HATCH_3, $2a
+	shell_fragment 12, 0, 10, 4, SPRANIM_FRAMESET_EGG_HATCH_4, $16
 	db -1
 
 Hatch_ShellFragmentLoop:

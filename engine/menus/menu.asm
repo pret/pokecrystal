@@ -353,7 +353,7 @@ Do2DMenuRTCJoypad:
 
 Menu_WasButtonPressed:
 	ld a, [w2DMenuFlags1]
-	bit _2DMENU_ENABLE_SPRITE_ANIMS_F, a
+	bit _2DMENU_ENABLE_SPRANIMS_F, a
 	jr z, .skip_to_joypad
 	callfar PlaySpriteAnimationsAndDelayFrame
 
@@ -764,9 +764,9 @@ _InitVerticalMenuCursor::
 	set _2DMENU_WRAP_UP_DOWN_F, [hl]
 .skip_bit_5
 	ld a, [wMenuFlags]
-	bit MENU_SPRITE_ANIMS_F, a
+	bit MENU_SPRANIMS_F, a
 	jr z, .skip_bit_6
-	set _2DMENU_ENABLE_SPRITE_ANIMS_F, [hl]
+	set _2DMENU_ENABLE_SPRANIMS_F, [hl]
 .skip_bit_6
 	inc hl
 ; w2DMenuFlags2

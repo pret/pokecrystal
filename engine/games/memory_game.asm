@@ -19,7 +19,7 @@ _MemoryGame:
 	ld bc, 4 tiles
 	ld a, BANK(MemoryGameGFX)
 	call FarCopyBytes
-	ld a, SPRITE_ANIM_DICT_ARROW_CURSOR
+	ld a, SPRANIM_DICT_ARROW_CURSOR
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], $00
@@ -109,7 +109,7 @@ endr
 
 .spawn_object
 	depixel 6, 3, 4, 4
-	ld a, SPRITE_ANIM_OBJ_MEMORY_GAME_CURSOR
+	ld a, SPRANIM_OBJ_MEMORY_GAME_CURSOR
 	call InitSpriteAnimStruct
 	ld a, 5
 	ld [wMemoryGameNumberTriesRemaining], a

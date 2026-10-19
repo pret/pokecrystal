@@ -33,7 +33,7 @@ PlaySpriteAnimations:
 
 DoNextFrameForAllSprites:
 	ld hl, wSpriteAnimationStructs
-	ld e, NUM_SPRITE_ANIM_STRUCTS
+	ld e, NUM_SPRANIM_STRUCTS
 
 .loop
 	ld a, [hl]
@@ -72,7 +72,7 @@ DoNextFrameForAllSprites:
 
 DoNextFrameForFirst16Sprites:
 	ld hl, wSpriteAnimationStructs
-	ld e, NUM_SPRITE_ANIM_STRUCTS
+	ld e, NUM_SPRANIM_STRUCTS
 
 .loop
 	ld a, [hl]
@@ -115,7 +115,7 @@ _InitSpriteAnimStruct::
 	push de
 	push af
 	ld hl, wSpriteAnimationStructs
-	ld e, NUM_SPRITE_ANIM_STRUCTS
+	ld e, NUM_SPRANIM_STRUCTS
 .loop
 	ld a, [hl]
 	and a
@@ -217,7 +217,7 @@ DeinitializeAllSprites:
 ; Clear the index field of every struct in the wSpriteAnimationStructs array.
 	ld hl, wSpriteAnimationStructs
 	ld bc, SPRITEANIMSTRUCT_LENGTH
-	ld e, NUM_SPRITE_ANIM_STRUCTS
+	ld e, NUM_SPRANIM_STRUCTS
 	xor a
 .loop
 	ld [hl], a

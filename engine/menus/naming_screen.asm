@@ -163,12 +163,12 @@ NamingScreenJumptable:
 	ld hl, vTiles0 tile $00
 	lb bc, BANK(PokeBallSpriteGFX), 4
 	call Request2bpp
-	xor a ; SPRITE_ANIM_DICT_DEFAULT and tile offset $00
+	xor a ; SPRANIM_DICT_DEFAULT and tile offset $00
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], a
 	depixel 4, 4, 4, 0
-	ld a, SPRITE_ANIM_OBJ_RED_WALK
+	ld a, SPRANIM_OBJ_RED_WALK
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
@@ -205,19 +205,19 @@ NamingScreenJumptable:
 	ld d, h
 	ld hl, vTiles0 tile $04
 	call Request2bpp
-	xor a ; SPRITE_ANIM_DICT_DEFAULT and tile offset $00
+	xor a ; SPRANIM_DICT_DEFAULT and tile offset $00
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], a
 	pop de
-	ld b, SPRITE_ANIM_OBJ_RED_WALK
+	ld b, SPRANIM_OBJ_RED_WALK
 	ld a, d
 	cp HIGH(KrisSpriteGFX)
 	jr nz, .not_kris
 	ld a, e
 	cp LOW(KrisSpriteGFX)
 	jr nz, .not_kris
-	ld b, SPRITE_ANIM_OBJ_BLUE_WALK
+	ld b, SPRANIM_OBJ_BLUE_WALK
 .not_kris
 	ld a, b
 	depixel 4, 4, 4, 0
@@ -379,7 +379,7 @@ NamingScreenJoypadLoop:
 	jr nz, .got_cursor_position
 	ld d, 8 * TILE_WIDTH
 .got_cursor_position
-	ld a, SPRITE_ANIM_OBJ_NAMING_SCREEN_CURSOR
+	ld a, SPRANIM_OBJ_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
@@ -522,14 +522,14 @@ NamingScreen_AnimateCursor:
 .ok
 	cp d
 	ld de, .LetterEntries
-	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 0
+	ld a, SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR - SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 0
 	jr nz, .ok2
 	ld de, .CaseDelEnd
-	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 1
+	ld a, SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG - SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 1
 .ok2
 	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
-	add [hl] ; default SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR
+	add [hl] ; default SPRANIM_FRAMESET_TEXT_ENTRY_CURSOR
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
@@ -858,7 +858,7 @@ LoadNamingScreenGFX:
 	ld a, BANK(NamingScreenGFX_Cursor)
 	call FarCopyBytes
 
-	ld a, SPRITE_ANIM_DICT_TEXT_CURSOR
+	ld a, SPRANIM_DICT_TEXT_CURSOR
 	ld hl, wSpriteAnimDict + (NUM_SPRITEANIMDICT_ENTRIES - 1) * 2
 	ld [hli], a
 	ld [hl], NAMINGSCREEN_CURSOR
@@ -927,14 +927,14 @@ _ComposeMailMessage:
 	ld bc, 8 tiles
 	ld a, BANK(.MailIcon)
 	call FarCopyBytes
-	xor a ; SPRITE_ANIM_DICT_DEFAULT and tile offset $00
+	xor a ; SPRANIM_DICT_DEFAULT and tile offset $00
 	ld hl, wSpriteAnimDict
 	ld [hli], a
 	ld [hl], a
 
 	; init mail icon
 	depixel 3, 2
-	ld a, SPRITE_ANIM_OBJ_PARTY_MON
+	ld a, SPRANIM_OBJ_PARTY_MON
 	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
@@ -1053,7 +1053,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 
 .init_blinking_cursor
 	depixel 9, 2
-	ld a, SPRITE_ANIM_OBJ_COMPOSE_MAIL_CURSOR
+	ld a, SPRANIM_OBJ_COMPOSE_MAIL_CURSOR
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a

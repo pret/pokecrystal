@@ -330,7 +330,7 @@ LinkTradeMenu:
 
 .TryAnims:
 	ld a, [w2DMenuFlags1]
-	bit _2DMENU_ENABLE_SPRITE_ANIMS_F, a
+	bit _2DMENU_ENABLE_SPRANIMS_F, a
 	jr z, .skip_anims
 	farcall PlaySpriteAnimationsAndDelayFrame
 .skip_anims

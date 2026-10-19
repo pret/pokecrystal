@@ -12,7 +12,7 @@ DoSpriteAnimFrame:
 	jp hl
 
 .Jumptable:
-; entries correspond to SPRITE_ANIM_FUNC_* constants (see constants/sprite_anim_constants.asm)
+; entries correspond to SPRANIM_FUNC_* constants (see constants/sprite_anim_constants.asm)
 	table_width 2
 	dw SpriteAnimFunc_Null
 	dw SpriteAnimFunc_PartyMon
@@ -49,7 +49,7 @@ DoSpriteAnimFrame:
 	dw SpriteAnimFunc_IntroUnown
 	dw SpriteAnimFunc_IntroUnownF
 	dw SpriteAnimFunc_IntroSuicuneAway
-	assert_table_length NUM_SPRITE_ANIM_FUNCS
+	assert_table_length NUM_SPRANIM_FUNCS
 
 SpriteAnimFunc_Null:
 	ret
@@ -364,7 +364,7 @@ SpriteAnimFunc_SlotsChansey:
 	cp $2
 	ret nz
 	ld [hl], $3
-	ld a, SPRITE_ANIM_FRAMESET_SLOTS_CHANSEY_2
+	ld a, SPRANIM_FRAMESET_SLOTS_CHANSEY_2
 	call _ReinitSpriteAnimFrame
 	ret
 
@@ -425,7 +425,7 @@ SpriteAnimFunc_TradePokeBall:
 	dw .delete
 
 .zero
-	ld a, SPRITE_ANIM_FRAMESET_TRADE_POKE_BALL_WOBBLE
+	ld a, SPRANIM_FRAMESET_TRADE_POKE_BALL_WOBBLE
 	call _ReinitSpriteAnimFrame
 
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -771,7 +771,7 @@ SpriteAnimFunc_IntroSuicune:
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-	ld a, SPRITE_ANIM_FRAMESET_INTRO_SUICUNE_2
+	ld a, SPRANIM_FRAMESET_INTRO_SUICUNE_2
 	call _ReinitSpriteAnimFrame
 	ret
 
@@ -824,7 +824,7 @@ SpriteAnimFunc_IntroUnownF:
 	ld a, [wSlotsDelay]
 	cp $40
 	ret nz
-	ld a, SPRITE_ANIM_FRAMESET_INTRO_UNOWN_F_2
+	ld a, SPRANIM_FRAMESET_INTRO_UNOWN_F_2
 	call _ReinitSpriteAnimFrame
 	ret
 

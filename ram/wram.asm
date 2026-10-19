@@ -203,13 +203,13 @@ wSpriteAnimData::
 
 wSpriteAnimDict::
 ; wSpriteAnimDict pairs keys with values
-; keys: SPRITE_ANIM_DICT_* indexes (taken from SpriteAnimObjects)
+; keys: SPRANIM_DICT_* indexes (taken from SpriteAnimObjects)
 ; values: vTiles0 offsets
 	ds NUM_SPRITEANIMDICT_ENTRIES * 2
 
 wSpriteAnimationStructs::
 ; wSpriteAnim1 - wSpriteAnim10
-for n, 1, NUM_SPRITE_ANIM_STRUCTS + 1
+for n, 1, NUM_SPRANIM_STRUCTS + 1
 ; field  0:   index
 ; fields 1-3: loaded from SpriteAnimObjects
 wSpriteAnim{d:n}:: sprite_anim_struct wSpriteAnim{d:n}
