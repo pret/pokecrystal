@@ -32,7 +32,7 @@ ShakeHeadbuttTree:
 	lb bc, BANK(HeadbuttTreeGFX), 8
 	call Request2bpp
 	call Cut_Headbutt_GetPixelFacing
-	ld a, SPRANIM_OBJ_HEADBUTT
+	ld a, SPRANIM_ANIM_HEADBUTT
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -166,7 +166,7 @@ OWCutJumptable:
 
 Cut_SpawnAnimateTree:
 	call Cut_Headbutt_GetPixelFacing
-	ld a, SPRANIM_OBJ_CUT_TREE ; cut tree
+	ld a, SPRANIM_ANIM_CUT_TREE ; cut tree
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -219,7 +219,7 @@ Cut_WaitAnimSFX:
 Cut_SpawnLeaf:
 	push de
 	push af
-	ld a, SPRANIM_OBJ_LEAF ; leaf
+	ld a, SPRANIM_ANIM_LEAF ; leaf
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -310,7 +310,7 @@ FlyFromAnim:
 	ld [wStateFlags], a
 	call FlyFunction_InitGFX
 	depixel 10, 10, 4, 0
-	ld a, SPRANIM_OBJ_RED_WALK
+	ld a, SPRANIM_ANIM_RED_WALK
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -344,7 +344,7 @@ FlyToAnim:
 	ld [wStateFlags], a
 	call FlyFunction_InitGFX
 	depixel 31, 10, 4, 0
-	ld a, SPRANIM_OBJ_RED_WALK
+	ld a, SPRANIM_ANIM_RED_WALK
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -443,7 +443,7 @@ FlyFunction_FrameTimer:
 	add 8 * 8 ; gives a number in [$40, $50, $60, $70]
 	ld d, a
 	ld e, 0
-	ld a, SPRANIM_OBJ_FLY_LEAF
+	ld a, SPRANIM_ANIM_FLY_LEAF
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc

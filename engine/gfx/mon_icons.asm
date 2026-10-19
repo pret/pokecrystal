@@ -174,7 +174,7 @@ InitPartyMenuIcon:
 ; x coord
 	ld e, $10
 ; type is partymon icon
-	ld a, SPRANIM_OBJ_PARTY_MON
+	ld a, SPRANIM_ANIM_PARTY_MON
 	call _InitSpriteAnimStruct
 	pop af
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
@@ -221,7 +221,7 @@ NamingScreen_InitAnimatedMonIcon:
 	xor a
 	call GetIconGFX
 	depixel 4, 4, 4, 0
-	ld a, SPRANIM_OBJ_PARTY_MON
+	ld a, SPRANIM_ANIM_PARTY_MON
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
@@ -236,7 +236,7 @@ MoveList_InitAnimatedMonIcon:
 	call GetIconGFX
 	ld d, 3 * TILE_WIDTH + 2 ; depixel 3, 4, 2, 4
 	ld e, 4 * TILE_WIDTH + 4
-	ld a, SPRANIM_OBJ_PARTY_MON
+	ld a, SPRANIM_ANIM_PARTY_MON
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc

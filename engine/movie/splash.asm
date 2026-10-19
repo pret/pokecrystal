@@ -89,7 +89,7 @@ GameFreakPresentsInit:
 
 	farcall ClearSpriteAnims
 	depixel 10, 11, 4, 0
-	ld a, SPRANIM_OBJ_GAMEFREAK_LOGO
+	ld a, SPRANIM_ANIM_GAMEFREAK_LOGO
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc

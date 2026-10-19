@@ -311,7 +311,7 @@ EvolutionAnimation:
 .GenerateBallOfLight:
 	push de
 	depixel 9, 11
-	ld a, SPRANIM_OBJ_EVOLUTION_BALL_OF_LIGHT
+	ld a, SPRANIM_ANIM_EVOLUTION_BALL_OF_LIGHT
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc

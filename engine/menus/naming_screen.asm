@@ -168,7 +168,7 @@ NamingScreenJumptable:
 	ld [hli], a
 	ld [hl], a
 	depixel 4, 4, 4, 0
-	ld a, SPRANIM_OBJ_RED_WALK
+	ld a, SPRANIM_ANIM_RED_WALK
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_CELSET_ID
 	add hl, bc
@@ -210,14 +210,14 @@ NamingScreenJumptable:
 	ld [hli], a
 	ld [hl], a
 	pop de
-	ld b, SPRANIM_OBJ_RED_WALK
+	ld b, SPRANIM_ANIM_RED_WALK
 	ld a, d
 	cp HIGH(KrisSpriteGFX)
 	jr nz, .not_kris
 	ld a, e
 	cp LOW(KrisSpriteGFX)
 	jr nz, .not_kris
-	ld b, SPRANIM_OBJ_BLUE_WALK
+	ld b, SPRANIM_ANIM_BLUE_WALK
 .not_kris
 	ld a, b
 	depixel 4, 4, 4, 0
@@ -379,7 +379,7 @@ NamingScreenJoypadLoop:
 	jr nz, .got_cursor_position
 	ld d, 8 * TILE_WIDTH
 .got_cursor_position
-	ld a, SPRANIM_OBJ_NAMING_SCREEN_CURSOR
+	ld a, SPRANIM_ANIM_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a
@@ -934,7 +934,7 @@ _ComposeMailMessage:
 
 	; init mail icon
 	depixel 3, 2
-	ld a, SPRANIM_OBJ_PARTY_MON
+	ld a, SPRANIM_ANIM_PARTY_MON
 	call InitSpriteAnimStruct
 
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
@@ -1053,7 +1053,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 
 .init_blinking_cursor
 	depixel 9, 2
-	ld a, SPRANIM_OBJ_COMPOSE_MAIL_CURSOR
+	ld a, SPRANIM_ANIM_COMPOSE_MAIL_CURSOR
 	call InitSpriteAnimStruct
 	ld a, c
 	ld [wNamingScreenCursorObjectPointer], a

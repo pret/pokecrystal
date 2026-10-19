@@ -389,7 +389,7 @@ IntroScene7:
 	call Intro_ResetLYOverrides
 	farcall ClearSpriteAnims
 	depixel 13, 27, 4, 0
-	ld a, SPRANIM_OBJ_INTRO_SUICUNE
+	ld a, SPRANIM_ANIM_INTRO_SUICUNE
 	call InitSpriteAnimStruct
 	ld a, $f0
 	ld [wGlobalAnimXOffset], a
@@ -482,7 +482,7 @@ IntroScene10:
 
 .pichu
 	depixel 21, 16, 1, 0
-	ld a, SPRANIM_OBJ_INTRO_PICHU
+	ld a, SPRANIM_ANIM_INTRO_PICHU
 	call InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
 	call PlaySFX
@@ -490,7 +490,7 @@ IntroScene10:
 
 .wooper
 	depixel 22, 6
-	ld a, SPRANIM_OBJ_INTRO_WOOPER
+	ld a, SPRANIM_ANIM_INTRO_WOOPER
 	call InitSpriteAnimStruct
 	ld de, SFX_INTRO_PICHU
 	call PlaySFX
@@ -669,7 +669,7 @@ IntroScene13:
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	depixel 13, 11, 4, 0
-	ld a, SPRANIM_OBJ_INTRO_SUICUNE
+	ld a, SPRANIM_ANIM_INTRO_SUICUNE
 	call InitSpriteAnimStruct
 	ld de, MUSIC_CRYSTAL_OPENING
 	call PlayMusic
@@ -780,10 +780,10 @@ IntroScene15:
 	farcall ClearSpriteAnims
 	call Intro_SetCGBPalUpdate
 	depixel 8, 5
-	ld a, SPRANIM_OBJ_INTRO_UNOWN_F
+	ld a, SPRANIM_ANIM_INTRO_UNOWN_F
 	call InitSpriteAnimStruct
 	depixel 12, 0
-	ld a, SPRANIM_OBJ_INTRO_SUICUNE_AWAY
+	ld a, SPRANIM_ANIM_INTRO_SUICUNE_AWAY
 	call InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -932,7 +932,7 @@ IntroScene19:
 	ld [hl], $7f
 	call Intro_SetCGBPalUpdate
 	depixel 12, 0
-	ld a, SPRANIM_OBJ_INTRO_SUICUNE_AWAY
+	ld a, SPRANIM_ANIM_INTRO_SUICUNE_AWAY
 	call InitSpriteAnimStruct
 	xor a
 	ld [wIntroSceneFrameCounter], a
@@ -1190,7 +1190,7 @@ INCLUDE "gfx/intro/fade.pal"
 
 CrystalIntro_InitUnownAnim:
 	push de
-	ld a, SPRANIM_OBJ_INTRO_UNOWN
+	ld a, SPRANIM_ANIM_INTRO_UNOWN
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
@@ -1200,7 +1200,7 @@ CrystalIntro_InitUnownAnim:
 	pop de
 
 	push de
-	ld a, SPRANIM_OBJ_INTRO_UNOWN
+	ld a, SPRANIM_ANIM_INTRO_UNOWN
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
@@ -1210,7 +1210,7 @@ CrystalIntro_InitUnownAnim:
 	pop de
 
 	push de
-	ld a, SPRANIM_OBJ_INTRO_UNOWN
+	ld a, SPRANIM_ANIM_INTRO_UNOWN
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
@@ -1219,7 +1219,7 @@ CrystalIntro_InitUnownAnim:
 	call ReinitSpriteAnimFrame
 	pop de
 
-	ld a, SPRANIM_OBJ_INTRO_UNOWN
+	ld a, SPRANIM_ANIM_INTRO_UNOWN
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc

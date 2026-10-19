@@ -14,7 +14,7 @@ CelebiShrineEvent:
 	ld [wStateFlags], a
 	call LoadCelebiGFX
 	depixel 0, 10, 7, 0
-	ld a, SPRANIM_OBJ_CELEBI
+	ld a, SPRANIM_ANIM_CELEBI
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -111,7 +111,7 @@ CelebiEvent_SpawnLeaf: ; unreferenced
 	add $40
 	ld d, a
 	ld e, $0
-	ld a, SPRANIM_OBJ_FLY_LEAF ; fly land
+	ld a, SPRANIM_ANIM_FLY_LEAF ; fly land
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc

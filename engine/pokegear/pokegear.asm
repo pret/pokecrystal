@@ -164,7 +164,7 @@ INCBIN "gfx/pokegear/fast_ship.2bpp"
 
 InitPokegearModeIndicatorArrow:
 	depixel 4, 2, 4, 0
-	ld a, SPRANIM_OBJ_POKEGEAR_ARROW
+	ld a, SPRANIM_ANIM_POKEGEAR_ARROW
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -656,11 +656,11 @@ PokegearMap_ContinueMap:
 PokegearMap_InitPlayerIcon:
 	push af
 	depixel 0, 0
-	ld b, SPRANIM_OBJ_RED_WALK
+	ld b, SPRANIM_ANIM_RED_WALK
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
-	ld b, SPRANIM_OBJ_BLUE_WALK
+	ld b, SPRANIM_ANIM_BLUE_WALK
 .got_gender
 	ld a, b
 	call InitSpriteAnimStruct
@@ -683,7 +683,7 @@ PokegearMap_InitPlayerIcon:
 PokegearMap_InitCursor:
 	push af
 	depixel 0, 0
-	ld a, SPRANIM_OBJ_POKEGEAR_ARROW
+	ld a, SPRANIM_ANIM_POKEGEAR_ARROW
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -741,7 +741,7 @@ TownMap_GetKantoLandmarkLimits:
 PokegearRadio_Init:
 	call InitPokegearTilemap
 	depixel 4, 10, 4, 4
-	ld a, SPRANIM_OBJ_RADIO_TUNING_KNOB
+	ld a, SPRANIM_ANIM_RADIO_TUNING_KNOB
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -2721,7 +2721,7 @@ TownMapMon:
 	farcall GetSpeciesIcon
 ; Animation/palette
 	depixel 0, 0
-	ld a, SPRANIM_OBJ_PARTY_MON
+	ld a, SPRANIM_ANIM_PARTY_MON
 	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
@@ -2750,11 +2750,11 @@ TownMapPlayerIcon:
 	call Request2bpp
 ; Animation/palette
 	depixel 0, 0
-	ld b, SPRANIM_OBJ_RED_WALK ; Male
+	ld b, SPRANIM_ANIM_RED_WALK ; Male
 	ld a, [wPlayerGender]
 	bit PLAYERGENDER_FEMALE_F, a
 	jr z, .got_gender
-	ld b, SPRANIM_OBJ_BLUE_WALK ; Female
+	ld b, SPRANIM_ANIM_BLUE_WALK ; Female
 .got_gender
 	ld a, b
 	call InitSpriteAnimStruct

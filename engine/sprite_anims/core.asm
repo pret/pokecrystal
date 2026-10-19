@@ -145,11 +145,11 @@ _InitSpriteAnimStruct::
 	inc [hl]
 .nonzero
 
-; Get row a of SpriteAnimObjects, copy the pointer into de
+; Get row a of SpriteAnimations, copy the pointer into de
 	pop af
 	ld e, a
 	ld d, 0
-	ld hl, SpriteAnimObjects
+	ld hl, SpriteAnimations
 	add hl, de
 	add hl, de
 	add hl, de
@@ -526,7 +526,7 @@ UnusedLoadSpriteAnimGFX: ; unreferenced
 	pop bc
 	ret
 
-INCLUDE "data/sprite_anims/objects.asm"
+INCLUDE "data/sprite_anims/animations.asm"
 
 INCLUDE "engine/sprite_anims/functions.asm"
 
