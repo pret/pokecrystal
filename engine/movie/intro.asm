@@ -747,9 +747,9 @@ IntroScene15:
 	ld hl, IntroUnownBackGFX
 	ld de, vTiles0 tile $00
 	call Intro_DecompressRequest2bpp_128Tiles
-	ld de, IntroGrass4GFX
+	ld de, IntroMotionLineGFX
 	ld hl, vTiles1 tile $00
-	lb bc, BANK(IntroGrass4GFX), 1
+	lb bc, BANK(IntroMotionLineGFX), 1
 	call Request2bpp
 	ld hl, IntroSuicuneJumpTilemap
 	debgcoord 0, 0
@@ -895,9 +895,9 @@ IntroScene19:
 	ld hl, IntroUnownsGFX
 	ld de, vTiles1 tile $00
 	call Intro_DecompressRequest2bpp_128Tiles
-	ld de, IntroGrass4GFX
+	ld de, IntroMotionLineGFX
 	ld hl, vTiles1 tile $7f
-	lb bc, BANK(IntroGrass4GFX), 1
+	lb bc, BANK(IntroMotionLineGFX), 1
 	call Request2bpp
 	ld hl, IntroSuicuneBackTilemap
 	debgcoord 0, 0
@@ -1774,5 +1774,6 @@ IntroGrass2GFX:
 INCBIN "gfx/intro/grass2.2bpp"
 IntroGrass3GFX:
 INCBIN "gfx/intro/grass3.2bpp"
-IntroGrass4GFX:
-INCBIN "gfx/intro/grass4.2bpp"
+
+IntroMotionLineGFX:
+INCBIN "gfx/intro/motion_line.2bpp"
