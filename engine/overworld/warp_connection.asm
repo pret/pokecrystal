@@ -238,9 +238,9 @@ LoadMapTimeOfDay:
 	ret
 
 .ClearBGMap:
-	ld a, HIGH(vBGMap0)
+	ld a, HIGH(vTilemap0)
 	ld [wBGMapAnchor + 1], a
-	xor a ; LOW(vBGMap0)
+	xor a ; LOW(vTilemap0)
 	ld [wBGMapAnchor], a
 	ldh [hSCY], a
 	ldh [hSCX], a
@@ -252,15 +252,15 @@ LoadMapTimeOfDay:
 	ldh [rVBK], a
 
 	xor a
-	ld bc, vBGMap3 - vBGMap2
-	hlbgcoord 0, 0 ; vBGMap2
+	ld bc, vAttrmap1 - vAttrmap0
+	hlbgcoord 0, 0 ; vAttrmap0
 	call ByteFill
 
 	pop af
 	ldh [rVBK], a
 
 	ld a, '■'
-	ld bc, vBGMap1 - vBGMap0
+	ld bc, vTilemap1 - vTilemap0
 	hlbgcoord 0, 0
 	call ByteFill
 	ret
@@ -276,7 +276,7 @@ LoadMapTimeOfDay:
 	ld a, $1
 	ldh [rVBK], a
 .copy
-	hlbgcoord 0, 0 ; vBGMap2
+	hlbgcoord 0, 0 ; vAttrmap0
 	ld c, SCREEN_WIDTH
 	ld b, SCREEN_HEIGHT
 .row

@@ -7,9 +7,9 @@ SplashScreen:
 	call PlayMusic
 	call ClearBGPalettes
 	call ClearTilemap
-	ld a, HIGH(vBGMap0)
+	ld a, HIGH(vTilemap0)
 	ldh [hBGMapAddress + 1], a
-	xor a ; LOW(vBGMap0)
+	xor a ; LOW(vTilemap0)
 	ldh [hBGMapAddress], a
 	ldh [hJoyDown], a
 	ldh [hSCX], a

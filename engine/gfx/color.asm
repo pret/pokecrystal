@@ -601,7 +601,7 @@ ApplyAttrmap:
 
 .UpdateVBank1:
 	hlcoord 0, 0, wAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	ld b, SCREEN_HEIGHT
 	ld a, $1
 	ldh [rVBK], a
