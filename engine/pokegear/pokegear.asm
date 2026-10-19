@@ -688,9 +688,9 @@ PokegearMap_InitCursor:
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $04
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld [hl], SPRANIM_FUNC_NULL
+	ld [hl], SPRANIM_BEHAVIOR_NULL
 	pop af
 	push bc
 	call PokegearMap_UpdateCursorPosition
@@ -2726,9 +2726,9 @@ TownMapMon:
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $08
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld [hl], SPRANIM_FUNC_NULL
+	ld [hl], SPRANIM_BEHAVIOR_NULL
 	ret
 
 TownMapPlayerIcon:

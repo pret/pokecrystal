@@ -2,7 +2,7 @@
 rsreset
 DEF SPRITEANIMSTRUCT_INDEX           rb ; 0
 DEF SPRITEANIMSTRUCT_CELSET_ID       rb ; 1
-DEF SPRITEANIMSTRUCT_ANIM_SEQ_ID     rb ; 2
+DEF SPRITEANIMSTRUCT_BEHAVIOR_ID     rb ; 2
 DEF SPRITEANIMSTRUCT_TILE_ID         rb ; 3
 DEF SPRITEANIMSTRUCT_XCOORD          rb ; 4
 DEF SPRITEANIMSTRUCT_YCOORD          rb ; 5
@@ -84,42 +84,42 @@ DEF NUM_SPRANIM_ANIMS EQU const_value
 
 ; DoSpriteAnimFrame.Jumptable indexes (see engine/sprite_anims/functions.asm)
 	const_def
-	const SPRANIM_FUNC_NULL                      ; 00
-	const SPRANIM_FUNC_PARTY_MON                 ; 01
-	const SPRANIM_FUNC_PARTY_MON_SWITCH          ; 02
-	const SPRANIM_FUNC_PARTY_MON_SELECTED        ; 03
-	const SPRANIM_FUNC_GS_TITLE_TRAIL            ; 04
-	const SPRANIM_FUNC_NAMING_SCREEN_CURSOR      ; 05
-	const SPRANIM_FUNC_GAMEFREAK_LOGO            ; 06
-	const SPRANIM_FUNC_GS_GAMEFREAK_LOGO_STAR    ; 07
-	const SPRANIM_FUNC_GS_GAMEFREAK_LOGO_SPARKLE ; 08
-	const SPRANIM_FUNC_SLOTS_GOLEM               ; 09
-	const SPRANIM_FUNC_SLOTS_CHANSEY             ; 0a
-	const SPRANIM_FUNC_SLOTS_EGG                 ; 0b
-	const SPRANIM_FUNC_MAIL_CURSOR               ; 0c
-	const SPRANIM_FUNC_UNUSED_CURSOR             ; 0d
-	const SPRANIM_FUNC_MEMORY_GAME_CURSOR        ; 0e
-	const SPRANIM_FUNC_POKEGEAR_ARROW            ; 0f
-	const SPRANIM_FUNC_TRADE_POKE_BALL           ; 10
-	const SPRANIM_FUNC_TRADE_TUBE_BULGE          ; 11
-	const SPRANIM_FUNC_TRADEMON_IN_TUBE          ; 12
-	const SPRANIM_FUNC_REVEAL_NEW_MON            ; 13
-	const SPRANIM_FUNC_RADIO_TUNING_KNOB         ; 14
-	const SPRANIM_FUNC_CUT_LEAVES                ; 15
-	const SPRANIM_FUNC_FLY_FROM                  ; 16
-	const SPRANIM_FUNC_FLY_LEAF                  ; 17
-	const SPRANIM_FUNC_FLY_TO                    ; 18
-	const SPRANIM_FUNC_GS_INTRO_HO_OH_LUGIA      ; 19
-	const SPRANIM_FUNC_EZCHAT_CURSOR             ; 1a
-	const SPRANIM_FUNC_MOBILE_TRADE_SENT_PULSE   ; 1b
-	const SPRANIM_FUNC_MOBILE_TRADE_OT_PULSE     ; 1c
-	const SPRANIM_FUNC_INTRO_SUICUNE             ; 1d
-	const SPRANIM_FUNC_INTRO_PICHU_WOOPER        ; 1e
-	const SPRANIM_FUNC_CELEBI                    ; 1f
-	const SPRANIM_FUNC_INTRO_UNOWN               ; 20
-	const SPRANIM_FUNC_INTRO_UNOWN_F             ; 21
-	const SPRANIM_FUNC_INTRO_SUICUNE_AWAY        ; 22
-DEF NUM_SPRANIM_FUNCS EQU const_value
+	const SPRANIM_BEHAVIOR_NULL                      ; 00
+	const SPRANIM_BEHAVIOR_PARTY_MON                 ; 01
+	const SPRANIM_BEHAVIOR_PARTY_MON_SWITCH          ; 02
+	const SPRANIM_BEHAVIOR_PARTY_MON_SELECTED        ; 03
+	const SPRANIM_BEHAVIOR_GS_TITLE_TRAIL            ; 04
+	const SPRANIM_BEHAVIOR_NAMING_SCREEN_CURSOR      ; 05
+	const SPRANIM_BEHAVIOR_GAMEFREAK_LOGO            ; 06
+	const SPRANIM_BEHAVIOR_GS_GAMEFREAK_LOGO_STAR    ; 07
+	const SPRANIM_BEHAVIOR_GS_GAMEFREAK_LOGO_SPARKLE ; 08
+	const SPRANIM_BEHAVIOR_SLOTS_GOLEM               ; 09
+	const SPRANIM_BEHAVIOR_SLOTS_CHANSEY             ; 0a
+	const SPRANIM_BEHAVIOR_SLOTS_EGG                 ; 0b
+	const SPRANIM_BEHAVIOR_MAIL_CURSOR               ; 0c
+	const SPRANIM_BEHAVIOR_UNUSED_CURSOR             ; 0d
+	const SPRANIM_BEHAVIOR_MEMORY_GAME_CURSOR        ; 0e
+	const SPRANIM_BEHAVIOR_POKEGEAR_ARROW            ; 0f
+	const SPRANIM_BEHAVIOR_TRADE_POKE_BALL           ; 10
+	const SPRANIM_BEHAVIOR_TRADE_TUBE_BULGE          ; 11
+	const SPRANIM_BEHAVIOR_TRADEMON_IN_TUBE          ; 12
+	const SPRANIM_BEHAVIOR_REVEAL_NEW_MON            ; 13
+	const SPRANIM_BEHAVIOR_RADIO_TUNING_KNOB         ; 14
+	const SPRANIM_BEHAVIOR_CUT_LEAVES                ; 15
+	const SPRANIM_BEHAVIOR_FLY_FROM                  ; 16
+	const SPRANIM_BEHAVIOR_FLY_LEAF                  ; 17
+	const SPRANIM_BEHAVIOR_FLY_TO                    ; 18
+	const SPRANIM_BEHAVIOR_GS_INTRO_HO_OH_LUGIA      ; 19
+	const SPRANIM_BEHAVIOR_EZCHAT_CURSOR             ; 1a
+	const SPRANIM_BEHAVIOR_MOBILE_TRADE_SENT_PULSE   ; 1b
+	const SPRANIM_BEHAVIOR_MOBILE_TRADE_OT_PULSE     ; 1c
+	const SPRANIM_BEHAVIOR_INTRO_SUICUNE             ; 1d
+	const SPRANIM_BEHAVIOR_INTRO_PICHU_WOOPER        ; 1e
+	const SPRANIM_BEHAVIOR_CELEBI                    ; 1f
+	const SPRANIM_BEHAVIOR_INTRO_UNOWN               ; 20
+	const SPRANIM_BEHAVIOR_INTRO_UNOWN_F             ; 21
+	const SPRANIM_BEHAVIOR_INTRO_SUICUNE_AWAY        ; 22
+DEF NUM_SPRANIM_BEHAVIORS EQU const_value
 
 ; SpriteAnimFrameData indexes (see data/sprite_anims/celsets.asm)
 	const_def

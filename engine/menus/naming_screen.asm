@@ -937,7 +937,7 @@ _ComposeMailMessage:
 	ld a, SPRANIM_ANIM_PARTY_MON
 	call InitSpriteAnimStruct
 
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
 	ld [hl], $0
 	call .InitCharset

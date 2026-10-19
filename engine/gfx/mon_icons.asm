@@ -82,9 +82,9 @@ Unused_InitFastAnimatedMonIcon:
 
 Mobile_InitAnimatedMonIcon:
 	call PartyMenu_InitAnimatedMonIcon
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld a, SPRANIM_FUNC_NULL
+	ld a, SPRANIM_BEHAVIOR_NULL
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -99,9 +99,9 @@ Mobile_InitAnimatedMonIcon:
 Mobile_InitPartyMenuBGPal71:
 	call InitPartyMenuIcon
 	call SetPartyMonIconAnimSpeed
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld a, SPRANIM_FUNC_NULL
+	ld a, SPRANIM_BEHAVIOR_NULL
 	ld [hl], a
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
@@ -223,9 +223,9 @@ NamingScreen_InitAnimatedMonIcon:
 	depixel 4, 4, 4, 0
 	ld a, SPRANIM_ANIM_PARTY_MON
 	call _InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld [hl], SPRANIM_FUNC_NULL
+	ld [hl], SPRANIM_BEHAVIOR_NULL
 	ret
 
 MoveList_InitAnimatedMonIcon:
@@ -238,9 +238,9 @@ MoveList_InitAnimatedMonIcon:
 	ld e, 4 * TILE_WIDTH + 4
 	ld a, SPRANIM_ANIM_PARTY_MON
 	call _InitSpriteAnimStruct
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld [hl], SPRANIM_FUNC_NULL
+	ld [hl], SPRANIM_BEHAVIOR_NULL
 	ret
 
 Trade_LoadMonIconGFX:
@@ -360,17 +360,17 @@ FreezeMonIcons:
 	jr z, .next
 	cp d
 	jr z, .loadwithtwo
-	ld a, SPRANIM_FUNC_NULL
+	ld a, SPRANIM_BEHAVIOR_NULL
 	jr .ok
 
 .loadwithtwo
-	ld a, SPRANIM_FUNC_PARTY_MON_SWITCH
+	ld a, SPRANIM_BEHAVIOR_PARTY_MON_SWITCH
 
 .ok
 	push hl
 	ld c, l
 	ld b, h
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
 	ld [hl], a
 	pop hl
@@ -392,9 +392,9 @@ UnfreezeMonIcons:
 	push hl
 	ld c, l
 	ld b, h
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld [hl], SPRANIM_FUNC_PARTY_MON
+	ld [hl], SPRANIM_BEHAVIOR_PARTY_MON
 	pop hl
 .next
 	ld bc, $10
@@ -414,16 +414,16 @@ HoldSwitchmonIcon:
 	jr z, .next
 	cp d
 	jr z, .is_switchmon
-	ld a, SPRANIM_FUNC_PARTY_MON_SELECTED
+	ld a, SPRANIM_BEHAVIOR_PARTY_MON_SELECTED
 	jr .join_back
 
 .is_switchmon
-	ld a, SPRANIM_FUNC_PARTY_MON_SWITCH
+	ld a, SPRANIM_BEHAVIOR_PARTY_MON_SWITCH
 .join_back
 	push hl
 	ld c, l
 	ld b, h
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
 	ld [hl], a
 	pop hl

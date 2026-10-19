@@ -43,7 +43,7 @@ DoNextFrameForAllSprites:
 	ld b, h
 	push hl
 	push de
-	call DoSpriteAnimFrame ; Uses a massive dw
+	call SpriteAnim_RunBehavior
 	call UpdateAnimFrame
 	pop de
 	pop hl
@@ -82,7 +82,7 @@ DoNextFrameForFirst16Sprites:
 	ld b, h
 	push hl
 	push de
-	call DoSpriteAnimFrame ; Uses a massive dw
+	call SpriteAnim_RunBehavior
 	call UpdateAnimFrame
 	pop de
 	pop hl
@@ -166,7 +166,7 @@ _InitSpriteAnimStruct::
 	ld [hli], a ; SPRITEANIMSTRUCT_CELSET_ID
 	inc de
 	ld a, [de]
-	ld [hli], a ; SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld [hli], a ; SPRITEANIMSTRUCT_BEHAVIOR_ID
 	inc de
 ; Look up the third field in the wSpriteAnimDict mapping.
 ; Take the mapped value and load it in.
@@ -528,7 +528,7 @@ UnusedLoadSpriteAnimGFX: ; unreferenced
 
 INCLUDE "data/sprite_anims/animations.asm"
 
-INCLUDE "engine/sprite_anims/functions.asm"
+INCLUDE "engine/sprite_anims/behaviors.asm"
 
 INCLUDE "data/sprite_anims/celsets.asm"
 

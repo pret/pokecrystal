@@ -315,9 +315,9 @@ FlyFromAnim:
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], FIELDMOVE_FLY
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld [hl], SPRANIM_FUNC_FLY_FROM
+	ld [hl], SPRANIM_BEHAVIOR_FLY_FROM
 	ld a, 128
 	ld [wFrameCounter], a
 .loop
@@ -349,9 +349,9 @@ FlyToAnim:
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], FIELDMOVE_FLY
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld [hl], SPRANIM_FUNC_FLY_TO
+	ld [hl], SPRANIM_BEHAVIOR_FLY_TO
 	ld hl, SPRITEANIMSTRUCT_VAR5
 	add hl, bc
 	ld [hl], 11 * TILE_WIDTH

@@ -19,9 +19,9 @@ CelebiShrineEvent:
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], SPECIALCELEBIEVENT_CELEBI
-	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
+	ld hl, SPRITEANIMSTRUCT_BEHAVIOR_ID
 	add hl, bc
-	ld [hl], SPRANIM_FUNC_CELEBI
+	ld [hl], SPRANIM_BEHAVIOR_CELEBI
 	ld hl, SPRITEANIMSTRUCT_VAR5
 	add hl, bc
 	ld a, $80
