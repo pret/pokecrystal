@@ -1,73 +1,76 @@
-SpriteAnim_CelSets:
-; entries correspond to SPRANIM_CELSET_* constants (see constants/sprite_anim_constants.asm)
-	table_width 2
-	dw .Celset_00
-	dw .Celset_PartyMon
-	dw .Celset_PartyMonWithMail
-	dw .Celset_PartyMonWithItem
-	dw .Celset_PartyMonFast
-	dw .Celset_PartyMonWithMailFast
-	dw .Celset_PartyMonWithItemFast
-	dw .Celset_GSTitleTrail
-	dw .Celset_TextEntryCursor
-	dw .Celset_TextEntryCursorBig
-	dw .Celset_GameFreakLogo
-	dw .Celset_GSGameFreakLogoStar
-	dw .Celset_GSGameFreakLogoSparkle
-	dw .Celset_SlotsGolem
-	dw .Celset_SlotsChansey
-	dw .Celset_SlotsChansey2
-	dw .Celset_SlotsEgg
-	dw .Celset_RedWalk
-	dw .Celset_StillCursor
-	dw .Celset_TradePokeBall
-	dw .Celset_TradePokeBallWobble
-	dw .Celset_TradePoof
-	dw .Celset_TradeTubeBulge
-	dw .Celset_TrademonIcon
-	dw .Celset_TrademonBubble
-	dw .Celset_EvolutionBallOfLight
-	dw .Celset_RadioTuningKnob
-	dw .Celset_MagnetTrainRed
-	dw .Celset_Unused1C
-	dw .Celset_Leaf
-	dw .Celset_CutTree
-	dw .Celset_EggCrack
-	dw .Celset_EggHatch1
-	dw .Celset_EggHatch2
-	dw .Celset_EggHatch3
-	dw .Celset_EggHatch4
-	dw .Celset_GSIntroHoOhLugia
-	dw .Celset_HeadbuttTree
-	dw .Celset_EZChatCursor1
-	dw .Celset_EZChatCursor2
-	dw .Celset_EZChatCursor3
-	dw .Celset_EZChatCursor4
-	dw .Celset_EZChatCursor5
-	dw .Celset_EZChatCursor6
-	dw .Celset_EZChatCursor7
-	dw .Celset_BlueWalk
-	dw .Celset_MagnetTrainBlue
-	dw .Celset_MobileTradeSentBall
-	dw .Celset_MobileTradeOTBall
-	dw .Celset_MobileTradeCableBulge
-	dw .Celset_MobileTradeSentPulse
-	dw .Celset_MobileTradeOTPulse
-	dw .Celset_MobileTradePing
-	dw .Celset_IntroSuicune
-	dw .Celset_IntroSuicune2
-	dw .Celset_IntroPichu
-	dw .Celset_IntroWooper
-	dw .Celset_IntroUnown1
-	dw .Celset_IntroUnown2
-	dw .Celset_IntroUnown3
-	dw .Celset_IntroUnown4
-	dw .Celset_IntroUnownF2
-	dw .Celset_IntroSuicuneAway
-	dw .Celset_IntroUnownF
-	dw .Celset_CelebiLeft
-	dw .Celset_CelebiRight
-	assert_table_length NUM_SPRANIM_CELSETS
+SpriteAnim_CelSets: const_def
+MACRO spriteanim_celset
+	const \1
+	export \1
+	dw \2
+ENDM
+	spriteanim_celset SPRANIM_CELSET_00,                        .Celset_00
+	spriteanim_celset SPRANIM_CELSET_PARTY_MON,                 .Celset_PartyMon
+	spriteanim_celset SPRANIM_CELSET_PARTY_MON_WITH_MAIL,       .Celset_PartyMonWithMail
+	spriteanim_celset SPRANIM_CELSET_PARTY_MON_WITH_ITEM,       .Celset_PartyMonWithItem
+	spriteanim_celset SPRANIM_CELSET_PARTY_MON_FAST,            .Celset_PartyMonFast
+	spriteanim_celset SPRANIM_CELSET_PARTY_MON_WITH_MAIL_FAST,  .Celset_PartyMonWithMailFast
+	spriteanim_celset SPRANIM_CELSET_PARTY_MON_WITH_ITEM_FAST,  .Celset_PartyMonWithItemFast
+	spriteanim_celset SPRANIM_CELSET_GS_TITLE_TRAIL,            .Celset_GSTitleTrail
+	spriteanim_celset SPRANIM_CELSET_TEXT_ENTRY_CURSOR,         .Celset_TextEntryCursor
+	spriteanim_celset SPRANIM_CELSET_TEXT_ENTRY_CURSOR_BIG,     .Celset_TextEntryCursorBig
+	spriteanim_celset SPRANIM_CELSET_GAMEFREAK_LOGO,            .Celset_GameFreakLogo
+	spriteanim_celset SPRANIM_CELSET_GS_GAMEFREAK_LOGO_STAR,    .Celset_GSGameFreakLogoStar
+	spriteanim_celset SPRANIM_CELSET_GS_GAMEFREAK_LOGO_SPARKLE, .Celset_GSGameFreakLogoSparkle
+	spriteanim_celset SPRANIM_CELSET_SLOTS_GOLEM,               .Celset_SlotsGolem
+	spriteanim_celset SPRANIM_CELSET_SLOTS_CHANSEY,             .Celset_SlotsChansey
+	spriteanim_celset SPRANIM_CELSET_SLOTS_CHANSEY_2,           .Celset_SlotsChansey2
+	spriteanim_celset SPRANIM_CELSET_SLOTS_EGG,                 .Celset_SlotsEgg
+	spriteanim_celset SPRANIM_CELSET_RED_WALK,                  .Celset_RedWalk
+	spriteanim_celset SPRANIM_CELSET_STILL_CURSOR,              .Celset_StillCursor
+	spriteanim_celset SPRANIM_CELSET_TRADE_POKE_BALL,           .Celset_TradePokeBall
+	spriteanim_celset SPRANIM_CELSET_TRADE_POKE_BALL_WOBBLE,    .Celset_TradePokeBallWobble
+	spriteanim_celset SPRANIM_CELSET_TRADE_POOF,                .Celset_TradePoof
+	spriteanim_celset SPRANIM_CELSET_TRADE_TUBE_BULGE,          .Celset_TradeTubeBulge
+	spriteanim_celset SPRANIM_CELSET_TRADEMON_ICON,             .Celset_TrademonIcon
+	spriteanim_celset SPRANIM_CELSET_TRADEMON_BUBBLE,           .Celset_TrademonBubble
+	spriteanim_celset SPRANIM_CELSET_EVOLUTION_BALL_OF_LIGHT,   .Celset_EvolutionBallOfLight
+	spriteanim_celset SPRANIM_CELSET_RADIO_TUNING_KNOB,         .Celset_RadioTuningKnob
+	spriteanim_celset SPRANIM_CELSET_MAGNET_TRAIN_RED,          .Celset_MagnetTrainRed
+	spriteanim_celset SPRANIM_CELSET_UNUSED_1C,                 .Celset_Unused1C
+	spriteanim_celset SPRANIM_CELSET_LEAF,                      .Celset_Leaf
+	spriteanim_celset SPRANIM_CELSET_CUT_TREE,                  .Celset_CutTree
+	spriteanim_celset SPRANIM_CELSET_EGG_CRACK,                 .Celset_EggCrack
+	spriteanim_celset SPRANIM_CELSET_EGG_HATCH_1,               .Celset_EggHatch1
+	spriteanim_celset SPRANIM_CELSET_EGG_HATCH_2,               .Celset_EggHatch2
+	spriteanim_celset SPRANIM_CELSET_EGG_HATCH_3,               .Celset_EggHatch3
+	spriteanim_celset SPRANIM_CELSET_EGG_HATCH_4,               .Celset_EggHatch4
+	spriteanim_celset SPRANIM_CELSET_GS_INTRO_HO_OH_LUGIA,      .Celset_GSIntroHoOhLugia
+	spriteanim_celset SPRANIM_CELSET_HEADBUTT,                  .Celset_HeadbuttTree
+	spriteanim_celset SPRANIM_CELSET_EZCHAT_CURSOR_1,           .Celset_EZChatCursor1
+	spriteanim_celset SPRANIM_CELSET_EZCHAT_CURSOR_2,           .Celset_EZChatCursor2
+	spriteanim_celset SPRANIM_CELSET_EZCHAT_CURSOR_3,           .Celset_EZChatCursor3
+	spriteanim_celset SPRANIM_CELSET_EZCHAT_CURSOR_4,           .Celset_EZChatCursor4
+	spriteanim_celset SPRANIM_CELSET_EZCHAT_CURSOR_5,           .Celset_EZChatCursor5
+	spriteanim_celset SPRANIM_CELSET_EZCHAT_CURSOR_6,           .Celset_EZChatCursor6
+	spriteanim_celset SPRANIM_CELSET_EZCHAT_CURSOR_7,           .Celset_EZChatCursor7
+	spriteanim_celset SPRANIM_CELSET_BLUE_WALK,                 .Celset_BlueWalk
+	spriteanim_celset SPRANIM_CELSET_MAGNET_TRAIN_BLUE,         .Celset_MagnetTrainBlue
+	spriteanim_celset SPRANIM_CELSET_MOBILE_TRADE_SENT_BALL,    .Celset_MobileTradeSentBall
+	spriteanim_celset SPRANIM_CELSET_MOBILE_TRADE_OT_BALL,      .Celset_MobileTradeOTBall
+	spriteanim_celset SPRANIM_CELSET_MOBILE_TRADE_CABLE_BULGE,  .Celset_MobileTradeCableBulge
+	spriteanim_celset SPRANIM_CELSET_MOBILE_TRADE_SENT_PULSE,   .Celset_MobileTradeSentPulse
+	spriteanim_celset SPRANIM_CELSET_MOBILE_TRADE_OT_PULSE,     .Celset_MobileTradeOTPulse
+	spriteanim_celset SPRANIM_CELSET_MOBILE_TRADE_PING,         .Celset_MobileTradePing
+	spriteanim_celset SPRANIM_CELSET_INTRO_SUICUNE,             .Celset_IntroSuicune
+	spriteanim_celset SPRANIM_CELSET_INTRO_SUICUNE_2,           .Celset_IntroSuicune2
+	spriteanim_celset SPRANIM_CELSET_INTRO_PICHU,               .Celset_IntroPichu
+	spriteanim_celset SPRANIM_CELSET_INTRO_WOOPER,              .Celset_IntroWooper
+	spriteanim_celset SPRANIM_CELSET_INTRO_UNOWN_1,             .Celset_IntroUnown1
+	spriteanim_celset SPRANIM_CELSET_INTRO_UNOWN_2,             .Celset_IntroUnown2
+	spriteanim_celset SPRANIM_CELSET_INTRO_UNOWN_3,             .Celset_IntroUnown3
+	spriteanim_celset SPRANIM_CELSET_INTRO_UNOWN_4,             .Celset_IntroUnown4
+	spriteanim_celset SPRANIM_CELSET_INTRO_UNOWN_F_2,           .Celset_IntroUnownF2
+	spriteanim_celset SPRANIM_CELSET_INTRO_SUICUNE_AWAY,        .Celset_IntroSuicuneAway
+	spriteanim_celset SPRANIM_CELSET_INTRO_UNOWN_F,             .Celset_IntroUnownF
+	spriteanim_celset SPRANIM_CELSET_CELEBI_LEFT,               .Celset_CelebiLeft
+	spriteanim_celset SPRANIM_CELSET_CELEBI_RIGHT,              .Celset_CelebiRight
+export DEF NUM_SPRANIM_CELSETS EQU const_value
 
 .Celset_00:
 	oamcel SPRANIM_OAMSET_RED_WALK_1, 32

@@ -1,153 +1,153 @@
-MACRO spriteanimoam
-; vtile offset, data pointer
-	db \1
-	dw \2
-ENDM
 
-SpriteAnim_OAMSets:
-; entries correspond to SPRANIM_OAMSET_* constants (see constants/sprite_anim_constants.asm)
+SpriteAnim_OAMSets: const_def
+MACRO spriteanim_oamset
+	const \1
+	export \1
+	db \2
+	dw \3
+ENDM
 	table_width 3
-	spriteanimoam $00, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_RED_WALK_1
-	spriteanimoam $04, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_RED_WALK_2
-	spriteanimoam $4c, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_BUBBLE_1
-	spriteanimoam $5c, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_BUBBLE_2
-	spriteanimoam $6c, .OAMSet_GSIntroShellder          ; SPRANIM_OAMSET_GS_INTRO_SHELLDER_1
-	spriteanimoam $6e, .OAMSet_GSIntroShellder          ; SPRANIM_OAMSET_GS_INTRO_SHELLDER_2
-	spriteanimoam $2d, .OAMSet_GSIntroMagikarp          ; SPRANIM_OAMSET_GS_INTRO_MAGIKARP_1
-	spriteanimoam $4d, .OAMSet_GSIntroMagikarp          ; SPRANIM_OAMSET_GS_INTRO_MAGIKARP_2
-	spriteanimoam $60, .OAMSet_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_UNUSED_LAPRAS
-	spriteanimoam $00, .OAMSet_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_1
-	spriteanimoam $00, .OAMSet_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_2
-	spriteanimoam $06, .OAMSet_GSIntroLapras            ; SPRANIM_OAMSET_GS_INTRO_LAPRAS_3
-	spriteanimoam $0c, .OAMSet_GSIntroNote              ; SPRANIM_OAMSET_GS_INTRO_NOTE
-	spriteanimoam $0d, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_INTRO_INVISIBLE_NOTE
-	spriteanimoam $00, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1
-	spriteanimoam $04, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2
-	spriteanimoam $08, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_3
-	spriteanimoam $40, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_1
-	spriteanimoam $44, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_2
-	spriteanimoam $48, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_3
-	spriteanimoam $4c, .OAMSet_GSIntroJigglypuffPikachu ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_4
-	spriteanimoam $80, .OAMSet_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_1
-	spriteanimoam $85, .OAMSet_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_2
-	spriteanimoam $8a, .OAMSet_GSIntroPikachuTail       ; SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_3
-	spriteanimoam $00, .OAMSet_IntroUnownF2_1           ; SPRANIM_OAMSET_GS_INTRO_SMALL_FIREBALL
-	spriteanimoam $01, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_GS_INTRO_MED_FIREBALL
-	spriteanimoam $09, .OAMSet_GSIntroBigFireball       ; SPRANIM_OAMSET_GS_INTRO_BIG_FIREBALL
-	spriteanimoam $10, .OAMSet_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_CHIKORITA
-	spriteanimoam $29, .OAMSet_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_CYNDAQUIL
-	spriteanimoam $42, .OAMSet_GSIntroStarter           ; SPRANIM_OAMSET_GS_INTRO_TOTODILE
-	spriteanimoam $f8, .OAMSet_GSTitleTrail             ; SPRANIM_OAMSET_GS_TITLE_TRAIL_1
-	spriteanimoam $fa, .OAMSet_GSTitleTrail             ; SPRANIM_OAMSET_GS_TITLE_TRAIL_2
-	spriteanimoam $00, .OAMSet_TextEntryCursor          ; SPRANIM_OAMSET_TEXT_ENTRY_CURSOR
-	spriteanimoam $00, .OAMSet_TextEntryCursorBig       ; SPRANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG
-	spriteanimoam $00, .OAMSet_GSGameFreakLogo          ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO
-	spriteanimoam $0f, .OAMSet_GSGameFreakLogoStar      ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR
-	spriteanimoam $11, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_1
-	spriteanimoam $12, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_2
-	spriteanimoam $13, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_3
-	spriteanimoam $00, .OAMSet_SlotsGolem               ; SPRANIM_OAMSET_SLOTS_GOLEM_1
-	spriteanimoam $08, .OAMSet_SlotsGolem               ; SPRANIM_OAMSET_SLOTS_GOLEM_2
-	spriteanimoam $10, .OAMSet_SlotsChansey1            ; SPRANIM_OAMSET_SLOTS_CHANSEY_1
-	spriteanimoam $10, .OAMSet_SlotsChansey2            ; SPRANIM_OAMSET_SLOTS_CHANSEY_2
-	spriteanimoam $10, .OAMSet_SlotsChansey3            ; SPRANIM_OAMSET_SLOTS_CHANSEY_3
-	spriteanimoam $10, .OAMSet_SlotsChansey4            ; SPRANIM_OAMSET_SLOTS_CHANSEY_4
-	spriteanimoam $10, .OAMSet_SlotsChansey5            ; SPRANIM_OAMSET_SLOTS_CHANSEY_5
-	spriteanimoam $3a, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_SLOTS_EGG
-	spriteanimoam $00, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_STILL_CURSOR
-	spriteanimoam $00, .OAMSet_TradePokeBall1           ; SPRANIM_OAMSET_TRADE_POKE_BALL_1
-	spriteanimoam $02, .OAMSet_MagnetTrainRed           ; SPRANIM_OAMSET_TRADE_POKE_BALL_2
-	spriteanimoam $06, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_1
-	spriteanimoam $0a, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_2
-	spriteanimoam $0e, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_TRADE_POOF_3
-	spriteanimoam $12, .OAMSet_TradeTubeBulge           ; SPRANIM_OAMSET_TRADE_TUBE_BULGE_1
-	spriteanimoam $13, .OAMSet_TradeTubeBulge           ; SPRANIM_OAMSET_TRADE_TUBE_BULGE_2
-	spriteanimoam $00, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_TRADEMON_ICON_1
-	spriteanimoam $04, .OAMSet_RedWalk                  ; SPRANIM_OAMSET_TRADEMON_ICON_2
-	spriteanimoam $10, .OAMSet_TradePoofBubble          ; SPRANIM_OAMSET_TRADEMON_BUBBLE
-	spriteanimoam $00, .OAMSet_MagnetTrainRed           ; SPRANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_1
-	spriteanimoam $04, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_2
-	spriteanimoam $00, .OAMSet_RadioTuningKnob          ; SPRANIM_OAMSET_RADIO_TUNING_KNOB
-	spriteanimoam $00, .OAMSet_PartyMonWithMail1        ; SPRANIM_OAMSET_PARTY_MON_WITH_MAIL_1
-	spriteanimoam $00, .OAMSet_PartyMonWithMail2        ; SPRANIM_OAMSET_PARTY_MON_WITH_MAIL_2
-	spriteanimoam $00, .OAMSet_PartyMonWithItem1        ; SPRANIM_OAMSET_PARTY_MON_WITH_ITEM_1
-	spriteanimoam $00, .OAMSet_PartyMonWithItem2        ; SPRANIM_OAMSET_PARTY_MON_WITH_ITEM_2
-	spriteanimoam $00, .OAMSet_MagnetTrainRed           ; SPRANIM_OAMSET_MAGNET_TRAIN_RED_1
-	spriteanimoam $04, .OAMSet_MagnetTrainRed           ; SPRANIM_OAMSET_MAGNET_TRAIN_RED_2
-	spriteanimoam $00, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_43
-	spriteanimoam $30, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_44
-	spriteanimoam $03, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_45
-	spriteanimoam $33, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_46
-	spriteanimoam $06, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_47
-	spriteanimoam $36, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_48
-	spriteanimoam $09, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_49
-	spriteanimoam $39, .OAMSet_Unused43_4A              ; SPRANIM_OAMSET_UNUSED_4A
-	spriteanimoam $0c, .OAMSet_Unused4B                 ; SPRANIM_OAMSET_UNUSED_4B
-	spriteanimoam $0c, .OAMSet_Unused4C                 ; SPRANIM_OAMSET_UNUSED_4C
-	spriteanimoam $3c, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_UNUSED_4D
-	spriteanimoam $3e, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_UNUSED_4E
-	spriteanimoam $00, .OAMSet_Leaf                     ; SPRANIM_OAMSET_LEAF
-	spriteanimoam $00, .OAMSet_Tree                     ; SPRANIM_OAMSET_TREE_1
-	spriteanimoam $00, .OAMSet_CutTree2                 ; SPRANIM_OAMSET_CUT_TREE_2
-	spriteanimoam $00, .OAMSet_CutTree3                 ; SPRANIM_OAMSET_CUT_TREE_3
-	spriteanimoam $00, .OAMSet_CutTree4                 ; SPRANIM_OAMSET_CUT_TREE_4
-	spriteanimoam $00, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_EGG_CRACK
-	spriteanimoam $01, .OAMSet_1x1_Palette0             ; SPRANIM_OAMSET_EGG_HATCH
-	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia1        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_1
-	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia2        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_2
-	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia3        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_3
-	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia4        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_4
-	spriteanimoam $00, .OAMSet_GSIntroHoOhLugia5        ; SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_5
-	spriteanimoam $04, .OAMSet_Tree                     ; SPRANIM_OAMSET_HEADBUTT_TREE_2
-	spriteanimoam $00, .OAMSet_EZChatCursor1            ; SPRANIM_OAMSET_EZCHAT_CURSOR_1
-	spriteanimoam $00, .OAMSet_EZChatCursor2            ; SPRANIM_OAMSET_EZCHAT_CURSOR_2
-	spriteanimoam $00, .OAMSet_EZChatCursor3            ; SPRANIM_OAMSET_EZCHAT_CURSOR_3
-	spriteanimoam $00, .OAMSet_EZChatCursor4            ; SPRANIM_OAMSET_EZCHAT_CURSOR_4
-	spriteanimoam $00, .OAMSet_EZChatCursor5            ; SPRANIM_OAMSET_EZCHAT_CURSOR_5
-	spriteanimoam $00, .OAMSet_EZChatCursor6            ; SPRANIM_OAMSET_EZCHAT_CURSOR_6
-	spriteanimoam $00, .OAMSet_EZChatCursor7            ; SPRANIM_OAMSET_EZCHAT_CURSOR_7
-	spriteanimoam $00, .OAMSet_BlueWalk                 ; SPRANIM_OAMSET_BLUE_WALK_1
-	spriteanimoam $04, .OAMSet_BlueWalk                 ; SPRANIM_OAMSET_BLUE_WALK_2
-	spriteanimoam $00, .OAMSet_MagnetTrainBlue          ; SPRANIM_OAMSET_MAGNET_TRAIN_BLUE_1
-	spriteanimoam $04, .OAMSet_MagnetTrainBlue          ; SPRANIM_OAMSET_MAGNET_TRAIN_BLUE_2
-	spriteanimoam $20, .OAMSet_MobileTradeCableBulge    ; SPRANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_1
-	spriteanimoam $21, .OAMSet_MobileTradeCableBulge    ; SPRANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_2
-	spriteanimoam $22, .OAMSet_MobileTradePing1         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_1
-	spriteanimoam $23, .OAMSet_MobileTradePing2         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_2
-	spriteanimoam $27, .OAMSet_MobileTradePing3         ; SPRANIM_OAMSET_MOBILE_TRADE_PING_3
-	spriteanimoam $2a, .OAMSet_MobileTradeSentPulse     ; SPRANIM_OAMSET_MOBILE_TRADE_SENT_PULSE
-	spriteanimoam $2a, .OAMSet_MobileTradeOTPulse       ; SPRANIM_OAMSET_MOBILE_TRADE_OT_PULSE
-	spriteanimoam $00, .OAMSet_IntroSuicune1            ; SPRANIM_OAMSET_INTRO_SUICUNE_1
-	spriteanimoam $08, .OAMSet_IntroSuicune2            ; SPRANIM_OAMSET_INTRO_SUICUNE_2
-	spriteanimoam $60, .OAMSet_IntroSuicune3            ; SPRANIM_OAMSET_INTRO_SUICUNE_3
-	spriteanimoam $68, .OAMSet_IntroSuicune4            ; SPRANIM_OAMSET_INTRO_SUICUNE_4
-	spriteanimoam $00, .OAMSet_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_1
-	spriteanimoam $05, .OAMSet_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_2
-	spriteanimoam $0a, .OAMSet_IntroPichu               ; SPRANIM_OAMSET_INTRO_PICHU_3
-	spriteanimoam $50, .OAMSet_IntroWooper              ; SPRANIM_OAMSET_INTRO_WOOPER
-	spriteanimoam $00, .OAMSet_IntroUnown1              ; SPRANIM_OAMSET_INTRO_UNOWN_1
-	spriteanimoam $01, .OAMSet_IntroUnown2              ; SPRANIM_OAMSET_INTRO_UNOWN_2
-	spriteanimoam $04, .OAMSet_IntroUnown3              ; SPRANIM_OAMSET_INTRO_UNOWN_3
-	spriteanimoam $00, .OAMSet_IntroUnownF2_1           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_1
-	spriteanimoam $01, .OAMSet_IntroUnownF2_2           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_2
-	spriteanimoam $03, .OAMSet_IntroUnownF2_3           ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_3
-	spriteanimoam $08, .OAMSet_IntroUnownF2_4_5         ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_4
-	spriteanimoam $1c, .OAMSet_IntroUnownF2_4_5         ; SPRANIM_OAMSET_INTRO_UNOWN_F_2_5
-	spriteanimoam $80, .OAMSet_IntroSuicuneAway         ; SPRANIM_OAMSET_INTRO_SUICUNE_AWAY
-	spriteanimoam $00, .OAMSet_Celebi                   ; SPRANIM_OAMSET_CELEBI_1
-	spriteanimoam $04, .OAMSet_Celebi                   ; SPRANIM_OAMSET_CELEBI_2
-	spriteanimoam $d0, .OAMSet_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_1
-	spriteanimoam $d3, .OAMSet_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_2
-	spriteanimoam $d6, .OAMSet_GameFreakLogo1_3         ; SPRANIM_OAMSET_GAMEFREAK_LOGO_3
-	spriteanimoam $6c, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_4
-	spriteanimoam $68, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_5
-	spriteanimoam $64, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_6
-	spriteanimoam $60, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_7
-	spriteanimoam $0c, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_8
-	spriteanimoam $08, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_9
-	spriteanimoam $04, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_10
-	spriteanimoam $00, .OAMSet_GameFreakLogo4_11        ; SPRANIM_OAMSET_GAMEFREAK_LOGO_11
-	assert_table_length NUM_SPRANIM_OAMSETS
+	spriteanim_oamset SPRANIM_OAMSET_RED_WALK_1,                  $00, .OAMSet_RedWalk
+	spriteanim_oamset SPRANIM_OAMSET_RED_WALK_2,                  $04, .OAMSet_RedWalk
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_BUBBLE_1,           $4c, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_BUBBLE_2,           $5c, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_SHELLDER_1,         $6c, .OAMSet_GSIntroShellder
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_SHELLDER_2,         $6e, .OAMSet_GSIntroShellder
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_MAGIKARP_1,         $2d, .OAMSet_GSIntroMagikarp
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_MAGIKARP_2,         $4d, .OAMSet_GSIntroMagikarp
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_UNUSED_LAPRAS,      $60, .OAMSet_GSIntroLapras
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_LAPRAS_1,           $00, .OAMSet_GSIntroLapras
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_LAPRAS_2,           $00, .OAMSet_GSIntroLapras
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_LAPRAS_3,           $06, .OAMSet_GSIntroLapras
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_NOTE,               $0c, .OAMSet_GSIntroNote
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_INVISIBLE_NOTE,     $0d, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_1,       $00, .OAMSet_GSIntroJigglypuffPikachu
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_2,       $04, .OAMSet_GSIntroJigglypuffPikachu
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_JIGGLYPUFF_3,       $08, .OAMSet_GSIntroJigglypuffPikachu
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_PIKACHU_1,          $40, .OAMSet_GSIntroJigglypuffPikachu
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_PIKACHU_2,          $44, .OAMSet_GSIntroJigglypuffPikachu
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_PIKACHU_3,          $48, .OAMSet_GSIntroJigglypuffPikachu
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_PIKACHU_4,          $4c, .OAMSet_GSIntroJigglypuffPikachu
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_1,     $80, .OAMSet_GSIntroPikachuTail
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_2,     $85, .OAMSet_GSIntroPikachuTail
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_PIKACHU_TAIL_3,     $8a, .OAMSet_GSIntroPikachuTail
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_SMALL_FIREBALL,     $00, .OAMSet_IntroUnownF2_1
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_MED_FIREBALL,       $01, .OAMSet_TradePoofBubble
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_BIG_FIREBALL,       $09, .OAMSet_GSIntroBigFireball
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_CHIKORITA,          $10, .OAMSet_GSIntroStarter
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_CYNDAQUIL,          $29, .OAMSet_GSIntroStarter
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_TOTODILE,           $42, .OAMSet_GSIntroStarter
+	spriteanim_oamset SPRANIM_OAMSET_GS_TITLE_TRAIL_1,            $f8, .OAMSet_GSTitleTrail
+	spriteanim_oamset SPRANIM_OAMSET_GS_TITLE_TRAIL_2,            $fa, .OAMSet_GSTitleTrail
+	spriteanim_oamset SPRANIM_OAMSET_TEXT_ENTRY_CURSOR,           $00, .OAMSet_TextEntryCursor
+	spriteanim_oamset SPRANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG,       $00, .OAMSet_TextEntryCursorBig
+	spriteanim_oamset SPRANIM_OAMSET_GS_GAMEFREAK_LOGO,           $00, .OAMSet_GSGameFreakLogo
+	spriteanim_oamset SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR,      $0f, .OAMSet_GSGameFreakLogoStar
+	spriteanim_oamset SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_1, $11, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_2, $12, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_GS_GAMEFREAK_LOGO_SPARKLE_3, $13, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_SLOTS_GOLEM_1,               $00, .OAMSet_SlotsGolem
+	spriteanim_oamset SPRANIM_OAMSET_SLOTS_GOLEM_2,               $08, .OAMSet_SlotsGolem
+	spriteanim_oamset SPRANIM_OAMSET_SLOTS_CHANSEY_1,             $10, .OAMSet_SlotsChansey1
+	spriteanim_oamset SPRANIM_OAMSET_SLOTS_CHANSEY_2,             $10, .OAMSet_SlotsChansey2
+	spriteanim_oamset SPRANIM_OAMSET_SLOTS_CHANSEY_3,             $10, .OAMSet_SlotsChansey3
+	spriteanim_oamset SPRANIM_OAMSET_SLOTS_CHANSEY_4,             $10, .OAMSet_SlotsChansey4
+	spriteanim_oamset SPRANIM_OAMSET_SLOTS_CHANSEY_5,             $10, .OAMSet_SlotsChansey5
+	spriteanim_oamset SPRANIM_OAMSET_SLOTS_EGG,                   $3a, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_STILL_CURSOR,                $00, .OAMSet_RedWalk
+	spriteanim_oamset SPRANIM_OAMSET_TRADE_POKE_BALL_1,           $00, .OAMSet_TradePokeBall1
+	spriteanim_oamset SPRANIM_OAMSET_TRADE_POKE_BALL_2,           $02, .OAMSet_MagnetTrainRed
+	spriteanim_oamset SPRANIM_OAMSET_TRADE_POOF_1,                $06, .OAMSet_TradePoofBubble
+	spriteanim_oamset SPRANIM_OAMSET_TRADE_POOF_2,                $0a, .OAMSet_TradePoofBubble
+	spriteanim_oamset SPRANIM_OAMSET_TRADE_POOF_3,                $0e, .OAMSet_TradePoofBubble
+	spriteanim_oamset SPRANIM_OAMSET_TRADE_TUBE_BULGE_1,          $12, .OAMSet_TradeTubeBulge
+	spriteanim_oamset SPRANIM_OAMSET_TRADE_TUBE_BULGE_2,          $13, .OAMSet_TradeTubeBulge
+	spriteanim_oamset SPRANIM_OAMSET_TRADEMON_ICON_1,             $00, .OAMSet_RedWalk
+	spriteanim_oamset SPRANIM_OAMSET_TRADEMON_ICON_2,             $04, .OAMSet_RedWalk
+	spriteanim_oamset SPRANIM_OAMSET_TRADEMON_BUBBLE,             $10, .OAMSet_TradePoofBubble
+	spriteanim_oamset SPRANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_1,   $00, .OAMSet_MagnetTrainRed
+	spriteanim_oamset SPRANIM_OAMSET_EVOLUTION_BALL_OF_LIGHT_2,   $04, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_RADIO_TUNING_KNOB,           $00, .OAMSet_RadioTuningKnob
+	spriteanim_oamset SPRANIM_OAMSET_PARTY_MON_WITH_MAIL_1,       $00, .OAMSet_PartyMonWithMail1
+	spriteanim_oamset SPRANIM_OAMSET_PARTY_MON_WITH_MAIL_2,       $00, .OAMSet_PartyMonWithMail2
+	spriteanim_oamset SPRANIM_OAMSET_PARTY_MON_WITH_ITEM_1,       $00, .OAMSet_PartyMonWithItem1
+	spriteanim_oamset SPRANIM_OAMSET_PARTY_MON_WITH_ITEM_2,       $00, .OAMSet_PartyMonWithItem2
+	spriteanim_oamset SPRANIM_OAMSET_MAGNET_TRAIN_RED_1,          $00, .OAMSet_MagnetTrainRed
+	spriteanim_oamset SPRANIM_OAMSET_MAGNET_TRAIN_RED_2,          $04, .OAMSet_MagnetTrainRed
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_43,                   $00, .OAMSet_Unused43_4A
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_44,                   $30, .OAMSet_Unused43_4A
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_45,                   $03, .OAMSet_Unused43_4A
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_46,                   $33, .OAMSet_Unused43_4A
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_47,                   $06, .OAMSet_Unused43_4A
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_48,                   $36, .OAMSet_Unused43_4A
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_49,                   $09, .OAMSet_Unused43_4A
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_4A,                   $39, .OAMSet_Unused43_4A
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_4B,                   $0c, .OAMSet_Unused4B
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_4C,                   $0c, .OAMSet_Unused4C
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_4D,                   $3c, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_UNUSED_4E,                   $3e, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_LEAF,                        $00, .OAMSet_Leaf
+	spriteanim_oamset SPRANIM_OAMSET_TREE_1,                      $00, .OAMSet_Tree
+	spriteanim_oamset SPRANIM_OAMSET_CUT_TREE_2,                  $00, .OAMSet_CutTree2
+	spriteanim_oamset SPRANIM_OAMSET_CUT_TREE_3,                  $00, .OAMSet_CutTree3
+	spriteanim_oamset SPRANIM_OAMSET_CUT_TREE_4,                  $00, .OAMSet_CutTree4
+	spriteanim_oamset SPRANIM_OAMSET_EGG_CRACK,                   $00, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_EGG_HATCH,                   $01, .OAMSet_1x1_Palette0
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_1,      $00, .OAMSet_GSIntroHoOhLugia1
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_2,      $00, .OAMSet_GSIntroHoOhLugia2
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_3,      $00, .OAMSet_GSIntroHoOhLugia3
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_4,      $00, .OAMSet_GSIntroHoOhLugia4
+	spriteanim_oamset SPRANIM_OAMSET_GS_INTRO_HO_OH_LUGIA_5,      $00, .OAMSet_GSIntroHoOhLugia5
+	spriteanim_oamset SPRANIM_OAMSET_HEADBUTT_TREE_2,             $04, .OAMSet_Tree
+	spriteanim_oamset SPRANIM_OAMSET_EZCHAT_CURSOR_1,             $00, .OAMSet_EZChatCursor1
+	spriteanim_oamset SPRANIM_OAMSET_EZCHAT_CURSOR_2,             $00, .OAMSet_EZChatCursor2
+	spriteanim_oamset SPRANIM_OAMSET_EZCHAT_CURSOR_3,             $00, .OAMSet_EZChatCursor3
+	spriteanim_oamset SPRANIM_OAMSET_EZCHAT_CURSOR_4,             $00, .OAMSet_EZChatCursor4
+	spriteanim_oamset SPRANIM_OAMSET_EZCHAT_CURSOR_5,             $00, .OAMSet_EZChatCursor5
+	spriteanim_oamset SPRANIM_OAMSET_EZCHAT_CURSOR_6,             $00, .OAMSet_EZChatCursor6
+	spriteanim_oamset SPRANIM_OAMSET_EZCHAT_CURSOR_7,             $00, .OAMSet_EZChatCursor7
+	spriteanim_oamset SPRANIM_OAMSET_BLUE_WALK_1,                 $00, .OAMSet_BlueWalk
+	spriteanim_oamset SPRANIM_OAMSET_BLUE_WALK_2,                 $04, .OAMSet_BlueWalk
+	spriteanim_oamset SPRANIM_OAMSET_MAGNET_TRAIN_BLUE_1,         $00, .OAMSet_MagnetTrainBlue
+	spriteanim_oamset SPRANIM_OAMSET_MAGNET_TRAIN_BLUE_2,         $04, .OAMSet_MagnetTrainBlue
+	spriteanim_oamset SPRANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_1,  $20, .OAMSet_MobileTradeCableBulge
+	spriteanim_oamset SPRANIM_OAMSET_MOBILE_TRADE_CABLE_BULGE_2,  $21, .OAMSet_MobileTradeCableBulge
+	spriteanim_oamset SPRANIM_OAMSET_MOBILE_TRADE_PING_1,         $22, .OAMSet_MobileTradePing1
+	spriteanim_oamset SPRANIM_OAMSET_MOBILE_TRADE_PING_2,         $23, .OAMSet_MobileTradePing2
+	spriteanim_oamset SPRANIM_OAMSET_MOBILE_TRADE_PING_3,         $27, .OAMSet_MobileTradePing3
+	spriteanim_oamset SPRANIM_OAMSET_MOBILE_TRADE_SENT_PULSE,     $2a, .OAMSet_MobileTradeSentPulse
+	spriteanim_oamset SPRANIM_OAMSET_MOBILE_TRADE_OT_PULSE,       $2a, .OAMSet_MobileTradeOTPulse
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_SUICUNE_1,             $00, .OAMSet_IntroSuicune1
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_SUICUNE_2,             $08, .OAMSet_IntroSuicune2
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_SUICUNE_3,             $60, .OAMSet_IntroSuicune3
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_SUICUNE_4,             $68, .OAMSet_IntroSuicune4
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_PICHU_1,               $00, .OAMSet_IntroPichu
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_PICHU_2,               $05, .OAMSet_IntroPichu
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_PICHU_3,               $0a, .OAMSet_IntroPichu
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_WOOPER,                $50, .OAMSet_IntroWooper
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_UNOWN_1,               $00, .OAMSet_IntroUnown1
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_UNOWN_2,               $01, .OAMSet_IntroUnown2
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_UNOWN_3,               $04, .OAMSet_IntroUnown3
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_UNOWN_F_2_1,           $00, .OAMSet_IntroUnownF2_1
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_UNOWN_F_2_2,           $01, .OAMSet_IntroUnownF2_2
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_UNOWN_F_2_3,           $03, .OAMSet_IntroUnownF2_3
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_UNOWN_F_2_4,           $08, .OAMSet_IntroUnownF2_4_5
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_UNOWN_F_2_5,           $1c, .OAMSet_IntroUnownF2_4_5
+	spriteanim_oamset SPRANIM_OAMSET_INTRO_SUICUNE_AWAY,          $80, .OAMSet_IntroSuicuneAway
+	spriteanim_oamset SPRANIM_OAMSET_CELEBI_1,                    $00, .OAMSet_Celebi
+	spriteanim_oamset SPRANIM_OAMSET_CELEBI_2,                    $04, .OAMSet_Celebi
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_1,            $d0, .OAMSet_GameFreakLogo1_3
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_2,            $d3, .OAMSet_GameFreakLogo1_3
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_3,            $d6, .OAMSet_GameFreakLogo1_3
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_4,            $6c, .OAMSet_GameFreakLogo4_11
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_5,            $68, .OAMSet_GameFreakLogo4_11
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_6,            $64, .OAMSet_GameFreakLogo4_11
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_7,            $60, .OAMSet_GameFreakLogo4_11
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_8,            $0c, .OAMSet_GameFreakLogo4_11
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_9,            $08, .OAMSet_GameFreakLogo4_11
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_10,           $04, .OAMSet_GameFreakLogo4_11
+	spriteanim_oamset SPRANIM_OAMSET_GAMEFREAK_LOGO_11,           $00, .OAMSet_GameFreakLogo4_11
+export DEF NUM_SPRANIM_OAMSETS EQU const_value
 
 .OAMSet_1x1_Palette0:
 	db 1

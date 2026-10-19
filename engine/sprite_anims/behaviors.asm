@@ -11,45 +11,48 @@ SpriteAnim_RunBehavior:
 	ld l, a
 	jp hl
 
-.Jumptable:
-; entries correspond to SPRANIM_BEHAVIOR_* constants (see constants/sprite_anim_constants.asm)
-	table_width 2
-	dw SpriteAnimBehavior_Null
-	dw SpriteAnimBehavior_PartyMon
-	dw SpriteAnimBehavior_PartyMonSwitch
-	dw SpriteAnimBehavior_PartyMonSelected
-	dw SpriteAnimBehavior_GSTitleTrail
-	dw SpriteAnimBehavior_NamingScreenCursor
-	dw SpriteAnimBehavior_GameFreakLogo
-	dw SpriteAnimBehavior_GSGameFreakLogoStar
-	dw SpriteAnimBehavior_GSGameFreakLogoSparkle
-	dw SpriteAnimBehavior_SlotsGolem
-	dw SpriteAnimBehavior_SlotsChansey
-	dw SpriteAnimBehavior_SlotsChanseyEgg
-	dw SpriteAnimBehavior_MailCursor
-	dw SpriteAnimBehavior_UnusedCursor
-	dw SpriteAnimBehavior_MemoryGameCursor
-	dw SpriteAnimBehavior_PokegearArrow
-	dw SpriteAnimBehavior_TradePokeBall
-	dw SpriteAnimBehavior_TradeTubeBulge
-	dw SpriteAnimBehavior_TrademonInTube
-	dw SpriteAnimBehavior_RevealNewMon
-	dw SpriteAnimBehavior_RadioTuningKnob
-	dw SpriteAnimBehavior_CutLeaves
-	dw SpriteAnimBehavior_FlyFrom
-	dw SpriteAnimBehavior_FlyLeaf
-	dw SpriteAnimBehavior_FlyTo
-	dw SpriteAnimBehavior_GSIntroHoOhLugia
-	dw SpriteAnimBehavior_EZChatCursor
-	dw SpriteAnimBehavior_MobileTradeSentPulse
-	dw SpriteAnimBehavior_MobileTradeOTPulse
-	dw SpriteAnimBehavior_IntroSuicune
-	dw SpriteAnimBehavior_IntroPichuWooper
-	dw SpriteAnimBehavior_Celebi
-	dw SpriteAnimBehavior_IntroUnown
-	dw SpriteAnimBehavior_IntroUnownF
-	dw SpriteAnimBehavior_IntroSuicuneAway
-	assert_table_length NUM_SPRANIM_BEHAVIORS
+.Jumptable: const_def
+MACRO spriteanim_behavior
+	const \1
+	export \1
+	dw \2
+ENDM
+	spriteanim_behavior SPRANIM_BEHAVIOR_NULL,                      SpriteAnimBehavior_Null
+	spriteanim_behavior SPRANIM_BEHAVIOR_PARTY_MON,                 SpriteAnimBehavior_PartyMon
+	spriteanim_behavior SPRANIM_BEHAVIOR_PARTY_MON_SWITCH,          SpriteAnimBehavior_PartyMonSwitch
+	spriteanim_behavior SPRANIM_BEHAVIOR_PARTY_MON_SELECTED,        SpriteAnimBehavior_PartyMonSelected
+	spriteanim_behavior SPRANIM_BEHAVIOR_GS_TITLE_TRAIL,            SpriteAnimBehavior_GSTitleTrail
+	spriteanim_behavior SPRANIM_BEHAVIOR_NAMING_SCREEN_CURSOR,      SpriteAnimBehavior_NamingScreenCursor
+	spriteanim_behavior SPRANIM_BEHAVIOR_GAMEFREAK_LOGO,            SpriteAnimBehavior_GameFreakLogo
+	spriteanim_behavior SPRANIM_BEHAVIOR_GS_GAMEFREAK_LOGO_STAR,    SpriteAnimBehavior_GSGameFreakLogoStar
+	spriteanim_behavior SPRANIM_BEHAVIOR_GS_GAMEFREAK_LOGO_SPARKLE, SpriteAnimBehavior_GSGameFreakLogoSparkle
+	spriteanim_behavior SPRANIM_BEHAVIOR_SLOTS_GOLEM,               SpriteAnimBehavior_SlotsGolem
+	spriteanim_behavior SPRANIM_BEHAVIOR_SLOTS_CHANSEY,             SpriteAnimBehavior_SlotsChansey
+	spriteanim_behavior SPRANIM_BEHAVIOR_SLOTS_EGG,                 SpriteAnimBehavior_SlotsChanseyEgg
+	spriteanim_behavior SPRANIM_BEHAVIOR_MAIL_CURSOR,               SpriteAnimBehavior_MailCursor
+	spriteanim_behavior SPRANIM_BEHAVIOR_UNUSED_CURSOR,             SpriteAnimBehavior_UnusedCursor
+	spriteanim_behavior SPRANIM_BEHAVIOR_MEMORY_GAME_CURSOR,        SpriteAnimBehavior_MemoryGameCursor
+	spriteanim_behavior SPRANIM_BEHAVIOR_POKEGEAR_ARROW,            SpriteAnimBehavior_PokegearArrow
+	spriteanim_behavior SPRANIM_BEHAVIOR_TRADE_POKE_BALL,           SpriteAnimBehavior_TradePokeBall
+	spriteanim_behavior SPRANIM_BEHAVIOR_TRADE_TUBE_BULGE,          SpriteAnimBehavior_TradeTubeBulge
+	spriteanim_behavior SPRANIM_BEHAVIOR_TRADEMON_IN_TUBE,          SpriteAnimBehavior_TrademonInTube
+	spriteanim_behavior SPRANIM_BEHAVIOR_REVEAL_NEW_MON,            SpriteAnimBehavior_RevealNewMon
+	spriteanim_behavior SPRANIM_BEHAVIOR_RADIO_TUNING_KNOB,         SpriteAnimBehavior_RadioTuningKnob
+	spriteanim_behavior SPRANIM_BEHAVIOR_CUT_LEAVES,                SpriteAnimBehavior_CutLeaves
+	spriteanim_behavior SPRANIM_BEHAVIOR_FLY_FROM,                  SpriteAnimBehavior_FlyFrom
+	spriteanim_behavior SPRANIM_BEHAVIOR_FLY_LEAF,                  SpriteAnimBehavior_FlyLeaf
+	spriteanim_behavior SPRANIM_BEHAVIOR_FLY_TO,                    SpriteAnimBehavior_FlyTo
+	spriteanim_behavior SPRANIM_BEHAVIOR_GS_INTRO_HO_OH_LUGIA,      SpriteAnimBehavior_GSIntroHoOhLugia
+	spriteanim_behavior SPRANIM_BEHAVIOR_EZCHAT_CURSOR,             SpriteAnimBehavior_EZChatCursor
+	spriteanim_behavior SPRANIM_BEHAVIOR_MOBILE_TRADE_SENT_PULSE,   SpriteAnimBehavior_MobileTradeSentPulse
+	spriteanim_behavior SPRANIM_BEHAVIOR_MOBILE_TRADE_OT_PULSE,     SpriteAnimBehavior_MobileTradeOTPulse
+	spriteanim_behavior SPRANIM_BEHAVIOR_INTRO_SUICUNE,             SpriteAnimBehavior_IntroSuicune
+	spriteanim_behavior SPRANIM_BEHAVIOR_INTRO_PICHU_WOOPER,        SpriteAnimBehavior_IntroPichuWooper
+	spriteanim_behavior SPRANIM_BEHAVIOR_CELEBI,                    SpriteAnimBehavior_Celebi
+	spriteanim_behavior SPRANIM_BEHAVIOR_INTRO_UNOWN,               SpriteAnimBehavior_IntroUnown
+	spriteanim_behavior SPRANIM_BEHAVIOR_INTRO_UNOWN_F,             SpriteAnimBehavior_IntroUnownF
+	spriteanim_behavior SPRANIM_BEHAVIOR_INTRO_SUICUNE_AWAY,        SpriteAnimBehavior_IntroSuicuneAway
+export DEF NUM_SPRANIM_BEHAVIORS EQU const_value
 
 SpriteAnimBehavior_Null:
 	ret
