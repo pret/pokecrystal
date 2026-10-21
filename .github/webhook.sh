@@ -2,7 +2,7 @@
 set -e
 
 # Report unnamed symbols
-content="$(tools/unnamed.py -r . pokecrystal.sym | grep -v -e '^lib/mobile/' -e '^mobile/' | head)"
+content="$(tools/unnamed.py -r . pokecrystal.sym pokecrystal_debug.sym | grep -v -e '^lib/mobile/' -e '^mobile/' | head)"
 
 curl -H 'Content-Type: application/json' -X POST "$DISCORD_WEBHOOK_URL" -d@- << EOF
 {

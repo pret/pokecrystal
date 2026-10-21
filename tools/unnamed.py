@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
-Usage: unnamed.py [-h] [-r rootdir] [-l count] pokecrystal.sym
+Usage: unnamed.py [-h] [-r rootdir] [-l count] pokecrystal.sym...
 
-Parse the symfile to find unnamed symbols.
+Parse the symfiles to find unnamed symbols.
 """
 
 import sys
@@ -34,8 +34,8 @@ def read_string(file):
 # Fix broken pipe when using `head`
 signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
-parser = argparse.ArgumentParser(description='Parse the symfile to find unnamed symbols')
-parser.add_argument('symfile', type=argparse.FileType('r'),
+parser = argparse.ArgumentParser(description='Parse the symfiles to find unnamed symbols')
+parser.add_argument('symfiles', nargs='+', type=argparse.FileType('r'),
 	help='the list of symbols')
 parser.add_argument('-r', '--rootdir', type=str,
 	help='scan the output files to obtain a list of files with unnamed symbols (note: will rebuild objects as necessary)')
@@ -55,20 +55,21 @@ if args.rootdir:
 		print('Error: Object files not found!', file=sys.stderr)
 		sys.exit(1)
 
-# Scan all unnamed symbols from the symfile
+# Scan all unnamed symbols from the symfiles
 symbols_total = 0
 symbols = set()
-for line in args.symfile:
-	line = line.split(';')[0].strip()
-	split = line.split(' ')
-	if len(split) < 2:
-		continue
+for symfile in args.symfiles:
+	for line in symfile:
+		line = line.split(';')[0].strip()
+		split = line.split(' ')
+		if len(split) < 2:
+			continue
 
-	symbols_total += 1
+		symbols_total += 1
 
-	symbol = ' '.join(split[1:]).strip()
-	if symbol[-3:].lower() == split[0][-3:].lower():
-		symbols.add(symbol)
+		symbol = ' '.join(split[1:]).strip()
+		if symbol[-3:].lower() == split[0][-3:].lower():
+			symbols.add(symbol)
 
 # If no object files were provided, just print what we know and exit
 unnamed_percent = 100 * (symbols_total - len(symbols)) / symbols_total
