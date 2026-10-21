@@ -99,8 +99,7 @@ endr
 ; Waits until the current BG map transfer cycle finishes,
 ; and then turns off BG map transfers.
 ; Can be safely called if no transfer is active.
-; However, does not check that a transfer has occurred at all since being started,
-; so you may want to `DelayFrame` at least once before calling this.
+; Does not check that a transfer has occurred at all since being started.
 FinishBGMapTransfer::
 
 	ldh a, [hBGMapMode]
