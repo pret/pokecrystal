@@ -27,7 +27,7 @@ _TitleScreen:
 	call Decompress
 
 ; Clear screen palettes
-	hlbgcoord 0, 0 ; vBGMap2
+	hlbgcoord 0, 0 ; vAttrmap0
 	ld bc, 20 * TILEMAP_WIDTH
 	xor a
 	call ByteFill
@@ -37,7 +37,7 @@ _TitleScreen:
 ; BG Attr Map 1:
 
 ; line 0 (copyright)
-	hlbgcoord 0, 0, vBGMap3
+	hlbgcoord 0, 0, vAttrmap1
 	ld bc, TILEMAP_WIDTH
 	ld a, 7 ; palette
 	call ByteFill
@@ -112,7 +112,7 @@ _TitleScreen:
 	call DrawTitleGraphic
 
 ; Draw copyright text
-	hlbgcoord 3, 0, vBGMap1
+	hlbgcoord 3, 0, vTilemap1
 	lb bc, 1, 13
 	ld d, $c
 	ld e, 16

@@ -572,13 +572,13 @@ HDMATransfer_OnlyTopFourRows:
 	ldh [rVBK], a
 	ld c, $8
 	ld hl, wScratchTilemap + $80
-	debgcoord 0, 0, vBGMap3
+	debgcoord 0, 0, vAttrmap1
 	call HDMATransfer_WaitForScanline128
 	ld a, $0
 	ldh [rVBK], a
 	ld c, $8
 	ld hl, wScratchTilemap
-	debgcoord 0, 0, vBGMap1
+	debgcoord 0, 0, vTilemap1
 	call HDMATransfer_WaitForScanline128
 	ret
 

@@ -1195,10 +1195,10 @@ ScrollMapDown::
 	ld h, a
 	ld bc, TILEMAP_WIDTH tiles
 	add hl, bc
-; cap d at HIGH(vBGMap0)
+; cap d at HIGH(vTilemap0)
 	ld a, h
 	and %00000011
-	or HIGH(vBGMap0)
+	or HIGH(vTilemap0)
 	ld e, l
 	ld d, a
 	call UpdateBGMapRow
@@ -1317,10 +1317,10 @@ UpdateBGMapColumn::
 	ld e, a
 	jr nc, .skip
 	inc d
-; cap d at HIGH(vBGMap0)
+; cap d at HIGH(vTilemap0)
 	ld a, d
 	and %11
-	or HIGH(vBGMap0)
+	or HIGH(vTilemap0)
 	ld d, a
 
 .skip
