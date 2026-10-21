@@ -16,7 +16,7 @@ UnusedTitleScreen: ; unreferenced
 
 	ld hl, UnusedTitleBG_GFX
 	ld de, vTiles2
-	ld bc, vBGMap0 - vTiles2
+	ld bc, vTilemap0 - vTiles2
 	call CopyBytes
 
 	ld hl, UnusedTitleBG_GFX + $80 tiles

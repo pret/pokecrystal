@@ -61,9 +61,9 @@ PokeGear:
 	pop af
 	ld [wOptions], a
 	call ClearBGPalettes
-	xor a ; LOW(vBGMap0)
+	xor a ; LOW(vTilemap0)
 	ldh [hBGMapAddress], a
-	ld a, HIGH(vBGMap0)
+	ld a, HIGH(vTilemap0)
 	ldh [hBGMapAddress + 1], a
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
@@ -264,18 +264,18 @@ InitPokegearTilemap:
 	ld a, [wPokegearMapRegion]
 	and a
 	jr nz, .kanto_0
-	xor a ; LOW(vBGMap0)
+	xor a ; LOW(vTilemap0)
 	ldh [hBGMapAddress], a
-	ld a, HIGH(vBGMap0)
+	ld a, HIGH(vTilemap0)
 	ldh [hBGMapAddress + 1], a
 	call .UpdateBGMap
 	ld a, SCREEN_HEIGHT_PX
 	jr .finish
 
 .kanto_0
-	xor a ; LOW(vBGMap1)
+	xor a ; LOW(vTilemap1)
 	ldh [hBGMapAddress], a
-	ld a, HIGH(vBGMap1)
+	ld a, HIGH(vTilemap1)
 	ldh [hBGMapAddress + 1], a
 	call .UpdateBGMap
 	xor a
@@ -2078,9 +2078,9 @@ _FlyMap:
 	call ClearBGPalettes
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
-	xor a ; LOW(vBGMap0)
+	xor a ; LOW(vTilemap0)
 	ldh [hBGMapAddress], a
-	ld a, HIGH(vBGMap0)
+	ld a, HIGH(vTilemap0)
 	ldh [hBGMapAddress + 1], a
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
@@ -2355,7 +2355,7 @@ Pokedex_GetArea:
 	call FillKantoMap
 	call .PlaceString_MonsNest
 	call TownMapPals
-	hlbgcoord 0, 0, vBGMap1
+	hlbgcoord 0, 0, vTilemap1
 	call TownMapBGUpdate
 	call FillJohtoMap
 	call .PlaceString_MonsNest
@@ -2815,7 +2815,7 @@ EntireFlyMap: ; unreferenced
 	call FillKantoMap
 	call TownMapBubble
 	call TownMapPals
-	hlbgcoord 0, 0, vBGMap1
+	hlbgcoord 0, 0, vTilemap1
 	call TownMapBGUpdate
 	call FillJohtoMap
 	call TownMapBubble
@@ -2864,9 +2864,9 @@ EntireFlyMap: ; unreferenced
 	call ClearBGPalettes
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
-	xor a ; LOW(vBGMap0)
+	xor a ; LOW(vTilemap0)
 	ldh [hBGMapAddress], a
-	ld a, HIGH(vBGMap0)
+	ld a, HIGH(vTilemap0)
 	ldh [hBGMapAddress + 1], a
 	ld a, [wTownMapPlayerIconLandmark]
 	ld e, a
@@ -2906,13 +2906,13 @@ EntireFlyMap: ; unreferenced
 	jr c, .InJohto
 	call FillKantoMap
 	xor a
-	ld b, HIGH(vBGMap1)
+	ld b, HIGH(vTilemap1)
 	jr .Finally
 
 .InJohto:
 	call FillJohtoMap
 	ld a, SCREEN_HEIGHT_PX
-	ld b, HIGH(vBGMap0)
+	ld b, HIGH(vTilemap0)
 .Finally:
 	ldh [hWY], a
 	ld a, b

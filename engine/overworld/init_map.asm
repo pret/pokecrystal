@@ -28,7 +28,7 @@ ReanchorBGMap_NoOAMUpdate::
 	ld a, $90
 	ldh [hWY], a
 	call LoadOverworldTilemapAndAttrmapPals
-	ld a, HIGH(vBGMap1)
+	ld a, HIGH(vTilemap1)
 	call .LoadBGMapAddrIntoHRAM
 	call HDMATransferTilemapAndAttrmap_Menu
 	farcall LoadOW_BGPal7
@@ -39,11 +39,11 @@ ReanchorBGMap_NoOAMUpdate::
 	ldh [hBGMapMode], a
 	ldh [hWY], a
 	farcall HDMATransfer_FillBGMap0WithBlack ; no need to farcall
-	ld a, HIGH(vBGMap0)
+	ld a, HIGH(vTilemap0)
 	call .LoadBGMapAddrIntoHRAM
-	xor a ; LOW(vBGMap0)
+	xor a ; LOW(vTilemap0)
 	ld [wBGMapAnchor], a
-	ld a, HIGH(vBGMap0)
+	ld a, HIGH(vTilemap0)
 	ld [wBGMapAnchor + 1], a
 	xor a
 	ldh [hSCX], a
@@ -91,9 +91,9 @@ HDMATransfer_FillBGMap0WithBlack:
 	ldh [rVDMA_SRC_HIGH], a
 	ld a, LOW(wDecompressScratch)
 	ldh [rVDMA_SRC_LOW], a
-	ld a, HIGH(vBGMap0 - STARTOF(VRAM))
+	ld a, HIGH(vTilemap0 - STARTOF(VRAM))
 	ldh [rVDMA_DEST_HIGH], a
-	ld a, LOW(vBGMap0 - STARTOF(VRAM))
+	ld a, LOW(vTilemap0 - STARTOF(VRAM))
 	ldh [rVDMA_DEST_LOW], a
 	ld a, $3f
 	ldh [hDMATransfer], a

@@ -36,7 +36,7 @@ ENDM
 MACRO? bgcoord
 ; register, x, y[, origin]
 	if _NARG < 4
-		ld \1, (\3) * TILEMAP_WIDTH + (\2) + vBGMap0
+		ld \1, (\3) * TILEMAP_WIDTH + (\2) + vTilemap0
 	else
 		ld \1, (\3) * TILEMAP_WIDTH + (\2) + \4
 	endc

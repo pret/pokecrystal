@@ -1093,7 +1093,7 @@ TilesetColorPicker: ; unreferenced
 	ld hl, vTiles1
 	lb bc, BANK(DebugColor_UpArrowGFX), 1
 	call Request2bpp
-	ld a, HIGH(vBGMap1)
+	ld a, HIGH(vTilemap1)
 	ldh [hBGMapAddress + 1], a
 	hlcoord 0, 0
 	ld bc, SCREEN_AREA

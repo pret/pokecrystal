@@ -103,7 +103,7 @@ IntroScene1:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroUnownAAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -179,7 +179,7 @@ IntroScene3:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroBackgroundAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -242,7 +242,7 @@ IntroScene5:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroUnownHIAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -340,7 +340,7 @@ IntroScene7:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroBackgroundAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 
 	ld hl, IntroPichuWooperGFX
@@ -452,7 +452,7 @@ IntroScene9:
 	call DelayFrame
 	call DelayFrame
 	call DelayFrame
-	ld a, LOW(vBGMap0 + $c) ; $c
+	ld a, LOW(vTilemap0 + $c) ; $c
 	ldh [hBGMapAddress], a
 	call DelayFrame
 	call DelayFrame
@@ -510,7 +510,7 @@ IntroScene11:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroUnownsAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -633,7 +633,7 @@ IntroScene13:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroBackgroundAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -737,7 +737,7 @@ IntroScene15:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroSuicuneJumpAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -747,9 +747,9 @@ IntroScene15:
 	ld hl, IntroUnownBackGFX
 	ld de, vTiles0 tile $00
 	call Intro_DecompressRequest2bpp_128Tiles
-	ld de, IntroGrass4GFX
+	ld de, IntroMotionLineGFX
 	ld hl, vTiles1 tile $00
-	lb bc, BANK(IntroGrass4GFX), 1
+	lb bc, BANK(IntroMotionLineGFX), 1
 	call Request2bpp
 	ld hl, IntroSuicuneJumpTilemap
 	debgcoord 0, 0
@@ -819,7 +819,7 @@ IntroScene17:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroSuicuneCloseAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -885,7 +885,7 @@ IntroScene19:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroSuicuneBackAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -895,9 +895,9 @@ IntroScene19:
 	ld hl, IntroUnownsGFX
 	ld de, vTiles1 tile $00
 	call Intro_DecompressRequest2bpp_128Tiles
-	ld de, IntroGrass4GFX
+	ld de, IntroMotionLineGFX
 	ld hl, vTiles1 tile $7f
-	lb bc, BANK(IntroGrass4GFX), 1
+	lb bc, BANK(IntroMotionLineGFX), 1
 	call Request2bpp
 	ld hl, IntroSuicuneBackTilemap
 	debgcoord 0, 0
@@ -1063,7 +1063,7 @@ IntroScene26:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, IntroCrystalUnownsAttrmap
-	debgcoord 0, 0 ; vBGMap2
+	debgcoord 0, 0 ; vAttrmap0
 	call Intro_DecompressRequest2bpp_64Tiles
 	ld a, $0
 	ldh [rVBK], a
@@ -1774,5 +1774,6 @@ IntroGrass2GFX:
 INCBIN "gfx/intro/grass2.2bpp"
 IntroGrass3GFX:
 INCBIN "gfx/intro/grass3.2bpp"
-IntroGrass4GFX:
-INCBIN "gfx/intro/grass4.2bpp"
+
+IntroMotionLineGFX:
+INCBIN "gfx/intro/motion_line.2bpp"

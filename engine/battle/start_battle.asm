@@ -193,7 +193,7 @@ ClearBattleRAM:
 	call ClearWindowData
 
 	ld hl, hBGMapAddress
-	xor a ; LOW(vBGMap0)
+	xor a ; LOW(vTilemap0)
 	ld [hli], a
-	ld [hl], HIGH(vBGMap0)
+	ld [hl], HIGH(vTilemap0)
 	ret
