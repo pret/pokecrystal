@@ -54,7 +54,7 @@ NamingScreen:
 	ldh [rLCDC], a
 	call .GetNamingScreenSetup
 	call WaitBGMap
-	call WaitTop
+	call FinishBGMapTransfer
 	call SetDefaultBGPAndOBP
 	call NamingScreen_InitNameEntry
 	ret
@@ -260,7 +260,7 @@ NamingScreen_IsTargetBox:
 	ret
 
 NamingScreen_InitText:
-	call WaitTop
+	call FinishBGMapTransfer
 	hlcoord 0, 0
 	ld bc, SCREEN_AREA
 	ld a, NAMINGSCREEN_BORDER
@@ -947,7 +947,7 @@ _ComposeMailMessage:
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call WaitBGMap
-	call WaitTop
+	call FinishBGMapTransfer
 	ld a, %11100100
 	call DmgToCgbBGPals
 	ld a, %11100100
@@ -974,7 +974,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	db "メールを　かいてね@"
 
 .InitCharset:
-	call WaitTop
+	call FinishBGMapTransfer
 	hlcoord 0, 0
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, NAMINGSCREEN_BORDER
