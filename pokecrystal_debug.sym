@@ -17344,10 +17344,10 @@
 23:50b6 UpdateAnimFrame.delete
 23:50b9 UpdateAnimFrame.done
 23:50bb UpdateAnimFrame.reached_the_end
-23:50be AddOrSubtractY
-23:50cc AddOrSubtractY.ok
-23:50ce AddOrSubtractX
-23:50dc AddOrSubtractX.ok
+23:50be ApplyFlipToCoordY
+23:50cc ApplyFlipToCoordY.ok
+23:50ce ApplyFlipToCoordX
+23:50dc ApplyFlipToCoordX.ok
 23:50de GetSpriteOAMAttr
 23:50ec InitSpriteAnimBuffer
 23:5109 GetSpriteAnimVTile

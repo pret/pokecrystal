@@ -17563,10 +17563,10 @@ ROMX bank #35:
 	         $50b6 = UpdateAnimFrame.delete
 	         $50b9 = UpdateAnimFrame.done
 	         $50bb = UpdateAnimFrame.reached_the_end
-	         $50be = AddOrSubtractY
-	         $50cc = AddOrSubtractY.ok
-	         $50ce = AddOrSubtractX
-	         $50dc = AddOrSubtractX.ok
+	         $50be = ApplyFlipToCoordY
+	         $50cc = ApplyFlipToCoordY.ok
+	         $50ce = ApplyFlipToCoordX
+	         $50dc = ApplyFlipToCoordX.ok
 	         $50de = GetSpriteOAMAttr
 	         $50ec = InitSpriteAnimBuffer
 	         $5109 = GetSpriteAnimVTile
