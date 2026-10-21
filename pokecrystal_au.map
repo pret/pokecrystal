@@ -43594,8 +43594,8 @@ VRAM bank #0:
 	         $8000 = vTiles0
 	         $8800 = vTiles1
 	         $9000 = vTiles2
-	         $9800 = vBGMap0
-	         $9c00 = vBGMap1
+	         $9800 = vTilemap0
+	         $9c00 = vTilemap1
 	TOTAL EMPTY: $0000 bytes
 
 VRAM bank #1:
@@ -43603,8 +43603,8 @@ VRAM bank #1:
 	         $8000 = vTiles3
 	         $8800 = vTiles4
 	         $9000 = vTiles5
-	         $9800 = vBGMap2
-	         $9c00 = vBGMap3
+	         $9800 = vAttrmap0
+	         $9c00 = vAttrmap1
 	TOTAL EMPTY: $0000 bytes
 
 SRAM bank #0:

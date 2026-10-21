@@ -42894,13 +42894,13 @@
 00:8000 vTiles0
 00:8800 vTiles1
 00:9000 vTiles2
-00:9800 vBGMap0
-00:9c00 vBGMap1
+00:9800 vTilemap0
+00:9c00 vTilemap1
 01:8000 vTiles3
 01:8800 vTiles4
 01:9000 vTiles5
-01:9800 vBGMap2
-01:9c00 vBGMap3
+01:9800 vAttrmap0
+01:9c00 vAttrmap1
 00:a000 sScratch
 00:a600 sPartyMail
 00:a600 sPartyMon1Mail
