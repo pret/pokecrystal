@@ -415,8 +415,8 @@
 00:15d8 DMATransfer
 00:15e3 UpdateBGMapBuffer
 00:15f7 UpdateBGMapBuffer.next
-00:163a WaitTop
-00:1648 WaitTop.done
+00:163a FinishBGMapTransfer
+00:1648 FinishBGMapTransfer.done
 00:164c UpdateBGMap
 00:167b UpdateBGMap.Attr
 00:168a UpdateBGMap.Tiles

@@ -456,8 +456,8 @@ ROM0 bank #0:
 	         $15d8 = DMATransfer
 	         $15e3 = UpdateBGMapBuffer
 	         $15f7 = UpdateBGMapBuffer.next
-	         $163a = WaitTop
-	         $1648 = WaitTop.done
+	         $163a = FinishBGMapTransfer
+	         $1648 = FinishBGMapTransfer.done
 	         $164c = UpdateBGMap
 	         $167b = UpdateBGMap.Attr
 	         $168a = UpdateBGMap.Tiles
