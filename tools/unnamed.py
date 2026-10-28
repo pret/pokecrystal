@@ -44,14 +44,14 @@ parser.add_argument('-l', '--list', type=int, default=0,
 args = parser.parse_args()
 
 # Get list of object files
-objects = None
+objects = []
 if args.rootdir:
 	for line in subprocess.Popen(['make', '-C', args.rootdir, '-s', '-p', 'DEBUG=1'],
 			stdout=subprocess.PIPE).stdout.read().decode().split('\n'):
-		if line.startswith('pokecrystal_obj :='):
-			objects = line[len('pokecrystal_obj :='):].strip().split()
-			break
-	else:
+		for version in ['', '11', '_au', '_debug', '11_debug', '11_vc']:
+			if line.startswith(f'pokecrystal{version}_obj :='):
+				objects.extend(line[len(f'pokecrystal{version}_obj :='):].strip().split())
+	if not objects:
 		print('Error: Object files not found!', file=sys.stderr)
 		sys.exit(1)
 
@@ -91,14 +91,14 @@ for objfile in objects:
 		elif magic == b'RGB9':
 			obj_ver = 10 + unpack_from('<I', file)[0]
 
-		if obj_ver not in [6, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23]:
+		if obj_ver not in [6, 10, 11, 12, 13] and obj_ver < 15:
 			print(f"Error: File '{objfile}' is of an unknown format.", file=sys.stderr)
 			sys.exit(1)
 
 		num_symbols = unpack_from('<I', file)[0]
 		unpack_from('<I', file) # skip num sections
 
-		if obj_ver in [16, 17, 18, 19, 20, 21, 22, 23]:
+		if obj_ver >= 16:
 			node_filenames = []
 			num_nodes = unpack_from('<I', file)[0]
 			for x in range(num_nodes):
@@ -118,7 +118,7 @@ for objfile in objects:
 			sym_type = symtype(unpack_from('<B', file)[0] & 0x7f)
 			if sym_type == symtype.IMPORT:
 				continue
-			if obj_ver in [16, 17, 18, 19, 20, 21, 22, 23]:
+			if obj_ver >= 16:
 				sym_fileno = unpack_from('<I', file)[0]
 				sym_filename = node_filenames[sym_fileno]
 			else:
