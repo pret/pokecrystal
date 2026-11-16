@@ -106,6 +106,8 @@ ENDM
 
 MACRO def_object_events
 	REDEF _NUM_OBJECT_EVENTS EQUS "_NUM_OBJECT_EVENTS_\@"
+	assert {_NUM_OBJECT_EVENTS} <= NUM_OBJECTS, \
+		"Too many `object_event`s in this map (max {d:NUM_OBJECTS})"
 	db {_NUM_OBJECT_EVENTS}
 	DEF {_NUM_OBJECT_EVENTS} = 0
 ENDM
