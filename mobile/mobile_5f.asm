@@ -173,38 +173,47 @@ HaveWantPals:
 	RGB  0,  0,  0
 
 CheckStringForErrors:
+; Similar to CorrectNickErrors (engine/pokemon/correct_nick_errors.asm),
+; but there are some differences in which characters are considered valid.
+; In this list:
+; • $00 ('<NULL>') is treated as valid
+; • $4e ('<NEXT>') is treated as valid
+; • $5d ('<TRAINER>') is treated as invalid
+; • $60 - $7e are treated as valid
+
 ; Valid character ranges:
-; $0, $5 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $60 - $ff
+; $00, $05 - $13, $19 - $1c, $26 - $34, $3a - $3e, $40 - $48, $4e, $60 - $ff
 .loop
 	ld a, [de]
 	inc de
 	and a ; "<NULL>"
 	jr z, .NextChar
-	cp FIRST_REGULAR_TEXT_CHAR
+	cp FIRST_REGULAR_TEXT_CHAR ; $60
 	jr nc, .NextChar
-	cp '<NEXT>'
+	cp '<NEXT>' ; $4e
 	jr z, .NextChar
-	cp '@'
+	cp '@' ; $50
 	jr z, .Done
-	cp 'ガ'
+	
+	cp $04 + 1 ; 'オ゙'
 	jr c, .Fail
-	cp '<PLAY_G>'
+	cp $14 ; '<PLAY_G>'
 	jr c, .NextChar
-	cp '<JP_18>' + 1
+	cp $18 + 1 ; '<JP_18>' (ノ゙)
 	jr c, .Fail
-	cp '<NI>'
+	cp $1d ; '<NI>'
 	jr c, .NextChar
-	cp '<NO>' + 1
+	cp $25 + 1 ; '<NO>'
 	jr c, .Fail
-	cp '<ROUTE>'
+	cp $35 ; '<ROUTE>'
 	jr c, .NextChar
-	cp '<GREEN>' + 1
+	cp $39 + 1 ; '<GREEN>'
 	jr c, .Fail
-	cp '<ENEMY>'
+	cp $3f ; '<ENEMY>'
 	jr c, .NextChar
-	cp '<ENEMY>' + 1
+	cp $3f + 1 ; '<ENEMY>'
 	jr c, .Fail
-	cp '<MOM>'
+	cp $49 ; '<MOM>'
 	jr c, .NextChar
 
 .Fail:
@@ -220,38 +229,39 @@ CheckStringForErrors:
 	ret
 
 CheckStringForErrors_IgnoreTerminator:
-; Find control chars
+; Same as CheckStringForErrors, but ignores the string terminator (@).
+; The string terminator is treated as a valid character, but does not terminate the string.
 .loop
 	ld a, [de]
 	inc de
-	and a
+	and a ; "<NULL>"
 	jr z, .next
-	cp '<DEXEND>' + 1
+	cp FIRST_REGULAR_TEXT_CHAR ; $60
 	jr nc, .next
-	cp '<NEXT>'
+	cp '<NEXT>' ; $4e
 	jr z, .next
-	cp '@'
+	cp '@' ; $50
 	jr z, .next
 
-	cp 'ガ'
+	cp $04 + 1 ; 'オ゙'
 	jr c, .end
-	cp '<PLAY_G>'
+	cp $14 ; '<PLAY_G>'
 	jr c, .next
-	cp '<JP_18>' + 1
+	cp $18 + 1 ; '<JP_18>' (ノ゙)
 	jr c, .end
-	cp '<NI>'
+	cp $1d ; '<NI>'
 	jr c, .next
-	cp '<NO>' + 1
+	cp $25 + 1 ; '<NO>'
 	jr c, .end
-	cp '<ROUTE>'
+	cp $35 ; '<ROUTE>'
 	jr c, .next
-	cp '<GREEN>' + 1
+	cp $39 + 1 ; '<GREEN>'
 	jr c, .end
-	cp '<ENEMY>'
+	cp $3f ; '<ENEMY>'
 	jr c, .next
-	cp '<ENEMY>' + 1
+	cp $3f + 1 ; '<ENEMY>'
 	jr c, .end
-	cp '<MOM>'
+	cp $49 ; '<MOM>'
 	jr c, .next
 
 .end
