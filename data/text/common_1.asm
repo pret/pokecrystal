@@ -1090,10 +1090,12 @@ _BuenaRadioMidnightText8::
 	done
 
 _BuenaRadioMidnightText9::
+; BUG: Buena's midnight sign-off overwrites the previous radio line (see docs/bugs_and_glitches.md)
 	text "I'm outta here!"
 	done
 
 _BuenaRadioMidnightText10::
+; BUG: Buena's midnight sign-off overwrites the previous radio line (see docs/bugs_and_glitches.md)
 	text "…"
 	done
 
