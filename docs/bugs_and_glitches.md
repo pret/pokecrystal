@@ -2416,22 +2416,18 @@ This supports up to six entries.
 
 ### Buena's midnight sign-off overwrites the previous radio line
 
-Keep the Pokégear radio tuned to Buena's Password as the clock passes midnight. During the sign-off, "I'm outta here!" overwrites "you by DJ BUENA!" on the top line. The last two characters of "BUENA!" remain visible, so the player sees "I'm outta here!A!" with a blank line underneath.
-
-The radio scrolls the previous line to the top and clears the bottom line. Both "I'm outta here!" and the ellipsis use `text`, which starts printing on the top line. They need a leading `line` command to print on the bottom line like the rest of the sign-off.
-
 **Fix:** Edit `_BuenaRadioMidnightText9` and `_BuenaRadioMidnightText10` in [data/text/common_1.asm](https://github.com/pret/pokecrystal/blob/master/data/text/common_1.asm):
 
 ```diff
- _BuenaRadioMidnightText9::
 -; BUG: Buena's midnight sign-off overwrites the previous radio line (see docs/bugs_and_glitches.md)
+-
+ _BuenaRadioMidnightText9::
 -	text "I'm outta here!"
 +	text_start
 +	line "I'm outta here!"
  	done
-
+ 
  _BuenaRadioMidnightText10::
--; BUG: Buena's midnight sign-off overwrites the previous radio line (see docs/bugs_and_glitches.md)
 -	text "…"
 +	text_start
 +	line "…"
