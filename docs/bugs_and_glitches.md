@@ -95,6 +95,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [Only the first three evolution entries can have Stone compatibility reported correctly](#only-the-first-three-evolution-entries-can-have-stone-compatibility-reported-correctly)
   - [`EVOLVE_STAT` can break Stone compatibility reporting](#evolve_stat-can-break-stone-compatibility-reporting)
   - [A "HOF Master!" title for 200-Time Famers is defined but inaccessible](#a-hof-master-title-for-200-time-famers-is-defined-but-inaccessible)
+  - [Buena's midnight sign-off overwrites the previous radio line](#buenas-midnight-sign-off-overwrites-the-previous-radio-line)
 - [Scripted events](#scripted-events)
   - [Clair can give TM24 Dragonbreath twice](#clair-can-give-tm24-dragonbreath-twice)
   - [Daisy's grooming doesn't always increase happiness](#daisys-grooming-doesnt-always-increase-happiness)
@@ -2410,6 +2411,27 @@ This supports up to six entries.
  	call PlaceString
  	hlcoord 13, 2
  	jr .finish
+```
+
+
+### Buena's midnight sign-off overwrites the previous radio line
+
+**Fix:** Edit `_BuenaRadioMidnightText9` and `_BuenaRadioMidnightText10` in [data/text/common_1.asm](https://github.com/pret/pokecrystal/blob/master/data/text/common_1.asm):
+
+```diff
+-; BUG: Buena's midnight sign-off overwrites the previous radio line (see docs/bugs_and_glitches.md)
+-
+ _BuenaRadioMidnightText9::
+-	text "I'm outta here!"
++	text_start
++	line "I'm outta here!"
+ 	done
+ 
+ _BuenaRadioMidnightText10::
+-	text "…"
++	text_start
++	line "…"
+ 	done
 ```
 
 
